@@ -14,6 +14,8 @@ namespace BrainMuscles {
 
 namespace Structure {
 
+namespace Linkedlist {
+
 template <size_t SIZE, typename T>
 class Link : public Link<SIZE - 1, T>{
 private:
@@ -80,8 +82,9 @@ public:
 	};
 };
 
-};
+}
 
+}
 
 } /* namespace BrainMuscles */
 

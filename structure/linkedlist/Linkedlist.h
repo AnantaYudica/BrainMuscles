@@ -8,12 +8,14 @@
 #ifndef STRUCTURE_LINKEDLIST_LINKEDLIST_H_
 #define STRUCTURE_LINKEDLIST_LINKEDLIST_H_
 
-#include "linkedlist/Node.h"
-#include "linkedlist/Point.h"
+#include "Node.h"
+#include "Point.h"
 
 namespace BrainMuscles {
 
 namespace Structure {
+
+namespace Linkedlist {
 
 template<typename T,size_t SIZE_POINT, size_t SIZE_LINKED>
 class Linkedlist {
@@ -85,6 +87,8 @@ protected:
 		return l_node->template GetLinked<LINK>();
 	};
 };
+
+}
 
 }
 

@@ -8,11 +8,13 @@
 #ifndef STRUCTURE_LINKEDLIST_NODE_H_
 #define STRUCTURE_LINKEDLIST_NODE_H_
 
-#include "linkedlist/Link.h"
+#include "Link.h"
 
 namespace BrainMuscles {
 
 namespace Structure {
+
+namespace Linkedlist {
 
 template<size_t SIZE, typename T>
 class Node {
@@ -61,7 +63,7 @@ public:
 	};
 };
 
-
+}
 
 } /* namespace Strucuture */
 

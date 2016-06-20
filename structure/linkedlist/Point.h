@@ -10,11 +10,13 @@
 
 #include <cstdio>
 
-#include "linkedlist/Link.h"
+#include "Link.h"
 
 namespace BrainMuscles {
 
 namespace Structure {
+
+namespace Linkedlist {
 
 template<size_t SIZE, typename T>
 class Point {
@@ -95,6 +97,7 @@ public:
 
 };
 
+}
 
 }
 

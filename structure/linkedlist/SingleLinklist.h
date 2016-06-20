@@ -8,11 +8,13 @@
 #ifndef STRUCTURE_LINKEDLIST_SINGLELINKLIST_H_
 #define STRUCTURE_LINKEDLIST_SINGLELINKLIST_H_
 
-#include "linkedlist/Linkedlist.h"
+#include "Linkedlist.h"
 
 namespace BrainMuscles {
 
 namespace Structure {
+
+namespace Linkedlist {
 
 template <typename T>
 class SingleLinklist : public Linkedlist<T, 2, 1>{
@@ -57,6 +59,8 @@ public:
 		return LinkedlistType::template Size<NEXT>(LinkedlistType::template GetPoint<HEAD>());
 	};
 };
+
+}
 
 } /* namespace Strucutre*/
 
