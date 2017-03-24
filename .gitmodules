@@ -1,0 +1,6 @@
+[submodule "library/angle/angle"]
+	path = library/angle/angle
+	url = https://chromium.googlesource.com/angle/angle
+[submodule "submodule/angle"]
+	path = submodule/angle
+	url = https://chromium.googlesource.com/angle/angle
