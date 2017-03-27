@@ -1,6 +1,3 @@
-[submodule "library/angle/angle"]
-	path = library/angle/angle
-	url = https://chromium.googlesource.com/angle/angle
-[submodule "submodule/angle"]
-	path = submodule/angle
+[submodule "third_party/angle"]
+	path = third_party/angle
 	url = https://chromium.googlesource.com/angle/angle
