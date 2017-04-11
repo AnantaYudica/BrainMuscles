@@ -22,21 +22,22 @@ namespace BrainMuscles
 {
 	namespace type
 	{
-	namespace trait
-	{
-		namespace storage
+		namespace trait
 		{
-			template <typename STORAGE, size_t COUNTER>
-			struct GetSize
+			namespace storage
 			{
-				constexpr static size_t Value = GetSize<typename STORAGE::Next, COUNTER + 1>::Value;
-			};
+				template <typename STORAGE, size_t COUNTER>
+				struct GetSize
+				{
+					constexpr static size_t Value = GetSize<typename STORAGE::Next, COUNTER + 1>::Value;
+				};
 
-			template <size_t COUNTER>
-			struct GetSize<void, COUNTER>
-			{
-				constexpr static size_t Value = COUNTER;
-			};
+				template <size_t COUNTER>
+				struct GetSize<void, COUNTER>
+				{
+					constexpr static size_t Value = COUNTER;
+				};
+			}
 		}
 	}
 }
