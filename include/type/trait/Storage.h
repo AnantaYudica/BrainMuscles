@@ -18,6 +18,8 @@ namespace BrainMuscles
 #include "type\trait\storage\GetIndex.h"
 #include "type\trait\storage\GetSize.h"
 #include "type\trait\storage\IsContainValue.h"
+#include "type\trait\storage\Filler.h"
+#include "type\trait\storage\Function.h"
 
 namespace BrainMuscles
 {
