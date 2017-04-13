@@ -65,7 +65,7 @@ namespace BrainMuscles
 
 			constexpr size_t String::ReverseFind(const char find, const size_t start, size_t result) const
 			{
-				return start == m_size ? m_size : (m_string[start] == find ? result : ReverseFind(find, start - 1, result - 1));
+				return m_string[start] == find ? result : (start == 0 ? m_size : ReverseFind(find, start - 1, result - 1));
 			}
 
 
