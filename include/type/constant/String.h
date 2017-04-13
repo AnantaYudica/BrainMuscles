@@ -29,6 +29,8 @@ namespace BrainMuscles
 				const char * m_string;
 				constexpr size_t Find(const char ch, const size_t start, size_t result) const;
 				constexpr size_t ReverseFind(const char find, const size_t  start, size_t result) const;
+				template<size_t N>
+				constexpr size_t ReverseFind(const char(&str)[N], const size_t start, const size_t start_str, size_t result, size_t index_str) const;
 			public:
 				constexpr String();
 				template<size_t N>
@@ -44,6 +46,12 @@ namespace BrainMuscles
 				constexpr size_t ReverseFind(FunctionConditionType cond) const;
 				constexpr size_t ReverseFind(const char find, const size_t start) const;
 				constexpr size_t ReverseFind(const char find) const;
+
+				template<size_t N>
+				constexpr size_t ReverseFind(const char(&str)[N], const size_t start) const;
+				template<size_t N>
+				constexpr size_t ReverseFind(const char(&str)[N]) const;
+
 				constexpr bool IsEnd(const size_t index) const;
 
 				constexpr char operator[] (size_t index) const;
@@ -68,6 +76,11 @@ namespace BrainMuscles
 				return m_string[start] == find ? result : (start == 0 ? m_size : ReverseFind(find, start - 1, result - 1));
 			}
 
+			template<size_t N>
+			constexpr size_t String::ReverseFind(const char(&str)[N], const size_t start, const size_t start_str, size_t result, size_t index_str) const
+			{
+				return m_string[start] == str[index_str] ? (index_str == 0 ? result : (start == 0 ? m_size : ReverseFind(str, start -1, start_str, result, index_str - 1))) : (start == 0 ? m_size : ReverseFind(str, start - 1, start_str, start - 1, start_str));
+			}
 
 			constexpr String::String() :
 				m_string(""),
@@ -131,6 +144,18 @@ namespace BrainMuscles
 			constexpr size_t String::ReverseFind(const char find) const
 			{
 				return ReverseFind(find, m_size - 1);
+			}
+
+			template<size_t N>
+			constexpr size_t String::ReverseFind(const char(&str)[N], const size_t start) const
+			{
+				return ReverseFind(str, start, N - 2, start, N - 2);
+			}
+
+			template<size_t N>
+			constexpr size_t String::ReverseFind(const char(&str)[N]) const
+			{
+				return String::ReverseFind(str, m_size - 1);
 			}
 
 			constexpr bool String::IsEnd(const size_t index) const
