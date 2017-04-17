@@ -193,13 +193,13 @@ namespace BrainMuscles
 			template<size_t N, size_t M>
 			constexpr size_t String::FindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str)
 			{
-				return compare(str[start], str_find[index_str]) ? (index_str == M - 2 ? result : (start == N - 2 ? N - 1 : FindCString(str, str_find, compare, start + 1, start_str, result, index_str + 1))) : (start == N - 2 ? N - 1 : FindCString(str, str_find, compare, start + 1, start_str, start + 1, start_str));
+				return compare(str[start], str_find[index_str]) ? (index_str == M - 2 ? result : (start == N - 2 ? N - 1 : FindCStringWithCompare(str, str_find, compare, start + 1, start_str, result, index_str + 1))) : (start == N - 2 ? N - 1 : FindCStringWithCompare(str, str_find, compare, start + 1, start_str, start + 1, start_str));
 			}
 
 			template<size_t N, size_t M>
 			constexpr size_t String::ReverseFindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str)
 			{
-				return compare(str[start_str], str_find[index_str_find]) ? (index_str_find == 0 ? result : (start_str == 0 ? N - 1 : ReverseFindCString(str, str_find, compare, start_str - 1, start_str_find, result, index_str_find - 1))) : (start_str == 0 ? N - 1 : ReverseFindCString(str, str_find, compare, start_str - 1, start_str_find, start_str - 1, start_str_find));
+				return compare(str[start_str], str_find[index_str_find]) ? (index_str_find == 0 ? result : (start_str == 0 ? N - 1 : ReverseFindCStringWithCompare(str, str_find, compare, start_str - 1, start_str_find, result, index_str_find - 1))) : (start_str == 0 ? N - 1 : ReverseFindCStringWithCompare(str, str_find, compare, start_str - 1, start_str_find, start_str - 1, start_str_find));
 			}
 
 			constexpr String::String() :
