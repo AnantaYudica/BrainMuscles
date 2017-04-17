@@ -24,6 +24,7 @@ namespace BrainMuscles
 			{
 			public:
 				typedef bool(*FunctionConditionType)(const char ch);
+				typedef bool(*FunctionCompareType)(const char ch_a, const char ch_b);
 			private:
 				const size_t m_size;
 				const char * m_string;
@@ -32,11 +33,20 @@ namespace BrainMuscles
 				template<size_t N>
 				constexpr size_t Find(const char(&str)[N], const size_t start, const size_t start_str, size_t result, size_t index_str) const;
 				template<size_t N>
+				constexpr size_t Find(const char(&str)[N], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str) const;
+				template<size_t N>
 				constexpr size_t ReverseFind(const char(&str)[N], const size_t start, const size_t start_str, size_t result, size_t index_str) const;
+				template<size_t N>
+				constexpr size_t ReverseFind(const char(&str)[N], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str) const;
 				template<size_t N, size_t M>
 				static constexpr size_t FindCString(const char(&str)[N], const char(&str_find)[M], const size_t start, const size_t start_str, size_t result, size_t index_str);
 				template<size_t N, size_t M>
 				static constexpr size_t ReverseFindCString(const char(&str)[N], const char(&str_find)[M], const size_t start, const size_t start_str, size_t result, size_t index_str);
+				template<size_t N, size_t M>
+				static constexpr size_t FindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str);
+				template<size_t N, size_t M>
+				static constexpr size_t ReverseFindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str);
+
 			public:
 				constexpr String();
 				template<size_t N>
@@ -52,6 +62,8 @@ namespace BrainMuscles
 				constexpr size_t Find(const char find, const size_t start = 0) const;
 				template<size_t N>
 				constexpr size_t Find(const char(&str)[N], const size_t start = 0, const size_t start_str = 0) const;
+				template<size_t N>
+				constexpr size_t Find(const char(&str)[N], FunctionCompareType compare, const size_t start, const size_t start_str) const;
 
 				constexpr size_t ReverseFind(FunctionConditionType cond, const size_t start) const;
 				constexpr size_t ReverseFind(FunctionConditionType cond) const;
@@ -64,6 +76,13 @@ namespace BrainMuscles
 				constexpr size_t ReverseFind(const char(&str)[N], const size_t start) const;
 				template<size_t N>
 				constexpr size_t ReverseFind(const char(&str)[N]) const;
+
+				template<size_t N>
+				constexpr size_t ReverseFind(const char(&str)[N], FunctionCompareType compare, const size_t start, const size_t start_str) const;
+				template<size_t N>
+				constexpr size_t ReverseFind(const char(&str)[N], FunctionCompareType compare, const size_t start) const;
+				template<size_t N>
+				constexpr size_t ReverseFind(const char(&str)[N], FunctionCompareType compare) const;
 
 				constexpr bool IsEnd(const size_t index) const;
 
@@ -99,6 +118,12 @@ namespace BrainMuscles
 
 				template<size_t N, size_t M>
 				static constexpr size_t ReverseFindCString(const char(&str)[N], const char(&str_find)[M], const size_t start = N - 2, const size_t start_str_find = M - 2);
+
+				template<size_t N, size_t M>
+				static constexpr size_t FindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start = 0, const size_t start_str_find = 0);
+
+				template<size_t N, size_t M>
+				static constexpr size_t ReverseFindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start = N - 2, const size_t start_str_find = M - 2);
 			};
 
 			constexpr size_t String::Find(const char ch, const size_t start, size_t result) const
@@ -118,21 +143,46 @@ namespace BrainMuscles
 			}
 
 			template<size_t N>
+			constexpr size_t String::Find(const char(&str)[N], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str) const
+			{
+				return compare(m_string[start], str[index_str]) ? (index_str == N - 2 ? result : (start == m_size - 1 ? m_size : Find(str, compare, start + 1, start_str, result, index_str + 1))) : (start == m_size - 1 ? m_size : Find(str, compare, start + 1, start_str, start + 1, start_str));
+			}
+
+
+			template<size_t N>
 			constexpr size_t String::ReverseFind(const char(&str)[N], const size_t start, const size_t start_str, size_t result, size_t index_str) const
 			{
 				return m_string[start] == str[index_str] ? (index_str == 0 ? result : (start == 0 ? m_size : ReverseFind(str, start -1, start_str, result, index_str - 1))) : (start == 0 ? m_size : ReverseFind(str, start - 1, start_str, start - 1, start_str));
 			}
 
+			template<size_t N>
+			constexpr size_t String::ReverseFind(const char(&str)[N], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str) const
+			{
+				return compare(m_string[start], str[index_str]) ? (index_str == 0 ? result : (start == 0 ? m_size : ReverseFind(str, compare, start - 1, start_str, result, index_str - 1))) : (start == 0 ? m_size : ReverseFind(str, compare, start - 1, start_str, start - 1, start_str));
+			}
+
 			template<size_t N, size_t M>
-			static constexpr size_t String::FindCString(const char(&str)[N], const char(&str_find)[M], const size_t start, const size_t start_str, size_t result, size_t index_str)
+			constexpr size_t String::FindCString(const char(&str)[N], const char(&str_find)[M], const size_t start, const size_t start_str, size_t result, size_t index_str)
 			{
 				return str[start] == str_find[index_str] ? (index_str == M - 2 ? result : (start == N - 2 ? N - 1 : FindCString(str, str_find, start + 1, start_str, result, index_str + 1))) : (start == N - 2 ? N - 1 : FindCString(str, str_find, start + 1, start_str, start + 1, start_str));
 			}
 
 			template<size_t N, size_t M>
-			static constexpr size_t String::ReverseFindCString(const char(&str)[N], const char(&str_find)[M], const size_t start_str, const size_t start_str_find, size_t result, size_t index_str_find)
+			constexpr size_t String::ReverseFindCString(const char(&str)[N], const char(&str_find)[M], const size_t start_str, const size_t start_str_find, size_t result, size_t index_str_find)
 			{
 				return str[start_str] == str_find[index_str_find] ? (index_str_find == 0 ? result : (start_str == 0 ? N - 1 : ReverseFindCString(str, str_find, start_str - 1, start_str_find, result, index_str_find - 1))) : (start_str == 0 ? N - 1 : ReverseFindCString(str, str_find, start_str - 1, start_str_find, start_str - 1, start_str_find));
+			}
+
+			template<size_t N, size_t M>
+			constexpr size_t String::FindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str)
+			{
+				return compare(str[start], str_find[index_str]) ? (index_str == M - 2 ? result : (start == N - 2 ? N - 1 : FindCString(str, str_find, compare, start + 1, start_str, result, index_str + 1))) : (start == N - 2 ? N - 1 : FindCString(str, str_find, compare, start + 1, start_str, start + 1, start_str));
+			}
+
+			template<size_t N, size_t M>
+			constexpr size_t String::ReverseFindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start, const size_t start_str, size_t result, size_t index_str)
+			{
+				return compare(str[start_str], str_find[index_str_find]) ? (index_str_find == 0 ? result : (start_str == 0 ? N - 1 : ReverseFindCString(str, str_find, compare, start_str - 1, start_str_find, result, index_str_find - 1))) : (start_str == 0 ? N - 1 : ReverseFindCString(str, str_find, compare, start_str - 1, start_str_find, start_str - 1, start_str_find));
 			}
 
 			constexpr String::String() :
@@ -191,6 +241,13 @@ namespace BrainMuscles
 				return Find(str, start, start_str, start, start_str);
 			}
 
+			template<size_t N>
+			constexpr size_t String::Find(const char(&str)[N], FunctionCompareType compare, const size_t start, const size_t start_str) const
+			{
+				return Find(str, compare, start, start_str, start, start_str);
+			}
+
+
 			constexpr size_t String::ReverseFind(FunctionConditionType cond, const size_t start) const
 			{
 				return start == m_size ? m_size : (cond(m_string[start]) ? start : ReverseFind(cond, start - 1));
@@ -226,7 +283,25 @@ namespace BrainMuscles
 			template<size_t N>
 			constexpr size_t String::ReverseFind(const char(&str)[N]) const
 			{
-				return String::ReverseFind(str, m_size - 1);
+				return ReverseFind(str, m_size - 1);
+			}
+
+			template<size_t N>
+			constexpr size_t String::ReverseFind(const char(&str)[N], FunctionCompareType compare, const size_t start, const size_t start_str) const
+			{
+				return ReverseFind(str, compare, start, start_str, start, start_str);
+			}
+
+			template<size_t N>
+			constexpr size_t String::ReverseFind(const char(&str)[N], FunctionCompareType compare, const size_t start) const
+			{
+				return ReverseFind(str, compare, start, N - 2, start, N - 2);
+			}
+
+			template<size_t N>
+			constexpr size_t String::ReverseFind(const char(&str)[N], FunctionCompareType compare) const
+			{
+				return ReverseFind(str, compare, m_size - 1);
 			}
 
 			constexpr bool String::IsEnd(const size_t index) const
@@ -257,12 +332,12 @@ namespace BrainMuscles
 
 			constexpr char String::ToLowerCase(const char ch)
 			{
-				return ch <= 65 && ch >= 90 ? ch & 32 : ch;
+				return ch >= 65 && ch <= 90 ? ch | 32 : ch;
 			}
 
 			constexpr char String::ToUpperCase(const char ch)
 			{
-				return ch <= 97 && ch >= 122 ? ch ^ 32 : ch;
+				return ch >= 97 && ch <= 122 ? ch ^ 32 : ch;
 			}
 
 			template<size_t N>
@@ -307,6 +382,17 @@ namespace BrainMuscles
 				return ReverseFindCString(str, str_find, start, start_str_find, start, start_str_find);
 			}
 
+			template<size_t N, size_t M>
+			constexpr size_t String::FindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start, const size_t start_str_find)
+			{
+				return FindCStringWithCompare(str, str_find, compare, start, start_str_find, start, start_str_find);
+			}
+
+			template<size_t N, size_t M>
+			constexpr size_t String::ReverseFindCStringWithCompare(const char(&str)[N], const char(&str_find)[M], FunctionCompareType compare, const size_t start, const size_t start_str_find)
+			{
+				return ReverseFindCStringWithCompare(str, str_find, compare, start, start_str_find, start, start_str_find);
+			}
 		}
 	}
 }
