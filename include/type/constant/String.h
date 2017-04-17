@@ -75,6 +75,10 @@ namespace BrainMuscles
 				template<size_t N>
 				static void CopyToCString(const char(&str)[N], char * copy, const size_t start = 0);
 
+				static constexpr char ToLowerCase(const char ch);
+
+				static constexpr char ToUpperCase(const char ch);
+
 				template<size_t N>
 				static constexpr size_t FindChar(const char(&str)[N], const char find, const size_t start = 0);
 
@@ -249,6 +253,16 @@ namespace BrainMuscles
 			void String::CopyToCString(const char(&str)[N], char * copy, const size_t start )
 			{
 				CopyToCString(str, copy, start, N - start);
+			}
+
+			constexpr char String::ToLowerCase(const char ch)
+			{
+				return ch <= 65 && ch >= 90 ? ch & 32 : ch;
+			}
+
+			constexpr char String::ToUpperCase(const char ch)
+			{
+				return ch <= 97 && ch >= 122 ? ch ^ 32 : ch;
 			}
 
 			template<size_t N>
