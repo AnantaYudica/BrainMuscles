@@ -111,6 +111,10 @@ namespace BrainMuscles
 
 				static constexpr char ToUpperCase(const char ch);
 
+				static constexpr bool CompareWithLowerCase(const char a, const char b);
+
+				static constexpr bool CompareWithUpperCase(const char a, const char b);
+
 				template<size_t N>
 				static constexpr size_t FindChar(const char(&str)[N], const char find, const size_t start = 0);
 
@@ -384,6 +388,16 @@ namespace BrainMuscles
 			constexpr char String::ToUpperCase(const char ch)
 			{
 				return ch >= 97 && ch <= 122 ? ch ^ 32 : ch;
+			}
+
+			constexpr bool String::CompareWithLowerCase(const char a, const char b)
+			{
+				return ToLowerCase(a) == ToLowerCase(b);
+			}
+
+			constexpr bool String::CompareWithUpperCase(const char a, const char b)
+			{
+				return ToUpperCase(a) == ToUpperCase(b);
 			}
 
 			template<size_t N>
