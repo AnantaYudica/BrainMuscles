@@ -10,7 +10,7 @@ namespace BrainMuscles
 			namespace types
 			{
 				template<typename TYPES, size_t COUNTER = 0>
-				struct GetIndex;
+				struct GetSize;
 			}
 		}
 	}
@@ -27,15 +27,15 @@ namespace BrainMuscles
 			namespace types
 			{
 				template<typename TYPES, size_t COUNTER>
-				struct GetIndex
+				struct GetSize
 				{
-				
+					static constexpr size_t Value = GetSize<TYPES::Next, COUNTER + 1>::Value;
 				};
 
 				template<size_t COUNTER>
-				struct GetIndex<void, COUNTER>
+				struct GetSize<void, COUNTER>
 				{
-
+					static constexpr size_t Value = COUNTER;
 				};
 			}
 		}
