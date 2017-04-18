@@ -9,7 +9,7 @@ namespace BrainMuscles
 		{
 			namespace integers
 			{
-				template <typename STORAGE, size_t INDEX>
+				template <typename INTEGERS, size_t INDEX>
 				struct GetIndex;
 			}
 		}
