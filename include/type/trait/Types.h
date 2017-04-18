@@ -15,6 +15,7 @@ namespace BrainMuscles
 }
 
 #include "type\trait\types\GetIndex.h"
+#include "type\trait\types\GetSize.h"
 
 namespace BrainMuscles
 {
