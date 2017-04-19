@@ -26,8 +26,23 @@ namespace BrainMuscles
 			{
 				class Base
 				{
-
+				protected:
+					Base();
+				public:
+					virtual ~Base() ;
+					virtual const char * AbsolutePath() const = 0;
+					virtual const char * RelativePath() const = 0;
+					virtual const char * Filename() const  = 0;
+					virtual const char * Name() const = 0 ;
+					virtual const char * Extension() const  = 0;
+					virtual const size_t Line() const = 0;
 				};
+
+				Base::Base()
+				{}
+
+				Base::~Base()
+				{}
 			}
 		}
 	}
