@@ -1,9 +1,11 @@
 #ifndef TEST_H_
 #define TEST_H_
 
+#include "type\constant\String.h"
+
 #ifndef Debug
 
-//#define USING_TEST
+#define USING_TEST
 
 namespace BrainMuscles
 {
@@ -13,75 +15,205 @@ namespace BrainMuscles
 #ifdef USING_TEST
 
 #include <cstdio>
-#define TEST_GLUE(A, B) "" A "" B"\n"
+#include "test\test\Info.h"
+#include "test\test\Message.h"
 
 namespace BrainMuscles
 {
+
 	class Test
 	{
 	public:
 		enum OutMode
 		{
 			SELECT_ALL,
-			SELECT,
-			DESELECT
+			SELECT
 		};
+		typedef Test& (*FunctionOutputType)(Test& tout, const test::test::info::Base & information, const test::test::message::Base & message);
 	private:
+		static constexpr char RelativePath[] = "\\include\\test\\test.h";
+		static constexpr char FilePath[] = __FILE__;
 		static Test ms_instance;
-		static const char * ms_list[];
+		static const char * ms_listFile[];
+		static const size_t SizeListFile();
+
+
 		FILE * m_outFile;
+		OutMode m_outmode;
+		FunctionOutputType m_functioOutput;
 		Test();
 	public:
+		static constexpr size_t BeginRelative = type::constant::String::FindCStringWithCompare(__FILE__, RelativePath, type::constant::String::CompareWithLowerCase);
 		~Test();
-		static const Test & GetInstance();
+		static Test & GetInstance();
+
+		static Test & FunctionOutputDefault(Test & tout, const test::test::info::Base & information, const test::test::message::Base & message);
 
 		static void OutFile(const char * file);
 
-		template<typename ... ARGS>
-		static void Debug(const char * file, const size_t& line, const char * const msg, ARGS ... args);
+		static void SetMode(OutMode mode);
+
+		static void SetOut(FunctionOutputType functionOut);
+
+		static constexpr bool IsDirectorySymbol(const char ch);
+
+		template<typename... ARGS>
+		static void Debug(const test::test::info::Base & information, const char * message, ARGS... args);
+
+		
+		Test& operator<< (const char * cstr);
+		Test& operator<< (const test::test::message::Base & value);
+		Test& operator<< (const int& value);
+		Test& operator<< (const unsigned int& value);
+		Test& operator<< (const long& value);
+		Test& operator<< (const unsigned long& value);
 	};
 
 	Test
 	Test::ms_instance = BrainMuscles::Test();
 
 #ifdef LIST_FILE_TO_TEST
-	const char * Test::ms_list[] = LIST_FILE_TO_TEST;
+	const char * Test::ms_listFile[] = LIST_FILE_TO_TEST;
 #else
-	const char * Test::ms_list[] = { };
+	const char * Test::ms_listFile[] = {0};
 #endif
 
+	const size_t 
+	Test::SizeListFile()
+	{
+		return sizeof(ms_listFile) / sizeof(const char *);
+	}
+	
 	Test::Test() :
-		m_outFile(stdout)
+		m_outFile(stdout),
+		m_outmode(SELECT_ALL),
+		m_functioOutput(FunctionOutputDefault)
 	{
 	
 	}
 
 	Test::~Test()
 	{
-	
+		if (m_outFile != stdout)
+		{
+			fclose(m_outFile);
+		}
 	}
 
-	const Test &
+	Test &
 	Test::GetInstance()
 	{
 		return ms_instance;
 	}
 
-	template<typename ... ARGS>
-	void
-	Test::Debug(const char * file, const size_t& line, const char * const msg, ARGS ... args)
+
+	Test & 
+	Test::FunctionOutputDefault(Test & tout, const test::test::info::Base & information, const test::test::message::Base & message)
 	{
+		tout << information.RelativePath() << information.Filename();
+		tout << "(" << information.Line() << ") : ";
+		tout << message;
+		return tout;
+	}
+
+	void 
+	Test::OutFile(const char * file)
+	{
+		if (GetInstance().m_outFile == stdout)
+		{
+			GetInstance().m_outFile = fopen(file, "w");
+		}
+		else
+		{
+			fclose(GetInstance().m_outFile);
+			GetInstance().m_outFile = fopen(file, "w");
+		}
+	}
+
+	void 
+	Test::SetMode(OutMode mode)
+	{
+		if (mode != GetInstance().m_outmode)
+		{
+			GetInstance().m_outmode = mode;
+		}
+	}
+
+	void 
+	Test::SetOut(FunctionOutputType functionOut)
+	{
+		GetInstance().m_functioOutput = functionOut;
+	}
+
+	constexpr bool 
+	Test::IsDirectorySymbol(const char ch)
+	{
+		return ch == '\\' || ch == '/';
+	}
+
+	template<typename... ARGS>
+	void
+	Test::Debug(const test::test::info::Base & information, const char * message, ARGS... args)
+	{
+		typedef BrainMuscles::test::test::Message<ARGS...> MessageType;
 		if (GetInstance().m_outFile)
 		{
-			fprintf(GetInstance().m_outFile, msg, file, line, args...);
+			MessageType messageValue = MessageType(message, args...);
+			GetInstance().m_functioOutput(GetInstance(), information, messageValue);
 		}
+	}
+
+	Test&
+	Test::operator<< (const char * cstr)
+	{
+		fprintf(GetInstance().m_outFile, "%s", cstr);
+		return *this;
+	}
+
+	Test&
+	Test::operator<< (const test::test::message::Base & value)
+	{
+		value.Call_fprintf(GetInstance().m_outFile);
+		return *this;
+	}
+	
+	Test&
+		Test::operator<< (const int& value)
+	{
+		fprintf(GetInstance().m_outFile, "%d", value);
+		return *this;
+	}
+
+	Test& 
+	Test::operator<< (const long& value)
+	{
+		fprintf(GetInstance().m_outFile, "%ld", value);
+		return *this;
+	}
+
+	Test&
+		Test::operator<< (const unsigned int& value)
+	{
+		fprintf(GetInstance().m_outFile, "%u", value);
+		return *this;
+	}
+
+	Test& 
+	Test::operator<< (const unsigned long& value)
+	{
+		fprintf(GetInstance().m_outFile, "%lu", value);
+		return *this;
 	}
 }
 
+#define Debug(MSG, ...) \
+{\
+	typedef BrainMuscles::test::test::Info<type::constant::String::CSize(__FILE__), BrainMuscles::Test::BeginRelative, type::constant::String::ReverseFindChar(__FILE__, '\\') + 1, type::constant::String::ReverseFindChar(__FILE__, '.')> InfoType;\
+	BrainMuscles::Test::Debug(InfoType(__FILE__, __LINE__), MSG "\n", ##__VA_ARGS__);\
+}
 
+//
 
-
-#define Debug(MSG, ...) BrainMuscles::Test::Debug(__FILE__, __LINE__, TEST_GLUE("%s(%d) : ", MSG), __VA_ARGS__)
 #else 
 #define Debug(...)
 #endif
