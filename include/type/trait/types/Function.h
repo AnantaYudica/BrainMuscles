@@ -99,9 +99,9 @@ namespace BrainMuscles
 					typedef RETURN(*Type)(ARGS...);
 					typedef RETURN(*TypeParameter)(ARGS..., ...);
 					template<typename... FUNCTION_PRE_ARGS>
-					static RETURN Caller(Type function, Types<>& types, FUNCTION_PRE_ARGS... function_pre_args);
+					static RETURN Caller(Type function, Types<> types, FUNCTION_PRE_ARGS... function_pre_args);
 					template<typename... FUNCTION_PRE_ARGS>
-					static RETURN Caller(TypeParameter function, Types<>& types, FUNCTION_PRE_ARGS... function_pre_args);
+					static RETURN Caller(TypeParameter function, Types<> types, FUNCTION_PRE_ARGS... function_pre_args);
 				};
 
 				template<typename RETURN, typename... ARGS>
@@ -179,14 +179,14 @@ namespace BrainMuscles
 
 				template<typename RETURN, typename... ARGS>
 				template<typename... FUNCTION_PRE_ARGS>
-				RETURN  Function<RETURN, Types<>, ARGS...>::Caller(Type function, Types<>& types, FUNCTION_PRE_ARGS... function_pre_args)
+				RETURN  Function<RETURN, Types<>, ARGS...>::Caller(Type function, Types<> types, FUNCTION_PRE_ARGS... function_pre_args)
 				{
 					return Filler<RETURN, Type, void, ARGS...>::Fill(function, types, function_pre_args...);
 				}
 
 				template<typename RETURN, typename... ARGS>
 				template<typename... FUNCTION_PRE_ARGS>
-				RETURN Function<RETURN, Types<>, ARGS...>::Caller(TypeParameter function, Types<>& types, FUNCTION_PRE_ARGS... function_pre_args)
+				RETURN Function<RETURN, Types<>, ARGS...>::Caller(TypeParameter function, Types<> types, FUNCTION_PRE_ARGS... function_pre_args)
 				{
 					return Filler<RETURN, TypeParameter, void, ARGS...>::Fill(function, types, function_pre_args...);
 				}
