@@ -27,8 +27,20 @@ namespace BrainMuscles
 			{
 				class Base
 				{
-					
+				protected:
+					Base();
+				public:
+					virtual ~Base();
+					virtual void Call_fprintf(FILE * out) const = 0;
 				};
+
+				Base::Base()
+				{
+				}
+
+				Base::~Base()
+				{
+				}
 			}
 		}
 	}
