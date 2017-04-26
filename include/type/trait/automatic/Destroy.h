@@ -9,14 +9,17 @@ namespace BrainMuscles
 		{
 			namespace automatic
 			{
+				template<typename BASE = destroy::Base>
 				class Destroy;
 			}
 		}
 	}
 }
 
-#include "type\trait\Singleton.h"
+
 #include "type\trait\automatic\destroy\Base.h"
+#include "type\trait\automatic\destroy\Function.h"
+#include "type\trait\automatic\destroy\Management.h"
 #include <vector>
 
 namespace BrainMuscles
@@ -27,15 +30,69 @@ namespace BrainMuscles
 		{
 			namespace automatic
 			{
-				class Destroy :
-					public Singleton<Destroy, Destroy, Destroy&>
+				template<typename BASE>
+				class Destroy
 				{
-				private:
+
+
+				};
+				
+				template<>
+				class Destroy<destroy::Base> :
+					protected destroy::Base
+				{
+				protected:
+					virtual void Destructor() = 0;
 					Destroy();
-					std::vector<destroy::Base&> m_list;
 				public:
+					virtual ~Destroy();
+				};
+
+				template<>
+				class Destroy<destroy::Function>
+				{
+					destroy::Base* m_base;
+				public:
+					Destroy(const Destroy<destroy::Function>& destroyFunction);
+					Destroy(Destroy<destroy::Function>* destroyFunction);
+					Destroy(destroy::Function::FUNCTION_DESTROY_TYPE destroyFunction);
 					~Destroy();
 				};
+
+				Destroy<destroy::Base>::Destroy()
+				{
+					destroy::Management::Register(this);
+				}
+
+				Destroy<destroy::Function>::Destroy(const Destroy<destroy::Function>& destroyFunction) :
+					m_base(new destroy::Function(dynamic_cast<destroy::Function*>(destroyFunction.m_base)))
+				{
+					destroy::Management::Register(m_base);
+				}
+
+				Destroy<destroy::Function>::Destroy(Destroy<destroy::Function>* destroyFunction) :
+					m_base(new destroy::Function(dynamic_cast<destroy::Function*>(destroyFunction->m_base)))
+				{
+					destroy::Management::Unregister(m_base);
+					delete m_base;
+				}
+
+				Destroy<destroy::Function>::Destroy(destroy::Function::FUNCTION_DESTROY_TYPE destroyFunction) :
+					m_base(new destroy::Function(destroyFunction))
+				{
+					destroy::Management::Register(m_base);
+				}
+
+				Destroy<destroy::Base>::~Destroy()
+				{
+					destroy::Management::Unregister(this);
+				}
+
+				Destroy<destroy::Function>::~Destroy()
+				{
+					destroy::Management::Unregister(m_base);
+					delete m_base;
+				}
 
 			}
 		}
