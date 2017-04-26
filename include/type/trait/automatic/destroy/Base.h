@@ -18,6 +18,8 @@ namespace BrainMuscles
 	}
 }
 
+#include "type\trait\automatic\Destroy.h"
+
 namespace BrainMuscles
 {
 	namespace type
@@ -30,12 +32,20 @@ namespace BrainMuscles
 				{
 					class Base
 					{
+					public:
+						typedef void(*FUNCTION_DESTROY_TYPE)();
 					protected:
 						Base();
-						virtual void CallDestructor() = 0;
 					public:
+						virtual void Destructor() = 0;
 						virtual ~Base();
 					};
+
+					Base::Base()
+					{}
+
+					Base:: ~Base()
+					{}
 				}
 			}
 		}
