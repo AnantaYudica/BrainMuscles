@@ -17,12 +17,15 @@ namespace BrainMuscles
 #include <cstdio>
 #include "test\test\Info.h"
 #include "test\test\Message.h"
+#include "type\trait\Singleton.h"
 
 namespace BrainMuscles
 {
 
-	class Test
+	class Test :
+		public type::trait::Singleton<Test, Test, Test&>
 	{
+		friend class type::trait::Singleton<Test, Test, Test&>;
 	public:
 		enum OutMode
 		{
@@ -33,7 +36,6 @@ namespace BrainMuscles
 	private:
 		static constexpr char RelativePath[] = "\\include\\test\\test.h";
 		static constexpr char FilePath[] = __FILE__;
-		static Test ms_instance;
 		static const char * ms_listFile[];
 		static const size_t SizeListFile();
 
@@ -45,8 +47,6 @@ namespace BrainMuscles
 	public:
 		static constexpr size_t BeginRelative = type::constant::String::FindCStringWithCompare(__FILE__, RelativePath, type::constant::String::CompareWithLowerCase);
 		~Test();
-		static Test & GetInstance();
-
 		static Test & FunctionOutputDefault(Test & tout, const test::test::info::Base & information, const test::test::message::Base & message);
 
 		static void OutFile(const char * file);
@@ -69,8 +69,6 @@ namespace BrainMuscles
 		Test& operator<< (const unsigned long& value);
 	};
 
-	Test
-	Test::ms_instance = BrainMuscles::Test();
 
 #ifdef LIST_FILE_TO_TEST
 	const char * Test::ms_listFile[] = LIST_FILE_TO_TEST;
@@ -98,12 +96,6 @@ namespace BrainMuscles
 		{
 			fclose(m_outFile);
 		}
-	}
-
-	Test &
-	Test::GetInstance()
-	{
-		return ms_instance;
 	}
 
 
