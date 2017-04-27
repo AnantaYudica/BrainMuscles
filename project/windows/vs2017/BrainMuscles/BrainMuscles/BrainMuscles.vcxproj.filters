@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="scr">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include\test">
+      <UniqueIdentifier>{db3b1bdc-81aa-4086-9e82-b33bbc88b9c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type">
+      <UniqueIdentifier>{68423883-d35a-4d18-b026-bc339ba2855e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\trait">
+      <UniqueIdentifier>{fd005596-0471-4bd3-9e05-88d395c729ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\constant">
+      <UniqueIdentifier>{5457e335-2e09-41e7-b4f1-9cc3ebb4f9e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\test\test">
+      <UniqueIdentifier>{8cbba1b8-e995-41ca-8aaa-7a120d0be060}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\test\test\info">
+      <UniqueIdentifier>{21d39bd4-621e-4680-9135-95c6985346a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\trait\integers">
+      <UniqueIdentifier>{45ac5674-f0ca-4589-a6d9-fff8086a18d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\trait\types">
+      <UniqueIdentifier>{5b3912d6-28e0-4bfb-a589-7184040aa33f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\test\test\message">
+      <UniqueIdentifier>{3ce0a9a8-0e14-4407-87d5-111753927c62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\trait\automatic">
+      <UniqueIdentifier>{bc6c0e9c-0caa-4c61-8c2b-69c2a33d7de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\trait\automatic\destroy">
+      <UniqueIdentifier>{37bb6ddd-5efb-41e7-8ee3-4e3da347be7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\io">
+      <UniqueIdentifier>{b3cb21fb-ca12-4c2b-873f-f2a30b26f127}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\include\test\Test.h">
+      <Filter>include\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\constant\String.h">
+      <Filter>include\type\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\test\test\Info.h">
+      <Filter>include\test\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\test\test\Message.h">
+      <Filter>include\test\test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\test\test\info\Base.h">
+      <Filter>include\test\test\info</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\Integers.h">
+      <Filter>include\type\trait</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\integers\Filler.h">
+      <Filter>include\type\trait\integers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\integers\Function.h">
+      <Filter>include\type\trait\integers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\integers\GetIndex.h">
+      <Filter>include\type\trait\integers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\integers\GetSize.h">
+      <Filter>include\type\trait\integers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\integers\IsContainValue.h">
+      <Filter>include\type\trait\integers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\integers\ToTypeArray.h">
+      <Filter>include\type\trait\integers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\Types.h">
+      <Filter>include\type\trait</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\types\GetIndex.h">
+      <Filter>include\type\trait\types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\types\GetSize.h">
+      <Filter>include\type\trait\types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\test\test\message\Base.h">
+      <Filter>include\test\test\message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\types\Function.h">
+      <Filter>include\type\trait\types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\types\Filler.h">
+      <Filter>include\type\trait\types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\types\Base.h">
+      <Filter>include\type\trait\types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\Singleton.h">
+      <Filter>include\type\trait</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\automatic\Destroy.h">
+      <Filter>include\type\trait\automatic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\automatic\destroy\Base.h">
+      <Filter>include\type\trait\automatic\destroy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\automatic\destroy\Function.h">
+      <Filter>include\type\trait\automatic\destroy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\automatic\destroy\Management.h">
+      <Filter>include\type\trait\automatic\destroy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\io\Stream.h">
+      <Filter>include\io</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
