@@ -1,20 +1,6 @@
 #ifndef IO_STREAM_H_
 #define IO_STREAM_H_
 
-
-
-namespace BrainMuscles
-{
-	namespace io
-	{
-		class Stream;
-
-	}
-}
-
-#include <iostream>
-#include "test\Test.h"
-
 namespace BrainMuscles
 {
 	namespace io
@@ -30,18 +16,7 @@ namespace BrainMuscles
 
 		};
 
-		Stream::Stream()
-		{
-			Debug("Stream Constructor");
-		}
-
-		Stream::~Stream()
-		{
-			Debug("Stream Destructor");
-		}
 	}
-	
 }
-
 
 #endif // !IO_STREAM_H_
