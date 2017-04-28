@@ -111,15 +111,15 @@ namespace BrainMuscles
 	void 
 	Test::OutFile(const char * file)
 	{
-		if (GetInstance().m_outFile == stdout)
-		{
-			GetInstance().m_outFile = fopen(file, "w");
-		}
-		else
+		if (GetInstance().m_outFile != stdout)
 		{
 			fclose(GetInstance().m_outFile);
-			GetInstance().m_outFile = fopen(file, "w");
 		}
+#if ((defined(_WIN32) || defined(_WIN64)) && !defined(_CRT_SECURE_NO_WARNINGS))
+		fopen_s(&GetInstance().m_outFile, file, "w"); 
+#else
+		GetInstance().m_outFile = fopen(file, "w");
+#endif
 	}
 
 	void 
