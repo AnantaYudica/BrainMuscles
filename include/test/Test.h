@@ -200,7 +200,7 @@ namespace BrainMuscles
 
 #define Debug(MSG, ...) \
 {\
-	typedef BrainMuscles::test::test::Info<type::constant::String::CSize(__FILE__), BrainMuscles::Test::BeginRelative, type::constant::String::ReverseFindChar(__FILE__, '\\') + 1, type::constant::String::ReverseFindChar(__FILE__, '.')> InfoType;\
+	typedef BrainMuscles::test::test::Info<BrainMuscles::type::constant::String::CSize(__FILE__), BrainMuscles::Test::BeginRelative, BrainMuscles::type::constant::String::ReverseFindChar(__FILE__, '\\') + 1, BrainMuscles::type::constant::String::ReverseFindChar(__FILE__, '.')> InfoType;\
 	BrainMuscles::Test::Debug(InfoType(__FILE__, __LINE__), MSG "\n", ##__VA_ARGS__);\
 }
 
