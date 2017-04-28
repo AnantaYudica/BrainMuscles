@@ -45,6 +45,9 @@
     <Filter Include="include\io">
       <UniqueIdentifier>{b3cb21fb-ca12-4c2b-873f-f2a30b26f127}</UniqueIdentifier>
     </Filter>
+    <Filter Include="scr\io">
+      <UniqueIdentifier>{d8c96955-f149-45f3-a432-700621de6815}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\include\test\Test.h">
@@ -122,5 +125,10 @@
     <ClInclude Include="..\..\..\..\..\include\io\Stream.h">
       <Filter>include\io</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\scr\io\Stream.cpp">
+      <Filter>scr\io</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
