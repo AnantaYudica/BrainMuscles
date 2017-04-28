@@ -17,15 +17,15 @@ namespace BrainMuscles
 #include <cstdio>
 #include "test\test\Info.h"
 #include "test\test\Message.h"
-#include "type\trait\Singleton.h"
+#include "type\Singleton.h"
 
 namespace BrainMuscles
 {
 
 	class Test :
-		public type::trait::Singleton<Test, Test, Test&>
+		public type::Singleton<Test, Test, Test&>
 	{
-		friend class type::trait::Singleton<Test, Test, Test&>;
+		friend class type::Singleton<Test, Test, Test&>;
 	public:
 		enum OutMode
 		{
