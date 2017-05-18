@@ -36,17 +36,77 @@
     <Filter Include="include\test\test\message">
       <UniqueIdentifier>{3ce0a9a8-0e14-4407-87d5-111753927c62}</UniqueIdentifier>
     </Filter>
-    <Filter Include="include\type\trait\automatic">
-      <UniqueIdentifier>{bc6c0e9c-0caa-4c61-8c2b-69c2a33d7de2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include\type\trait\automatic\destroy">
-      <UniqueIdentifier>{37bb6ddd-5efb-41e7-8ee3-4e3da347be7e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="include\io">
       <UniqueIdentifier>{b3cb21fb-ca12-4c2b-873f-f2a30b26f127}</UniqueIdentifier>
     </Filter>
     <Filter Include="scr\io">
       <UniqueIdentifier>{d8c96955-f149-45f3-a432-700621de6815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\io\stream">
+      <UniqueIdentifier>{b64d711f-7330-43d7-a4cd-555e1bf78737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scr\io\stream">
+      <UniqueIdentifier>{5053a0d1-ee9c-4a41-a8fb-324f39694d0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\io\stream\file">
+      <UniqueIdentifier>{f39cb565-333e-4f41-b491-cfa87d7f2553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\automatic">
+      <UniqueIdentifier>{571f23c1-2842-4b0f-8b9e-542c6ca2a32e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\automatic\destroy">
+      <UniqueIdentifier>{d3d1a080-4e9b-4cb8-8a70-6b22266b6fc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\journal">
+      <UniqueIdentifier>{a742f188-0805-412c-8694-597239410bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\trait\conditional">
+      <UniqueIdentifier>{d76eb7bb-0cd8-4325-a9a9-e356b010ded6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\trait\containers">
+      <UniqueIdentifier>{c44616ff-9936-4de0-aa5d-37155bc3c71d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\trait\containers\sequence">
+      <UniqueIdentifier>{441736a0-e237-4543-89ed-acd81dee5ad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\container">
+      <UniqueIdentifier>{dd807e1e-c167-48c1-b815-a2f47f98b9bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\container\trait">
+      <UniqueIdentifier>{c1aa95ea-209c-4851-9c4f-485d6aea4737}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\node">
+      <UniqueIdentifier>{e5a2fa34-cd44-4af4-ba91-1ff0adc53c6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\iterator">
+      <UniqueIdentifier>{47a6fda4-1b71-43ae-a58e-5ab0cc7d3d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\iterator\tag">
+      <UniqueIdentifier>{ae75d943-9d37-4452-8144-011c6535d43e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\container\array">
+      <UniqueIdentifier>{cd32940b-fd75-46ae-b361-bede1172fc4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\container\base">
+      <UniqueIdentifier>{c2017842-a34c-4915-836e-8a86fb5ed828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\container\member">
+      <UniqueIdentifier>{fe03fa90-2d69-470f-a965-3e098ee63588}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\container\member\capacity">
+      <UniqueIdentifier>{a3129b90-f543-4feb-943b-b9961cb6a834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\container\member\element">
+      <UniqueIdentifier>{ce0dd41b-a517-4780-b6b8-16f85fe8112e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\container\member\iterator">
+      <UniqueIdentifier>{15c3194e-544d-4d76-be9d-15a2386bbf86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\container\member\modifier">
+      <UniqueIdentifier>{1bc38489-8be3-4ca9-90f1-5eb8a996f143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\type\iterator\member">
+      <UniqueIdentifier>{12ed02b8-161a-4b74-b87d-fbdc425a4a8a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -107,23 +167,158 @@
     <ClInclude Include="..\..\..\..\..\include\type\trait\types\Base.h">
       <Filter>include\type\trait\types</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\include\type\trait\Singleton.h">
-      <Filter>include\type\trait</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\include\type\trait\automatic\Destroy.h">
-      <Filter>include\type\trait\automatic</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\include\type\trait\automatic\destroy\Base.h">
-      <Filter>include\type\trait\automatic\destroy</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\include\type\trait\automatic\destroy\Function.h">
-      <Filter>include\type\trait\automatic\destroy</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\include\type\trait\automatic\destroy\Management.h">
-      <Filter>include\type\trait\automatic\destroy</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\include\io\Stream.h">
       <Filter>include\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\io\stream\File.h">
+      <Filter>include\io\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\io\stream\file\Type.h">
+      <Filter>include\io\stream\file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\io\stream\Management.h">
+      <Filter>include\io\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\Singleton.h">
+      <Filter>include\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\automatic\Destroy.h">
+      <Filter>include\type\automatic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\automatic\destroy\Function.h">
+      <Filter>include\type\automatic\destroy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\automatic\destroy\Management.h">
+      <Filter>include\type\automatic\destroy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\automatic\destroy\Base.h">
+      <Filter>include\type\automatic\destroy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\Journal.h">
+      <Filter>include\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\journal\Trait.h">
+      <Filter>include\type\journal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\conditional\Index.h">
+      <Filter>include\type\trait\conditional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\containers\IsSequence.h">
+      <Filter>include\type\trait\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\Container.h">
+      <Filter>include\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\Element.h">
+      <Filter>include\type\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\conditional\And.h">
+      <Filter>include\type\trait\conditional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\trait\conditional\Or.h">
+      <Filter>include\type\trait\conditional</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\Node.h">
+      <Filter>include\type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\node\Child.h">
+      <Filter>include\type\node</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\Tag.h">
+      <Filter>include\type\iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\tag\Forward.h">
+      <Filter>include\type\iterator\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\tag\Bidirectional.h">
+      <Filter>include\type\iterator\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\Array.h">
+      <Filter>include\type\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\array\Iterator.h">
+      <Filter>include\type\container\array</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\tag\RandomAccess.h">
+      <Filter>include\type\iterator\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\Base.h">
+      <Filter>include\type\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\Base.h">
+      <Filter>include\type\iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\capacity\M_Empty.h">
+      <Filter>include\type\container\member\capacity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\capacity\M_MaximumSize.h">
+      <Filter>include\type\container\member\capacity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\capacity\M_Size.h">
+      <Filter>include\type\container\member\capacity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\element\M_Data.h">
+      <Filter>include\type\container\member\element</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\element\M_Element.h">
+      <Filter>include\type\container\member\element</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\element\M_First.h">
+      <Filter>include\type\container\member\element</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\element\M_Last.h">
+      <Filter>include\type\container\member\element</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\iterator\M_ConstIterator.h">
+      <Filter>include\type\container\member\iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\iterator\M_ConstReverseIterator.h">
+      <Filter>include\type\container\member\iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\iterator\M_Iterator.h">
+      <Filter>include\type\container\member\iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\iterator\M_ReverseIterator.h">
+      <Filter>include\type\container\member\iterator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\modifier\M_Fill.h">
+      <Filter>include\type\container\member\modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\modifier\M_Swap.h">
+      <Filter>include\type\container\member\modifier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\member\M_Arithmetic.h">
+      <Filter>include\type\iterator\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\member\M_Assignment.h">
+      <Filter>include\type\iterator\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\member\M_Decrement.h">
+      <Filter>include\type\iterator\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\member\M_Equality.h">
+      <Filter>include\type\iterator\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\member\M_Increment.h">
+      <Filter>include\type\iterator\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\member\M_Inequality.h">
+      <Filter>include\type\iterator\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\member\M_LeftValue.h">
+      <Filter>include\type\iterator\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\member\M_Offset.h">
+      <Filter>include\type\iterator\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\iterator\member\M_RightValue.h">
+      <Filter>include\type\iterator\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\member\M_StandartContainer.h">
+      <Filter>include\type\container\member</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\include\type\container\array\Get.h">
+      <Filter>include\type\container\array</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
