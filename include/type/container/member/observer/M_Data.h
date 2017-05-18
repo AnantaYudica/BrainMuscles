@@ -1,5 +1,5 @@
-#ifndef TYPE_CONTAINER_MEMBER_ELEMENT_M_DATA_H_
-#define TYPE_CONTAINER_MEMBER_ELEMENT_M_DATA_H_
+#ifndef TYPE_CONTAINER_MEMBER_OBSERVER_M_DATA_H_
+#define TYPE_CONTAINER_MEMBER_OBSERVER_M_DATA_H_
 
 namespace BrainMuscles
 {
@@ -9,7 +9,7 @@ namespace BrainMuscles
 		{
 			namespace member
 			{
-				namespace element
+				namespace observer
 				{
 					template<typename VALUE_TYPE>
 					class M_Data;
@@ -27,7 +27,7 @@ namespace BrainMuscles
 		{
 			namespace member
 			{
-				namespace element
+				namespace observer
 				{
 					template<typename VALUE_TYPE>
 					class M_Data

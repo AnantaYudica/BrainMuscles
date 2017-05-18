@@ -24,7 +24,8 @@ namespace BrainMuscles
 #include "type\container\member\capacity\M_MaximumSize.h"
 #include "type\container\member\capacity\M_Size.h"
 
-#include "type\container\member\element\M_Data.h"
+#include "type\container\member\observer\M_Data.h"
+
 #include "type\container\member\element\M_Element.h"
 #include "type\container\member\element\M_First.h"
 #include "type\container\member\element\M_Last.h"
@@ -56,7 +57,7 @@ namespace BrainMuscles
 				typename ELEMENT::ContainerType::size_type>,
 			public BrainMuscles::type::container::member::capacity::M_Size<
 				typename ELEMENT::ContainerType::size_type>,
-			public BrainMuscles::type::container::member::element::M_Data<
+			public BrainMuscles::type::container::member::observer::M_Data<
 				typename ELEMENT::ContainerType::value_type>,
 			public BrainMuscles::type::container::member::element::M_Element<
 				typename ELEMENT::ContainerType::reference,
