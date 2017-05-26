@@ -1,6 +1,8 @@
 #ifndef TYPE_CLONEABLE_H_
 #define TYPE_CLONEABLE_H_
 
+#include <type_traits>
+
 namespace BrainMuscles
 {
 	namespace type
@@ -12,7 +14,10 @@ namespace BrainMuscles
 		public:
 			virtual ~Cloneable();
 			virtual Cloneable * Clone() = 0;
-			virtual Cloneable& operator=(const Cloneable& rhs) = 0;
+			virtual Cloneable& operator=(Cloneable& rhs) = 0;
+		public:
+			template<typename DERIVE, typename... ARGS>
+			Cloneable * Constructor(ARGS... args);
 		};
 
 		Cloneable::Cloneable()
@@ -20,6 +25,12 @@ namespace BrainMuscles
 
 		Cloneable::~Cloneable()
 		{}
+
+		template<typename DERIVE, typename... ARGS>
+		Cloneable * Cloneable::Constructor(ARGS... args)
+		{
+			return new DERIVE(args...);
+		}
 	}
 }
 
