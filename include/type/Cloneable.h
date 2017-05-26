@@ -17,7 +17,7 @@ namespace BrainMuscles
 			virtual Cloneable& operator=(Cloneable& rhs) = 0;
 		public:
 			template<typename DERIVE, typename... ARGS>
-			Cloneable * Constructor(ARGS... args);
+			static Cloneable * Constructor(ARGS... args);
 		};
 
 		Cloneable::Cloneable()
