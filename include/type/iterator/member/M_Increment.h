@@ -2,6 +2,7 @@
 #define TYPE_ITERATOR_MEMBER_M_INCREMENT_H_
 
 #include "type\iterator\Base.h"
+#include "type\iterator\handle\info\IsType.h"
 
 namespace BrainMuscles
 {
@@ -11,10 +12,11 @@ namespace BrainMuscles
 		{
 			namespace member
 			{
-				template<typename HANDLE, typename DERIVED>
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
 				class M_Increment :
 					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED>
 				{
+					static_assert(BrainMuscles::type::iterator::handle::info::IsType<HANDLE_INFO>::Value, "Requires class Info<Definition>");
 				public:
 					typedef DERIVED DerivedType;
 					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
@@ -37,42 +39,42 @@ namespace BrainMuscles
 					DerivedType operator++(int);
 				};
 
-				template<typename HANDLE, typename DERIVED>
-				M_Increment<HANDLE, DERIVED>::M_Increment() :
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				M_Increment<DERIVED, HANDLE, HANDLE_INFO>::M_Increment() :
 					BaseType()
 				{}
 
-				template<typename HANDLE, typename DERIVED>
-				M_Increment<HANDLE, DERIVED>::M_Increment(const DerivedType& derived) :
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				M_Increment<DERIVED, HANDLE, HANDLE_INFO>::M_Increment(const DerivedType& derived) :
 					BaseType(derived)
 				{}
 
-				template<typename HANDLE, typename DERIVED>
-				M_Increment<HANDLE, DERIVED>::M_Increment(const HandleType& handle) :
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				M_Increment<DERIVED, HANDLE, HANDLE_INFO>::M_Increment(const HandleType& handle) :
 					BaseType(handle)
 				{}
 
-				template<typename HANDLE, typename DERIVED>
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
 				template<typename... ARGS>
-				M_Increment<HANDLE, DERIVED>::M_Increment(ARGS... args) :
+				M_Increment<DERIVED, HANDLE, HANDLE_INFO>::M_Increment(ARGS... args) :
 					BaseType(args...)
 				{}
 
-				template<typename HANDLE, typename DERIVED>
-				M_Increment<HANDLE, DERIVED>::~M_Increment()
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				M_Increment<DERIVED, HANDLE, HANDLE_INFO>::~M_Increment()
 				{}
 
-				template<typename HANDLE, typename DERIVED>
-				typename M_Increment<HANDLE, DERIVED>::DerivedType&
-				M_Increment<HANDLE, DERIVED>::operator++()
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				typename M_Increment<DERIVED, HANDLE, HANDLE_INFO>::DerivedType&
+				M_Increment<DERIVED, HANDLE, HANDLE_INFO>::operator++()
 				{
 					OnRequestIncrement(GetHandle());
 					return *ThisDerived();
 				}
 
-				template<typename HANDLE, typename DERIVED>
-				typename M_Increment<HANDLE, DERIVED>::DerivedType
-				M_Increment<HANDLE, DERIVED>::operator++(int)
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				typename M_Increment<DERIVED, HANDLE, HANDLE_INFO>::DerivedType
+				M_Increment<DERIVED, HANDLE, HANDLE_INFO>::operator++(int)
 				{
 					DerivedType copy = DerivedType(*ThisDerived());
 					OnRequestIncrement(GetHandle());
