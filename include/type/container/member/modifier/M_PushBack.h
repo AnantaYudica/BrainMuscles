@@ -30,23 +30,23 @@ namespace BrainMuscles
 				namespace modifier
 				{
 					template<typename VALUE_TYPE>
-					class M_PopBack
+					class M_PushBack
 					{
 					protected:
 						M_PushBack();
 					public:
 						virtual ~M_PushBack();
 					public:
-						virtual void push_back(const VALUE_TYPE& val) = 0;
-						virtual void push_back(VALUE_TYPE&& val) = 0;
+						virtual void PushBack(const VALUE_TYPE& val) = 0;
+						virtual void PushBack(VALUE_TYPE&& val) = 0;
 					};
 
 					template<typename VALUE_TYPE>
-					M_PopBack<VALUE_TYPE>::M_PushBack()
+					M_PushBack<VALUE_TYPE>::M_PushBack()
 					{}
 
 					template<typename VALUE_TYPE>
-					M_PopBack<VALUE_TYPE>::~M_PushBack()
+					M_PushBack<VALUE_TYPE>::~M_PushBack()
 					{}
 				}
 			}
