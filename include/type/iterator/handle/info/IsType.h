@@ -16,13 +16,13 @@ namespace BrainMuscles
 					template<typename INFO>
 					struct IsType
 					{
-						constexpr bool Value = false;
+						static constexpr bool Value = false;
 					};
 
 					template<typename DEFINITION>
 					struct IsType<BrainMuscles::type::iterator::handle::Info<DEFINITION>>
 					{
-						constexpr bool Value = true;
+						static constexpr bool Value = true;
 					};
 				}
 			}
