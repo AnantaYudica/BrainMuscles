@@ -2,6 +2,8 @@
 #define TYPE_ITERATOR_MEMBER_M_ARITHMETIC_H_
 
 #include "type\iterator\Base.h"
+#include "type\iterator\handle\info\IsType.h"
+
 
 namespace BrainMuscles
 {
@@ -11,16 +13,18 @@ namespace BrainMuscles
 		{
 			namespace member
 			{
-				template<typename HANDLE, typename DERIVED>
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
 				class M_Arithmetic :
 					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED>
 				{
+					static_assert(BrainMuscles::type::iterator::handle::info::IsType<HANDLE_INFO>::Value, "Requires class Info<Definition>");
 				public:
 					typedef DERIVED DerivedType;
+					typedef HANDLE HandleType;
 					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
-					typedef typename HANDLE::value_type ValueType;
-					typedef typename HANDLE::difference_type DifferenceType;
-					typedef typename HANDLE::reference ReferenceType;
+					typedef typename HANDLE_INFO::ValueType ValueType;
+					typedef typename HANDLE_INFO::DifferenceType DifferenceType;
+					typedef typename HANDLE_INFO::Reference ReferenceType;
 				protected:
 					M_Arithmetic();
 					M_Arithmetic(const HandleType& handle);
@@ -46,66 +50,66 @@ namespace BrainMuscles
 					DerivedType& operator-=(const DifferenceType& n);
 				};
 
-				template<typename HANDLE, typename DERIVED>
-				M_Arithmetic<HANDLE, DERIVED>::M_Arithmetic() :
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::M_Arithmetic() :
 					BaseType(0)
 				{}
 
-				template<typename HANDLE, typename DERIVED>
-				M_Arithmetic<HANDLE, DERIVED>::M_Arithmetic(const HandleType& handle) :
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::M_Arithmetic(const HandleType& handle) :
 					BaseType(handle)
 				{}
 
-				template<typename HANDLE, typename DERIVED>
-				M_Arithmetic<HANDLE, DERIVED>::M_Arithmetic(const DerivedType& derived) :
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::M_Arithmetic(const DerivedType& derived) :
 					BaseType(derived)
 				{}
 
-				template<typename HANDLE, typename DERIVED>
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
 				template<typename... ARGS>
-				M_Arithmetic<HANDLE, DERIVED>::M_Arithmetic(ARGS... args) :
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::M_Arithmetic(ARGS... args) :
 					BaseType(args...)
 				{}
 
-				template<typename HANDLE, typename DERIVED>
-				M_Arithmetic<HANDLE, DERIVED>::~M_Arithmetic()
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::~M_Arithmetic()
 				{}
 
-				template<typename HANDLE, typename DERIVED>
-				typename M_Arithmetic<HANDLE, DERIVED>::DerivedType
-				M_Arithmetic<HANDLE, DERIVED>::operator+(const DifferenceType& n)
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				typename M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::DerivedType
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::operator+(const DifferenceType& n)
 				{
 					DerivedType copy(*ThisDerived());
 					copy += n;
 					return copy;
 				}
 
-				template<typename HANDLE, typename DERIVED>
-				typename M_Arithmetic<HANDLE, DERIVED>::DerivedType
-				M_Arithmetic<HANDLE, DERIVED>::operator-(const DifferenceType& n)
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				typename M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::DerivedType
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::operator-(const DifferenceType& n)
 				{
 					DerivedType copy(*ThisDerived());
 					copy -= n;
 					return copy;
 				}
 
-				template<typename HANDLE, typename DERIVED>
-				typename M_Arithmetic<HANDLE, DERIVED>::DifferenceType
-				M_Arithmetic<HANDLE, DERIVED>::operator-(const DerivedType& iterator)
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				typename M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::DifferenceType
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::operator-(const DerivedType& iterator)
 				{
 					return OnRequestSubtraction(iterator);
 				}
 
-				template<typename HANDLE, typename DERIVED>
-				typename M_Arithmetic<HANDLE, DERIVED>::DerivedType&
-				M_Arithmetic<HANDLE, DERIVED>::operator+=(const DifferenceType& n)
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				typename M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::DerivedType&
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::operator+=(const DifferenceType& n)
 				{
 					return OnRequestAddition(n);
 				}
 
-				template<typename HANDLE, typename DERIVED>
-				typename M_Arithmetic<HANDLE, DERIVED>::DerivedType&
-				M_Arithmetic<HANDLE, DERIVED>::operator-=(const DifferenceType& n)
+				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				typename M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::DerivedType&
+				M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>::operator-=(const DifferenceType& n)
 				{
 					return OnRequestSubtraction(n);
 				}
