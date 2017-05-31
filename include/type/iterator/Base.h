@@ -154,7 +154,7 @@ namespace BrainMuscles
 
 			template<typename HANDLE, typename DERIVED>
 			Base<HANDLE, DERIVED, typename std::enable_if<std::is_base_of<BrainMuscles::type::Cloneable, HANDLE>::value, void>::type>::Base(const HandleType& handle) :
-				m_handle(handle.Clone())
+				m_handle(dynamic_cast<HANDLE*>(handle.Clone()))
 			{}
 
 			template<typename HANDLE, typename DERIVED>
@@ -162,7 +162,7 @@ namespace BrainMuscles
 			{
 				if (!derived.IsNullHandle())
 				{
-					m_handle = derived.Clone();
+					m_handle = dynamic_cast<HANDLE*>(derived.Clone());
 				}
 				else
 				{
