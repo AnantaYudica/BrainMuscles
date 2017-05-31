@@ -17,13 +17,14 @@ namespace BrainMuscles
 					{
 						template<typename TYPE>
 						class ConstIterator :
-							public BrainMuscles::type::container::vector::iterator::Handle<TYPE>,
+							public BrainMuscles::type::container::vector::iterator::Handle<const TYPE>,
 							public std::vector<TYPE>::const_iterator
 						{
 						public:
 							typedef ConstIterator<TYPE> ConstIteratorType;
-							typedef TYPE Type;
 							typedef typename std::vector<TYPE>::const_iterator HandleType;
+						public:
+							typedef typename BrainMuscles::type::container::vector::iterator::Handle<TYPE>::DifferenceType DifferenceType;
 						public:
 							ConstIterator();
 							ConstIterator(const HandleType& handle);
@@ -31,7 +32,22 @@ namespace BrainMuscles
 							~ConstIterator();
 						public:
 							Cloneable * Clone();
-							Cloneable& operator=(Cloneable& rhs);
+							Cloneable& operator=(Cloneable& lhs);
+						public:
+							Cloneable& operator-=(const DifferenceType& rhs);
+							Cloneable& operator+=(const DifferenceType& rhs);
+							DifferenceType operator-(Cloneable& lhs);
+							Cloneable& operator++();
+							Cloneable& operator--();
+							ConstIteratorType operator++(int);
+							ConstIteratorType operator--(int);
+							bool operator==(Cloneable& lhs);
+							bool operator!=(Cloneable& lhs);
+							bool operator<(Cloneable& lhs);
+							bool operator<=(Cloneable& lhs);
+							bool operator>(Cloneable& lhs);
+							bool operator>=(Cloneable& lhs);
+							ValueType * operator*();
 						};
 
 						template<typename TYPE>
@@ -59,10 +75,109 @@ namespace BrainMuscles
 						}
 
 						template<typename TYPE>
-						typename ConstIterator<TYPE>::Cloneable& ConstIterator<TYPE>::operator=(Cloneable& rhs)
+						typename ConstIterator<TYPE>::Cloneable& 
+						ConstIterator<TYPE>::operator=(Cloneable& lhs)
 						{
-							HandleType::operator=(dynamic_cast<ConstIterator<TYPE>&>(rhs));
+							HandleType::operator=(dynamic_cast<ConstIterator<TYPE>&>(lhs));
 							return *this;
+						}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::Cloneable&
+						ConstIterator<TYPE>::operator-=(const DifferenceType& rhs)
+						{
+							HandleType::operator-=(rhs);
+							return *this;
+						}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::Cloneable& 
+						ConstIterator<TYPE>::operator+=(const DifferenceType& rhs)
+						{
+							HandleType::operator+=(rhs);
+							return *this;
+						}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::DifferenceType 
+						ConstIterator<TYPE>::operator-(Cloneable& lhs)
+						{
+							return HandleType::operator-(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+						}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::Cloneable& 
+						ConstIterator<TYPE>::operator++()
+						{
+							HandleType::operator++();
+							return *this;
+						}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::Cloneable& 
+						ConstIterator<TYPE>::operator--()
+						{
+							HandleType::operator--();
+							return *this;
+						}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::ConstIteratorType 
+						ConstIterator<TYPE>::operator++(int n)
+						{
+							HandleType::operator++(n);
+							return *this;
+						}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::ConstIteratorType 
+							ConstIterator<TYPE>::operator--(int n)
+						{
+							HandleType::operator--(n);
+							return *this;
+						}
+
+						template<typename TYPE>
+						bool ConstIterator<TYPE>::operator==(Cloneable& lhs)
+						{
+							return HandleType::operator==(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+						}
+
+						template<typename TYPE>
+						bool ConstIterator<TYPE>::operator!=(Cloneable& lhs)
+						{
+							return HandleType::operator!=(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+						}
+
+						template<typename TYPE>
+						bool ConstIterator<TYPE>::operator<(Cloneable& lhs)
+						{
+							return HandleType::operator<(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+						}
+
+						template<typename TYPE>
+						bool ConstIterator<TYPE>::operator<=(Cloneable& lhs)
+						{
+							return HandleType::operator<=(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+						}
+
+						template<typename TYPE>
+						bool ConstIterator<TYPE>::operator>(Cloneable& lhs)
+						{
+							return HandleType::operator>(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+						}
+
+						template<typename TYPE>
+						bool ConstIterator<TYPE>::operator>=(Cloneable& lhs)
+						{
+							return HandleType::operator>=(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+						}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::ValueType * 
+						ConstIterator<TYPE>::operator*()
+						{
+							return &HandleType::operator*();
 						}
 					}
 				}
