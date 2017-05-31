@@ -32,11 +32,12 @@ namespace BrainMuscles
 							~ConstIterator();
 						public:
 							Cloneable * Clone();
+							Cloneable * Clone() const;
 							Cloneable& operator=(Cloneable& lhs);
 						public:
 							Cloneable& operator-=(const DifferenceType& rhs);
 							Cloneable& operator+=(const DifferenceType& rhs);
-							DifferenceType operator-(Cloneable& lhs);
+							DifferenceType operator-(const Cloneable& lhs);
 							Cloneable& operator++();
 							Cloneable& operator--();
 							ConstIteratorType operator++(int);
@@ -47,7 +48,7 @@ namespace BrainMuscles
 							bool operator<=(Cloneable& lhs);
 							bool operator>(Cloneable& lhs);
 							bool operator>=(Cloneable& lhs);
-							ValueType * operator*();
+							ValueType& operator*();
 						};
 
 						template<typename TYPE>
@@ -67,6 +68,12 @@ namespace BrainMuscles
 						template<typename TYPE>
 						ConstIterator<TYPE>::~ConstIterator()
 						{}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::Cloneable * ConstIterator<TYPE>::Clone() const
+						{
+							return new ConstIterator<TYPE>(*this);
+						}
 
 						template<typename TYPE>
 						typename ConstIterator<TYPE>::Cloneable * ConstIterator<TYPE>::Clone()
@@ -100,9 +107,9 @@ namespace BrainMuscles
 
 						template<typename TYPE>
 						typename ConstIterator<TYPE>::DifferenceType 
-						ConstIterator<TYPE>::operator-(Cloneable& lhs)
+						ConstIterator<TYPE>::operator-(const Cloneable& lhs)
 						{
-							return HandleType::operator-(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+							return HandleType::operator-(dynamic_cast<const ConstIterator<TYPE>&>(lhs));
 						}
 
 						template<typename TYPE>
@@ -174,10 +181,10 @@ namespace BrainMuscles
 						}
 
 						template<typename TYPE>
-						typename ConstIterator<TYPE>::ValueType * 
+						typename ConstIterator<TYPE>::ValueType& 
 						ConstIterator<TYPE>::operator*()
 						{
-							return &HandleType::operator*();
+							return HandleType::operator*();
 						}
 					}
 				}
