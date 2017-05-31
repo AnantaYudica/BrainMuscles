@@ -42,7 +42,7 @@ namespace BrainMuscles
 						virtual bool operator<=(Cloneable& lhs) = 0;
 						virtual bool operator>(Cloneable& lhs) = 0;
 						virtual bool operator>=(Cloneable& lhs) = 0;
-						virtual ValueType * operator*() = 0;
+						virtual ValueType& operator*() = 0;
 					};
 
 					template<typename TYPE>
