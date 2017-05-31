@@ -23,17 +23,18 @@ namespace BrainMuscles
 					public:
 						typedef TYPE ValueType;
 						typedef typename BrainMuscles::type::iterator::handle::Definition<TYPE>::DifferenceType DifferenceType;
-					protected:
+					public:
 						Handle();
 					public:
 						virtual ~Handle();
 					public:
 						virtual Cloneable * Clone() = 0;
+						virtual Cloneable * Clone() const = 0;
 						virtual Cloneable& operator=(Cloneable& lhs) = 0;
 					public:
 						virtual Cloneable& operator-=(const DifferenceType& rhs) = 0;
 						virtual Cloneable& operator+=(const DifferenceType& rhs) = 0;
-						virtual DifferenceType operator-(Cloneable& lhs) = 0;
+						virtual DifferenceType operator-(const Cloneable& lhs) = 0;
 						virtual Cloneable& operator++() = 0;
 						virtual Cloneable& operator--() = 0;
 						virtual bool operator==(Cloneable& lhs) = 0;
