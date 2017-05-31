@@ -14,6 +14,7 @@ namespace BrainMuscles
 		public:
 			virtual ~Cloneable();
 			virtual Cloneable * Clone() = 0;
+			virtual Cloneable * Clone() const = 0;
 			virtual Cloneable& operator=(Cloneable& rhs) = 0;
 		public:
 			template<typename DERIVE, typename... ARGS>
