@@ -22,7 +22,7 @@ namespace BrainMuscles
 					{
 					public:
 						typedef TYPE ValueType;
-						typedef BrainMuscles::type::iterator::handle::Definition<TYPE>::DifferenceType DifferenceType;
+						typedef typename BrainMuscles::type::iterator::handle::Definition<TYPE>::DifferenceType DifferenceType;
 					protected:
 						Handle();
 					public:
