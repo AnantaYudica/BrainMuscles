@@ -129,19 +129,21 @@ namespace BrainMuscles
 						}
 
 						template<typename TYPE>
-						typename ConstIterator<TYPE>::ConstIteratorType 
-						ConstIterator<TYPE>::operator++(int n)
+						ConstIterator<TYPE>
+						ConstIterator<TYPE>::operator++(int)
 						{
-							HandleType::operator++(n);
-							return *this;
+							ConstIterator<TYPE> copy(*this);
+							HandleType::operator++();
+							return copy;
 						}
 
 						template<typename TYPE>
-						typename ConstIterator<TYPE>::ConstIteratorType 
-							ConstIterator<TYPE>::operator--(int n)
+						ConstIterator<TYPE>
+							ConstIterator<TYPE>::operator--(int)
 						{
-							HandleType::operator--(n);
-							return *this;
+							ConstIterator<TYPE> copy(*this);
+							HandleType::operator--();
+							return copy;
 						}
 
 						template<typename TYPE>
