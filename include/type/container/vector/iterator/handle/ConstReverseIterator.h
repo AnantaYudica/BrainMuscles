@@ -28,7 +28,7 @@ namespace BrainMuscles
 						public:
 							ConstReverseIterator();
 							ConstReverseIterator(const HandleType& handle);
-							ConstReverseIterator(const ConstReverseIterator& rhs);
+							ConstReverseIterator(const ConstReverseIteratorType& rhs);
 							~ConstReverseIterator();
 						public:
 							Cloneable * Clone();

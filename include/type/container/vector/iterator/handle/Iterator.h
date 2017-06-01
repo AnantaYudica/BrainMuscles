@@ -29,7 +29,7 @@ namespace BrainMuscles
 						public:
 							Iterator();
 							Iterator(const HandleType& handle);
-							Iterator(const Iterator& rhs);
+							Iterator(const IteratorType& rhs);
 							~Iterator();
 						public:
 							Cloneable * Clone();
@@ -62,7 +62,7 @@ namespace BrainMuscles
 						{}
 
 						template<typename TYPE>
-						Iterator<TYPE>::Iterator(const Iterator& handle) :
+						Iterator<TYPE>::Iterator(const IteratorType& handle) :
 							HandleType(handle)
 						{}
 
