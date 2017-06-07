@@ -58,7 +58,7 @@ namespace BrainMuscles
 		static constexpr bool IsDirectorySymbol(const char ch);
 
 		template<typename... ARGS>
-		static void Debug(const test::test::info::Base & information, const char * message, ARGS... args);
+		static void Debug(const test::test::info::Base & information, const char * const message, ARGS... args);
 
 		
 		Test& operator<< (const char * cstr);
@@ -104,7 +104,7 @@ namespace BrainMuscles
 	{
 		tout << information.RelativePath() << information.Filename();
 		tout << "(" << information.Line() << ") : ";
-		tout << message;
+		tout << message << "\n";
 		return tout;
 	}
 
@@ -145,7 +145,7 @@ namespace BrainMuscles
 
 	template<typename... ARGS>
 	void
-	Test::Debug(const test::test::info::Base & information, const char * message, ARGS... args)
+	Test::Debug(const test::test::info::Base & information, const char * const message, ARGS... args)
 	{
 		typedef BrainMuscles::test::test::Message<ARGS...> MessageType;
 		if (GetInstance().m_outFile)
@@ -201,7 +201,7 @@ namespace BrainMuscles
 #define Debug(MSG, ...) \
 {\
 	typedef BrainMuscles::test::test::Info<BrainMuscles::type::constant::String::CSize(__FILE__), BrainMuscles::Test::BeginRelative, BrainMuscles::type::constant::String::ReverseFindChar(__FILE__, '\\') + 1, BrainMuscles::type::constant::String::ReverseFindChar(__FILE__, '.')> InfoType;\
-	BrainMuscles::Test::Debug(InfoType(__FILE__, __LINE__), MSG "\n", ##__VA_ARGS__);\
+	BrainMuscles::Test::Debug(InfoType(__FILE__, __LINE__), MSG, ##__VA_ARGS__);\
 }
 
 //
