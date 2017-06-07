@@ -1,9 +1,8 @@
 include_directories (${PROJECT_SOURCE_DIR}/../include)
 
+add_executable (Test-Debug ${PROJECT_SOURCE_DIR}/../experiment/test/test-debug.cpp)
 
-add_executable (Test ${PROJECT_SOURCE_DIR}/../experiment/test/test.cpp)
+set_property(TARGET Test-Debug PROPERTY FOLDER "experiment")
 
-set_property(TARGET Test PROPERTY FOLDER "Experiment")
-
-target_link_libraries (Test BrainMuscles)
+target_link_libraries (Test-Debug BrainMuscles)
 
