@@ -30,13 +30,13 @@ namespace BrainMuscles
 			{
 				template<typename TYPE, size_t SIZE, typename HANDLE>
 				class Iterator :
-					public BrainMuscles::type::iterator::tag::RandomAccess<TYPE, HANDLE, BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HANDLE>>
+					public BrainMuscles::type::iterator::tag::RandomAccess<TYPE, BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HANDLE>, HANDLE>
 				{
 				public:
 					typedef BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HANDLE> IteratorType;
 					typedef HANDLE HandleType;
 					typedef BrainMuscles::type::iterator::Base<HandleType, IteratorType> HandleBaseType;
-					typedef BrainMuscles::type::iterator::tag::RandomAccess<TYPE, HandleType, IteratorType> BaseType;
+					typedef BrainMuscles::type::iterator::tag::RandomAccess<TYPE, IteratorType, HandleType> BaseType;
 					typedef TYPE ValueType;
 					typedef typename HandleType::difference_type DifferenceType;
 					typedef typename HandleType::reference ReferenceType;
