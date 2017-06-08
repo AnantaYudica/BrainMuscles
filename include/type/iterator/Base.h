@@ -162,7 +162,7 @@ namespace BrainMuscles
 			{
 				if (!derived.IsNullHandle())
 				{
-					m_handle = dynamic_cast<HANDLE*>(derived.Clone());
+					m_handle = dynamic_cast<HANDLE*>(derived.GetHandle().Clone());
 				}
 				else
 				{
