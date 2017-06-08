@@ -36,6 +36,13 @@ int main()
 	const char * const var_b = "output var_b (%s, %d, %f)";
 	Debug(var_b, "string", 123, 0.234);
 	
+	//test Output Debug with Pointer & reference
+	int * var_c = new int(4);
+	int& var_d = *var_c;
+	Debug("var_c = %x %d", var_c, *var_c);
+	Debug("var_d = %x %d", &var_d, var_d);
+	delete var_c;
+
 	//test Output Debug with Output Customize
 	BrainMuscles::Test::SetOut(&PrintOutput_a);
 	Debug("test output");
