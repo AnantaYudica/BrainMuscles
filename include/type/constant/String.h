@@ -52,6 +52,7 @@ namespace BrainMuscles
 				template<size_t N>
 				constexpr String(const char(&str)[N]);
 				constexpr String(const String & str);
+				constexpr String(const bool& value);
 
 				constexpr const char * Value(const size_t index = 0) const;
 				constexpr const size_t Size(const size_t start = 0) const;
@@ -220,6 +221,11 @@ namespace BrainMuscles
 				m_size(str.m_size)
 			{
 			}
+
+			constexpr String::String(const bool& value) :
+				m_string((value ? "true" : "false")),
+				m_size((value ? 4 : 5))
+			{}
 
 			constexpr const char * String::Value(const size_t index) const
 			{
