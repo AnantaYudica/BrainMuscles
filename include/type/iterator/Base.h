@@ -214,7 +214,7 @@ namespace BrainMuscles
 				{
 					delete m_handle;
 				}
-				m_handle = rhs.Clone();
+				m_handle = dynamic_cast<HANDLE*>(rhs.GetHandle().Clone());
 				return *this;
 			}
 			///////////////////////////////////////////////////////////////////////////
