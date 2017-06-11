@@ -19,10 +19,15 @@ namespace BrainMuscles
 	}
 }
 
+#include "type\container\vector\iterator\handle\ConstIterator.h"
+#include "type\container\vector\iterator\handle\ConstReverseIterator.h"
+#include "type\container\vector\iterator\handle\Iterator.h"
+#include "type\container\vector\iterator\handle\ReverseIterator.h"
 #include "type\container\vector\iterator\Input.h"
 #include "type\iterator\Base.h"
 #include "type\iterator\tag\RandomAccess.h"
 #include <vector>
+#include "type\container\vector\Iterator.h"
 
 namespace BrainMuscles
 {
@@ -36,25 +41,34 @@ namespace BrainMuscles
 				{
 					template<typename TYPE, typename HANDLE>
 					class RandomAccess :
-						public BrainMuscles::type::iterator::tag::RandomAccess<TYPE, HANDLE, BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>
+						public BrainMuscles::type::iterator::tag::RandomAccess<
+							TYPE, 
+							BrainMuscles::type::container::vector::Iterator< 
+								BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>, 
+							HANDLE>
 					{
 						friend class BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>;
 					public:
-						typedef BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE> IteratorType;
+						typedef BrainMuscles::type::container::vector::Iterator<
+							BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>> IteratorType;
 						typedef HANDLE HandleType;
 						typedef BrainMuscles::type::iterator::Base<HandleType, IteratorType> HandleBaseType;
-						typedef BrainMuscles::type::iterator::tag::RandomAccess<TYPE, HandleType, IteratorType> BaseType;
+						typedef BrainMuscles::type::iterator::tag::RandomAccess<TYPE, IteratorType, HandleType> BaseType;
 						typedef TYPE ValueType;
-						typedef typename HandleType::difference_type DifferenceType;
-						typedef typename HandleType::reference ReferenceType;
+						typedef typename HandleType::DifferenceType DifferenceType;
+						typedef typename HandleType::Reference ReferenceType;
+						typedef BrainMuscles::type::container::vector::iterator::handle::ConstIterator<TYPE> ConstIterator;
+						typedef BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<TYPE> ConstReverseIterator;
+						typedef BrainMuscles::type::container::vector::iterator::handle::Iterator<TYPE> Iterator;
+						typedef BrainMuscles::type::container::vector::iterator::handle::ReverseIterator<TYPE> ReverseIterator;
 					public:
 						RandomAccess();
 						RandomAccess(const HandleType& handle);
 						RandomAccess(IteratorType* pointer);
 						RandomAccess(const IteratorType& rhs);
-						~RandomAccess();
+						virtual ~RandomAccess();
 					protected:
-						IteratorType* ThisDerived();
+						virtual IteratorType* ThisDerived() = 0;
 
 						IteratorType& OnRequestAddition(const DifferenceType& n);
 						IteratorType& OnRequestSubtraction(const DifferenceType& n);
@@ -102,20 +116,14 @@ namespace BrainMuscles
 					{
 					}
 
-					template<typename TYPE, typename HANDLE>
-					typename RandomAccess<TYPE, HANDLE>::IteratorType*
-					RandomAccess<TYPE, HANDLE>::ThisDerived()
-					{
-						return this;
-					}
-
 
 					template<typename TYPE, typename HANDLE>
 					typename RandomAccess<TYPE, HANDLE>::IteratorType &
 					RandomAccess<TYPE, HANDLE>::OnRequestAddition(const DifferenceType& n)
 					{
+
 						GetHandle() += n;
-						return *this;
+						return *ThisDerived();
 					}
 
 
@@ -124,7 +132,7 @@ namespace BrainMuscles
 					RandomAccess<TYPE, HANDLE>::OnRequestSubtraction(const DifferenceType& n)
 					{
 						GetHandle() -= n;
-						return *this;
+						return *ThisDerived();
 					}
 
 					template<typename TYPE, typename HANDLE>
@@ -137,13 +145,13 @@ namespace BrainMuscles
 					template<typename TYPE, typename HANDLE>
 					void RandomAccess<TYPE, HANDLE>::OnRequestDecrement(HandleType& handle)
 					{
-						GetHandle()--;
+						--GetHandle();
 					}
 
 					template<typename TYPE, typename HANDLE>
 					void RandomAccess<TYPE, HANDLE>::OnRequestIncrement(HandleType& handle)
 					{
-						GetHandle()++;
+						++GetHandle();
 					}
 
 					template<typename TYPE, typename HANDLE>
