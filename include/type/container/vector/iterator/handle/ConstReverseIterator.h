@@ -17,7 +17,7 @@ namespace BrainMuscles
 					{
 						template<typename TYPE>
 						class ConstReverseIterator :
-							public BrainMuscles::type::container::vector::iterator::Handle<TYPE>,
+							public BrainMuscles::type::container::vector::iterator::Handle<const TYPE>,
 							public std::vector<TYPE>::const_reverse_iterator
 						{
 						public:
@@ -61,7 +61,7 @@ namespace BrainMuscles
 						{}
 
 						template<typename TYPE>
-						ConstReverseIterator<TYPE>::ConstReverseIterator(const ConstReverseIterator& handle) :
+						ConstReverseIterator<TYPE>::ConstReverseIterator(const ConstReverseIteratorType& handle) :
 							HandleType(handle)
 						{}
 
@@ -108,7 +108,7 @@ namespace BrainMuscles
 						typename ConstReverseIterator<TYPE>::DifferenceType 
 						ConstReverseIterator<TYPE>::operator-(const Cloneable& lhs)
 						{
-							return HandleType::operator-(dynamic_cast<const ConstReverseIterator<TYPE>&>(lhs));
+							return dynamic_cast<const ConstReverseIterator<TYPE>&>(lhs).base().operator-(HandleType::base());
 						}
 
 						template<typename TYPE>
@@ -148,37 +148,37 @@ namespace BrainMuscles
 						template<typename TYPE>
 						bool ConstReverseIterator<TYPE>::operator==(Cloneable& lhs)
 						{
-							return HandleType::operator==(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs));
+							return HandleType::base().operator==(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs).base());
 						}
 
 						template<typename TYPE>
 						bool ConstReverseIterator<TYPE>::operator!=(Cloneable& lhs)
 						{
-							return HandleType::operator!=(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs));
+							return HandleType::base().operator!=(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs).base());
 						}
 
 						template<typename TYPE>
 						bool ConstReverseIterator<TYPE>::operator<(Cloneable& lhs)
 						{
-							return HandleType::operator<(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs));
+							return HandleType::base().operator>=(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs).base());
 						}
 
 						template<typename TYPE>
 						bool ConstReverseIterator<TYPE>::operator<=(Cloneable& lhs)
 						{
-							return HandleType::operator<=(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs));
+							return HandleType::base().operator>(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs).base());
 						}
 
 						template<typename TYPE>
 						bool ConstReverseIterator<TYPE>::operator>(Cloneable& lhs)
 						{
-							return HandleType::operator>(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs));
+							return HandleType::base().operator<=(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs).base());
 						}
 
 						template<typename TYPE>
 						bool ConstReverseIterator<TYPE>::operator>=(Cloneable& lhs)
 						{
-							return HandleType::operator>=(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs));
+							return HandleType::base().operator<(dynamic_cast<ConstReverseIterator<TYPE>&>(lhs).base());
 						}
 
 						template<typename TYPE>
