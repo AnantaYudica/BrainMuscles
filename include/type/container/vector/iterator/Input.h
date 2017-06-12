@@ -43,7 +43,6 @@ namespace BrainMuscles
 								BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>, 
 							HANDLE>
 					{
-						friend class BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>;
 					protected:
 						typedef BrainMuscles::type::container::vector::Iterator<
 							BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>> IteratorType;
@@ -55,7 +54,6 @@ namespace BrainMuscles
 						typedef typename HandleType::Reference ReferenceType;
 					public:
 						Input();
-						Input(const BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>& iterator);
 						Input(const HandleType& handle);
 						Input(IteratorType* pointer);
 						Input(const IteratorType& rhs);
@@ -73,12 +71,6 @@ namespace BrainMuscles
 					Input<TYPE, HANDLE>::Input() :
 						HandleBaseType(),
 						BaseType()
-					{}
-
-					template<typename TYPE, typename HANDLE>
-					Input<TYPE, HANDLE>::Input(const BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>& iterator) :
-						HandleBaseType(iterator.GetHandle()),
-						BaseType(iterator.GetHandle())
 					{}
 
 					template<typename TYPE, typename HANDLE>
@@ -106,7 +98,7 @@ namespace BrainMuscles
 					template<typename TYPE, typename HANDLE>
 					void Input<TYPE, HANDLE>::OnRequestIncrement(HandleType& handle)
 					{
-						GetHandle()++;
+						++GetHandle();
 					}
 
 					template<typename TYPE, typename HANDLE>
