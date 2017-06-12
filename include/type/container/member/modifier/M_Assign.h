@@ -40,7 +40,7 @@ namespace BrainMuscles
 						virtual ~M_Assign();
 						virtual void Assign(INPUT_ITERATOR_TYPE first, INPUT_ITERATOR_TYPE last) = 0;
 						virtual void Assign(SIZE_TYPE n, const VALUE_TYPE& val) = 0;
-						virtual void Assign(initializer_list<VALUE_TYPE> il) = 0;
+						virtual void Assign(std::initializer_list<VALUE_TYPE> il) = 0;
 					};
 
 					template <typename INPUT_ITERATOR_TYPE, typename VALUE_TYPE, typename SIZE_TYPE>
