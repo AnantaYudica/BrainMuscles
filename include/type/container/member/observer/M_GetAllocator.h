@@ -38,7 +38,7 @@ namespace BrainMuscles
 					public:
 						virtual ~M_GetAllocator();
 					public:
-						virtual ALLOCATOR_TYPE get_allocator() const = 0
+						virtual ALLOCATOR_TYPE get_allocator() const = 0;
 					};
 
 					template<typename ALLOCATOR_TYPE>
