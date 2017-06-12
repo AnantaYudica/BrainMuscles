@@ -118,7 +118,20 @@ namespace BrainMuscles
 				BrainMuscles::type::container::vector::Iterator<
 					BrainMuscles::type::container::vector::iterator::RandomAccess<
 						const typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>>
+						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>>,
+
+			public BrainMuscles::type::container::member::modifier::M_Assign<
+				BrainMuscles::type::container::vector::Iterator<
+					BrainMuscles::type::container::vector::iterator::Input<
+						typename ELEMENT::Type,
+						BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>>,
+				BrainMuscles::type::container::vector::Iterator<
+					BrainMuscles::type::container::vector::iterator::Input<
+						const typename ELEMENT::Type,
+						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>,
+				typename ELEMENT::ContainerType::value_type,
+				typename ELEMENT::ContainerType::size_type>
+			
 				
 		{
 		public:
@@ -145,6 +158,15 @@ namespace BrainMuscles
 				BrainMuscles::type::container::vector::iterator::RandomAccess<
 					typename ELEMENT::Type,
 					BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>> ReverseIterator;
+		public:
+			typedef BrainMuscles::type::container::vector::Iterator<
+				BrainMuscles::type::container::vector::iterator::Input<
+					typename ELEMENT::Type,
+					BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>> InputIteratorType;
+			typedef BrainMuscles::type::container::vector::Iterator<
+				BrainMuscles::type::container::vector::iterator::Input<
+					const typename ELEMENT::Type,
+					BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>> InputIteratorConstType;
 		public:
 			Container(ContainerType* ptr);
 			Container(const ContainerType& rhs);
@@ -180,6 +202,11 @@ namespace BrainMuscles
 			ReverseIterator ReverseEnd();
 			ConstReverseIterator ReverseBegin() const;
 			ConstReverseIterator ReverseEnd() const;
+		public:
+			void Assign(InputIteratorType first, InputIteratorType last);
+			void Assign(InputIteratorConstType first, InputIteratorConstType last);
+			void Assign(SizeType n, const ValueType& val);
+			void Assign(std::initializer_list<ValueType> il);
 		};
 
 		template<typename ELEMENT>
@@ -383,6 +410,30 @@ namespace BrainMuscles
 		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReverseEnd() const
 		{
 			return ConstReverseIterator(BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<typename ELEMENT::Type>(GetContainer().rend()));
+		}
+
+		template<typename ELEMENT>
+		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(InputIteratorType first, InputIteratorType last)
+		{
+			GetContainer().assign(first, last);
+		}
+
+		template<typename ELEMENT>
+		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(InputIteratorConstType first, InputIteratorConstType last)
+		{
+			GetContainer().assign(first, last);
+		}
+
+		template<typename ELEMENT>
+		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(SizeType n, const ValueType& val)
+		{
+			GetContainer().assign(n, val);
+		}
+
+		template<typename ELEMENT>
+		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(std::initializer_list<ValueType> il)
+		{
+			GetContainer().assign(il);
 		}
 	}
 }
