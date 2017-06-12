@@ -16,6 +16,9 @@ namespace BrainMuscles
 	}
 }
 
+#include "type\container\vector\iterator\RandomAccess.h"
+#include "type\container\vector\iterator\Input.h"
+
 namespace BrainMuscles
 {
 	namespace type
@@ -25,7 +28,7 @@ namespace BrainMuscles
 			namespace vector
 			{
 				template<typename ITERATOR_TAG_TYPE>
-				class Iterator : 
+				class Iterator :
 					public ITERATOR_TAG_TYPE
 				{
 				public:
@@ -41,6 +44,8 @@ namespace BrainMuscles
 					Iterator(IteratorType* pointer);
 					Iterator(const IteratorType& rhs);
 					~Iterator();
+				protected:
+					Iterator<ITERATOR_TAG_TYPE>* ThisDerived();
 				};
 
 				template<typename ITERATOR_TAG_TYPE>
@@ -77,6 +82,12 @@ namespace BrainMuscles
 				template<typename ITERATOR_TAG_TYPE>
 				Iterator<ITERATOR_TAG_TYPE>::~Iterator()
 				{}
+
+				template<typename ITERATOR_TAG_TYPE>
+				Iterator<ITERATOR_TAG_TYPE>* Iterator<ITERATOR_TAG_TYPE>::ThisDerived()
+				{
+					return this;
+				}
 			}
 		}
 	}
