@@ -45,11 +45,11 @@ namespace BrainMuscles
 					};
 
 					template <typename INPUT_ITERATOR_TYPE, typename INPUT_ITERATOR_CONST_TYPE, typename VALUE_TYPE, typename SIZE_TYPE>
-					M_Assign<INPUT_ITERATOR_TYPE, VALUE_TYPE, SIZE_TYPE>::M_Assign()
+					M_Assign<INPUT_ITERATOR_TYPE, INPUT_ITERATOR_CONST_TYPE, VALUE_TYPE, SIZE_TYPE>::M_Assign()
 					{}
 
 					template <typename INPUT_ITERATOR_TYPE, typename INPUT_ITERATOR_CONST_TYPE, typename VALUE_TYPE, typename SIZE_TYPE>
-					M_Assign<INPUT_ITERATOR_TYPE, VALUE_TYPE, SIZE_TYPE>::~M_Assign()
+					M_Assign<INPUT_ITERATOR_TYPE, INPUT_ITERATOR_CONST_TYPE, VALUE_TYPE, SIZE_TYPE>::~M_Assign()
 					{}
 				}
 			}
