@@ -205,6 +205,7 @@ namespace BrainMuscles
 		public:
 			void Assign(InputIteratorType first, InputIteratorType last);
 			void Assign(InputIteratorConstType first, InputIteratorConstType last);
+			void Assign(ValueType* first, ValueType* last);
 			void Assign(SizeType n, const ValueType& val);
 			void Assign(std::initializer_list<ValueType> il);
 		};
@@ -420,6 +421,12 @@ namespace BrainMuscles
 
 		template<typename ELEMENT>
 		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(InputIteratorConstType first, InputIteratorConstType last)
+		{
+			GetContainer().assign(first, last);
+		}
+
+		template<typename ELEMENT>
+		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(ValueType* first, ValueType* last)
 		{
 			GetContainer().assign(first, last);
 		}
