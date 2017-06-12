@@ -23,6 +23,7 @@ namespace BrainMuscles
 #include "type\iterator\Base.h"
 #include "type\iterator\tag\Input.h"
 #include <vector>
+#include "type\container\vector\Iterator.h"
 
 namespace BrainMuscles
 {
@@ -36,26 +37,31 @@ namespace BrainMuscles
 				{
 					template<typename TYPE, typename HANDLE>
 					class Input :
-						public BrainMuscles::type::iterator::tag::Input<TYPE, HANDLE, BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>
+						public BrainMuscles::type::iterator::tag::Input<
+							TYPE, 
+							BrainMuscles::type::container::vector::Iterator<
+								BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>, 
+							HANDLE>
 					{
 						friend class BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>;
 					protected:
-						typedef BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE> IteratorType;
+						typedef BrainMuscles::type::container::vector::Iterator<
+							BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>> IteratorType;
 						typedef HANDLE HandleType;
 						typedef BrainMuscles::type::iterator::Base<HandleType, IteratorType> HandleBaseType;
-						typedef BrainMuscles::type::iterator::tag::Input<TYPE, HandleType, IteratorType> BaseType;
+						typedef BrainMuscles::type::iterator::tag::Input<TYPE, IteratorType, HandleType> BaseType;
 						typedef TYPE ValueType;
-						typedef typename HandleType::difference_type DifferenceType;
-						typedef typename HandleType::reference ReferenceType;
+						typedef typename HandleType::DifferenceType DifferenceType;
+						typedef typename HandleType::Reference ReferenceType;
 					public:
 						Input();
 						Input(const BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>& iterator);
 						Input(const HandleType& handle);
 						Input(IteratorType* pointer);
 						Input(const IteratorType& rhs);
-						~Input();
+						virtual ~Input();
 					protected:
-						IteratorType* ThisDerived();
+						virtual IteratorType* ThisDerived() = 0;
 
 						void OnRequestIncrement(HandleType& handle);
 						bool OnRequestEqual(DerivedType& rhs);
@@ -96,14 +102,6 @@ namespace BrainMuscles
 					template<typename TYPE, typename HANDLE>
 					Input<TYPE, HANDLE>::~Input()
 					{}
-
-
-					template<typename TYPE, typename HANDLE>
-					typename Input<TYPE, HANDLE>::IteratorType*
-					Input<TYPE, HANDLE>::ThisDerived()
-					{
-						return this;
-					}
 
 					template<typename TYPE, typename HANDLE>
 					void Input<TYPE, HANDLE>::OnRequestIncrement(HandleType& handle)
