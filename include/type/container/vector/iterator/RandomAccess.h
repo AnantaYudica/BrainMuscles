@@ -47,7 +47,6 @@ namespace BrainMuscles
 								BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>, 
 							HANDLE>
 					{
-						friend class BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>;
 					public:
 						typedef BrainMuscles::type::container::vector::Iterator<
 							BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>> IteratorType;
