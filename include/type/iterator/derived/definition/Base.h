@@ -1,5 +1,5 @@
-#ifndef TYPE_ITERATOR_TYPE_DEFINITION_BASE_H_
-#define TYPE_ITERATOR_TYPE_DEFINITION_BASE_H_
+#ifndef TYPE_ITERATOR_DERIVED_DEFINITION_BASE_H_
+#define TYPE_ITERATOR_DERIVED_DEFINITION_BASE_H_
 
 namespace BrainMuscles
 {
@@ -7,7 +7,7 @@ namespace BrainMuscles
 	{
 		namespace iterator
 		{
-			namespace type
+			namespace derived
 			{
 				namespace definition
 				{
@@ -22,4 +22,4 @@ namespace BrainMuscles
 	}
 }
 
-#endif //!TYPE_ITERATOR_TYPE_DEFINITION_BASE_H_
+#endif //!TYPE_ITERATOR_DERIVED_DEFINITION_BASE_H_
