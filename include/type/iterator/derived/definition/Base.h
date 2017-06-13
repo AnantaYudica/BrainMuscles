@@ -13,8 +13,10 @@ namespace BrainMuscles
 				{
 					struct Base
 					{
+						typedef void DerivedType;
 						typedef void Type;
-						typedef void ReturnType;
+						typedef void ReferenceType;
+						typedef void PointerType;
 					};
 				}
 			}
