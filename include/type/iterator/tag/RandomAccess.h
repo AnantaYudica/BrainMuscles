@@ -55,7 +55,7 @@ namespace BrainMuscles
 					typedef BrainMuscles::type::iterator::tag::RandomAccess<TYPE, DERIVED, HANDLE, HANDLE_INFO> RandomAccessType;
 					typedef DERIVED DerivedType;
 
-					typedef type::iterator::Tag TagType;
+					typedef BrainMuscles::type::iterator::Tag TagType;
 					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
 					typedef std::iterator<std::random_access_iterator_tag, TYPE> BaseIteratorType;
 					typedef BrainMuscles::type::iterator::member::M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO> ArithmeticType;

@@ -48,7 +48,7 @@ namespace BrainMuscles
 					typedef BrainMuscles::type::iterator::tag::Input<TYPE, DERIVED, HANDLE, HANDLE_INFO> InputType;
 					typedef DERIVED DerivedType;
 
-					typedef type::iterator::Tag TagType;
+					typedef BrainMuscles::type::iterator::Tag TagType;
 					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
 					typedef std::iterator<std::input_iterator_tag, TYPE> BaseIteratorType;
 
