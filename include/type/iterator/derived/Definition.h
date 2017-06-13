@@ -11,12 +11,14 @@ namespace BrainMuscles
 		{
 			namespace derived
 			{
-				template<typename TYPE, typename RETURN_TYPE = TYPE>
+				template<typename DERIVED, typename TYPE, typename REFERENCE_TYPE, typename POINTER_TYPE>
 				struct Definition :
 					public BrainMuscles::type::iterator::derived::definition::Base
 				{
+					typedef DERIVED DerivedType;
 					typedef TYPE Type;
-					typedef RETURN_TYPE ReturnType;
+					typedef REFERENCE_TYPE ReferenceType;
+					typedef POINTER_TYPE PointerType;
 				};
 			}
 		}
