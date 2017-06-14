@@ -130,7 +130,17 @@ namespace BrainMuscles
 						const typename ELEMENT::Type,
 						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>,
 				typename ELEMENT::ContainerType::value_type,
-				typename ELEMENT::ContainerType::size_type>
+				typename ELEMENT::ContainerType::size_type>,
+			public BrainMuscles::type::container::member::modifier::M_Emplace<
+				BrainMuscles::type::container::vector::Iterator<
+					BrainMuscles::type::container::vector::iterator::RandomAccess<
+						typename ELEMENT::Type,
+						BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>>,
+				BrainMuscles::type::container::vector::Iterator<
+					BrainMuscles::type::container::vector::iterator::RandomAccess<
+						const typename ELEMENT::Type,
+						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>,
+				typename ELEMENT::ContainerType::value_type>
 			
 				
 		{
@@ -208,6 +218,8 @@ namespace BrainMuscles
 			void Assign(ValueType* first, ValueType* last);
 			void Assign(SizeType n, const ValueType& val);
 			void Assign(std::initializer_list<ValueType> il);
+		protected:
+			Iterator DerivedEmplace(Iterator iterator, ValueType& constructor);
 		};
 
 		template<typename ELEMENT>
@@ -441,6 +453,15 @@ namespace BrainMuscles
 		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(std::initializer_list<ValueType> il)
 		{
 			GetContainer().assign(il);
+		}
+
+		template<typename ELEMENT>
+		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Iterator 
+		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::DerivedEmplace(Iterator iterator, ValueType& constructor)
+		{
+			
+					//GetContainer().emplace(iterator, constructor)
+			return Iterator(0);
 		}
 	}
 }
