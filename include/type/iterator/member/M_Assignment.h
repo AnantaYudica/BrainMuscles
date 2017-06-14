@@ -3,6 +3,7 @@
 
 #include "type\iterator\Base.h"
 #include "type\iterator\handle\info\IsType.h"
+#include "type\iterator\derived\info\IsType.h"
 
 namespace BrainMuscles
 {
@@ -12,16 +13,17 @@ namespace BrainMuscles
 		{
 			namespace member
 			{
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				class M_Assignment :
-					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED>
+					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO>
 				{
+					static_assert(BrainMuscles::type::iterator::derived::info::IsType<DERIVED_INFO>::Value, "[DERIVED_INFO Requires class derived::Info<Definition>");
 					static_assert(BrainMuscles::type::iterator::handle::info::IsType<HANDLE_INFO>::Value, "Requires class Info<Definition>");
 				public:
-					typedef DERIVED DerivedType;
+					typedef typename DERIVED_INFO::DerivedType DerivedType;
 					typedef HANDLE HandleType;
-					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
-					typedef M_Assignment<DERIVED, HANDLE, HANDLE_INFO> AssignmentType;
+					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO> BaseType;
+					typedef M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO> AssignmentType;
 				protected:
 					M_Assignment();
 					M_Assignment(const DerivedType& derived);
@@ -31,39 +33,39 @@ namespace BrainMuscles
 				public:
 					virtual ~M_Assignment();
 				protected:
-					virtual DERIVED* ThisDerived() = 0;
+					virtual DerivedType* ThisDerived() = 0;
 				public:
 					DerivedType& operator=(const DerivedType& rhs);
 				};
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Assignment<DERIVED, HANDLE, HANDLE_INFO>::M_Assignment() :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Assignment() :
 					BaseType()
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Assignment<DERIVED, HANDLE, HANDLE_INFO>::M_Assignment(const DerivedType& derived) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Assignment(const DerivedType& derived) :
 					BaseType(derived)
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Assignment<DERIVED, HANDLE, HANDLE_INFO>::M_Assignment(const HandleType& handle) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Assignment(const HandleType& handle) :
 					BaseType(handle)
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				template<typename... ARGS>
-				M_Assignment<DERIVED, HANDLE, HANDLE_INFO>::M_Assignment(ARGS... args) :
+				M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Assignment(ARGS... args) :
 					BaseType(args...)
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Assignment<DERIVED, HANDLE, HANDLE_INFO>::~M_Assignment()
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO>::~M_Assignment()
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				typename M_Assignment<DERIVED, HANDLE, HANDLE_INFO>::DerivedType&
-				M_Assignment<DERIVED, HANDLE, HANDLE_INFO>::operator=(const DerivedType& rhs)
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				typename M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO>::DerivedType&
+				M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO>::operator=(const DerivedType& rhs)
 				{
 					BaseType::operator=(rhs);
 					return *ThisDerived();
