@@ -11,7 +11,7 @@ namespace BrainMuscles
 		{
 			namespace tag
 			{
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO = BrainMuscles::type::iterator::handle::Info<HANDLE>>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO = BrainMuscles::type::iterator::handle::Info<HANDLE>>
 				class RandomAccess;
 			}
 		}
@@ -38,42 +38,43 @@ namespace BrainMuscles
 		{
 			namespace tag
 			{
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				class RandomAccess :
 					public BrainMuscles::type::iterator::Tag,
-					public std::iterator<std::random_access_iterator_tag, TYPE>,
-					public BrainMuscles::type::iterator::member::M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO>,
-					public BrainMuscles::type::iterator::member::M_Assignment<DERIVED, HANDLE, HANDLE_INFO>,
-					public BrainMuscles::type::iterator::member::M_Decrement<DERIVED, HANDLE, HANDLE_INFO>,
-					public BrainMuscles::type::iterator::member::M_Increment<DERIVED, HANDLE, HANDLE_INFO>,
-					public BrainMuscles::type::iterator::member::M_Equality<DERIVED, HANDLE, HANDLE_INFO>,
-					public BrainMuscles::type::iterator::member::M_Inequality<DERIVED, HANDLE, HANDLE_INFO>,
-					public BrainMuscles::type::iterator::member::M_LeftValue<TYPE, DERIVED, HANDLE, HANDLE_INFO>,
-					public BrainMuscles::type::iterator::member::M_Offset<TYPE, DERIVED, HANDLE, HANDLE_INFO>
+					public std::iterator<std::random_access_iterator_tag, typename DERIVED_INFO::Type>,
+					public BrainMuscles::type::iterator::member::M_Arithmetic<HANDLE, DERIVED_INFO, HANDLE_INFO>,
+					public BrainMuscles::type::iterator::member::M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO>,
+					public BrainMuscles::type::iterator::member::M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>,
+					public BrainMuscles::type::iterator::member::M_Increment<HANDLE, DERIVED_INFO, HANDLE_INFO>,
+					public BrainMuscles::type::iterator::member::M_Equality<HANDLE, DERIVED_INFO, HANDLE_INFO>,
+					public BrainMuscles::type::iterator::member::M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>,
+					public BrainMuscles::type::iterator::member::M_LeftValue<HANDLE, DERIVED_INFO, HANDLE_INFO>,
+					public BrainMuscles::type::iterator::member::M_Offset<HANDLE, DERIVED_INFO, HANDLE_INFO>
 				{
 				public:
-					typedef BrainMuscles::type::iterator::tag::RandomAccess<TYPE, DERIVED, HANDLE, HANDLE_INFO> RandomAccessType;
-					typedef DERIVED DerivedType;
+					typedef BrainMuscles::type::iterator::tag::RandomAccess<HANDLE, DERIVED_INFO, HANDLE_INFO> RandomAccessType;
+					typedef typename DERIVED_INFO::DerivedType DerivedType;
+					typedef typename DERIVED_INFO::Type Type;
+					typedef typename DERIVED_INFO::ReferenceType ReferenceType;
+					typedef typename DERIVED_INFO::PointerType PointerType;
 
 					typedef BrainMuscles::type::iterator::Tag TagType;
-					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
-					typedef std::iterator<std::random_access_iterator_tag, TYPE> BaseIteratorType;
-					typedef BrainMuscles::type::iterator::member::M_Arithmetic<DERIVED, HANDLE, HANDLE_INFO> ArithmeticType;
-					typedef BrainMuscles::type::iterator::member::M_Assignment<DERIVED, HANDLE, HANDLE_INFO> AssignmentType;
-					typedef BrainMuscles::type::iterator::member::M_Decrement<DERIVED, HANDLE, HANDLE_INFO> DecrementType;
-					typedef BrainMuscles::type::iterator::member::M_Increment<DERIVED, HANDLE, HANDLE_INFO> IncrementType;
-					typedef BrainMuscles::type::iterator::member::M_Equality<DERIVED, HANDLE, HANDLE_INFO> EqualityType;
-					typedef BrainMuscles::type::iterator::member::M_Inequality<DERIVED, HANDLE, HANDLE_INFO> InequalityType;
-					typedef BrainMuscles::type::iterator::member::M_LeftValue<TYPE, DERIVED, HANDLE, HANDLE_INFO> LeftValueType;
-					typedef BrainMuscles::type::iterator::member::M_Offset<TYPE, DERIVED, HANDLE, HANDLE_INFO> OffsetType;
+					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO> BaseType;
+					typedef std::iterator<std::random_access_iterator_tag, Type> BaseIteratorType;
+					typedef BrainMuscles::type::iterator::member::M_Arithmetic<HANDLE, DERIVED_INFO, HANDLE_INFO> ArithmeticType;
+					typedef BrainMuscles::type::iterator::member::M_Assignment<HANDLE, DERIVED_INFO, HANDLE_INFO> AssignmentType;
+					typedef BrainMuscles::type::iterator::member::M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO> DecrementType;
+					typedef BrainMuscles::type::iterator::member::M_Increment<HANDLE, DERIVED_INFO, HANDLE_INFO> IncrementType;
+					typedef BrainMuscles::type::iterator::member::M_Equality<HANDLE, DERIVED_INFO, HANDLE_INFO> EqualityType;
+					typedef BrainMuscles::type::iterator::member::M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO> InequalityType;
+					typedef BrainMuscles::type::iterator::member::M_LeftValue<HANDLE, DERIVED_INFO, HANDLE_INFO> LeftValueType;
+					typedef BrainMuscles::type::iterator::member::M_Offset<HANDLE, DERIVED_INFO, HANDLE_INFO> OffsetType;
 
 
 					typedef HANDLE HandleType;
 					typedef HANDLE * PointerHandle;
-					typedef TYPE ValueType;
-					typedef DERIVED DerivedType;
 				protected:
-					virtual DERIVED* ThisDerived() = 0;
+					virtual DerivedType* ThisDerived() = 0;
 
 					virtual DerivedType& OnRequestAddition(const DifferenceType& n) = 0;
 					virtual DerivedType& OnRequestSubtraction(const DifferenceType& n) = 0;
@@ -83,9 +84,9 @@ namespace BrainMuscles
 					virtual bool OnRequestEqual(DerivedType& rhs) = 0;
 					virtual bool OnRequestLess(DerivedType& rhs) = 0;
 					virtual bool OnRequestGreater(DerivedType& rhs) = 0;
-					virtual ValueType& OnRequestReference() = 0;
-					virtual ValueType* OnRequestPointer() = 0;
-					virtual ValueType& OnRequestAt(const size_t& index) = 0;
+					virtual ReferenceType OnRequestReference() = 0;
+					virtual PointerType OnRequestPointer() = 0;
+					virtual ReferenceType OnRequestAt(const size_t& index) = 0;
 				public:
 					RandomAccess();
 					RandomAccess(const HandleType& handle);
@@ -98,8 +99,8 @@ namespace BrainMuscles
 					virtual ~RandomAccess();
 				};
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				RandomAccess<TYPE, DERIVED, HANDLE, HANDLE_INFO>::RandomAccess() :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				RandomAccess<HANDLE, DERIVED_INFO, HANDLE_INFO>::RandomAccess() :
 					TagType(tag::Type::random_access),
 					BaseType(),
 					ArithmeticType(),
@@ -112,8 +113,8 @@ namespace BrainMuscles
 					OffsetType()
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				RandomAccess<TYPE, DERIVED, HANDLE, HANDLE_INFO>::RandomAccess(const HandleType& handle) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				RandomAccess<HANDLE, DERIVED_INFO, HANDLE_INFO>::RandomAccess(const HandleType& handle) :
 					TagType(tag::Type::random_access),
 					BaseType(handle),
 					ArithmeticType(handle),
@@ -126,8 +127,8 @@ namespace BrainMuscles
 					OffsetType(handle)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				RandomAccess<TYPE, DERIVED, HANDLE, HANDLE_INFO>::RandomAccess(const BaseIteratorType& iterator) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				RandomAccess<HANDLE, DERIVED_INFO, HANDLE_INFO>::RandomAccess(const BaseIteratorType& iterator) :
 					TagType(tag::Type::random_access),
 					BaseType(iterator),
 					ArithmeticType(iterator),
@@ -140,8 +141,8 @@ namespace BrainMuscles
 					OffsetType(iterator)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				RandomAccess<TYPE, DERIVED, HANDLE, HANDLE_INFO>::RandomAccess(const DerivedType& derived) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				RandomAccess<HANDLE, DERIVED_INFO, HANDLE_INFO>::RandomAccess(const DerivedType& derived) :
 					TagType(tag::Type::random_access),
 					BaseType(derived),
 					ArithmeticType(derived),
@@ -154,9 +155,9 @@ namespace BrainMuscles
 					OffsetType(derived)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				template<typename... ARGS>
-				RandomAccess<TYPE, DERIVED, HANDLE, HANDLE_INFO>::RandomAccess(ARGS... args) :
+				RandomAccess<HANDLE, DERIVED_INFO, HANDLE_INFO>::RandomAccess(ARGS... args) :
 					TagType(tag::Type::random_access),
 					BaseType(args...),
 					ArithmeticType(args...),
@@ -170,8 +171,8 @@ namespace BrainMuscles
 				{
 				}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				RandomAccess<TYPE, DERIVED, HANDLE, HANDLE_INFO>::~RandomAccess()
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				RandomAccess<HANDLE, DERIVED_INFO, HANDLE_INFO>::~RandomAccess()
 				{
 					
 				}
