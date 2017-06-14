@@ -2,6 +2,7 @@
 #define TYPE_ITERATOR_BASE_H_
 
 #include "type\Cloneable.h"
+#include "type\iterator\derived\info\IsType.h"
 #include <type_traits>
 
 namespace BrainMuscles
@@ -27,6 +28,7 @@ namespace BrainMuscles
 			template<typename HANDLE, typename DERIVED_INFO, typename VOID>
 			class Base
 			{
+				static_assert(BrainMuscles::type::iterator::derived::info::IsType<DERIVED_INFO>::Value, "[DERIVED_INFO Requires class derived::Info<Definition>");
 			public:
 				typedef typename DERIVED_INFO::DerivedType DerivedType;
 				typedef HANDLE HandleType;
@@ -53,6 +55,7 @@ namespace BrainMuscles
 			template<typename HANDLE, typename DERIVED_INFO>
 			class Base<HANDLE, DERIVED_INFO, typename std::enable_if<std::is_base_of<BrainMuscles::type::Cloneable, HANDLE>::value, void>::type>
 			{
+				static_assert(BrainMuscles::type::iterator::derived::info::IsType<DERIVED_INFO>::Value, "[DERIVED_INFO Requires class derived::Info<Definition>");
 			public:
 				typedef typename DERIVED_INFO::DerivedType DerivedType;
 				typedef HANDLE HandleType;
