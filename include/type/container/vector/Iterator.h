@@ -19,6 +19,11 @@ namespace BrainMuscles
 #include "type\container\vector\iterator\RandomAccess.h"
 #include "type\container\vector\iterator\Input.h"
 
+#include "type\container\standard\vector\ConstIterator.h"
+#include "type\container\standard\vector\ConstReverseIterator.h"
+#include "type\container\standard\vector\Iterator.h"
+#include "type\container\standard\vector\ReverseIterator.h"
+
 namespace BrainMuscles
 {
 	namespace type
@@ -59,6 +64,10 @@ namespace BrainMuscles
 					public BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>
 				{
 					friend class BrainMuscles::type::container::vector::Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>;
+					friend class BrainMuscles::type::container::standard::vector::ConstIterator<TYPE>;
+					friend class BrainMuscles::type::container::standard::vector::ConstReverseIterator<TYPE>;
+					friend class BrainMuscles::type::container::standard::vector::Iterator<TYPE>;
+					friend class BrainMuscles::type::container::standard::vector::ReverseIterator<TYPE>;
 				public:
 					typedef Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>> RandomAccessType;
 					typedef BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE> BaseType;
