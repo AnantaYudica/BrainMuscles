@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename ITERATOR_TYPE, typename CONST_ITERATOR_TYPE, typename DERIVED>
+					template<typename ITERATOR_TYPE, typename CONST_ITERATOR_TYPE, typename VALUE_TYPE>
 					class M_Emplace;
 				}
 			}
@@ -33,7 +33,7 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename ITERATOR_TYPE, typename CONST_ITERATOR_TYPE, typename DERIVED>
+					template<typename ITERATOR_TYPE, typename ITERATOR_CONST_TYPE, typename VALUE_TYPE>
 					class M_Emplace
 					{
 					protected:
@@ -41,26 +41,27 @@ namespace BrainMuscles
 					public:
 						virtual ~M_Emplace();
 					protected:
-						virtual DERIVED* ThisDerived() = 0;
+						virtual ITERATOR_TYPE DerivedEmplace(ITERATOR_TYPE iterator, VALUE_TYPE& constructor) = 0;
 					public:
 						template<typename... ARGS>
-						ITERATOR_TYPE Emplace(CONST_ITERATOR_TYPE constIterator, ARGS... args);
+						ITERATOR_TYPE Emplace(ITERATOR_TYPE constIterator, ARGS... args);
 					};
 
-					template<typename ITERATOR_TYPE, typename CONST_ITERATOR_TYPE, typename DERIVED>
-					M_Emplace<ITERATOR_TYPE, CONST_ITERATOR_TYPE, DERIVED>::M_Emplace()
+					template<typename ITERATOR_TYPE, typename ITERATOR_CONST_TYPE, typename VALUE_TYPE>
+					M_Emplace<ITERATOR_TYPE, ITERATOR_CONST_TYPE, VALUE_TYPE>::M_Emplace()
 					{}
 
-					template<typename ITERATOR_TYPE, typename CONST_ITERATOR_TYPE, typename DERIVED>
-					M_Emplace<ITERATOR_TYPE, CONST_ITERATOR_TYPE, DERIVED>::~M_Emplace()
+					template<typename ITERATOR_TYPE, typename ITERATOR_CONST_TYPE, typename VALUE_TYPE>
+					M_Emplace<ITERATOR_TYPE, ITERATOR_CONST_TYPE, VALUE_TYPE>::~M_Emplace()
 					{}
 
-					template<typename ITERATOR_TYPE, typename CONST_ITERATOR_TYPE, typename DERIVED>
+					template<typename ITERATOR_TYPE, typename ITERATOR_CONST_TYPE, typename VALUE_TYPE>
 					template<typename... ARGS>
 					ITERATOR_TYPE 
-					M_Emplace<ITERATOR_TYPE, CONST_ITERATOR_TYPE, DERIVED>::Emplace(CONST_ITERATOR_TYPE constIterator, ARGS... args)
+					M_Emplace<ITERATOR_TYPE, ITERATOR_CONST_TYPE, VALUE_TYPE>::Emplace(ITERATOR_TYPE constIterator, ARGS... args)
 					{
-						return ThisDerived()->OnRequestEmplace(constIterator, args...);
+						VALUE_TYPE constructor(args...);
+						return DerivedEmplace(constIterator, constructor);
 					}
 				}
 			}
