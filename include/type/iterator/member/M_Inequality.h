@@ -3,6 +3,7 @@
 
 #include "type\iterator\Base.h"
 #include "type\iterator\handle\info\IsType.h"
+#include "type\iterator\derived\info\IsType.h"
 
 namespace BrainMuscles
 {
@@ -12,15 +13,16 @@ namespace BrainMuscles
 		{
 			namespace member
 			{
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				class M_Inequality :
-					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED>
+					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO>
 				{
+					static_assert(BrainMuscles::type::iterator::derived::info::IsType<DERIVED_INFO>::Value, "[DERIVED_INFO Requires class derived::Info<Definition>");
 					static_assert(BrainMuscles::type::iterator::handle::info::IsType<HANDLE_INFO>::Value, "Requires class Info<Definition>");
 				public:
 					typedef HANDLE HandleType;
-					typedef DERIVED DerivedType;
-					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
+					typedef typename DERIVED_INFO::DerivedType DerivedType;
+					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO> BaseType;
 				protected:
 					M_Inequality();
 					M_Inequality(const DerivedType& derived);
@@ -30,7 +32,7 @@ namespace BrainMuscles
 				public:
 					virtual ~M_Inequality();
 				protected:
-					virtual DERIVED* ThisDerived() = 0;
+					virtual DerivedType* ThisDerived() = 0;
 
 					virtual bool OnRequestEqual(DerivedType& rhs) = 0;
 					virtual bool OnRequestLess(DerivedType& rhs) = 0;
@@ -43,51 +45,51 @@ namespace BrainMuscles
 					bool operator>=(DerivedType& rhs);
 				};
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Inequality<DERIVED, HANDLE, HANDLE_INFO>::M_Inequality() :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Inequality() :
 					BaseType()
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Inequality<DERIVED, HANDLE, HANDLE_INFO>::M_Inequality(const DerivedType& derived) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Inequality(const DerivedType& derived) :
 					BaseType(derived)
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Inequality<DERIVED, HANDLE, HANDLE_INFO>::M_Inequality(const HandleType& handle) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Inequality(const HandleType& handle) :
 					BaseType(handle)
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				template<typename... ARGS>
-				M_Inequality<DERIVED, HANDLE, HANDLE_INFO>::M_Inequality(ARGS... args) :
+				M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Inequality(ARGS... args) :
 					BaseType(args...)
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Inequality<DERIVED, HANDLE, HANDLE_INFO>::~M_Inequality()
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>::~M_Inequality()
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				bool M_Inequality<DERIVED, HANDLE, HANDLE_INFO>::operator<(DerivedType& rhs)
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				bool M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>::operator<(DerivedType& rhs)
 				{
 					return OnRequestLess(rhs);
 				}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				bool M_Inequality<DERIVED, HANDLE, HANDLE_INFO>::operator>(DerivedType& rhs)
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				bool M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>::operator>(DerivedType& rhs)
 				{
 					return OnRequestGreater(rhs);
 				}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				bool M_Inequality<DERIVED, HANDLE, HANDLE_INFO>::operator<=(DerivedType& rhs)
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				bool M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>::operator<=(DerivedType& rhs)
 				{
 					return OnRequestEqual(rhs) ? true : OnRequestLess(rhs);
 				}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				bool M_Inequality<DERIVED, HANDLE, HANDLE_INFO>::operator>=(DerivedType& rhs)
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				bool M_Inequality<HANDLE, DERIVED_INFO, HANDLE_INFO>::operator>=(DerivedType& rhs)
 				{
 					return OnRequestEqual(rhs) ? true : OnRequestGreater(rhs);
 				}
