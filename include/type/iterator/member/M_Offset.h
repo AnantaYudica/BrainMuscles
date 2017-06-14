@@ -3,6 +3,7 @@
 
 #include "type\iterator\Base.h"
 #include "type\iterator\handle\info\IsType.h"
+#include "type\iterator\derived\info\IsType.h"
 
 namespace BrainMuscles
 {
@@ -12,16 +13,17 @@ namespace BrainMuscles
 		{
 			namespace member
 			{
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				class M_Offset :
-					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED>
+					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO>
 				{
+					static_assert(BrainMuscles::type::iterator::derived::info::IsType<DERIVED_INFO>::Value, "[DERIVED_INFO Requires class derived::Info<Definition>");
 					static_assert(BrainMuscles::type::iterator::handle::info::IsType<HANDLE_INFO>::Value, "Requires class Info<Definition>");
 				public:
-					typedef DERIVED DerivedType;
+					typedef typename DERIVED_INFO::DerivedType DerivedType;
+					typedef typename DERIVED_INFO::ReferenceType ReferenceType;
 					typedef HANDLE HandleType;
-					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
-					typedef TYPE ValueType;
+					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO> BaseType;
 				protected:
 					M_Offset();
 					M_Offset(const DerivedType& derived);
@@ -31,41 +33,41 @@ namespace BrainMuscles
 				public:
 					virtual ~M_Offset();
 				protected:
-					virtual DERIVED* ThisDerived() = 0;
+					virtual DerivedType* ThisDerived() = 0;
 
-					virtual ValueType& OnRequestAt(const size_t& index) = 0;
+					virtual ReferenceType OnRequestAt(const size_t& index) = 0;
 				public:
-					ValueType& operator[](const size_t& index);
+					ReferenceType operator[](const size_t& index);
 				};
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Offset<TYPE, DERIVED, HANDLE, HANDLE_INFO>::M_Offset() :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Offset<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Offset() :
 					BaseType()
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Offset<TYPE, DERIVED, HANDLE, HANDLE_INFO>::M_Offset(const DerivedType& derived) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Offset<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Offset(const DerivedType& derived) :
 					BaseType(derived)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Offset<TYPE, DERIVED, HANDLE, HANDLE_INFO>::M_Offset(const HandleType& handle) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Offset<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Offset(const HandleType& handle) :
 					BaseType(handle)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				template<typename... ARGS>
-				M_Offset<TYPE, DERIVED, HANDLE, HANDLE_INFO>::M_Offset(ARGS... args) :
+				M_Offset<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Offset(ARGS... args) :
 					BaseType(args...)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Offset<TYPE, DERIVED, HANDLE, HANDLE_INFO>::~M_Offset()
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Offset<HANDLE, DERIVED_INFO, HANDLE_INFO>::~M_Offset()
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				typename M_Offset<TYPE, DERIVED, HANDLE, HANDLE_INFO>::ValueType&
-				M_Offset<TYPE, DERIVED, HANDLE, HANDLE_INFO>::operator[](const size_t& index)
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				typename M_Offset<HANDLE, DERIVED_INFO, HANDLE_INFO>::ReferenceType
+				M_Offset<HANDLE, DERIVED_INFO, HANDLE_INFO>::operator[](const size_t& index)
 				{
 					return OnRequestAt(index);
 				}
