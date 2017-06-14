@@ -3,6 +3,7 @@
 
 #include "type\iterator\Base.h"
 #include "type\iterator\handle\info\IsType.h"
+#include "type\iterator\derived\info\IsType.h"
 
 namespace BrainMuscles
 {
@@ -12,16 +13,17 @@ namespace BrainMuscles
 		{
 			namespace member
 			{
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				class M_Decrement :
-					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED>
+					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO>
 				{
+					static_assert(BrainMuscles::type::iterator::derived::info::IsType<DERIVED_INFO>::Value, "[DERIVED_INFO Requires class derived::Info<Definition>");
 					static_assert(BrainMuscles::type::iterator::handle::info::IsType<HANDLE_INFO>::Value, "Requires class Info<Definition>");
 				public:
-					typedef DERIVED DerivedType;
+					typedef typename DERIVED_INFO::DerivedType DerivedType;
 					typedef HANDLE HandleType;
-					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
-					typedef M_Decrement<DERIVED, HANDLE, HANDLE_INFO> DecrementType;
+					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO> BaseType;
+					typedef M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO> DecrementType;
 				protected:
 					M_Decrement();
 					M_Decrement(const DerivedType& derived);
@@ -31,7 +33,7 @@ namespace BrainMuscles
 				public:
 					virtual ~M_Decrement();
 				protected:
-					virtual DERIVED* ThisDerived() = 0;
+					virtual DerivedType* ThisDerived() = 0;
 
 					virtual void OnRequestDecrement(HandleType& handle) = 0;
 				public:
@@ -39,42 +41,42 @@ namespace BrainMuscles
 					DerivedType operator--(int);
 				};
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Decrement<DERIVED, HANDLE, HANDLE_INFO>::M_Decrement() :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Decrement() :
 					BaseType()
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Decrement<DERIVED, HANDLE, HANDLE_INFO>::M_Decrement(const DerivedType& derived) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Decrement(const DerivedType& derived) :
 					BaseType(derived)
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Decrement<DERIVED, HANDLE, HANDLE_INFO>::M_Decrement(const HandleType& handle) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Decrement(const HandleType& handle) :
 					BaseType(handle)
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				template<typename... ARGS>
-				M_Decrement<DERIVED, HANDLE, HANDLE_INFO>::M_Decrement(ARGS... args) :
+				M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>::M_Decrement(ARGS... args) :
 					BaseType(args...)
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				M_Decrement<DERIVED, HANDLE, HANDLE_INFO>::~M_Decrement()
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>::~M_Decrement()
 				{}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				typename M_Decrement<DERIVED, HANDLE, HANDLE_INFO>::DerivedType&
-				M_Decrement<DERIVED, HANDLE, HANDLE_INFO>::operator--()
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				typename M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>::DerivedType&
+				M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>::operator--()
 				{
 					OnRequestDecrement(GetHandle());
 					return *ThisDerived();
 				}
 
-				template<typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				typename M_Decrement<DERIVED, HANDLE, HANDLE_INFO>::DerivedType
-				M_Decrement<DERIVED, HANDLE, HANDLE_INFO>::operator--(int)
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				typename M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>::DerivedType
+				M_Decrement<HANDLE, DERIVED_INFO, HANDLE_INFO>::operator--(int)
 				{
 					DerivedType copy = DerivedType(*ThisDerived());
 					OnRequestDecrement(GetHandle());
