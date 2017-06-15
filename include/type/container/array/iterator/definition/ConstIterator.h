@@ -22,6 +22,8 @@ namespace BrainMuscles
 								BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HANDLE>,
 								TYPE,
 								const TYPE&,
+								const TYPE*,
+								const TYPE&,
 								const TYPE*>
 						{};
 					}

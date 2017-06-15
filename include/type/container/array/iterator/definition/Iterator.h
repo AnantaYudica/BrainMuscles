@@ -22,7 +22,9 @@ namespace BrainMuscles
 								BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HANDLE>,
 								TYPE,
 								TYPE&,
-								TYPE*>
+								TYPE*,
+								const TYPE&,
+								const TYPE*>
 						{};
 					}
 				}
