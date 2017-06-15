@@ -17,6 +17,8 @@ namespace BrainMuscles
 						typedef void Type;
 						typedef void ReferenceType;
 						typedef void PointerType;
+						typedef void ConstReferenceType;
+						typedef void ConstPointerType;
 					};
 				}
 			}
