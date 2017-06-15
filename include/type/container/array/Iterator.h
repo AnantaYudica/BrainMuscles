@@ -18,7 +18,11 @@ namespace BrainMuscles
 
 #include "type\iterator\Base.h"
 #include "type\iterator\tag\RandomAccess.h"
+#include "type\iterator\derived\Info.h"
 #include <array>
+#include "type\container\array\iterator\definition\ConstIterator.h"
+#include "type\container\array\iterator\definition\Iterator.h"
+#include "type\container\array\iterator\Definition.h"
 
 namespace BrainMuscles
 {
@@ -28,18 +32,32 @@ namespace BrainMuscles
 		{
 			namespace array
 			{
+				template<typename TYPE, size_t SIZE>
+				using ConstIteratorHandle = BrainMuscles::type::container::array::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::const_iterator>;
+				template<typename TYPE, size_t SIZE>
+				using ConstReverseIteratorHandle = BrainMuscles::type::container::array::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::const_reverse_iterator>;
+				template<typename TYPE, size_t SIZE>
+				using IteratorHandle = BrainMuscles::type::container::array::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::iterator>;
+				template<typename TYPE, size_t SIZE>
+				using ReverseIteratorHandle = BrainMuscles::type::container::array::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::reverse_iterator>;
+				
 				template<typename TYPE, size_t SIZE, typename HANDLE>
 				class Iterator :
-					public BrainMuscles::type::iterator::tag::RandomAccess<TYPE, BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HANDLE>, HANDLE>
+					public BrainMuscles::type::iterator::tag::RandomAccess<
+						HANDLE, 
+						BrainMuscles::type::iterator::derived::Info<BrainMuscles::type::container::array::iterator::Definition<TYPE, SIZE, HANDLE>>>
 				{
 				public:
-					typedef BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HANDLE> IteratorType;
 					typedef HANDLE HandleType;
-					typedef BrainMuscles::type::iterator::Base<HandleType, IteratorType> HandleBaseType;
-					typedef BrainMuscles::type::iterator::tag::RandomAccess<TYPE, IteratorType, HandleType> BaseType;
-					typedef TYPE ValueType;
+					typedef BrainMuscles::type::container::array::iterator::Definition<TYPE, SIZE, HANDLE> DerivedDefinitionType;
+					typedef BrainMuscles::type::iterator::derived::Info<DerivedDefinitionType> DerivedInfoType;
+					typedef BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HandleType> IteratorType;
+					
+					typedef BrainMuscles::type::iterator::Base<HandleType, DerivedInfoType> HandleBaseType;
+					typedef BrainMuscles::type::iterator::tag::RandomAccess<HandleType, DerivedInfoType> BaseType;
 					typedef typename HandleType::difference_type DifferenceType;
-					typedef typename HandleType::reference ReferenceType;
+					typedef typename DerivedInfoType::ReferenceType ReferenceType;
+					typedef typename DerivedInfoType::PointerType PointerType;
 				public:
 					Iterator();
 					Iterator(const HandleType& handle);
@@ -51,15 +69,15 @@ namespace BrainMuscles
 
 					IteratorType& OnRequestAddition(const DifferenceType& n);
 					IteratorType& OnRequestSubtraction(const DifferenceType& n);
-					DifferenceType OnRequestSubtraction(const Iterator<TYPE, SIZE, HANDLE>& iterator);
+					DifferenceType OnRequestSubtraction(const IteratorType& iterator);
 					void OnRequestDecrement(HandleType& handle);
 					void OnRequestIncrement(HandleType& handle);
 					bool OnRequestEqual(DerivedType& rhs);
 					bool OnRequestLess(DerivedType& rhs);
 					bool OnRequestGreater(DerivedType& rhs);
-					ValueType& OnRequestReference();
-					ValueType* OnRequestPointer();
-					ValueType& OnRequestAt(const size_t& index);
+					ReferenceType OnRequestReference();
+					PointerType OnRequestPointer();
+					ReferenceType OnRequestAt(const size_t& index);
 				
 				};
 
@@ -123,7 +141,7 @@ namespace BrainMuscles
 
 				template<typename TYPE, size_t SIZE, typename HANDLE>
 				typename Iterator<TYPE, SIZE, HANDLE>::DifferenceType 
-				Iterator<TYPE, SIZE, HANDLE>::OnRequestSubtraction(const Iterator<TYPE, SIZE, HANDLE>& iterator)
+				Iterator<TYPE, SIZE, HANDLE>::OnRequestSubtraction(const IteratorType& iterator)
 				{
 					return GetHandle() - iterator.GetHandle();
 				}
@@ -159,21 +177,21 @@ namespace BrainMuscles
 				}
 
 				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename Iterator<TYPE, SIZE, HANDLE>::ValueType&
+				typename Iterator<TYPE, SIZE, HANDLE>::ReferenceType
 				Iterator<TYPE, SIZE, HANDLE>::OnRequestReference()
 				{
 					return *GetHandle();
 				}
 
 				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename  Iterator<TYPE, SIZE, HANDLE>::ValueType*
+				typename  Iterator<TYPE, SIZE, HANDLE>::PointerType
 				Iterator<TYPE, SIZE, HANDLE>::OnRequestPointer()
 				{
 					return &(*GetHandle());
 				}
 
 				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename  Iterator<TYPE, SIZE, HANDLE>::ValueType&
+				typename  Iterator<TYPE, SIZE, HANDLE>::ReferenceType
 				Iterator<TYPE, SIZE, HANDLE>::OnRequestAt(const size_t& index)
 				{
 					return (*GetHandle());
