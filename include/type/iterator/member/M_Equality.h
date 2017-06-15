@@ -15,7 +15,7 @@ namespace BrainMuscles
 			{
 				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				class M_Equality :
-					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED>
+					public virtual BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO>
 				{
 					static_assert(BrainMuscles::type::iterator::derived::info::IsType<DERIVED_INFO>::Value, "[DERIVED_INFO Requires class derived::Info<Definition>");
 					static_assert(BrainMuscles::type::iterator::handle::info::IsType<HANDLE_INFO>::Value, "Requires class Info<Definition>");
