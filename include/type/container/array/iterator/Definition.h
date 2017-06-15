@@ -22,23 +22,23 @@ namespace BrainMuscles
 					{};
 
 					template<typename TYPE, size_t SIZE>
-					struct Definition<TYPE, SIZE, std::array<TYPE, SIZE>::const_iterator> :
-						public BrainMuscles::type::container::array::iterator::definition::ConstIterator<TYPE, SIZE, std::array<TYPE, SIZE>::const_iterator>
+					struct Definition<TYPE, SIZE, typename std::array<TYPE, SIZE>::const_iterator> :
+						public BrainMuscles::type::container::array::iterator::definition::ConstIterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::const_iterator>
 					{};
 
 					template<typename TYPE, size_t SIZE>
-					struct Definition<TYPE, SIZE, std::array<TYPE, SIZE>::const_reverse_iterator> :
-						public BrainMuscles::type::container::array::iterator::definition::ConstIterator<TYPE, SIZE, std::array<TYPE, SIZE>::const_iterator>
+					struct Definition<TYPE, SIZE, typename std::array<TYPE, SIZE>::const_reverse_iterator> :
+						public BrainMuscles::type::container::array::iterator::definition::ConstIterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::const_reverse_iterator>
 					{};
 
 					template<typename TYPE, size_t SIZE>
-					struct Definition<TYPE, SIZE, std::array<TYPE, SIZE>::iterator> :
-						public BrainMuscles::type::container::array::iterator::definition::Iterator<TYPE, SIZE, std::array<TYPE, SIZE>::iterator>
+					struct Definition<TYPE, SIZE, typename std::array<TYPE, SIZE>::iterator> :
+						public BrainMuscles::type::container::array::iterator::definition::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::iterator>
 					{};
 
 					template<typename TYPE, size_t SIZE>
-					struct Definition<TYPE, SIZE, std::array<TYPE, SIZE>::reverse_iterator> :
-						public BrainMuscles::type::container::array::iterator::definition::Iterator<TYPE, SIZE, std::array<TYPE, SIZE>::reverse_iterator>
+					struct Definition<TYPE, SIZE, typename std::array<TYPE, SIZE>::reverse_iterator> :
+						public BrainMuscles::type::container::array::iterator::definition::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::reverse_iterator>
 					{};
 				}
 			}
