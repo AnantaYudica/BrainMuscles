@@ -30,7 +30,7 @@ namespace BrainMuscles
 							public BrainMuscles::type::iterator::derived::Definition<
 							BrainMuscles::type::container::vector::Iterator<
 							BrainMuscles::type::container::vector::iterator::RandomAccess<
-							TYPE, HANDLE>>, TYPE, TYPE&, TYPE*>
+							TYPE, HANDLE>>, TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
 						{
 						};
 
@@ -39,7 +39,7 @@ namespace BrainMuscles
 							public BrainMuscles::type::iterator::derived::Definition<
 							BrainMuscles::type::container::vector::Iterator<
 							BrainMuscles::type::container::vector::iterator::Input<
-							TYPE, HANDLE>>, TYPE, TYPE&, TYPE*>
+							TYPE, HANDLE>>, TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
 						{
 						};
 					}
