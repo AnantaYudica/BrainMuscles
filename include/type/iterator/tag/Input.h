@@ -11,7 +11,7 @@ namespace BrainMuscles
 		{
 			namespace tag
 			{
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO = BrainMuscles::type::iterator::handle::Info<HANDLE>>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO = BrainMuscles::type::iterator::handle::Info<HANDLE>>
 				class Input;
 			}
 		}
@@ -35,31 +35,32 @@ namespace BrainMuscles
 		{
 			namespace tag
 			{
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				class Input :
 					public BrainMuscles::type::iterator::Tag,
-					public std::iterator<std::input_iterator_tag, TYPE>,
+					public std::iterator<std::input_iterator_tag, typename DERIVED_INFO::Type>,
 
-					public BrainMuscles::type::iterator::member::M_Equality<DERIVED, HANDLE, HANDLE_INFO>,
-					public BrainMuscles::type::iterator::member::M_Increment<DERIVED, HANDLE, HANDLE_INFO>,
-					public BrainMuscles::type::iterator::member::M_LeftValue<TYPE, DERIVED, HANDLE, HANDLE_INFO>
+					public BrainMuscles::type::iterator::member::M_Equality<HANDLE, DERIVED_INFO, HANDLE_INFO>,
+					public BrainMuscles::type::iterator::member::M_Increment<HANDLE, DERIVED_INFO, HANDLE_INFO>,
+					public BrainMuscles::type::iterator::member::M_LeftValue<HANDLE, DERIVED_INFO, HANDLE_INFO>
 				{
 				public:
-					typedef BrainMuscles::type::iterator::tag::Input<TYPE, DERIVED, HANDLE, HANDLE_INFO> InputType;
-					typedef DERIVED DerivedType;
+					typedef BrainMuscles::type::iterator::tag::Input<HANDLE, DERIVED_INFO, HANDLE_INFO> InputType;
+					typedef typename DERIVED_INFO::DerivedType DerivedType;
+					typedef typename DERIVED_INFO::Type Type;
+					typedef typename DERIVED_INFO::ReferenceType ReferenceType;
+					typedef typename DERIVED_INFO::PointerType PointerType;
 
 					typedef BrainMuscles::type::iterator::Tag TagType;
-					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED> BaseType;
-					typedef std::iterator<std::input_iterator_tag, TYPE> BaseIteratorType;
+					typedef BrainMuscles::type::iterator::Base<HANDLE, DERIVED_INFO> BaseType;
+					typedef std::iterator<std::input_iterator_tag, Type> BaseIteratorType;
 
-					typedef BrainMuscles::type::iterator::member::M_Increment<DERIVED, HANDLE, HANDLE_INFO> IncrementType;
-					typedef BrainMuscles::type::iterator::member::M_Equality<DERIVED, HANDLE, HANDLE_INFO> EqualityType;
-					typedef BrainMuscles::type::iterator::member::M_LeftValue<TYPE, DERIVED, HANDLE, HANDLE_INFO> LeftValueType;
+					typedef BrainMuscles::type::iterator::member::M_Increment<HANDLE, DERIVED_INFO, HANDLE_INFO> IncrementType;
+					typedef BrainMuscles::type::iterator::member::M_Equality<HANDLE, DERIVED_INFO, HANDLE_INFO> EqualityType;
+					typedef BrainMuscles::type::iterator::member::M_LeftValue<HANDLE, DERIVED_INFO, HANDLE_INFO> LeftValueType;
 
 					typedef HANDLE HandleType;
 					typedef HANDLE * PointerHandle;
-					typedef TYPE ValueType;
-					typedef DERIVED DerivedType;
 				public:
 					Input();
 					Input(const HandleType& handle);
@@ -71,16 +72,16 @@ namespace BrainMuscles
 				public:
 					virtual ~Input();
 				protected:
-					virtual DERIVED* ThisDerived() = 0;
+					virtual DerivedType* ThisDerived() = 0;
 
 					virtual void OnRequestIncrement(HandleType& handle) = 0;
 					virtual bool OnRequestEqual(DerivedType& rhs) = 0;
-					virtual ValueType& OnRequestReference() = 0;
-					virtual ValueType* OnRequestPointer() = 0;
+					virtual ReferenceType OnRequestReference() = 0;
+					virtual PointerType OnRequestPointer() = 0;
 				};
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				Input<TYPE, DERIVED, HANDLE, HANDLE_INFO>::Input() :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				Input<HANDLE, DERIVED_INFO, HANDLE_INFO>::Input() :
 					TagType(BrainMuscles::type::iterator::tag::input),
 					BaseType(),
 					IncrementType(),
@@ -88,8 +89,8 @@ namespace BrainMuscles
 					LeftValueType()
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				Input<TYPE, DERIVED, HANDLE, HANDLE_INFO>::Input(const HandleType& handle) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				Input<HANDLE, DERIVED_INFO, HANDLE_INFO>::Input(const HandleType& handle) :
 					TagType(BrainMuscles::type::iterator::tag::input),
 					BaseType(handle),
 					IncrementType(handle),
@@ -97,8 +98,8 @@ namespace BrainMuscles
 					LeftValueType(handle)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				Input<TYPE, DERIVED, HANDLE, HANDLE_INFO>::Input(const BaseIteratorType& iterator) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				Input<HANDLE, DERIVED_INFO, HANDLE_INFO>::Input(const BaseIteratorType& iterator) :
 					TagType(BrainMuscles::type::iterator::tag::input),
 					BaseType(iterator),
 					IncrementType(iterator),
@@ -106,8 +107,8 @@ namespace BrainMuscles
 					LeftValueType(iterator)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				Input<TYPE, DERIVED, HANDLE, HANDLE_INFO>::Input(const DerivedType& derived) :
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				Input<HANDLE, DERIVED_INFO, HANDLE_INFO>::Input(const DerivedType& derived) :
 					TagType(BrainMuscles::type::iterator::tag::input),
 					BaseType(derived),
 					IncrementType(derived),
@@ -115,9 +116,9 @@ namespace BrainMuscles
 					LeftValueType(derived)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
 				template<typename... ARGS>
-				Input<TYPE, DERIVED, HANDLE, HANDLE_INFO>::Input(ARGS... args) :
+				Input<HANDLE, DERIVED_INFO, HANDLE_INFO>::Input(ARGS... args) :
 					TagType(tag::Type::random_access),
 					BaseType(args...),
 					IncrementType(args...),
@@ -125,8 +126,8 @@ namespace BrainMuscles
 					LeftValueType(args...)
 				{}
 
-				template<typename TYPE, typename DERIVED, typename HANDLE, typename HANDLE_INFO>
-				Input<TYPE, DERIVED, HANDLE, HANDLE_INFO>::~Input()
+				template<typename HANDLE, typename DERIVED_INFO, typename HANDLE_INFO>
+				Input<HANDLE, DERIVED_INFO, HANDLE_INFO>::~Input()
 				{}
 			}
 		}
