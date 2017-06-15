@@ -11,7 +11,7 @@ namespace BrainMuscles
 		{
 			namespace derived
 			{
-				template<typename DERIVED, typename TYPE, typename REFERENCE_TYPE, typename POINTER_TYPE>
+				template<typename DERIVED, typename TYPE, typename REFERENCE_TYPE, typename POINTER_TYPE, typename CONST_REFERENCE_TYPE, typename CONST_POINTER_TYPE>
 				struct Definition :
 					public BrainMuscles::type::iterator::derived::definition::Base
 				{
@@ -19,6 +19,8 @@ namespace BrainMuscles
 					typedef TYPE Type;
 					typedef REFERENCE_TYPE ReferenceType;
 					typedef POINTER_TYPE PointerType;
+					typedef CONST_REFERENCE_TYPE ConstReferenceType;
+					typedef CONST_POINTER_TYPE ConstPointerType;
 				};
 			}
 		}
