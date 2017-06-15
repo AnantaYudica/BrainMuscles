@@ -70,15 +70,15 @@ namespace BrainMuscles
 				typename ELEMENT::ContainerType::reference,
 				typename ELEMENT::ContainerType::const_reference>,
 			public BrainMuscles::type::container::member::iterator::M_ConstIterator<
-				BrainMuscles::type::container::array::Iterator<const typename ELEMENT::Type, SIZE, typename ELEMENT::ContainerType::const_iterator>>,
+				BrainMuscles::type::container::array::ConstIteratorHandle<typename ELEMENT::Type, SIZE>>,
 			public BrainMuscles::type::container::member::iterator::M_ConstReverseIterator<
-				BrainMuscles::type::container::array::Iterator<const typename ELEMENT::Type, SIZE, typename ELEMENT::ContainerType::const_reverse_iterator>>,
+				BrainMuscles::type::container::array::ConstReverseIteratorHandle<typename ELEMENT::Type, SIZE>>,
 			public BrainMuscles::type::container::member::iterator::M_Iterator<
-				BrainMuscles::type::container::array::Iterator<typename ELEMENT::Type, SIZE, typename ELEMENT::ContainerType::iterator>,
-				BrainMuscles::type::container::array::Iterator<const typename ELEMENT::Type, SIZE, typename ELEMENT::ContainerType::const_iterator>>,
+				BrainMuscles::type::container::array::IteratorHandle<typename ELEMENT::Type, SIZE>,
+				BrainMuscles::type::container::array::ConstIteratorHandle<typename ELEMENT::Type, SIZE>>,
 			public BrainMuscles::type::container::member::iterator::M_ReverseIterator<
-				BrainMuscles::type::container::array::Iterator<typename ELEMENT::Type, SIZE, typename ELEMENT::ContainerType::reverse_iterator>,
-				BrainMuscles::type::container::array::Iterator<const typename ELEMENT::Type, SIZE, typename ELEMENT::ContainerType::const_reverse_iterator>>,
+				BrainMuscles::type::container::array::ReverseIteratorHandle<typename ELEMENT::Type, SIZE>,
+				BrainMuscles::type::container::array::ConstReverseIteratorHandle<typename ELEMENT::Type, SIZE>>,
 			public BrainMuscles::type::container::member::modifier::M_Fill<
 				typename ELEMENT::ContainerType::value_type>,
 			public BrainMuscles::type::container::member::modifier::M_Swap<
@@ -99,10 +99,10 @@ namespace BrainMuscles
 
 			
 
-			typedef container::array::Iterator<typename ELEMENT::Type, SIZE, typename StdContainerType::iterator> Iterator;
-			typedef container::array::Iterator<typename ELEMENT::Type, SIZE, typename StdContainerType::reverse_iterator> ReverseIterator;
-			typedef container::array::Iterator<const typename ELEMENT::Type, SIZE, typename StdContainerType::const_iterator> ConstIterator;
-			typedef container::array::Iterator<const typename ELEMENT::Type, SIZE, typename StdContainerType::const_reverse_iterator> ConstReverseIterator;
+			typedef BrainMuscles::type::container::array::IteratorHandle<typename ELEMENT::Type, SIZE> Iterator;
+			typedef BrainMuscles::type::container::array::ReverseIteratorHandle<typename ELEMENT::Type, SIZE> ReverseIterator;
+			typedef BrainMuscles::type::container::array::ConstIteratorHandle<typename ELEMENT::Type, SIZE> ConstIterator;
+			typedef BrainMuscles::type::container::array::ConstReverseIteratorHandle<typename ELEMENT::Type, SIZE> ConstReverseIterator;
 		public:
 			Container(ContainerType* ptr);
 			Container(const ContainerType& rhs);
