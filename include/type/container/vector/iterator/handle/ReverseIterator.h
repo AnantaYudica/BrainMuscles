@@ -23,7 +23,7 @@ namespace BrainMuscles
 						public:
 							typedef DEFINITION DefinitionType;
 							typedef typename DefinitionType::Type Type;
-							typedef ReverseIterator<Type> ReverseIteratorType;
+							typedef ReverseIterator<DefinitionType> ReverseIteratorType;
 							typedef typename std::vector<Type>::reverse_iterator HandleType;
 						public:
 							typedef typename BrainMuscles::type::container::vector::iterator::Handle<Type>::DifferenceType DifferenceType;
