@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename TYPE, typename HANDLE>
+					template<typename DEFINITION>
 					class Input;
 				}
 			}
@@ -24,6 +24,10 @@ namespace BrainMuscles
 #include "type\iterator\tag\Input.h"
 #include <vector>
 #include "type\container\vector\Iterator.h"
+#include "type\iterator\derived\Info.h"
+#include "type\container\vector\iterator\Handle.h"
+#include "type\container\vector\iterator\definition\ConstIterator.h"
+#include "type\container\vector\iterator\definition\Iterator.h"
 
 namespace BrainMuscles
 {
@@ -35,23 +39,46 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename TYPE, typename HANDLE>
+					namespace input
+					{
+						namespace definition
+						{
+							template<typename TYPE>
+							using ConstIterator = BrainMuscles::type::container::vector::iterator::definition::ConstIterator<
+								BrainMuscles::type::iterator::tag::input, TYPE>;
+
+							template<typename TYPE>
+							using Iterator = BrainMuscles::type::container::vector::iterator::definition::Iterator<
+								BrainMuscles::type::iterator::tag::input, TYPE>;
+						}
+
+						template<typename TYPE>
+						using ConstIterator = BrainMuscles::type::container::vector::iterator::Input<
+							BrainMuscles::type::container::vector::iterator::input::definition::ConstIterator<TYPE>>;
+
+						template<typename TYPE>
+						using Iterator = BrainMuscles::type::container::vector::iterator::Input<
+							BrainMuscles::type::container::vector::iterator::input::definition::Iterator<TYPE>>;
+					}
+
+					template<typename DEFINITION>
 					class Input :
 						public BrainMuscles::type::iterator::tag::Input<
-							TYPE, 
-							BrainMuscles::type::container::vector::Iterator<
-								BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>, 
-							HANDLE>
+							BrainMuscles::type::container::vector::iterator::Handle<DEFINITION>, 
+							BrainMuscles::type::iterator::derived::Info<DEFINITION>>
 					{
 					protected:
-						typedef BrainMuscles::type::container::vector::Iterator<
-							BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>> IteratorType;
-						typedef HANDLE HandleType;
-						typedef BrainMuscles::type::iterator::Base<HandleType, IteratorType> HandleBaseType;
-						typedef BrainMuscles::type::iterator::tag::Input<TYPE, IteratorType, HandleType> BaseType;
-						typedef TYPE ValueType;
+						typedef DEFINITION DerivedDefinitionType;
+						typedef BrainMuscles::type::container::vector::iterator::Handle<DerivedDefinitionType> HandleType;
+						typedef BrainMuscles::type::iterator::derived::Info<DerivedDefinitionType> DerivedInfoType;
+						typedef BrainMuscles::type::container::vector::Iterator<DerivedDefinitionType,
+							BrainMuscles::type::container::vector::iterator::Input<DerivedDefinitionType>> IteratorType;
+						
+						typedef BrainMuscles::type::iterator::Base<HandleType, DerivedInfoType> HandleBaseType;
+						typedef BrainMuscles::type::iterator::tag::Input<HandleType, DerivedInfoType> BaseType;
 						typedef typename HandleType::DifferenceType DifferenceType;
-						typedef typename HandleType::Reference ReferenceType;
+						typedef typename DerivedInfoType::ReferenceType ReferenceType;
+						typedef typename DerivedInfoType::PointerType PointerType;
 					public:
 						Input();
 						Input(const HandleType& handle);
@@ -63,60 +90,60 @@ namespace BrainMuscles
 
 						void OnRequestIncrement(HandleType& handle);
 						bool OnRequestEqual(DerivedType& rhs);
-						ValueType& OnRequestReference();
-						ValueType* OnRequestPointer();
+						ReferenceType OnRequestReference();
+						PointerType OnRequestPointer();
 					};
 
-					template<typename TYPE, typename HANDLE>
-					Input<TYPE, HANDLE>::Input() :
+					template<typename DEFINITION>
+					Input<DEFINITION>::Input() :
 						HandleBaseType(),
 						BaseType()
 					{}
 
-					template<typename TYPE, typename HANDLE>
-					Input<TYPE, HANDLE>::Input(const HandleType& handle) :
+					template<typename DEFINITION>
+					Input<DEFINITION>::Input(const HandleType& handle) :
 						HandleBaseType(handle),
 						BaseType(handle)
 					{}
 
-					template<typename TYPE, typename HANDLE>
-					Input<TYPE, HANDLE>::Input(IteratorType* pointer) :
+					template<typename DEFINITION>
+					Input<DEFINITION>::Input(IteratorType* pointer) :
 						HandleBaseType(*pointer),
 						BaseType(pointer)
 					{}
 
-					template<typename TYPE, typename HANDLE>
-					Input<TYPE, HANDLE>::Input(const IteratorType& rhs) :
+					template<typename DEFINITION>
+					Input<DEFINITION>::Input(const IteratorType& rhs) :
 						HandleBaseType(rhs),
 						BaseType(rhs)
 					{}
 
-					template<typename TYPE, typename HANDLE>
-					Input<TYPE, HANDLE>::~Input()
+					template<typename DEFINITION>
+					Input<DEFINITION>::~Input()
 					{}
 
-					template<typename TYPE, typename HANDLE>
-					void Input<TYPE, HANDLE>::OnRequestIncrement(HandleType& handle)
+					template<typename DEFINITION>
+					void Input<DEFINITION>::OnRequestIncrement(HandleType& handle)
 					{
 						++GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					bool Input<TYPE, HANDLE>::OnRequestEqual(DerivedType& rhs)
+					template<typename DEFINITION>
+					bool Input<DEFINITION>::OnRequestEqual(DerivedType& rhs)
 					{
 						return GetHandle() == rhs.GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					typename Input<TYPE, HANDLE>::ValueType&
-					Input<TYPE, HANDLE>::OnRequestReference()
+					template<typename DEFINITION>
+					typename Input<DEFINITION>::ReferenceType
+					Input<DEFINITION>::OnRequestReference()
 					{
 						return *GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					typename Input<TYPE, HANDLE>::ValueType*
-					Input<TYPE, HANDLE>::OnRequestPointer()
+					template<typename DEFINITION>
+					typename Input<DEFINITION>::PointerType
+					Input<DEFINITION>::OnRequestPointer()
 					{
 						return &(*GetHandle());
 					}
