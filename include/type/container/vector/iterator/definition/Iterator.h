@@ -23,6 +23,7 @@ namespace BrainMuscles
 						template<BrainMuscles::type::iterator::tag::Type TAG, typename TYPE>
 						struct Iterator
 						{
+							typedef void IteratorTagType;
 						};
 
 						template<typename TYPE>
@@ -30,9 +31,12 @@ namespace BrainMuscles
 							public BrainMuscles::type::iterator::derived::Definition<
 								BrainMuscles::type::container::vector::Iterator<
 									Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE>,
-									BrainMuscles::type::container::vector::iterator::random_access::Iterator<TYPE>>,
+									BrainMuscles::type::container::vector::iterator::RandomAccess<
+										Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE>>>,
 								TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
 						{
+							typedef BrainMuscles::type::container::vector::iterator::RandomAccess<
+								Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE>> IteratorTagType;
 						};
 
 						template<typename TYPE>
@@ -40,9 +44,12 @@ namespace BrainMuscles
 							public BrainMuscles::type::iterator::derived::Definition<
 							BrainMuscles::type::container::vector::Iterator<
 								Iterator<BrainMuscles::type::iterator::tag::input, TYPE>,
-								BrainMuscles::type::container::vector::iterator::input::Iterator<TYPE>>,
+								BrainMuscles::type::container::vector::iterator::Input<
+									Iterator<BrainMuscles::type::iterator::tag::input, TYPE>>>,
 							TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
 						{
+							typedef BrainMuscles::type::container::vector::iterator::Input<
+								Iterator<BrainMuscles::type::iterator::tag::input, TYPE>> IteratorTagType;
 						};
 					}
 				}
