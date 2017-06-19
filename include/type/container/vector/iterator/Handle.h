@@ -21,10 +21,10 @@ namespace BrainMuscles
 						public Cloneable,
 						public BrainMuscles::type::iterator::handle::Definition<typename DEFINITION::Type>
 					{
-						static_assert(BrainMuscles::type::iterator::derived::definition::IsType<DEFINITION>::Value, "[DEFINITION Requires class BrainMuscles::type::iterator::derived::Definition")
+						static_assert(BrainMuscles::type::iterator::derived::definition::IsType<DEFINITION>::Value, "[DEFINITION Requires class BrainMuscles::type::iterator::derived::Definition");
 					public:
-						typedef typename DEFINITION::Type ValueType;
-						typedef typename BrainMuscles::type::iterator::handle::Definition<TYPE>::DifferenceType DifferenceType;
+						typedef typename DEFINITION::Type Type;
+						typedef typename BrainMuscles::type::iterator::handle::Definition<Type>::DifferenceType DifferenceType;
 					public:
 						Handle();
 					public:
