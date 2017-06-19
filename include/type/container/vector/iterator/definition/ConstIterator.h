@@ -20,7 +20,7 @@ namespace BrainMuscles
 				{
 					namespace definition
 					{
-						template<BrainMuscles::type::iterator::Tag TAG, typename TYPE, typename HANDLE>
+						template<BrainMuscles::type::iterator::tag::Type TAG, typename TYPE, typename HANDLE>
 						struct ConstIterator
 						{
 						};
@@ -29,6 +29,7 @@ namespace BrainMuscles
 						struct ConstIterator<BrainMuscles::type::iterator::tag::random_access, TYPE, HANDLE> :
 							public BrainMuscles::type::iterator::derived::Definition<
 								BrainMuscles::type::container::vector::Iterator<
+									ConstIterator<BrainMuscles::type::iterator::tag::random_access, TYPE, HANDLE>,
 									BrainMuscles::type::container::vector::iterator::RandomAccess<
 										TYPE, HANDLE>>, TYPE, const TYPE&, const TYPE*, const TYPE&, const TYPE*>
 						{
@@ -38,6 +39,7 @@ namespace BrainMuscles
 						struct ConstIterator<BrainMuscles::type::iterator::tag::input, TYPE, HANDLE> :
 							public BrainMuscles::type::iterator::derived::Definition<
 								BrainMuscles::type::container::vector::Iterator<
+									ConstIterator<BrainMuscles::type::iterator::tag::input, TYPE, HANDLE>,
 									BrainMuscles::type::container::vector::iterator::Input<
 										TYPE, HANDLE>>, TYPE, const TYPE&, const TYPE*, const TYPE&, const TYPE*>
 						{
