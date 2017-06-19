@@ -20,28 +20,28 @@ namespace BrainMuscles
 				{
 					namespace definition
 					{
-						template<BrainMuscles::type::iterator::tag::Type TAG, typename TYPE, typename HANDLE>
+						template<BrainMuscles::type::iterator::tag::Type TAG, typename TYPE>
 						struct Iterator
 						{
 						};
 
-						template<typename TYPE, typename HANDLE>
-						struct Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE, HANDLE> :
+						template<typename TYPE>
+						struct Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE> :
 							public BrainMuscles::type::iterator::derived::Definition<
-							BrainMuscles::type::container::vector::Iterator<
-								Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE, HANDLE>,
-								BrainMuscles::type::container::vector::iterator::RandomAccess<
-								TYPE, HANDLE>>, TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
+								BrainMuscles::type::container::vector::Iterator<
+									Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE>,
+									BrainMuscles::type::container::vector::iterator::random_access::Iterator<TYPE>>,
+								TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
 						{
 						};
 
-						template<typename TYPE, typename HANDLE>
-						struct Iterator<BrainMuscles::type::iterator::tag::input, TYPE, HANDLE> :
+						template<typename TYPE>
+						struct Iterator<BrainMuscles::type::iterator::tag::input, TYPE> :
 							public BrainMuscles::type::iterator::derived::Definition<
 							BrainMuscles::type::container::vector::Iterator<
-								Iterator<BrainMuscles::type::iterator::tag::input, TYPE, HANDLE>,
-								BrainMuscles::type::container::vector::iterator::Input<
-								TYPE, HANDLE>>, TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
+								Iterator<BrainMuscles::type::iterator::tag::input, TYPE>,
+								BrainMuscles::type::container::vector::iterator::input::Iterator<TYPE>>,
+							TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
 						{
 						};
 					}
