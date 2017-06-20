@@ -1,6 +1,24 @@
 #ifndef TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_H_
 #define TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_H_
 
+namespace BrainMuscles
+{
+	namespace type
+	{
+		namespace container
+		{
+			namespace vector
+			{
+				namespace iterator
+				{
+					template<typename TYPE>
+					class Handle;
+				}
+			}
+		}
+	}
+}
+
 #include <vector>
 #include "type\iterator\handle\Definition.h"
 #include "type\Cloneable.h"
