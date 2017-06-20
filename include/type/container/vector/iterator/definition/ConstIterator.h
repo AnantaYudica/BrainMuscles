@@ -4,6 +4,27 @@
 #include "type\iterator\derived\Definition.h"
 #include "type\iterator\Tag.h"
 
+namespace BrainMuscles
+{
+	namespace type
+	{
+		namespace container
+		{
+			namespace vector
+			{
+				namespace iterator
+				{
+					namespace definition
+					{
+						template<BrainMuscles::type::iterator::tag::Type TAG, typename TYPE>
+						struct ConstIterator;
+					}
+				}
+			}
+		}
+	}
+}
+
 #include "type\container\vector\Iterator.h"
 #include "type\container\vector\iterator\RandomAccess.h"
 #include "type\container\vector\iterator\Input.h"
