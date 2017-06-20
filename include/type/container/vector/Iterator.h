@@ -32,6 +32,44 @@ namespace BrainMuscles
 		{
 			namespace vector
 			{
+				namespace iterator
+				{
+					namespace random_access
+					{
+						namespace const_iterator
+						{
+							template<typename ELEMENT>
+							using Type = BrainMuscles::type::container::vector::Iterator<
+								BrainMuscles::type::container::vector::iterator::definition::ConstIterator<
+									BrainMuscles::type::iterator::tag::random_access, typename ELEMENT::Type>>;
+						}
+						namespace iterator
+						{
+							template<typename ELEMENT>
+							using Type = BrainMuscles::type::container::vector::Iterator<
+								BrainMuscles::type::container::vector::iterator::definition::Iterator<
+									BrainMuscles::type::iterator::tag::random_access, typename ELEMENT::Type>>;
+						}
+					}
+					namespace input
+					{
+						namespace const_iterator
+						{
+							template<typename ELEMENT>
+							using Type = BrainMuscles::type::container::vector::Iterator<
+								BrainMuscles::type::container::vector::iterator::definition::ConstIterator<
+									BrainMuscles::type::iterator::tag::input, typename ELEMENT::Type>>;
+						}
+						namespace iterator
+						{
+							template<typename ELEMENT>
+							using Type = BrainMuscles::type::container::vector::Iterator<
+								BrainMuscles::type::container::vector::iterator::definition::Iterator<
+									BrainMuscles::type::iterator::tag::input, typename ELEMENT::Type>>;
+						}
+					}
+				}
+
 				template<typename DEFINITION, typename ITERATOR_TAG_TYPE>
 				class Iterator
 				{};
