@@ -19,15 +19,18 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\container\vector\iterator\RandomAccess.h"
+#include <vector>
 #include "type\iterator\Base.h"
 #include "type\iterator\tag\Input.h"
-#include <vector>
-#include "type\container\vector\Iterator.h"
 #include "type\iterator\derived\Info.h"
+
 #include "type\container\vector\iterator\Handle.h"
 #include "type\container\vector\iterator\definition\ConstIterator.h"
 #include "type\container\vector\iterator\definition\Iterator.h"
+
+#include "type\container\vector\iterator\RandomAccess.h"
+
+#include "type\container\vector\Iterator.h"
 
 namespace BrainMuscles
 {
