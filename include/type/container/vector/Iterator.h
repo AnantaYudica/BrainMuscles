@@ -9,7 +9,7 @@ namespace BrainMuscles
 		{
 			namespace vector
 			{
-				template<typename ITERATOR_TAG_TYPE>
+				template<typename DEFINITION, typename ITERATOR_TAG_TYPE = typename DEFINITION::IteratorTagType>
 				class Iterator;
 			}
 		}
@@ -32,19 +32,19 @@ namespace BrainMuscles
 		{
 			namespace vector
 			{
-				template<typename ITERATOR_TAG_TYPE>
+				template<typename DEFINITION, typename ITERATOR_TAG_TYPE>
 				class Iterator
 				{};
 
-				template<typename TYPE, typename HANDLE>
-				class Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>> :
-					public BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>
+				template<typename DEFINITION>
+				class Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>> :
+					public BrainMuscles::type::container::vector::iterator::Input<DEFINITION>
 				{
 
 				public:
-					typedef Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>> RandomAccessType;
-					typedef Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>> InputType;
-					typedef BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE> BaseType;
+					typedef Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>> RandomAccessType;
+					typedef Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>> InputType;
+					typedef BrainMuscles::type::container::vector::iterator::Input<DEFINITION> BaseType;
 					typedef typename BaseType::HandleBaseType HandleBaseType;
 					typedef typename BaseType::HandleType HandleType;
 					typedef typename BaseType::IteratorType IteratorType;
@@ -59,18 +59,18 @@ namespace BrainMuscles
 					InputType* ThisDerived();
 				};
 
-				template<typename TYPE, typename HANDLE>
-				class Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>> :
-					public BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>
+				template<typename DEFINITION>
+				class Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>> :
+					public BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>
 				{
-					friend class BrainMuscles::type::container::vector::Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>;
-					friend class BrainMuscles::type::container::standard::vector::ConstIterator<TYPE>;
-					friend class BrainMuscles::type::container::standard::vector::ConstReverseIterator<TYPE>;
-					friend class BrainMuscles::type::container::standard::vector::Iterator<TYPE>;
-					friend class BrainMuscles::type::container::standard::vector::ReverseIterator<TYPE>;
+					friend class BrainMuscles::type::container::vector::Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>>;
+					friend class BrainMuscles::type::container::standard::vector::ConstIterator<typename DEFINITION::Type>;
+					friend class BrainMuscles::type::container::standard::vector::ConstReverseIterator<typename DEFINITION::Type>;
+					friend class BrainMuscles::type::container::standard::vector::Iterator<typename DEFINITION::Type>;
+					friend class BrainMuscles::type::container::standard::vector::ReverseIterator<typename DEFINITION::Type>;
 				public:
-					typedef Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>> RandomAccessType;
-					typedef BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE> BaseType;
+					typedef Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>> RandomAccessType;
+					typedef BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION> BaseType;
 					typedef typename BaseType::HandleBaseType HandleBaseType;
 					typedef typename BaseType::HandleType HandleType;
 					typedef typename BaseType::IteratorType IteratorType;
@@ -86,79 +86,79 @@ namespace BrainMuscles
 
 				
 				////////////////////////////////////////////////////////////////////
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>::Iterator() :
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>>::Iterator() :
 					BaseType(),
 					HandleBaseType()
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>::Iterator(const RandomAccessType& iterator) :
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>>::Iterator(const RandomAccessType& iterator) :
 					BaseType(iterator.GetHandle()),
 					HandleBaseType(iterator.GetHandle())
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>::Iterator(const HandleType& handle) :
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>>::Iterator(const HandleType& handle) :
 					BaseType(handle),
 					HandleBaseType(handle)
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>::Iterator(IteratorType* pointer) :
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>>::Iterator(IteratorType* pointer) :
 					BaseType(pointer),
 					HandleBaseType(*pointer)
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>::Iterator(const IteratorType& rhs) :
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>>::Iterator(const IteratorType& rhs) :
 					BaseType(rhs),
 					HandleBaseType(rhs)
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>::~Iterator()
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>>::~Iterator()
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>* 
-				Iterator<BrainMuscles::type::container::vector::iterator::Input<TYPE, HANDLE>>::ThisDerived()
+				template<typename DEFINITION>
+				typename Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>>::InputType*
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::Input<DEFINITION>>::ThisDerived()
 				{
 					return this;
 				}
 
 				////////////////////////////////////////////////////////////////////
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>::Iterator() :
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>>::Iterator() :
 					BaseType(),
 					HandleBaseType()
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>::Iterator(const HandleType& handle) :
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>>::Iterator(const HandleType& handle) :
 					BaseType(handle),
 					HandleBaseType(handle)
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>::Iterator(IteratorType* pointer) :
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>>::Iterator(IteratorType* pointer) :
 					BaseType(pointer),
 					HandleBaseType(*pointer)
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>::Iterator(const IteratorType& rhs) :
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>>::Iterator(const IteratorType& rhs) :
 					BaseType(rhs),
 					HandleBaseType(rhs)
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>::~Iterator()
+				template<typename DEFINITION>
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>>::~Iterator()
 				{}
 
-				template<typename TYPE, typename HANDLE>
-				Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>*
-				Iterator<BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>::ThisDerived()
+				template<typename DEFINITION>
+				typename Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>>::RandomAccessType*
+				Iterator<DEFINITION, BrainMuscles::type::container::vector::iterator::RandomAccess<DEFINITION>>::ThisDerived()
 				{
 					return this;
 				}
