@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename TYPE, typename HANDLE>
+					template<typename DEFINITION>
 					class RandomAccess;
 				}
 			}
@@ -28,6 +28,10 @@ namespace BrainMuscles
 #include "type\iterator\tag\RandomAccess.h"
 #include <vector>
 #include "type\container\vector\Iterator.h"
+#include "type\iterator\derived\Info.h"
+#include "type\container\vector\iterator\Handle.h"
+#include "type\container\vector\iterator\definition\ConstIterator.h"
+#include "type\container\vector\iterator\definition\Iterator.h"
 
 namespace BrainMuscles
 {
@@ -39,27 +43,51 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename TYPE, typename HANDLE>
+					namespace random_access
+					{
+						namespace definition
+						{
+							template<typename TYPE>
+							using ConstIterator = BrainMuscles::type::container::vector::iterator::definition::ConstIterator<
+								BrainMuscles::type::iterator::tag::random_access, TYPE>;
+
+							template<typename TYPE>
+							using Iterator = BrainMuscles::type::container::vector::iterator::definition::Iterator<
+								BrainMuscles::type::iterator::tag::random_access, TYPE>;
+						}
+
+						template<typename TYPE>
+						using ConstIterator = BrainMuscles::type::container::vector::iterator::RandomAccess<
+							BrainMuscles::type::container::vector::iterator::random_access::definition::ConstIterator<TYPE>>;
+
+						template<typename TYPE>
+						using Iterator = BrainMuscles::type::container::vector::iterator::RandomAccess<
+							BrainMuscles::type::container::vector::iterator::random_access::definition::Iterator<TYPE>>;
+					}
+
+					template<typename DEFINITION>
 					class RandomAccess :
 						public BrainMuscles::type::iterator::tag::RandomAccess<
-							TYPE, 
-							BrainMuscles::type::container::vector::Iterator< 
-								BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>>, 
-							HANDLE>
+							BrainMuscles::type::container::vector::iterator::Handle<DEFINITION>, 
+							BrainMuscles::type::iterator::derived::Info<DEFINITION>>
 					{
 					public:
-						typedef BrainMuscles::type::container::vector::Iterator<
-							BrainMuscles::type::container::vector::iterator::RandomAccess<TYPE, HANDLE>> IteratorType;
-						typedef HANDLE HandleType;
+						typedef DEFINITION DerivedDefinitionType;
+						typedef BrainMuscles::type::container::vector::iterator::Handle<DerivedDefinitionType> HandleType;
+						typedef BrainMuscles::type::iterator::derived::Info<DEFINITION> DerivedInfoType;
+						typedef BrainMuscles::type::container::vector::Iterator<DerivedDefinitionType,
+							BrainMuscles::type::container::vector::iterator::RandomAccess<DerivedDefinitionType>> IteratorType;
+
 						typedef BrainMuscles::type::iterator::Base<HandleType, IteratorType> HandleBaseType;
-						typedef BrainMuscles::type::iterator::tag::RandomAccess<TYPE, IteratorType, HandleType> BaseType;
-						typedef TYPE ValueType;
+						typedef BrainMuscles::type::iterator::tag::RandomAccess<HandleType, DerivedInfoType> BaseType;
+						typedef typename DerivedDefinitionType::Type Type;
 						typedef typename HandleType::DifferenceType DifferenceType;
-						typedef typename HandleType::Reference ReferenceType;
-						typedef BrainMuscles::type::container::vector::iterator::handle::ConstIterator<TYPE> ConstIterator;
-						typedef BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<TYPE> ConstReverseIterator;
-						typedef BrainMuscles::type::container::vector::iterator::handle::Iterator<TYPE> Iterator;
-						typedef BrainMuscles::type::container::vector::iterator::handle::ReverseIterator<TYPE> ReverseIterator;
+						typedef typename DerivedDefinitionType::ReferenceType ReferenceType;
+						typedef typename DerivedDefinitionType::PointerType PointerType;
+						typedef BrainMuscles::type::container::vector::iterator::handle::ConstIterator<DerivedDefinitionType> ConstIterator;
+						typedef BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<DerivedDefinitionType> ConstReverseIterator;
+						typedef BrainMuscles::type::container::vector::iterator::handle::Iterator<DerivedDefinitionType> Iterator;
+						typedef BrainMuscles::type::container::vector::iterator::handle::ReverseIterator<DerivedDefinitionType> ReverseIterator;
 					public:
 						RandomAccess();
 						RandomAccess(const HandleType& handle);
@@ -77,48 +105,48 @@ namespace BrainMuscles
 						bool OnRequestEqual(DerivedType& rhs);
 						bool OnRequestLess(DerivedType& rhs);
 						bool OnRequestGreater(DerivedType& rhs);
-						ValueType& OnRequestReference();
-						ValueType* OnRequestPointer();
-						ValueType& OnRequestAt(const size_t& index);
+						ReferenceType OnRequestReference();
+						PointerType OnRequestPointer();
+						ReferenceType OnRequestAt(const size_t& index);
 					};
 
-					template<typename TYPE, typename HANDLE>
-					RandomAccess<TYPE, HANDLE>::RandomAccess() :
+					template<typename DEFINITION>
+					RandomAccess<DEFINITION>::RandomAccess() :
 						HandleBaseType(),
 						BaseType()
 					{}
 
-					template<typename TYPE, typename HANDLE>
-					RandomAccess<TYPE, HANDLE>::RandomAccess(const HandleType& handle) :
+					template<typename DEFINITION>
+					RandomAccess<DEFINITION>::RandomAccess(const HandleType& handle) :
 						HandleBaseType(handle),
 						BaseType(handle)
 					{}
 
-					template<typename TYPE, typename HANDLE>
-					RandomAccess<TYPE, HANDLE>::RandomAccess(IteratorType* pointer) :
+					template<typename DEFINITION>
+					RandomAccess<DEFINITION>::RandomAccess(IteratorType* pointer) :
 						HandleBaseType(*pointer),
 						BaseType(pointer)
 					{
 
 					}
 
-					template<typename TYPE, typename HANDLE>
-					RandomAccess<TYPE, HANDLE>::RandomAccess(const IteratorType& rhs) :
+					template<typename DEFINITION>
+					RandomAccess<DEFINITION>::RandomAccess(const IteratorType& rhs) :
 						HandleBaseType(rhs),
 						BaseType(rhs)
 					{
 
 					}
 
-					template<typename TYPE, typename HANDLE>
-					RandomAccess<TYPE, HANDLE>::~RandomAccess()
+					template<typename DEFINITION>
+					RandomAccess<DEFINITION>::~RandomAccess()
 					{
 					}
 
 
-					template<typename TYPE, typename HANDLE>
-					typename RandomAccess<TYPE, HANDLE>::IteratorType &
-					RandomAccess<TYPE, HANDLE>::OnRequestAddition(const DifferenceType& n)
+					template<typename DEFINITION>
+					typename RandomAccess<DEFINITION>::IteratorType &
+					RandomAccess<DEFINITION>::OnRequestAddition(const DifferenceType& n)
 					{
 
 						GetHandle() += n;
@@ -126,68 +154,68 @@ namespace BrainMuscles
 					}
 
 
-					template<typename TYPE, typename HANDLE>
-					typename RandomAccess<TYPE, HANDLE>::IteratorType &
-					RandomAccess<TYPE, HANDLE>::OnRequestSubtraction(const DifferenceType& n)
+					template<typename DEFINITION>
+					typename RandomAccess<DEFINITION>::IteratorType &
+					RandomAccess<DEFINITION>::OnRequestSubtraction(const DifferenceType& n)
 					{
 						GetHandle() -= n;
 						return *ThisDerived();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					typename RandomAccess<TYPE, HANDLE>::DifferenceType
-					RandomAccess<TYPE, HANDLE>::OnRequestSubtraction(const IteratorType& iterator)
+					template<typename DEFINITION>
+					typename RandomAccess<DEFINITION>::DifferenceType
+					RandomAccess<DEFINITION>::OnRequestSubtraction(const IteratorType& iterator)
 					{
 						return GetHandle() - iterator.GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					void RandomAccess<TYPE, HANDLE>::OnRequestDecrement(HandleType& handle)
+					template<typename DEFINITION>
+					void RandomAccess<DEFINITION>::OnRequestDecrement(HandleType& handle)
 					{
 						--GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					void RandomAccess<TYPE, HANDLE>::OnRequestIncrement(HandleType& handle)
+					template<typename DEFINITION>
+					void RandomAccess<DEFINITION>::OnRequestIncrement(HandleType& handle)
 					{
 						++GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					bool RandomAccess<TYPE, HANDLE>::OnRequestEqual(DerivedType& rhs)
+					template<typename DEFINITION>
+					bool RandomAccess<DEFINITION>::OnRequestEqual(DerivedType& rhs)
 					{
 						return GetHandle() == rhs.GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					bool RandomAccess<TYPE, HANDLE>::OnRequestLess(DerivedType& rhs)
+					template<typename DEFINITION>
+					bool RandomAccess<DEFINITION>::OnRequestLess(DerivedType& rhs)
 					{
 						return GetHandle() < rhs.GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					bool RandomAccess<TYPE, HANDLE>::OnRequestGreater(DerivedType& rhs)
+					template<typename DEFINITION>
+					bool RandomAccess<DEFINITION>::OnRequestGreater(DerivedType& rhs)
 					{
 						return GetHandle() > rhs.GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					typename RandomAccess<TYPE, HANDLE>::ValueType&
-					RandomAccess<TYPE, HANDLE>::OnRequestReference()
+					template<typename DEFINITION>
+					typename RandomAccess<DEFINITION>::ReferenceType
+					RandomAccess<DEFINITION>::OnRequestReference()
 					{
 						return *GetHandle();
 					}
 
-					template<typename TYPE, typename HANDLE>
-					typename RandomAccess<TYPE, HANDLE>::ValueType*
-					RandomAccess<TYPE, HANDLE>::OnRequestPointer()
+					template<typename DEFINITION>
+					typename RandomAccess<DEFINITION>::PointerType
+					RandomAccess<DEFINITION>::OnRequestPointer()
 					{
 						return &(*GetHandle());
 					}
 
-					template<typename TYPE, typename HANDLE>
-					typename RandomAccess<TYPE, HANDLE>::ValueType&
-					RandomAccess<TYPE, HANDLE>::OnRequestAt(const size_t& index)
+					template<typename DEFINITION>
+					typename RandomAccess<DEFINITION>::ReferenceType
+					RandomAccess<DEFINITION>::OnRequestAt(const size_t& index)
 					{
 						return (*GetHandle());
 					}
