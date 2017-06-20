@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "type\iterator\handle\Definition.h"
-#include "type\iterator\derived\definition\IsType.h"
 #include "type\Cloneable.h"
 
 namespace BrainMuscles
@@ -16,15 +15,14 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename DEFINITION>
+					template<typename TYPE>
 					class Handle :
 						public Cloneable,
-						public BrainMuscles::type::iterator::handle::Definition<typename DEFINITION::Type>
+						public BrainMuscles::type::iterator::handle::Definition<TYPE>
 					{
-						static_assert(BrainMuscles::type::iterator::derived::definition::IsType<DEFINITION>::Value, "[DEFINITION Requires class BrainMuscles::type::iterator::derived::Definition");
 					public:
-						typedef typename DEFINITION::Type Type;
-						typedef typename BrainMuscles::type::iterator::handle::Definition<Type>::DifferenceType DifferenceType;
+						typedef TYPE ValueType;
+						typedef typename BrainMuscles::type::iterator::handle::Definition<TYPE>::DifferenceType DifferenceType;
 					public:
 						Handle();
 					public:
@@ -48,12 +46,12 @@ namespace BrainMuscles
 						virtual ValueType& operator*() = 0;
 					};
 
-					template<typename DEFINITION>
-					Handle<DEFINITION>::Handle()
+					template<typename TYPE>
+					Handle<TYPE>::Handle()
 					{}
 
-					template<typename DEFINITION>
-					Handle<DEFINITION>::~Handle()
+					template<typename TYPE>
+					Handle<TYPE>::~Handle()
 					{}
 				}
 			}
