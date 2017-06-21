@@ -23,7 +23,7 @@ namespace BrainMuscles
 							{
 								typedef TYPE Type;
 							protected:
-								ConstIterator() {};
+								Iterator() {};
 							};
 						}
 					}
