@@ -1,6 +1,7 @@
 #ifndef TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_ITERATOR_H_
 #define TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_ITERATOR_H_
 
+#include <vector>
 #include "type\container\vector\iterator\Handle.h"
 
 namespace BrainMuscles
@@ -17,23 +18,32 @@ namespace BrainMuscles
 					{
 						template<typename TYPE>
 						class Iterator :
-							public BrainMuscles::type::container::vector::iterator::Handle<TYPE>,
+							public BrainMuscles::type::container::vector::iterator::handle::definition::ByIterator<TYPE>,
 							public std::vector<TYPE>::iterator
 						{
 						public:
-							typedef Iterator<TYPE> IteratorType;
-							typedef TYPE Type;
-							typedef typename std::vector<TYPE>::iterator HandleType;
+							typedef std::vector<TYPE>									StandardVectorType;
+							typedef typename StandardVectorType::iterator				HandleType;
+							typedef BrainMuscles::type::container::vector
+								::iterator::handle::definition::ByIterator<TYPE>		BaseType;
+							typedef BrainMuscles::type::container::vector
+								::iterator::handle::Iterator<TYPE>						IteratorType;
 						public:
-							typedef typename BrainMuscles::type::container::vector::iterator::Handle<TYPE>::DifferenceType DifferenceType;
+							typedef typename BaseType::Type								Type;
+							typedef typename BaseType::ValueType						ValueType;
+							typedef typename BaseType::DifferenceType					DifferenceType;
+							typedef typename BaseType::Pointer							Pointer;
+							typedef typename BaseType::Reference						Reference;
+						public:
+							typedef typename BaseType::Cloneable						Cloneable;
 						public:
 							Iterator();
 							Iterator(const HandleType& handle);
 							Iterator(const IteratorType& rhs);
 							~Iterator();
 						public:
-							Cloneable * Clone();
-							Cloneable * Clone() const;
+							Cloneable* Clone();
+							Cloneable* Clone() const;
 							Cloneable& operator=(Cloneable& rhs);
 						public:
 							Cloneable& operator-=(const DifferenceType& rhs);
