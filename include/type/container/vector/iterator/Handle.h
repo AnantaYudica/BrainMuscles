@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename TYPE>
+					template<typename HANDLE_DEFINITION_TYPE>
 					class Handle;
 				}
 			}
@@ -20,7 +20,7 @@ namespace BrainMuscles
 }
 
 #include <vector>
-#include "type\iterator\handle\Definition.h"
+#include "type\container\vector\iterator\handle\definition\IsType.h"
 #include "type\Cloneable.h"
 
 namespace BrainMuscles
@@ -33,21 +33,41 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename TYPE>
+					namespace handle
+					{
+						namespace definition
+						{
+							template<typename TYPE>
+							using ByConstIterator = BrainMuscles::type::container::vector::iterator::Handle<
+								BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<TYPE>>;
+
+							template<typename TYPE>
+							using ByIterator = BrainMuscles::type::container::vector::iterator::Handle<
+								BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>>;
+						}
+					}
+
+					template<typename HANDLE_DEFINITION_TYPE>
 					class Handle :
 						public Cloneable,
-						public BrainMuscles::type::iterator::handle::Definition<TYPE>
+						public HANDLE_DEFINITION_TYPE
 					{
+						static_assert(BrainMuscles::type::container::vector::iterator::handle::definition::IsType<HANDLE_DEFINITION_TYPE>::Value, 
+							"[HANDLE_DEFINITION_TYPE Requires class BrainMuscles::type::iterator::handle::definition::ConstIterator or BrainMuscles::type::iterator::handle::definition::Iterator");
 					public:
-						typedef TYPE ValueType;
-						typedef typename BrainMuscles::type::iterator::handle::Definition<TYPE>::DifferenceType DifferenceType;
+						typedef HANDLE_DEFINITION_TYPE							HandleDefinitionType;
+						typedef typename HandleDefinitionType::Type				Type;
+						typedef typename HandleDefinitionType::ValueType		ValueType;
+						typedef typename HandleDefinitionType::DifferenceType	DifferenceType;
+						typedef typename HandleDefinitionType::Pointer			Pointer;
+						typedef typename HandleDefinitionType::Reference		Reference;
 					public:
 						Handle();
 					public:
 						virtual ~Handle();
 					public:
-						virtual Cloneable * Clone() = 0;
-						virtual Cloneable * Clone() const = 0;
+						virtual Cloneable* Clone() = 0;
+						virtual Cloneable* Clone() const = 0;
 						virtual Cloneable& operator=(Cloneable& lhs) = 0;
 					public:
 						virtual Cloneable& operator-=(const DifferenceType& rhs) = 0;
