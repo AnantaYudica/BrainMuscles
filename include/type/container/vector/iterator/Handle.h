@@ -20,6 +20,8 @@ namespace BrainMuscles
 }
 
 #include <vector>
+#include "type\container\vector\iterator\handle\definition\ConstIterator.h"
+#include "type\container\vector\iterator\handle\definition\Iterator.h"
 #include "type\container\vector\iterator\handle\definition\IsType.h"
 #include "type\Cloneable.h"
 
