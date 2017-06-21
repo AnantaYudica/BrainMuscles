@@ -20,7 +20,10 @@ namespace BrainMuscles
 							template <typename TYPE>
 							struct Iterator :
 								public BrainMuscles::type::iterator::handle::Definition<TYPE>
-							{};
+							{
+								typedef TYPE Type;
+								Iterator() = delete;
+							};
 						}
 					}
 				}

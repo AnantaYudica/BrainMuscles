@@ -20,7 +20,10 @@ namespace BrainMuscles
 							template <typename TYPE>
 							struct ConstIterator :
 								public BrainMuscles::type::iterator::handle::Definition<const TYPE>
-							{};
+							{
+								typedef TYPE Type;
+								ConstIterator() = delete;
+							};
 						}
 					}
 				}
