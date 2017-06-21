@@ -22,7 +22,8 @@ namespace BrainMuscles
 								public BrainMuscles::type::iterator::handle::Definition<const TYPE>
 							{
 								typedef TYPE Type;
-								ConstIterator() = delete;
+							protected:
+								ConstIterator() {};
 							};
 						}
 					}
