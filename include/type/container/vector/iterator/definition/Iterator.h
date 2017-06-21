@@ -29,6 +29,8 @@ namespace BrainMuscles
 #include "type\container\vector\iterator\RandomAccess.h"
 #include "type\container\vector\iterator\Input.h"
 
+#include "type\container\vector\iterator\Handle.h"
+
 namespace BrainMuscles
 {
 	namespace type
@@ -45,6 +47,7 @@ namespace BrainMuscles
 						struct Iterator
 						{
 							typedef void IteratorTagType;
+							typedef void HandleType;
 						};
 
 						template<typename TYPE>
@@ -57,7 +60,10 @@ namespace BrainMuscles
 								TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
 						{
 							typedef BrainMuscles::type::container::vector::iterator::RandomAccess<
-								Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE>> IteratorTagType;
+								Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE>>	IteratorTagType;
+							typedef BrainMuscles::type::container::vector::iterator
+								::handle::definition::ByIterator<TYPE>								HandleType;
+
 						};
 
 						template<typename TYPE>
@@ -70,7 +76,9 @@ namespace BrainMuscles
 							TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
 						{
 							typedef BrainMuscles::type::container::vector::iterator::Input<
-								Iterator<BrainMuscles::type::iterator::tag::input, TYPE>> IteratorTagType;
+								Iterator<BrainMuscles::type::iterator::tag::input, TYPE>>	IteratorTagType;
+							typedef BrainMuscles::type::container::vector::iterator
+								::handle::definition::ByIterator<TYPE>						HandleType;
 						};
 					}
 				}
