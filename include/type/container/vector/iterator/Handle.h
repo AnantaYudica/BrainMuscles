@@ -49,7 +49,7 @@ namespace BrainMuscles
 
 					template<typename HANDLE_DEFINITION_TYPE>
 					class Handle :
-						public Cloneable,
+						public BrainMuscles::type::Cloneable,
 						public HANDLE_DEFINITION_TYPE
 					{
 						static_assert(BrainMuscles::type::container::vector::iterator::handle::definition::IsType<HANDLE_DEFINITION_TYPE>::Value, 
@@ -61,6 +61,8 @@ namespace BrainMuscles
 						typedef typename HandleDefinitionType::DifferenceType	DifferenceType;
 						typedef typename HandleDefinitionType::Pointer			Pointer;
 						typedef typename HandleDefinitionType::Reference		Reference;
+					public:
+						typedef BrainMuscles::type::Cloneable					Cloneable;
 					public:
 						Handle();
 					public:
