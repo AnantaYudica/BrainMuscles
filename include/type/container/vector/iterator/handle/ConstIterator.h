@@ -1,6 +1,7 @@
 #ifndef TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_CONSTITERATOR_H_
 #define TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_CONSTITERATOR_H_
 
+#include <vector>
 #include "type\container\vector\iterator\Handle.h"
 
 namespace BrainMuscles
@@ -17,22 +18,32 @@ namespace BrainMuscles
 					{
 						template<typename TYPE>
 						class ConstIterator :
-							public BrainMuscles::type::container::vector::iterator::Handle<const TYPE>,
+							public BrainMuscles::type::container::vector::iterator::handle::definition::ByConstIterator<TYPE>,
 							public std::vector<TYPE>::const_iterator
 						{
 						public:
-							typedef ConstIterator<TYPE> ConstIteratorType;
-							typedef typename std::vector<TYPE>::const_iterator HandleType;
+							typedef std::vector<TYPE>									StandardVectorType;
+							typedef typename StandardVectorType::const_iterator			HandleType;
+							typedef BrainMuscles::type::container::vector
+								::iterator::handle::definition::ByConstIterator<TYPE>	BaseType;
+							typedef BrainMuscles::type::container::vector 
+								::iterator::handle::ConstIterator<TYPE>					ConstIteratorType;
 						public:
-							typedef typename BrainMuscles::type::container::vector::iterator::Handle<TYPE>::DifferenceType DifferenceType;
+							typedef typename BaseType::Type								Type;
+							typedef typename BaseType::ValueType						ValueType;
+							typedef typename BaseType::DifferenceType					DifferenceType;
+							typedef typename BaseType::Pointer							Pointer;
+							typedef typename BaseType::Reference						Reference;
+						public:
+							typedef typename BaseType::Cloneable						Cloneable;
 						public:
 							ConstIterator();
 							ConstIterator(const HandleType& handle);
 							ConstIterator(const ConstIteratorType& rhs);
 							~ConstIterator();
 						public:
-							Cloneable * Clone();
-							Cloneable * Clone() const;
+							Cloneable* Clone();
+							Cloneable* Clone() const;
 							Cloneable& operator=(Cloneable& lhs);
 						public:
 							Cloneable& operator-=(const DifferenceType& rhs);

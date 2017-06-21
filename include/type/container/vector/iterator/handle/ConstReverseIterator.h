@@ -1,6 +1,7 @@
 #ifndef TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_CONSTREVERSEITERATOR_H_
 #define TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_CONSTREVERSEITERATOR_H_
 
+#include <vector>
 #include "type\container\vector\iterator\Handle.h"
 
 namespace BrainMuscles
@@ -17,22 +18,32 @@ namespace BrainMuscles
 					{
 						template<typename TYPE>
 						class ConstReverseIterator :
-							public BrainMuscles::type::container::vector::iterator::Handle<const TYPE>,
+							public BrainMuscles::type::container::vector::iterator::handle::definition::ByConstIterator<TYPE>,
 							public std::vector<TYPE>::const_reverse_iterator
 						{
 						public:
-							typedef ConstReverseIterator<TYPE> ConstReverseIteratorType;
-							typedef typename std::vector<TYPE>::const_reverse_iterator HandleType;
+							typedef std::vector<TYPE>									StandardVectorType;
+							typedef typename StandardVectorType::const_reverse_iterator	HandleType;
+							typedef BrainMuscles::type::container::vector
+								::iterator::handle::definition::ByConstIterator<TYPE>	BaseType;
+							typedef BrainMuscles::type::container::vector
+								::iterator::handle::ConstReverseIterator<TYPE>			ConstReverseIteratorType;
 						public:
-							typedef typename BrainMuscles::type::container::vector::iterator::Handle<TYPE>::DifferenceType DifferenceType;
+							typedef typename BaseType::Type								Type;
+							typedef typename BaseType::ValueType						ValueType;
+							typedef typename BaseType::DifferenceType					DifferenceType;
+							typedef typename BaseType::Pointer							Pointer;
+							typedef typename BaseType::Reference						Reference;
+						public:
+							typedef typename BaseType::Cloneable						Cloneable;
 						public:
 							ConstReverseIterator();
 							ConstReverseIterator(const HandleType& handle);
 							ConstReverseIterator(const ConstReverseIteratorType& rhs);
 							~ConstReverseIterator();
 						public:
-							Cloneable * Clone();
-							Cloneable * Clone() const;
+							Cloneable* Clone();
+							Cloneable* Clone() const;
 							Cloneable& operator=(Cloneable& rhs);
 						public:
 							Cloneable& operator-=(const DifferenceType& rhs);
