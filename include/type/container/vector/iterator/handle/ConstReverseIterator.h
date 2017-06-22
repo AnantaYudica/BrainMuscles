@@ -41,6 +41,8 @@ namespace BrainMuscles
 							ConstReverseIterator(const HandleType& handle);
 							ConstReverseIterator(const ConstReverseIteratorType& rhs);
 							~ConstReverseIterator();
+						protected:
+							ValueType& OnRequestConstReference();
 						public:
 							Cloneable* Clone();
 							Cloneable* Clone() const;
@@ -79,6 +81,12 @@ namespace BrainMuscles
 						template<typename TYPE>
 						ConstReverseIterator<TYPE>::~ConstReverseIterator()
 						{}
+
+						template<typename TYPE>
+						typename ConstReverseIterator<TYPE>::ValueType& ConstReverseIterator<TYPE>::OnRequestConstReference()
+						{
+							return HandleType::operator*();
+						}
 
 						template<typename TYPE>
 						typename ConstReverseIterator<TYPE>::Cloneable * ConstReverseIterator<TYPE>::Clone()

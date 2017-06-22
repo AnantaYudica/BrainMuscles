@@ -36,6 +36,8 @@ namespace BrainMuscles
 							typedef typename BaseType::Reference						Reference;
 						public:
 							typedef typename BaseType::Cloneable						Cloneable;
+						protected:
+							ValueType& OnRequestConstReference();
 						public:
 							ConstIterator();
 							ConstIterator(const HandleType& handle);
@@ -79,6 +81,12 @@ namespace BrainMuscles
 						template<typename TYPE>
 						ConstIterator<TYPE>::~ConstIterator()
 						{}
+
+						template<typename TYPE>
+						typename ConstIterator<TYPE>::ValueType& ConstIterator<TYPE>::OnRequestConstReference()
+						{
+							return HandleType::operator*();
+						}
 
 						template<typename TYPE>
 						typename ConstIterator<TYPE>::Cloneable * ConstIterator<TYPE>::Clone() const
