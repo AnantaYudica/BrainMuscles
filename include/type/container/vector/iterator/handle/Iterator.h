@@ -41,6 +41,8 @@ namespace BrainMuscles
 							Iterator(const HandleType& handle);
 							Iterator(const IteratorType& rhs);
 							~Iterator();
+						protected:
+							ValueType& OnRequestReference();
 						public:
 							Cloneable* Clone();
 							Cloneable* Clone() const;
@@ -79,6 +81,12 @@ namespace BrainMuscles
 						template<typename TYPE>
 						Iterator<TYPE>::~Iterator()
 						{}
+
+						template<typename TYPE>
+						typename Iterator<TYPE>::ValueType& Iterator<TYPE>::OnRequestReference()
+						{
+							return HandleType::operator*();
+						}
 
 						template<typename TYPE>
 						typename Iterator<TYPE>::Cloneable * Iterator<TYPE>::Clone()
