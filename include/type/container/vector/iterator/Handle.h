@@ -50,14 +50,20 @@ namespace BrainMuscles
 					}
 
 					template<typename HANDLE_DEFINITION_TYPE>
-					class Handle :
-						public BrainMuscles::type::Cloneable,
-						public HANDLE_DEFINITION_TYPE
+					class Handle
 					{
-						static_assert(BrainMuscles::type::container::vector::iterator::handle::definition::IsType<HANDLE_DEFINITION_TYPE>::Value, 
-							"[HANDLE_DEFINITION_TYPE Requires class BrainMuscles::type::iterator::handle::definition::ConstIterator or BrainMuscles::type::iterator::handle::definition::Iterator");
+						static_assert(BrainMuscles::type::container::vector::iterator::handle::definition::IsType<HANDLE_DEFINITION_TYPE>::Value,
+							"[HANDLE_DEFINITION_TYPE] Requires class BrainMuscles::type::iterator::handle::definition::ConstIterator or BrainMuscles::type::iterator::handle::definition::Iterator");
+					};
+
+					template<typename TYPE>
+					class Handle<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<TYPE>> :
+						public BrainMuscles::type::Cloneable,
+						public BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<TYPE>
+					{
 					public:
-						typedef HANDLE_DEFINITION_TYPE							HandleDefinitionType;
+						typedef BrainMuscles::type::container::vector::iterator
+							::handle::definition::ConstIterator<TYPE>			HandleDefinitionType;
 						typedef typename HandleDefinitionType::Type				Type;
 						typedef typename HandleDefinitionType::ValueType		ValueType;
 						typedef typename HandleDefinitionType::DifferenceType	DifferenceType;
@@ -69,6 +75,8 @@ namespace BrainMuscles
 						Handle();
 					public:
 						virtual ~Handle();
+					protected:
+						virtual ValueType& OnRequestConstReference() = 0;
 					public:
 						virtual Cloneable* Clone() = 0;
 						virtual Cloneable* Clone() const = 0;
@@ -85,16 +93,89 @@ namespace BrainMuscles
 						virtual bool operator<=(Cloneable& lhs) = 0;
 						virtual bool operator>(Cloneable& lhs) = 0;
 						virtual bool operator>=(Cloneable& lhs) = 0;
-						virtual ValueType& operator*() = 0;
+						ValueType& operator*();
 					};
 
 					template<typename TYPE>
-					Handle<TYPE>::Handle()
+					class Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>> :
+						public BrainMuscles::type::container::vector::iterator::Handle<
+							BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<TYPE>>,
+						public BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>
+					{
+					public:
+						typedef BrainMuscles::type::container::vector::iterator
+							::handle::definition::Iterator<TYPE>				HandleDefinitionType;
+						typedef typename HandleDefinitionType::Type				Type;
+						typedef typename HandleDefinitionType::ValueType		ValueType;
+						typedef typename HandleDefinitionType::DifferenceType	DifferenceType;
+						typedef typename HandleDefinitionType::Pointer			Pointer;
+						typedef typename HandleDefinitionType::Reference		Reference;
+					public:
+						typedef BrainMuscles::type::Cloneable					Cloneable;
+					public:
+						Handle();
+					public:
+						virtual ~Handle();
+					protected:
+						const ValueType& OnRequestConstReference();
+						virtual ValueType& OnRequestReference() = 0;
+					public:
+						virtual Cloneable* Clone() = 0;
+						virtual Cloneable* Clone() const = 0;
+						virtual Cloneable& operator=(Cloneable& lhs) = 0;
+					public:
+						virtual Cloneable& operator-=(const DifferenceType& rhs) = 0;
+						virtual Cloneable& operator+=(const DifferenceType& rhs) = 0;
+						virtual DifferenceType operator-(const Cloneable& lhs) = 0;
+						virtual Cloneable& operator++() = 0;
+						virtual Cloneable& operator--() = 0;
+						virtual bool operator==(Cloneable& lhs) = 0;
+						virtual bool operator!=(Cloneable& lhs) = 0;
+						virtual bool operator<(Cloneable& lhs) = 0;
+						virtual bool operator<=(Cloneable& lhs) = 0;
+						virtual bool operator>(Cloneable& lhs) = 0;
+						virtual bool operator>=(Cloneable& lhs) = 0;
+						ValueType& operator*();
+					};
+
+					////////////////////////////////////////////////////////////////////////////////////
+					template<typename TYPE>
+					Handle<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<TYPE>>::Handle()
 					{}
 
 					template<typename TYPE>
-					Handle<TYPE>::~Handle()
+					Handle<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<TYPE>>::~Handle()
 					{}
+
+					template<typename TYPE>
+					typename Handle<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<TYPE>>::ValueType&
+						Handle<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<TYPE>>::operator*()
+					{
+						return OnRequestConstReference();
+					}
+
+					////////////////////////////////////////////////////////////////////////////////////
+					template<typename TYPE>
+					Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>>::Handle()
+					{}
+
+					template<typename TYPE>
+					Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>>::~Handle()
+					{}
+
+					template<typename TYPE>
+					const typename Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>>::ValueType& 
+						Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>>::OnRequestConstReference()
+					{
+						return OnRequestReference();
+					}
+
+					template<typename TYPE>
+					typename Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>>::ValueType&
+						Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>>::operator*()
+					{
+						return OnRequestReference();
+					}
 				}
 			}
 		}
