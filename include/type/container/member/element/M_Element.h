@@ -11,13 +11,15 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE, typename SIZE_TYPE>
+					template<typename ELEMENT>
 					class M_Element;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\element\IsType.h"
 
 namespace BrainMuscles
 {
@@ -29,37 +31,44 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE, typename SIZE_TYPE>
+					template<typename ELEMENT>
 					class M_Element
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::element::IsType<ELEMENT, true>::Type::DifferenceType				DifferenceType;
+						typedef typename BrainMuscles::type::container
+							::element::IsType<ELEMENT, true>::Type::LeftValueReferenceType		LeftValueReferenceType;
+						typedef typename BrainMuscles::type::container
+							::element::IsType<ELEMENT, true>::Type::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
 					protected:
 						M_Element();
 					public:
 						virtual ~M_Element();
-						virtual REFERENCE_TYPE At(SIZE_TYPE index) = 0;
-						virtual CONST_REFERENCE_TYPE At(SIZE_TYPE index) const = 0;
-						REFERENCE_TYPE operator[](SIZE_TYPE index);
-						CONST_REFERENCE_TYPE operator[](SIZE_TYPE index) const;
+						virtual LeftValueReferenceType At(DifferenceType index) = 0;
+						virtual ConstLeftValueReferenceType At(DifferenceType index) const = 0;
+						LeftValueReferenceType operator[](DifferenceType index);
+						ConstLeftValueReferenceType operator[](DifferenceType index) const;
 					};
 
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE, typename SIZE_TYPE>
-					M_Element<REFERENCE_TYPE, CONST_REFERENCE_TYPE, SIZE_TYPE>::M_Element()
+					template<typename ELEMENT>
+					M_Element<ELEMENT>::M_Element()
 					{}
 
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE, typename SIZE_TYPE>
-					M_Element<REFERENCE_TYPE, CONST_REFERENCE_TYPE, SIZE_TYPE>::~M_Element()
+					template<typename ELEMENT>
+					M_Element<ELEMENT>::~M_Element()
 					{}
 
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE, typename SIZE_TYPE>
-					REFERENCE_TYPE 
-					M_Element<REFERENCE_TYPE, CONST_REFERENCE_TYPE, SIZE_TYPE>::operator[](SIZE_TYPE index)
+					template<typename ELEMENT>
+					typename M_Element<ELEMENT>::LeftValueReferenceType
+					M_Element<ELEMENT>::operator[](DifferenceType index)
 					{
 						return At(index);
 					}
 
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE, typename SIZE_TYPE>
-					CONST_REFERENCE_TYPE
-					M_Element<REFERENCE_TYPE, CONST_REFERENCE_TYPE, SIZE_TYPE>::operator[](SIZE_TYPE index) const
+					template<typename ELEMENT>
+					typename M_Element<ELEMENT>::ConstLeftValueReferenceType
+					M_Element<ELEMENT>::operator[](DifferenceType index) const
 					{
 						return At(index);
 					}
