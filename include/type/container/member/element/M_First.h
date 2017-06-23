@@ -11,13 +11,15 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE>
+					template<typename ELEMENT>
 					class M_First;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\element\IsType.h"
 
 namespace BrainMuscles
 {
@@ -29,23 +31,28 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE>
+					template<typename ELEMENT>
 					class M_First
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::element::IsType<ELEMENT, true>::Type::LeftValueReferenceType		LeftValueReferenceType;
+						typedef typename BrainMuscles::type::container
+							::element::IsType<ELEMENT, true>::Type::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
 					protected:
 						M_First();
 					public:
 						virtual ~M_First();
-						virtual REFERENCE_TYPE Front() = 0;
-						virtual CONST_REFERENCE_TYPE Front() const = 0;
+						virtual LeftValueReferenceType Front() = 0;
+						virtual ConstLeftValueReferenceType Front() const = 0;
 					};
 
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE>
-					M_First<REFERENCE_TYPE, CONST_REFERENCE_TYPE>::M_First()
+					template<typename ELEMENT>
+					M_First<ELEMENT>::M_First()
 					{}
 
-					template<typename REFERENCE_TYPE, typename CONST_REFERENCE_TYPE>
-					M_First<REFERENCE_TYPE, CONST_REFERENCE_TYPE>::~M_First()
+					template<typename ELEMENT>
+					M_First<ELEMENT>::~M_First()
 					{}
 				}
 			}
