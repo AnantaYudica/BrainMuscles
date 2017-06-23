@@ -18,6 +18,7 @@ namespace BrainMuscles
 				{
 					static constexpr bool Value = std::is_base_of<BrainMuscles::type::container::element::Base, ELEMENT>::value;
 					static_assert((VALIDATION ? Value : true), "[ELEMENT] requires class BrainMuscles::type::container::Element");
+					typedef ELEMENT Type;
 				};
 			}
 		}
