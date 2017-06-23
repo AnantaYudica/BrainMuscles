@@ -11,13 +11,15 @@ namespace BrainMuscles
 			{
 				namespace capacity
 				{
-					template<typename SIZE_TYPE>
+					template<typename ELEMENT>
 					class M_MaximumSize;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\element\IsType.h"
 
 namespace BrainMuscles
 {
@@ -29,22 +31,25 @@ namespace BrainMuscles
 			{
 				namespace capacity
 				{
-					template<typename SIZE_TYPE>
+					template<typename ELEMENT>
 					class M_MaximumSize
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::element::IsType<ELEMENT, true>::Type::DifferenceType DifferenceType;
 					protected:
 						M_MaximumSize();
 					public:
 						virtual ~M_MaximumSize();
-						virtual SIZE_TYPE MaximumSize() = 0;
+						virtual DifferenceType MaximumSize() = 0;
 					};
 
-					template<typename SIZE_TYPE>
-					M_MaximumSize<SIZE_TYPE>::M_MaximumSize()
+					template<typename ELEMENT>
+					M_MaximumSize<ELEMENT>::M_MaximumSize()
 					{}
 
-					template<typename SIZE_TYPE>
-					M_MaximumSize<SIZE_TYPE>::~M_MaximumSize()
+					template<typename ELEMENT>
+					M_MaximumSize<ELEMENT>::~M_MaximumSize()
 					{}
 				}
 			}
