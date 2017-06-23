@@ -3,24 +3,27 @@
 
 namespace BrainMuscles
 {
-	namespace container
+	namespace type 
 	{
-		namespace definition
+		namespace container
 		{
-			struct Base
+			namespace definition
 			{
-				typedef void ElementType;
-				typedef void ContainerType;
-				typedef void HandleContainerType;
-				typedef void RandomAccessIteratorType;
-				typedef void RandomAccessConstIteratorType;
-				typedef void RandomAccessReverseIteratorType;
-				typedef void RandomAccessConstReverseIteratorType;
-				typedef void InputIteratorType;
-				typedef void InputConstIteratorType;
-				typedef void InputReverseIteratorType;
-				typedef void InputConstReverseIteratorType;
-			};
+				struct Base
+				{
+					typedef void ElementType;
+					typedef void ContainerType;
+					typedef void HandleContainerType;
+					typedef void RandomAccessIteratorType;
+					typedef void RandomAccessConstIteratorType;
+					typedef void RandomAccessReverseIteratorType;
+					typedef void RandomAccessConstReverseIteratorType;
+					typedef void InputIteratorType;
+					typedef void InputConstIteratorType;
+					typedef void InputReverseIteratorType;
+					typedef void InputConstReverseIteratorType;
+				};
+			}
 		}
 	}
 }
