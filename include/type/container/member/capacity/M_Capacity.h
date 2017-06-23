@@ -11,13 +11,15 @@ namespace BrainMuscles
 			{
 				namespace capacity
 				{
-					template<typename SIZE_TYPE>
+					template<typename ELEMENT>
 					class M_Capacity;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\element\IsType.h"
 
 namespace BrainMuscles
 {
@@ -29,22 +31,25 @@ namespace BrainMuscles
 			{
 				namespace capacity
 				{
-					template<typename SIZE_TYPE>
+					template<typename ELEMENT>
 					class M_Capacity
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::element::IsType<ELEMENT, true>::Type::DifferenceType DifferenceType;
 					protected:
 						M_Capacity();
 					public:
 						virtual ~M_Capacity();
-						virtual SIZE_TYPE Capacity() const = 0;
+						virtual DifferenceType Capacity() const = 0;
 					};
 
-					template<typename SIZE_TYPE>
-					M_Capacity<SIZE_TYPE>::M_Capacity()
+					template<typename ELEMENT>
+					M_Capacity<ELEMENT>::M_Capacity()
 					{}
 
-					template<typename SIZE_TYPE>
-					M_Capacity<SIZE_TYPE>::~M_Capacity()
+					template<typename ELEMENT>
+					M_Capacity<ELEMENT>::~M_Capacity()
 					{}
 				}
 			}
