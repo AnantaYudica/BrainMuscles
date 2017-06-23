@@ -9,7 +9,11 @@ namespace BrainMuscles
 	{
 		namespace container
 		{
-			template<typename TYPE, typename CONTAINER_TYPE = void>
+			template<typename TYPE, typename DISTANCE_TYPE = std::ptrdiff_t, typename POINTER_TYPE = TYPE*,
+				typename LEFT_VALUE_REFERENCE_TYPE = TYPE&, typename RIGHT_VALUE_REFERENCE_TYPE = TYPE&&,
+				typename CONST_POINTER_TYPE = const POINTER_TYPE, 
+				typename CONST_LEFT_VALUE_REFERENCE_TYPE = const LEFT_VALUE_REFERENCE_TYPE,
+				typename CONST_RIGHT_VALUE_REFERENCE_TYPE = const RIGHT_VALUE_REFERENCE_TYPE>
 			struct Element;
 
 		}
@@ -18,6 +22,7 @@ namespace BrainMuscles
 
 #include <type_traits>
 #include "type\trait\conditional\Or.h"
+#include "type\container\element\Base.h"
 
 namespace BrainMuscles
 {
@@ -25,15 +30,21 @@ namespace BrainMuscles
 	{
 		namespace container
 		{
-			template<typename TYPE, typename CONTAINER_TYPE>
-			struct Element 
+			template<typename TYPE, typename DISTANCE_TYPE, typename POINTER_TYPE, typename LEFT_VALUE_REFERENCE_TYPE,
+				typename RIGHT_VALUE_REFERENCE_TYPE, typename CONST_POINTER_TYPE, typename CONST_LEFT_VALUE_REFERENCE_TYPE,
+				typename CONST_RIGHT_VALUE_REFERENCE_TYPE>
+			struct Element :
+				public BrainMuscles::type::container::element::Base
 			{
 				static_assert(type::trait::conditional::Or<std::is_pointer<TYPE>::value, std::is_object<TYPE>::value>::value, "test");
-				typedef CONTAINER_TYPE ContainerType;
-				typedef TYPE Type;
-				typedef TYPE* Pointer;
-				typedef TYPE& LeftValueReference;
-				typedef TYPE&& RightValueReference;
+				typedef TYPE								Type;
+				typedef DISTANCE_TYPE						DifferenceType;
+				typedef POINTER_TYPE						PointerType;
+				typedef LEFT_VALUE_REFERENCE_TYPE			LeftValueReferenceType;
+				typedef RIGHT_VALUE_REFERENCE_TYPE			RightValueReferenceType;
+				typedef CONST_POINTER_TYPE					ConstPointerType;
+				typedef CONST_LEFT_VALUE_REFERENCE_TYPE		ConstLeftValueReferenceType;
+				typedef CONST_RIGHT_VALUE_REFERENCE_TYPE	ConstRightValueReferenceType;
 			};
 		}
 	}
