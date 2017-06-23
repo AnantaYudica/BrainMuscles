@@ -11,13 +11,15 @@ namespace BrainMuscles
 			{
 				namespace capacity
 				{
-					template<typename SIZE_TYPE, typename VALUE_TYPE>
+					template<typename ELEMENT>
 					class M_Resize;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\element\IsType.h"
 
 namespace BrainMuscles
 {
@@ -29,23 +31,28 @@ namespace BrainMuscles
 			{
 				namespace capacity
 				{
-					template<typename SIZE_TYPE, typename VALUE_TYPE>
+					template<typename ELEMENT>
 					class M_Resize
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::element::IsType<ELEMENT, true>::Type::DifferenceType				DifferenceType;
+						typedef typename BrainMuscles::type::container
+							::element::IsType<ELEMENT, true>::Type::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
 					protected:
 						M_Resize();
 					public:
 						virtual ~M_Resize();
-						virtual void Resize(SIZE_TYPE n) = 0;
-						virtual void Resize(SIZE_TYPE n, const VALUE_TYPE& val) = 0;
+						virtual void Resize(DifferenceType n) = 0;
+						virtual void Resize(DifferenceType n, ConstLeftValueReferenceType val) = 0;
 					};
 
-					template<typename SIZE_TYPE, typename VALUE_TYPE>
-					M_Resize<SIZE_TYPE, VALUE_TYPE>::M_Resize()
+					template<typename ELEMENT>
+					M_Resize<ELEMENT>::M_Resize()
 					{}
 
-					template<typename SIZE_TYPE, typename VALUE_TYPE>
-					M_Resize<SIZE_TYPE, VALUE_TYPE>::~M_Resize()
+					template<typename ELEMENT>
+					M_Resize<ELEMENT>::~M_Resize()
 					{}
 				}
 			}
