@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename ITERATOR_TYPE, typename CONST_ITERATOR_TYPE, typename VALUE_TYPE>
+					template<typename DEFINITION_TYPE>
 					class M_Emplace;
 				}
 			}
@@ -23,6 +23,9 @@ namespace BrainMuscles
 
 #include <vector>
 
+#include "type\container\element\IsType.h"
+#include "type\container\definition\IsType.h"
+
 namespace BrainMuscles
 {
 	namespace type
@@ -33,34 +36,44 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename ITERATOR_TYPE, typename ITERATOR_CONST_TYPE, typename VALUE_TYPE>
+					template<typename DEFINITION_TYPE>
 					class M_Emplace
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::definition::IsType<DEFINITION_TYPE, true>::Type			DefinitionType;
+						typedef typename BrainMuscles::type::container
+							::element::IsType<typename DefinitionType
+							::ElementType, true>::Type									ElementType;
+						typedef typename ElementType::Type								Type;
+					public:
+						typedef typename DefinitionType::RandomAccessConstIteratorType	RandomAccessConstIteratorType;
+						typedef typename DefinitionType::RandomAccessIteratorType		RandomAccessIteratorType;
 					protected:
 						M_Emplace();
 					public:
 						virtual ~M_Emplace();
 					protected:
-						virtual ITERATOR_TYPE DerivedEmplace(ITERATOR_TYPE iterator, VALUE_TYPE& constructor) = 0;
+						virtual RandomAccessIteratorType DerivedEmplace(RandomAccessConstIteratorType constIterator, Type& constructor) = 0;
 					public:
 						template<typename... ARGS>
-						ITERATOR_TYPE Emplace(ITERATOR_TYPE constIterator, ARGS... args);
+						RandomAccessIteratorType Emplace(RandomAccessConstIteratorType constIterator, ARGS... args);
 					};
 
-					template<typename ITERATOR_TYPE, typename ITERATOR_CONST_TYPE, typename VALUE_TYPE>
-					M_Emplace<ITERATOR_TYPE, ITERATOR_CONST_TYPE, VALUE_TYPE>::M_Emplace()
+					template<typename DEFINITION_TYPE>
+					M_Emplace<DEFINITION_TYPE>::M_Emplace()
 					{}
 
-					template<typename ITERATOR_TYPE, typename ITERATOR_CONST_TYPE, typename VALUE_TYPE>
-					M_Emplace<ITERATOR_TYPE, ITERATOR_CONST_TYPE, VALUE_TYPE>::~M_Emplace()
+					template<typename DEFINITION_TYPE>
+					M_Emplace<DEFINITION_TYPE>::~M_Emplace()
 					{}
 
-					template<typename ITERATOR_TYPE, typename ITERATOR_CONST_TYPE, typename VALUE_TYPE>
+					template<typename DEFINITION_TYPE>
 					template<typename... ARGS>
-					ITERATOR_TYPE 
-					M_Emplace<ITERATOR_TYPE, ITERATOR_CONST_TYPE, VALUE_TYPE>::Emplace(ITERATOR_TYPE constIterator, ARGS... args)
+					typename M_Emplace<DEFINITION_TYPE>::RandomAccessIteratorType
+					M_Emplace<DEFINITION_TYPE>::Emplace(RandomAccessConstIteratorType constIterator, ARGS... args)
 					{
-						VALUE_TYPE constructor(args...);
+						Type constructor(args...);
 						return DerivedEmplace(constIterator, constructor);
 					}
 				}
