@@ -12,13 +12,15 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename CONST_ITERATOR>
+					template<typename DEFINITION_TYPE>
 					class M_ConstIterator;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -30,23 +32,27 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename CONST_ITERATOR>
+					template<typename DEFINITION_TYPE>
 					class M_ConstIterator
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::definition::IsType<DEFINITION_TYPE, true>::Type			DefinitionType;
+						typedef typename DefinitionType::RandomAccessConstIteratorType	RandomAccessConstIteratorType;
 					protected:
 						M_ConstIterator();
 					public:
 						virtual ~M_ConstIterator();
-						virtual CONST_ITERATOR ConstBegin() = 0;
-						virtual CONST_ITERATOR ConstEnd() = 0;
+						virtual RandomAccessConstIteratorType ConstBegin() = 0;
+						virtual RandomAccessConstIteratorType ConstEnd() = 0;
 					};
 
-					template<typename CONST_ITERATOR>
-					M_ConstIterator<CONST_ITERATOR>::M_ConstIterator()
+					template<typename DEFINITION_TYPE>
+					M_ConstIterator<DEFINITION_TYPE>::M_ConstIterator()
 					{}
 
-					template<typename CONST_ITERATOR>
-					M_ConstIterator<CONST_ITERATOR>::~M_ConstIterator()
+					template<typename DEFINITION_TYPE>
+					M_ConstIterator<DEFINITION_TYPE>::~M_ConstIterator()
 					{}
 				}
 			}
