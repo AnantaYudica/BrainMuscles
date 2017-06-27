@@ -1,19 +1,23 @@
 #ifndef TYPE_CONTAINER_BASE_H_
 #define TYPE_CONTAINER_BASE_H_
 
+#include "type\container\definition\IsType.h"
+
 namespace BrainMuscles
 {
 	namespace type
 	{
 		namespace container
 		{
-			template<typename CONTAINER_TYPE, typename DERIVED>
+			template<typename DEFINITION_TYPE>
 			class Base
 			{
 			public:
-				typedef CONTAINER_TYPE ContainerType;
-				typedef DERIVED DerivedType;
-				typedef Base<CONTAINER_TYPE, DERIVED> BaseType;
+				typedef typename BrainMuscles::type::container::definition::IsType<
+					DEFINITION_TYPE, true>::Type										DefinitionType;
+				typedef typename DefinitionType::HandleContainerType					ContainerType;
+				typedef typename DefinitionType::ContainerType							DerivedType;
+				typedef Base<DEFINITION_TYPE>											BaseType;
 			private:
 				ContainerType * m_container;
 			protected:
@@ -29,49 +33,49 @@ namespace BrainMuscles
 				const ContainerType& GetContainer() const;
 			};
 
-			template<typename CONTAINER_TYPE, typename DERIVED>
-			Base<CONTAINER_TYPE, DERIVED>::Base(BaseType* ptr) :
+			template<typename DEFINITION_TYPE>
+			Base<DEFINITION_TYPE>::Base(BaseType* ptr) :
 				m_container(new ContainerType(*ptr->m_container))
 			{
 			}
 
-			template<typename CONTAINER_TYPE, typename DERIVED>
-			Base<CONTAINER_TYPE, DERIVED>::Base(const BaseType& rhs) :
+			template<typename DEFINITION_TYPE>
+			Base<DEFINITION_TYPE>::Base(const BaseType& rhs) :
 				m_container(new ContainerType(*rhs.m_container))
 			{}
 
-			template<typename CONTAINER_TYPE, typename DERIVED>
-			Base<CONTAINER_TYPE, DERIVED>::Base(const DerivedType& derive) :
+			template<typename DEFINITION_TYPE>
+			Base<DEFINITION_TYPE>::Base(const DerivedType& derive) :
 				m_container(new ContainerType(*derive.m_container))
 			{}
 
-			template<typename CONTAINER_TYPE, typename DERIVED>
-			Base<CONTAINER_TYPE, DERIVED>::Base(const ContainerType& rhs) :
+			template<typename DEFINITION_TYPE>
+			Base<DEFINITION_TYPE>::Base(const ContainerType& rhs) :
 				m_container(new ContainerType(rhs))
 			{}
 
-			template<typename CONTAINER_TYPE, typename DERIVED>
+			template<typename DEFINITION_TYPE>
 			template<typename... ARGS>
-			Base<CONTAINER_TYPE, DERIVED>::Base(ARGS... args) :
+			Base<DEFINITION_TYPE>::Base(ARGS... args) :
 				m_container(new ContainerType(args...))
 			{}
 
-			template<typename CONTAINER_TYPE, typename DERIVED>
-			Base<CONTAINER_TYPE, DERIVED>::~Base()
+			template<typename DEFINITION_TYPE>
+			Base<DEFINITION_TYPE>::~Base()
 			{
 				delete m_container;
 			}
 
-			template<typename CONTAINER_TYPE, typename DERIVED>
-			typename Base<CONTAINER_TYPE, DERIVED>::ContainerType&
-			Base<CONTAINER_TYPE, DERIVED>::GetContainer()
+			template<typename DEFINITION_TYPE>
+			typename Base<DEFINITION_TYPE>::ContainerType&
+			Base<DEFINITION_TYPE>::GetContainer()
 			{
 				return *m_container;
 			}
 
-			template<typename CONTAINER_TYPE, typename DERIVED>
-			const typename Base<CONTAINER_TYPE, DERIVED>::ContainerType& 
-			Base<CONTAINER_TYPE, DERIVED>::GetContainer() const
+			template<typename DEFINITION_TYPE>
+			const typename Base<DEFINITION_TYPE>::ContainerType&
+			Base<DEFINITION_TYPE>::GetContainer() const
 			{
 				return *m_container;
 			}
