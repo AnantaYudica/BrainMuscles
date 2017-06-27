@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename ELEMENT>
+					template<typename DEFINITION_TYPE>
 					class M_First;
 				}
 			}
@@ -20,6 +20,7 @@ namespace BrainMuscles
 }
 
 #include "type\container\element\IsType.h"
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -31,14 +32,17 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename ELEMENT>
+					template<typename DEFINITION_TYPE>
 					class M_First
 					{
 					protected:
 						typedef typename BrainMuscles::type::container
-							::element::IsType<ELEMENT, true>::Type::LeftValueReferenceType		LeftValueReferenceType;
+							::definition::IsType<DEFINITION_TYPE, true>::Type		DefinitionType;
 						typedef typename BrainMuscles::type::container
-							::element::IsType<ELEMENT, true>::Type::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
+							::element::IsType<typename DefinitionType
+							::ElementType, true>::Type								ElementType;
+						typedef typename ElementType::LeftValueReferenceType		LeftValueReferenceType;
+						typedef typename ElementType::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
 					protected:
 						M_First();
 					public:
@@ -47,12 +51,12 @@ namespace BrainMuscles
 						virtual ConstLeftValueReferenceType Front() const = 0;
 					};
 
-					template<typename ELEMENT>
-					M_First<ELEMENT>::M_First()
+					template<typename DEFINITION_TYPE>
+					M_First<DEFINITION_TYPE>::M_First()
 					{}
 
-					template<typename ELEMENT>
-					M_First<ELEMENT>::~M_First()
+					template<typename DEFINITION_TYPE>
+					M_First<DEFINITION_TYPE>::~M_First()
 					{}
 				}
 			}
