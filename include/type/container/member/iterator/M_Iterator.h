@@ -11,13 +11,15 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename ITERATOR, typename CONST_ITERATOR>
+					template<typename DEFINITION_TYPE>
 					class M_Iterator;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -29,25 +31,30 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename ITERATOR, typename CONST_ITERATOR>
+					template<typename DEFINITION_TYPE>
 					class M_Iterator
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::definition::IsType<DEFINITION_TYPE, true>::Type			DefinitionType;
+						typedef typename DefinitionType::RandomAccessIteratorType		RandomAccessIteratorType;
+						typedef typename DefinitionType::RandomAccessConstIteratorType	RandomAccessConstIteratorType;
 					protected:
 						M_Iterator();
 					public:
 						virtual ~M_Iterator();
-						virtual ITERATOR Begin() = 0;
-						virtual ITERATOR End() = 0;
-						virtual CONST_ITERATOR Begin() const = 0;
-						virtual CONST_ITERATOR End() const = 0;
+						virtual RandomAccessIteratorType Begin() = 0;
+						virtual RandomAccessIteratorType End() = 0;
+						virtual RandomAccessConstIteratorType Begin() const = 0;
+						virtual RandomAccessConstIteratorType End() const = 0;
 					};
 
-					template<typename ITERATOR, typename CONST_ITERATOR>
-					M_Iterator< ITERATOR, CONST_ITERATOR>::M_Iterator()
+					template<typename DEFINITION_TYPE>
+					M_Iterator<DEFINITION_TYPE>::M_Iterator()
 					{}
 
-					template<typename ITERATOR, typename CONST_ITERATOR>
-					M_Iterator<ITERATOR, CONST_ITERATOR>::~M_Iterator()
+					template<typename DEFINITION_TYPE>
+					M_Iterator<DEFINITION_TYPE>::~M_Iterator()
 					{}
 				}
 			}
