@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace observer
 				{
-					template<typename ALLOCATOR_TYPE>
+					template<typename DEFINITION_TYPE>
 					class M_GetAllocator;
 				}
 			}
@@ -19,6 +19,8 @@ namespace BrainMuscles
 	}
 }
 
+#include "type\container\element\IsType.h"
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -30,23 +32,30 @@ namespace BrainMuscles
 			{
 				namespace observer
 				{
-					template<typename ALLOCATOR_TYPE>
+					template<typename DEFINITION_TYPE>
 					class M_GetAllocator
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::definition::IsType<DEFINITION_TYPE, true>::Type			DefinitionType;
+						typedef typename BrainMuscles::type::container
+							::element::IsType<typename DefinitionType
+							::ElementType, true>::Type									ElementType;
+						typedef typename ElementType::AllocatorType						AllocatorType;
 					protected:
 						M_GetAllocator();
 					public:
 						virtual ~M_GetAllocator();
 					public:
-						virtual ALLOCATOR_TYPE get_allocator() const = 0;
+						virtual AllocatorType GetAllocator() const = 0;
 					};
 
-					template<typename ALLOCATOR_TYPE>
-					M_GetAllocator<ALLOCATOR_TYPE>::M_GetAllocator()
+					template<typename DEFINITION_TYPE>
+					M_GetAllocator<DEFINITION_TYPE>::M_GetAllocator()
 					{}
 
-					template<typename ALLOCATOR_TYPE>
-					M_GetAllocator<ALLOCATOR_TYPE>::~M_GetAllocator()
+					template<typename DEFINITION_TYPE>
+					M_GetAllocator<DEFINITION_TYPE>::~M_GetAllocator()
 					{}
 				}
 			}
