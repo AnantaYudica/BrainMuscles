@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename ELEMENT>
+					template<typename DEFINITION_TYPE>
 					class M_Element;
 				}
 			}
@@ -20,6 +20,7 @@ namespace BrainMuscles
 }
 
 #include "type\container\element\IsType.h"
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -31,16 +32,18 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename ELEMENT>
+					template<typename DEFINITION_TYPE>
 					class M_Element
 					{
 					protected:
 						typedef typename BrainMuscles::type::container
-							::element::IsType<ELEMENT, true>::Type::DifferenceType				DifferenceType;
+							::definition::IsType<DEFINITION_TYPE, true>::Type		DefinitionType;
 						typedef typename BrainMuscles::type::container
-							::element::IsType<ELEMENT, true>::Type::LeftValueReferenceType		LeftValueReferenceType;
-						typedef typename BrainMuscles::type::container
-							::element::IsType<ELEMENT, true>::Type::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
+							::element::IsType<typename DefinitionType
+							::ElementType, true>::Type								ElementType;
+						typedef typename ElementType::DifferenceType				DifferenceType;
+						typedef typename ElementType::LeftValueReferenceType		LeftValueReferenceType;
+						typedef typename ElementType::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
 					protected:
 						M_Element();
 					public:
@@ -51,24 +54,24 @@ namespace BrainMuscles
 						ConstLeftValueReferenceType operator[](DifferenceType index) const;
 					};
 
-					template<typename ELEMENT>
-					M_Element<ELEMENT>::M_Element()
+					template<typename DEFINITION_TYPE>
+					M_Element<DEFINITION_TYPE>::M_Element()
 					{}
 
-					template<typename ELEMENT>
-					M_Element<ELEMENT>::~M_Element()
+					template<typename DEFINITION_TYPE>
+					M_Element<DEFINITION_TYPE>::~M_Element()
 					{}
 
-					template<typename ELEMENT>
-					typename M_Element<ELEMENT>::LeftValueReferenceType
-					M_Element<ELEMENT>::operator[](DifferenceType index)
+					template<typename DEFINITION_TYPE>
+					typename M_Element<DEFINITION_TYPE>::LeftValueReferenceType
+					M_Element<DEFINITION_TYPE>::operator[](DifferenceType index)
 					{
 						return At(index);
 					}
 
-					template<typename ELEMENT>
-					typename M_Element<ELEMENT>::ConstLeftValueReferenceType
-					M_Element<ELEMENT>::operator[](DifferenceType index) const
+					template<typename DEFINITION_TYPE>
+					typename M_Element<DEFINITION_TYPE>::ConstLeftValueReferenceType
+					M_Element<DEFINITION_TYPE>::operator[](DifferenceType index) const
 					{
 						return At(index);
 					}
