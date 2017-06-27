@@ -11,7 +11,7 @@ namespace BrainMuscles
 		{
 			namespace array
 			{
-				template<typename TYPE, size_t SIZE>
+				template<typename TYPE, std::size_t SIZE>
 				struct Definition;
 			}
 		}
@@ -34,7 +34,7 @@ namespace BrainMuscles
 		{
 			namespace array
 			{
-				template<typename TYPE, size_t SIZE>
+				template<typename TYPE, std::size_t SIZE>
 				struct Definition :
 					public BrainMuscles::type::container::definition::Base
 				{
@@ -56,7 +56,7 @@ namespace BrainMuscles
 					typedef void InputReverseIteratorType;
 					typedef void InputConstReverseIteratorType;
 
-					static constexpr size_t Size = SIZE;
+					static constexpr std::size_t Size = SIZE;
 				};
 			}
 		}
