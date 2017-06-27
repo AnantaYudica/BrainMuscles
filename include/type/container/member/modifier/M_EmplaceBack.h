@@ -11,13 +11,16 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename DERIVED>
+					template<typename DEFINITION_TYPE>
 					class M_EmplaceBack;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\element\IsType.h"
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -29,33 +32,41 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename DERIVED>
+					template<typename DEFINITION_TYPE>
 					class M_EmplaceBack
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::definition::IsType<DEFINITION_TYPE, true>::Type	DefinitionType;
+						typedef typename BrainMuscles::type::container
+							::element::IsType<typename DefinitionType
+							::ElementType, true>::Type							ElementType;
+						typedef typename ElementType::Type						Type;
 					protected:
 						M_EmplaceBack();
 					public:
 						virtual ~M_EmplaceBack();
 					protected:
-						virtual DERIVED* ThisDerived() = 0;
+						virtual void DerivedEmplaceBack(Type& constructor) = 0;
 					public:
 						template<typename... ARGS>
 						void EmplaceBack(ARGS&&... args);
 					};
 
-					template<typename DERIVED>
-					M_EmplaceBack<DERIVED>::M_EmplaceBack()
+					template<typename DEFINITION_TYPE>
+					M_EmplaceBack<DEFINITION_TYPE>::M_EmplaceBack()
 					{}
 
-					template<typename DERIVED>
-					M_EmplaceBack<DERIVED>::~M_EmplaceBack()
+					template<typename DEFINITION_TYPE>
+					M_EmplaceBack<DEFINITION_TYPE>::~M_EmplaceBack()
 					{}
 
-					template<typename DERIVED>
+					template<typename DEFINITION_TYPE>
 					template<typename... ARGS>
-					void M_EmplaceBack<DERIVED>::EmplaceBack(ARGS&&... args)
+					void M_EmplaceBack<DEFINITION_TYPE>::EmplaceBack(ARGS&&... args)
 					{
-						ThisDerived()->OnRequestEmplaceBack(args...);
+						Type constructor(args...);
+						DerivedEmplaceBack(constructor);
 					}
 				}
 			}
