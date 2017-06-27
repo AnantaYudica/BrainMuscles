@@ -11,13 +11,16 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename VALUE_TYPE>
+					template<typename DEFINITION_TYPE>
 					class M_PushBack;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\element\IsType.h"
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -29,24 +32,31 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename VALUE_TYPE>
+					template<typename DEFINITION_TYPE>
 					class M_PushBack
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::definition::IsType<DEFINITION_TYPE, true>::Type			DefinitionType;
+						typedef typename BrainMuscles::type::container
+							::element::IsType<typename DefinitionType
+							::ElementType, true>::Type									ElementType;
+						typedef typename ElementType::Type								Type;
 					protected:
 						M_PushBack();
 					public:
 						virtual ~M_PushBack();
 					public:
-						virtual void PushBack(const VALUE_TYPE& val) = 0;
-						virtual void PushBack(VALUE_TYPE&& val) = 0;
+						virtual void PushBack(const Type& val) = 0;
+						virtual void PushBack(Type&& val) = 0;
 					};
 
-					template<typename VALUE_TYPE>
-					M_PushBack<VALUE_TYPE>::M_PushBack()
+					template<typename DEFINITION_TYPE>
+					M_PushBack<DEFINITION_TYPE>::M_PushBack()
 					{}
 
-					template<typename VALUE_TYPE>
-					M_PushBack<VALUE_TYPE>::~M_PushBack()
+					template<typename DEFINITION_TYPE>
+					M_PushBack<DEFINITION_TYPE>::~M_PushBack()
 					{}
 				}
 			}
