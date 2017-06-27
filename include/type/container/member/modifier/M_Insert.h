@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename VALUE_TYPE, typename SIZE_TYPE, typename ITERATOR, typename CONST_ITERATOR, typename INPUT_ITERATOR>
+					template<template DEFINITION_TYPE>
 					class M_Insert;
 				}
 			}
@@ -20,6 +20,8 @@ namespace BrainMuscles
 }
 
 #include <initializer_list>
+#include "type\container\element\IsType.h"
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -31,26 +33,37 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename VALUE_TYPE, typename SIZE_TYPE, typename ITERATOR, typename CONST_ITERATOR, typename INPUT_ITERATOR>
+					template<typename DEFINITION_TYPE>
 					class M_Insert
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::definition::IsType<DEFINITION_TYPE, true>::Type			DefinitionType;
+						typedef typename BrainMuscles::type::container
+							::element::IsType<typename DefinitionType
+							::ElementType, true>::Type									ElementType;
+						typedef typename DefinitionType::RandomAccessIteratorType		RandomAccessIteratorType;
+						typedef typename DefinitionType::RandomAccessConstIteratorType	RandomAccessConstIteratorType;
+						typedef typename DefinitionType::InputIteratorType				InputIteratorType;
+						typedef typename ElementType::Type								Type;
+						typedef typename ElementType::DifferenceType					DifferenceType;
 					protected:
 						M_Insert();
 					public:
 						virtual ~M_Insert();
-						virtual ITERATOR Insert(CONST_ITERATOR position, const VALUE_TYPE& val) = 0;
-						virtual ITERATOR Insert(CONST_ITERATOR position, SIZE_TYPE n, const VALUE_TYPE& val) = 0;
-						virtual ITERATOR Insert(CONST_ITERATOR position, INPUT_ITERATOR first, INPUT_ITERATOR last) = 0;
-						virtual ITERATOR Insert(CONST_ITERATOR position, VALUE_TYPE&& val) = 0;
-						virtual ITERATOR Insert(CONST_ITERATOR position, std::initializer_list<VALUE_TYPE> il) = 0;
+						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, const Type& val) = 0;
+						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, DifferenceType n, const Type& val) = 0;
+						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, InputIteratorType first, InputIteratorType last) = 0;
+						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, Type&& val) = 0;
+						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, std::initializer_list<Type> il) = 0;
 					};
 
-					template<typename VALUE_TYPE, typename SIZE_TYPE, typename ITERATOR, typename CONST_ITERATOR, typename INPUT_ITERATOR>
-					M_Insert<VALUE_TYPE, SIZE_TYPE, ITERATOR, CONST_ITERATOR, INPUT_ITERATOR>::M_Insert()
+					template<typename DEFINITION_TYPE>
+					M_Insert<DEFINITION_TYPE>::M_Insert()
 					{}
 
-					template<typename VALUE_TYPE, typename SIZE_TYPE, typename ITERATOR, typename CONST_ITERATOR, typename INPUT_ITERATOR>
-					M_Insert<VALUE_TYPE, SIZE_TYPE, ITERATOR, CONST_ITERATOR, INPUT_ITERATOR>::~M_Insert()
+					template<typename DEFINITION_TYPE>
+					M_Insert<DEFINITION_TYPE>::~M_Insert()
 					{}
 				}
 			}
