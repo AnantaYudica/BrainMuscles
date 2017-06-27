@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename ELEMENT>
+					template<typename DEFINITION_TYPE>
 					class M_Last;
 				}
 			}
@@ -20,6 +20,7 @@ namespace BrainMuscles
 }
 
 #include "type\container\element\IsType.h"
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -31,14 +32,17 @@ namespace BrainMuscles
 			{
 				namespace element
 				{
-					template<typename ELEMENT>
+					template<typename DEFINITION_TYPE>
 					class M_Last
 					{
 					protected:
 						typedef typename BrainMuscles::type::container
-							::element::IsType<ELEMENT, true>::Type::LeftValueReferenceType		LeftValueReferenceType;
+							::definition::IsType<DEFINITION_TYPE, true>::Type		DefinitionType;
 						typedef typename BrainMuscles::type::container
-							::element::IsType<ELEMENT, true>::Type::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
+							::element::IsType<typename DefinitionType
+							::ElementType, true>::Type								ElementType;
+						typedef typename ElementType::LeftValueReferenceType		LeftValueReferenceType;
+						typedef typename ElementType::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
 					protected:
 						M_Last();
 					public:
@@ -47,12 +51,12 @@ namespace BrainMuscles
 						virtual ConstLeftValueReferenceType Back() const = 0;
 					};
 
-					template<typename ELEMENT>
-					M_Last<ELEMENT>::M_Last()
+					template<typename DEFINITION_TYPE>
+					M_Last<DEFINITION_TYPE>::M_Last()
 					{}
 
-					template<typename ELEMENT>
-					M_Last<ELEMENT>::~M_Last()
+					template<typename DEFINITION_TYPE>
+					M_Last<DEFINITION_TYPE>::~M_Last()
 					{}
 				}
 			}
