@@ -12,13 +12,15 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename CONST_REVERSE_ITERATOR>
+					template<typename DEFINITION_TYPE>
 					class M_ConstReverseIterator;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -30,23 +32,27 @@ namespace BrainMuscles
 			{
 				namespace iterator
 				{
-					template<typename CONST_REVERSE_ITERATOR>
+					template<typename DEFINITION_TYPE>
 					class M_ConstReverseIterator
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::definition::IsType<DEFINITION_TYPE, true>::Type					DefinitionType;
+						typedef typename DefinitionType::RandomAccessConstReverseIteratorType	RandomAccessConstReverseIteratorType;
 					protected:
 						M_ConstReverseIterator();
 					public:
 						virtual ~M_ConstReverseIterator();
-						virtual CONST_REVERSE_ITERATOR ConstReverseBegin() = 0;
-						virtual CONST_REVERSE_ITERATOR ConstReverseEnd() = 0;
+						virtual RandomAccessConstReverseIteratorType ConstReverseBegin() = 0;
+						virtual RandomAccessConstReverseIteratorType ConstReverseEnd() = 0;
 					};
 
-					template<typename CONST_REVERSE_ITERATOR>
-					M_ConstReverseIterator<CONST_REVERSE_ITERATOR>::M_ConstReverseIterator()
+					template<typename DEFINITION_TYPE>
+					M_ConstReverseIterator<DEFINITION_TYPE>::M_ConstReverseIterator()
 					{}
 
-					template<typename CONST_REVERSE_ITERATOR>
-					M_ConstReverseIterator<CONST_REVERSE_ITERATOR>::~M_ConstReverseIterator()
+					template<typename DEFINITION_TYPE>
+					M_ConstReverseIterator<DEFINITION_TYPE>::~M_ConstReverseIterator()
 					{}
 				}
 			}
