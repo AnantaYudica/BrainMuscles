@@ -11,13 +11,15 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename ITERATOR, typename CONST_ITERATOR>
+					template<typename DEFINITION_TYPE>
 					class M_Erase;
 				}
 			}
 		}
 	}
 }
+
+#include "type\container\definition\IsType.h"
 
 namespace BrainMuscles
 {
@@ -29,24 +31,29 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<typename ITERATOR, typename CONST_ITERATOR>
+					template<typename DEFINITION_TYPE>
 					class M_Erase
 					{
+					protected:
+						typedef typename BrainMuscles::type::container
+							::definition::IsType<DEFINITION_TYPE, true>::Type			DefinitionType;
+						typedef typename DefinitionType::RandomAccessIteratorType		RandomAccessIteratorType;
+						typedef typename DefinitionType::RandomAccessConstIteratorType	RandomAccessConstIteratorType;
 					protected:
 						M_Erase();
 					public:
 						virtual ~M_Erase();
 					public:
-						virtual ITERATOR Erase(CONST_ITERATOR position) = 0;
-						virtual ITERATOR Erase(CONST_ITERATOR first, CONST_ITERATOR last) = 0;
+						virtual RandomAccessIteratorType Erase(RandomAccessConstIteratorType position) = 0;
+						virtual RandomAccessIteratorType Erase(RandomAccessConstIteratorType first, RandomAccessConstIteratorType last) = 0;
 					};
 
-					template<typename ITERATOR, typename CONST_ITERATOR>
-					M_Erase<ITERATOR, CONST_ITERATOR>::M_Erase()
+					template<typename DEFINITION_TYPE>
+					M_Erase<DEFINITION_TYPE>::M_Erase()
 					{}
 
-					template<typename ITERATOR, typename CONST_ITERATOR>
-					M_Erase<ITERATOR, CONST_ITERATOR>::~M_Erase()
+					template<typename DEFINITION_TYPE>
+					M_Erase<DEFINITION_TYPE>::~M_Erase()
 					{}
 				}
 			}
