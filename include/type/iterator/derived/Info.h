@@ -11,14 +11,16 @@ namespace BrainMuscles
 		{
 			namespace derived
 			{
-				template<typename DEFINITION>
+				template<typename DERIVED_TYPE, typename DEFINITION_TYPE>
 				struct Info 
 				{
-					static_assert(BrainMuscles::type::iterator::derived::definition::IsType<DEFINITION>::Value, "DEFINITION is not define");
-					typedef typename DEFINITION::DerivedType DerivedType;
-					typedef typename DEFINITION::Type Type;
-					typedef typename DEFINITION::ReferenceType ReferenceType;
-					typedef typename DEFINITION::PointerType PointerType;
+					static_assert(BrainMuscles::type::iterator::derived::definition::IsType<DEFINITION_TYPE>::Value, "DEFINITION is not define");
+					typedef DERIVED_TYPE									DerivedType;
+					typedef typename DEFINITION_TYPE::Type					Type;
+					typedef typename DEFINITION_TYPE::ReferenceType			ReferenceType;
+					typedef typename DEFINITION_TYPE::PointerType			PointerType;
+					typedef typename DEFINITION_TYPE::ConstReferenceType	ConstReferenceType;
+					typedef typename DEFINITION_TYPE::ConstPointerType		ConstPointerType;
 				};
 
 			}
