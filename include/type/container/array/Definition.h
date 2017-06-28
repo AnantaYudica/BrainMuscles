@@ -21,6 +21,7 @@ namespace BrainMuscles
 #include <array>
 
 #include "type\Container.h"
+#include "type\container\Base.h"
 #include "type\container\definition\Base.h"
 #include "type\container\Element.h"
 
@@ -43,6 +44,8 @@ namespace BrainMuscles
 					typedef typename BrainMuscles::type::Container<
 						BrainMuscles::type::container::array::Definition<TYPE, SIZE>>			ContainerType;
 					typedef std::array<TYPE, SIZE>												HandleContainerType;
+					typedef BrainMuscles::type::container::Base<
+						BrainMuscles::type::container::array::Definition<TYPE, SIZE>>			BaseType;
 					typedef BrainMuscles::type::container::array::Iterator<
 						TYPE, SIZE, typename std::array<TYPE, SIZE>::iterator>					RandomAccessIteratorType;
 					typedef BrainMuscles::type::container::array::Iterator<
