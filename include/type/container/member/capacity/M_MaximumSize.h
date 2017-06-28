@@ -41,12 +41,12 @@ namespace BrainMuscles
 						typedef typename BrainMuscles::type::container
 							::element::IsType<typename DefinitionType
 							::ElementType, true>::Type							ElementType;
-						typedef typename ElementType::DifferenceType			DifferenceType;
+						typedef typename ElementType::SizeType					SizeType;
 					protected:
 						M_MaximumSize();
 					public:
 						virtual ~M_MaximumSize();
-						virtual DifferenceType MaximumSize() = 0;
+						virtual SizeType MaximumSize() = 0;
 					};
 
 					template<typename DEFINITION_TYPE>
