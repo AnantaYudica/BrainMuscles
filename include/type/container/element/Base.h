@@ -13,6 +13,7 @@ namespace BrainMuscles
 				{
 					typedef void Type;
 					typedef void DifferenceType;
+					typedef void SizeType;
 					typedef void PointerType;
 					typedef void LeftValueReferenceType;
 					typedef void RightValueReferenceType;
