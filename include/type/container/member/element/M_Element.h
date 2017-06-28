@@ -41,17 +41,17 @@ namespace BrainMuscles
 						typedef typename BrainMuscles::type::container
 							::element::IsType<typename DefinitionType
 							::ElementType, true>::Type								ElementType;
-						typedef typename ElementType::DifferenceType				DifferenceType;
+						typedef typename ElementType::SizeType						SizeType;
 						typedef typename ElementType::LeftValueReferenceType		LeftValueReferenceType;
 						typedef typename ElementType::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
 					protected:
 						M_Element();
 					public:
 						virtual ~M_Element();
-						virtual LeftValueReferenceType At(DifferenceType index) = 0;
-						virtual ConstLeftValueReferenceType At(DifferenceType index) const = 0;
-						LeftValueReferenceType operator[](DifferenceType index);
-						ConstLeftValueReferenceType operator[](DifferenceType index) const;
+						virtual LeftValueReferenceType At(SizeType index) = 0;
+						virtual ConstLeftValueReferenceType At(SizeType index) const = 0;
+						LeftValueReferenceType operator[](SizeType index);
+						ConstLeftValueReferenceType operator[](SizeType index) const;
 					};
 
 					template<typename DEFINITION_TYPE>
@@ -64,14 +64,14 @@ namespace BrainMuscles
 
 					template<typename DEFINITION_TYPE>
 					typename M_Element<DEFINITION_TYPE>::LeftValueReferenceType
-					M_Element<DEFINITION_TYPE>::operator[](DifferenceType index)
+					M_Element<DEFINITION_TYPE>::operator[](SizeType index)
 					{
 						return At(index);
 					}
 
 					template<typename DEFINITION_TYPE>
 					typename M_Element<DEFINITION_TYPE>::ConstLeftValueReferenceType
-					M_Element<DEFINITION_TYPE>::operator[](DifferenceType index) const
+					M_Element<DEFINITION_TYPE>::operator[](SizeType index) const
 					{
 						return At(index);
 					}
