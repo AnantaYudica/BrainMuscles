@@ -41,12 +41,12 @@ namespace BrainMuscles
 						typedef typename BrainMuscles::type::container
 							::element::IsType<typename DefinitionType
 							::ElementType, true>::Type							ElementType;
-						typedef typename ElementType::DifferenceType			DifferenceType;
+						typedef typename ElementType::SizeType					SizeType;
 					protected:
 						M_Capacity();
 					public:
 						virtual ~M_Capacity();
-						virtual DifferenceType Capacity() const = 0;
+						virtual SizeType Capacity() const = 0;
 					};
 
 					template<typename DEFINITION_TYPE>
