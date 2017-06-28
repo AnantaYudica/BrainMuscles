@@ -14,6 +14,7 @@ namespace BrainMuscles
 					typedef void ElementType;
 					typedef void ContainerType;
 					typedef void HandleContainerType;
+					typedef void BaseType;
 					typedef void RandomAccessIteratorType;
 					typedef void RandomAccessConstIteratorType;
 					typedef void RandomAccessReverseIteratorType;
