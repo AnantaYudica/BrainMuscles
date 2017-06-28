@@ -46,15 +46,17 @@ namespace BrainMuscles
 						typedef typename DefinitionType::RandomAccessConstIteratorType	RandomAccessConstIteratorType;
 						typedef typename DefinitionType::InputIteratorType				InputIteratorType;
 						typedef typename ElementType::Type								Type;
-						typedef typename ElementType::DifferenceType					DifferenceType;
+						typedef typename ElementType::RightValueReferenceType			RightValueReferenceType;
+						typedef typename ElementType::ConstLeftValueReferenceType		ConstLeftValueReferenceType;
+						typedef typename ElementType::SizeType							SizeType;
 					protected:
 						M_Insert();
 					public:
 						virtual ~M_Insert();
-						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, const Type& val) = 0;
-						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, DifferenceType n, const Type& val) = 0;
+						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, ConstLeftValueReferenceType val) = 0;
+						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, SizeType n, ConstLeftValueReferenceType val) = 0;
 						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, InputIteratorType first, InputIteratorType last) = 0;
-						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, Type&& val) = 0;
+						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, RightValueReferenceType val) = 0;
 						virtual RandomAccessIteratorType Insert(RandomAccessConstIteratorType position, std::initializer_list<Type> il) = 0;
 					};
 
