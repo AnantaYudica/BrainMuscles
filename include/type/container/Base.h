@@ -1,7 +1,7 @@
 #ifndef TYPE_CONTAINER_BASE_H_
 #define TYPE_CONTAINER_BASE_H_
 
-#include "type\container\definition\IsType.h"
+#include "type\Container.h"
 
 namespace BrainMuscles
 {
@@ -9,15 +9,13 @@ namespace BrainMuscles
 	{
 		namespace container
 		{
-			template<typename DEFINITION_TYPE>
+			template<typename HANDLE_CONTAINER_TYPE>
 			class Base
 			{
 			public:
-				typedef typename BrainMuscles::type::container::definition::IsType<
-					DEFINITION_TYPE, true>::Type										DefinitionType;
-				typedef typename DefinitionType::HandleContainerType					ContainerType;
-				typedef typename DefinitionType::ContainerType							DerivedType;
-				typedef Base<DEFINITION_TYPE>											BaseType;
+				typedef HANDLE_CONTAINER_TYPE							ContainerType;
+				typedef BrainMuscles::type::Container<ContainerType>	DerivedType;
+				typedef Base<HANDLE_CONTAINER_TYPE>						BaseType;
 			private:
 				ContainerType * m_container;
 			protected:
