@@ -13,14 +13,14 @@ namespace BrainMuscles
 			{
 				namespace info
 				{
-					template<typename INFO>
+					template<typename INFO_TYPE>
 					struct IsType
 					{
 						static constexpr bool Value = false;
 					};
 
-					template<typename DEFINITION>
-					struct IsType<BrainMuscles::type::iterator::derived::Info<DEFINITION>>
+					template<typename DERIVED_TYPE, typename DEFINITION_TYPE>
+					struct IsType<BrainMuscles::type::iterator::derived::Info<DERIVED_TYPE, DEFINITION_TYPE>>
 					{
 						static constexpr bool Value = true;
 					};
