@@ -1,8 +1,9 @@
 #ifndef TYPE_CONTAINER_ARRAY_ITERATOR_DEFINITION_ITERATOR_H_
 #define TYPE_CONTAINER_ARRAY_ITERATOR_DEFINITION_ITERATOR_H_
 
-#include "type\iterator\derived\Definition.h"
-#include "type\container\array\Iterator.h"
+#include <cstddef>
+
+#include "type\iterator\derived\definition\Base.h"
 
 namespace BrainMuscles
 {
@@ -16,16 +17,16 @@ namespace BrainMuscles
 				{
 					namespace definition
 					{
-						template<typename TYPE, size_t SIZE, typename HANDLE>
+						template<typename TYPE, std::size_t SIZE>
 						struct Iterator :
-							public BrainMuscles::type::iterator::derived::Definition<
-								BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HANDLE>,
-								TYPE,
-								TYPE&,
-								TYPE*,
-								const TYPE&,
-								const TYPE*>
-						{};
+							public BrainMuscles::type::iterator::derived::definition::Base
+						{
+							typedef TYPE Type;
+							typedef TYPE& ReferenceType;
+							typedef TYPE* PointerType;
+							typedef const TYPE& ConstReferenceType;
+							typedef const TYPE* ConstPointerType;
+						};
 					}
 				}
 			}
