@@ -1,29 +1,15 @@
 #ifndef TYPE_CONTAINER_ARRAY_DEFINITION_H_
 #define TYPE_CONTAINER_ARRAY_DEFINITION_H_
 
-#include <cstdlib>
-
-namespace BrainMuscles
-{
-	namespace type
-	{
-		namespace container
-		{
-			namespace array
-			{
-				template<typename TYPE, std::size_t SIZE>
-				struct Definition;
-			}
-		}
-	}
-}
-
+#include <cstddef>
 #include <array>
+
+#include "type\container\definition\Base.h"
+
+#include "type\container\Element.h"
 
 #include "type\Container.h"
 #include "type\container\Base.h"
-#include "type\container\definition\Base.h"
-#include "type\container\Element.h"
 
 #include "type\container\array\Iterator.h"
 
@@ -41,11 +27,10 @@ namespace BrainMuscles
 				{
 					typedef typename BrainMuscles::type
 						::container::Element<TYPE>												ElementType;
-					typedef typename BrainMuscles::type::Container<
-						BrainMuscles::type::container::array::Definition<TYPE, SIZE>>			ContainerType;
+					typedef typename BrainMuscles::type::Container<std::array<TYPE, SIZE>>		ContainerType;
 					typedef std::array<TYPE, SIZE>												HandleContainerType;
-					typedef BrainMuscles::type::container::Base<
-						BrainMuscles::type::container::array::Definition<TYPE, SIZE>>			BaseType;
+					typedef typename BrainMuscles::type
+						::container::Base<std::array<TYPE, SIZE>>								BaseType;
 					typedef BrainMuscles::type::container::array::Iterator<
 						TYPE, SIZE, typename std::array<TYPE, SIZE>::iterator>					RandomAccessIteratorType;
 					typedef BrainMuscles::type::container::array::Iterator<
