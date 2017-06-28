@@ -11,7 +11,7 @@ namespace BrainMuscles
 			{
 				namespace modifier
 				{
-					template<template DEFINITION_TYPE>
+					template<typename DEFINITION_TYPE>
 					class M_Insert;
 				}
 			}
