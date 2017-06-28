@@ -44,14 +44,16 @@ namespace BrainMuscles
 							::ElementType, true>::Type								ElementType;
 						typedef typename DefinitionType::InputConstIteratorType		InputConstIteratorType;
 						typedef typename ElementType::Type							Type;
-						typedef typename ElementType::DifferenceType				DifferenceType;
+						typedef typename ElementType::PointerType					PointerType;
+						typedef typename ElementType::SizeType						SizeType;
+						typedef typename ElementType::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
 					protected:
 						M_Assign();
 					public:
 						virtual ~M_Assign();
 						virtual void Assign(InputConstIteratorType first, InputConstIteratorType last) = 0;
-						virtual void Assign(Type* first, Type* last) = 0;
-						virtual void Assign(DifferenceType n, const DifferenceType& val) = 0;
+						virtual void Assign(PointerType first, PointerType last) = 0;
+						virtual void Assign(SizeType n, ConstLeftValueReferenceType val) = 0;
 						virtual void Assign(std::initializer_list<Type> il) = 0;
 					};
 
