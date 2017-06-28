@@ -41,14 +41,14 @@ namespace BrainMuscles
 						typedef typename BrainMuscles::type::container
 							::element::IsType<typename DefinitionType
 							::ElementType, true>::Type								ElementType;
-						typedef typename ElementType::DifferenceType				DifferenceType;
+						typedef typename ElementType::SizeType						SizeType;
 						typedef typename ElementType::ConstLeftValueReferenceType	ConstLeftValueReferenceType;
 					protected:
 						M_Resize();
 					public:
 						virtual ~M_Resize();
-						virtual void Resize(DifferenceType n) = 0;
-						virtual void Resize(DifferenceType n, ConstLeftValueReferenceType val) = 0;
+						virtual void Resize(SizeType n) = 0;
+						virtual void Resize(SizeType n, ConstLeftValueReferenceType val) = 0;
 					};
 
 					template<typename DEFINITION_TYPE>
