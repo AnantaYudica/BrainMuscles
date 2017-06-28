@@ -41,12 +41,12 @@ namespace BrainMuscles
 						typedef typename BrainMuscles::type::container
 							::element::IsType<typename DefinitionType
 							::ElementType, true>::Type							ElementType;
-						typedef typename ElementType::DifferenceType			DifferenceType;
+						typedef typename ElementType::SizeType					SizeType;
 					protected:
 						M_Reserve();
 					public:
 						virtual ~M_Reserve();
-						virtual void Reserve(DifferenceType n) = 0;
+						virtual void Reserve(SizeType n) = 0;
 					};
 
 					template<typename DEFINITION_TYPE>
