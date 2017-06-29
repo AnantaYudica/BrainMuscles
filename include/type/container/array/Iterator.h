@@ -1,6 +1,9 @@
 #ifndef TYPE_CONTAINER_ARRAY_ITERATOR_H_
 #define TYPE_CONTAINER_ARRAY_ITERATOR_H_
 
+#include <cstddef>
+#include <array>
+
 namespace BrainMuscles
 {
 	namespace type
@@ -9,7 +12,7 @@ namespace BrainMuscles
 		{
 			namespace array
 			{
-				template<typename TYPE, size_t SIZE, typename HANDLE>
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
 				class Iterator;
 			}
 		}
@@ -19,9 +22,7 @@ namespace BrainMuscles
 #include "type\iterator\Base.h"
 #include "type\iterator\tag\RandomAccess.h"
 #include "type\iterator\derived\Info.h"
-#include <array>
-#include "type\container\array\iterator\definition\ConstIterator.h"
-#include "type\container\array\iterator\definition\Iterator.h"
+
 #include "type\container\array\iterator\Definition.h"
 
 namespace BrainMuscles
@@ -32,32 +33,37 @@ namespace BrainMuscles
 		{
 			namespace array
 			{
-				template<typename TYPE, size_t SIZE>
-				using ConstIteratorHandle = BrainMuscles::type::container::array::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::const_iterator>;
-				template<typename TYPE, size_t SIZE>
-				using ConstReverseIteratorHandle = BrainMuscles::type::container::array::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::const_reverse_iterator>;
-				template<typename TYPE, size_t SIZE>
-				using IteratorHandle = BrainMuscles::type::container::array::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::iterator>;
-				template<typename TYPE, size_t SIZE>
-				using ReverseIteratorHandle = BrainMuscles::type::container::array::Iterator<TYPE, SIZE, typename std::array<TYPE, SIZE>::reverse_iterator>;
-				
-				template<typename TYPE, size_t SIZE, typename HANDLE>
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
 				class Iterator :
-					public BrainMuscles::type::iterator::tag::RandomAccess<
-						HANDLE, 
-						BrainMuscles::type::iterator::derived::Info<BrainMuscles::type::container::array::iterator::Definition<TYPE, SIZE, HANDLE>>>
+					public BrainMuscles::type::iterator::tag::RandomAccess<HANDLE_TYPE,
+						BrainMuscles::type::iterator::derived::Info<
+							BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>,
+							BrainMuscles::type::container::array::iterator::Definition<TYPE, SIZE, HANDLE_TYPE>>>
 				{
 				public:
-					typedef HANDLE HandleType;
-					typedef BrainMuscles::type::container::array::iterator::Definition<TYPE, SIZE, HANDLE> DerivedDefinitionType;
-					typedef BrainMuscles::type::iterator::derived::Info<DerivedDefinitionType> DerivedInfoType;
-					typedef BrainMuscles::type::container::array::Iterator<TYPE, SIZE, HandleType> IteratorType;
-					
-					typedef BrainMuscles::type::iterator::Base<HandleType, DerivedInfoType> HandleBaseType;
-					typedef BrainMuscles::type::iterator::tag::RandomAccess<HandleType, DerivedInfoType> BaseType;
-					typedef typename HandleType::difference_type DifferenceType;
-					typedef typename DerivedInfoType::ReferenceType ReferenceType;
-					typedef typename DerivedInfoType::PointerType PointerType;
+					typedef TYPE											Type;
+				protected:
+					typedef HANDLE_TYPE										HandleType;
+					typedef ELEMENT_TYPE									ElementType;
+					typedef BrainMuscles::type::container::array
+						::Iterator<Type, SIZE, HandleType, ElementType>		IteratorType;
+					typedef BrainMuscles::type::container::array
+						::iterator::Definition<Type, SIZE, HandleType>		IteratorDefinitionType;
+					typedef BrainMuscles::type::iterator::derived::Info<
+						IteratorType, IteratorDefinitionType>				IteratorInfoType;
+				protected:
+					typedef BrainMuscles::type
+						::iterator::Base<HandleType, IteratorInfoType>		IteratorBaseType;
+					typedef BrainMuscles::type::iterator
+						::tag::RandomAccess<HandleType, IteratorInfoType>	IteratorTagType;
+				public:
+					typedef typename IteratorInfoType::ReferenceType		ReferenceType;
+					typedef typename IteratorInfoType::PointerType			PointerType;
+					typedef typename IteratorInfoType::ConstReferenceType	ConstReferenceType;
+					typedef typename IteratorInfoType::ConstPointerType		ConstPointerType;
+				public:
+					typedef typename ElementType::DifferenceType			DifferenceType;
+					typedef typename ElementType::SizeType					SizeType;
 				public:
 					Iterator();
 					Iterator(const HandleType& handle);
@@ -81,118 +87,118 @@ namespace BrainMuscles
 				
 				};
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				Iterator<TYPE, SIZE, HANDLE>::Iterator() :
-					HandleBaseType(),
-					BaseType()
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::Iterator() :
+					IteratorTagType(),
+					IteratorBaseType()
 				{}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				Iterator<TYPE, SIZE, HANDLE>::Iterator(const HandleType& handle) :
-					HandleBaseType(handle),
-					BaseType(handle)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::Iterator(const HandleType& handle) :
+					IteratorTagType(handle),
+					IteratorBaseType(handle)
 				{}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				Iterator<TYPE, SIZE, HANDLE>::Iterator(IteratorType* pointer) :
-					HandleBaseType(*pointer),
-					BaseType(pointer)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::Iterator(IteratorType* pointer) :
+					IteratorTagType(*pointer),
+					IteratorBaseType(pointer)
 				{
 
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				Iterator<TYPE, SIZE, HANDLE>::Iterator(const IteratorType& rhs) :
-					HandleBaseType(rhs),
-					BaseType(rhs)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::Iterator(const IteratorType& rhs) :
+					IteratorTagType(rhs),
+					IteratorBaseType(rhs)
 				{
 
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				Iterator<TYPE, SIZE, HANDLE>::~Iterator()
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::~Iterator()
 				{
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename Iterator<TYPE, SIZE, HANDLE>::IteratorType*
-				Iterator<TYPE, SIZE, HANDLE>::ThisDerived()
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				typename Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::IteratorType*
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::ThisDerived()
 				{
 					return this;
 				}
 
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename Iterator<TYPE, SIZE, HANDLE>::IteratorType &
-				Iterator<TYPE, SIZE, HANDLE>::OnRequestAddition(const DifferenceType& n)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				typename Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::IteratorType &
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestAddition(const DifferenceType& n)
 				{
 					GetHandle() += n;
 					return *this;
 				}
 
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename Iterator<TYPE, SIZE, HANDLE>::IteratorType &
-				Iterator<TYPE, SIZE, HANDLE>::OnRequestSubtraction(const DifferenceType& n)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				typename Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::IteratorType &
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestSubtraction(const DifferenceType& n)
 				{
 					GetHandle() -= n;
 					return *this;
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename Iterator<TYPE, SIZE, HANDLE>::DifferenceType 
-				Iterator<TYPE, SIZE, HANDLE>::OnRequestSubtraction(const IteratorType& iterator)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				typename Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::DifferenceType
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestSubtraction(const IteratorType& iterator)
 				{
 					return GetHandle() - iterator.GetHandle();
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				void Iterator<TYPE, SIZE, HANDLE>::OnRequestDecrement(HandleType& handle)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				void Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestDecrement(HandleType& handle)
 				{
 					GetHandle()--;
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				void Iterator<TYPE, SIZE, HANDLE>::OnRequestIncrement(HandleType& handle)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				void Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestIncrement(HandleType& handle)
 				{
 					GetHandle()++;
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				bool Iterator<TYPE, SIZE, HANDLE>::OnRequestEqual(DerivedType& rhs)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				bool Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestEqual(DerivedType& rhs)
 				{
 					return GetHandle() == rhs.GetHandle();
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				bool Iterator<TYPE, SIZE, HANDLE>::OnRequestLess(DerivedType& rhs)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				bool Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestLess(DerivedType& rhs)
 				{
 					return GetHandle() < rhs.GetHandle();
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				bool Iterator<TYPE, SIZE, HANDLE>::OnRequestGreater(DerivedType& rhs)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				bool Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestGreater(DerivedType& rhs)
 				{
 					return GetHandle() > rhs.GetHandle();
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename Iterator<TYPE, SIZE, HANDLE>::ReferenceType
-				Iterator<TYPE, SIZE, HANDLE>::OnRequestReference()
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				typename Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::ReferenceType
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestReference()
 				{
 					return *GetHandle();
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename  Iterator<TYPE, SIZE, HANDLE>::PointerType
-				Iterator<TYPE, SIZE, HANDLE>::OnRequestPointer()
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				typename  Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::PointerType
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestPointer()
 				{
 					return &(*GetHandle());
 				}
 
-				template<typename TYPE, size_t SIZE, typename HANDLE>
-				typename  Iterator<TYPE, SIZE, HANDLE>::ReferenceType
-				Iterator<TYPE, SIZE, HANDLE>::OnRequestAt(const size_t& index)
+				template<typename TYPE, std::size_t SIZE, typename HANDLE_TYPE, typename ELEMENT_TYPE>
+				typename  Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::ReferenceType
+				Iterator<TYPE, SIZE, HANDLE_TYPE, ELEMENT_TYPE>::OnRequestAt(const size_t& index)
 				{
 					return (*GetHandle());
 				}
