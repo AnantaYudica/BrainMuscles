@@ -31,14 +31,14 @@ namespace BrainMuscles
 					typedef std::array<TYPE, SIZE>												HandleContainerType;
 					typedef typename BrainMuscles::type
 						::container::Base<std::array<TYPE, SIZE>>								BaseType;
-					typedef BrainMuscles::type::container::array::Iterator<
-						TYPE, SIZE, typename std::array<TYPE, SIZE>::iterator>					RandomAccessIteratorType;
-					typedef BrainMuscles::type::container::array::Iterator<
-						TYPE, SIZE, typename std::array<TYPE, SIZE>::const_iterator>			RandomAccessConstIteratorType;
-					typedef BrainMuscles::type::container::array::Iterator<
-						TYPE, SIZE, typename std::array<TYPE, SIZE>::reverse_iterator>			RandomAccessReverseIteratorType;
-					typedef BrainMuscles::type::container::array::Iterator<
-						TYPE, SIZE, typename std::array<TYPE, SIZE>::const_reverse_iterator>	RandomAccessConstReverseIteratorType;
+					typedef BrainMuscles::type::container::array::Iterator<TYPE, SIZE, 
+						typename std::array<TYPE, SIZE>::iterator, ElementType>					RandomAccessIteratorType;
+					typedef BrainMuscles::type::container::array::Iterator<TYPE, SIZE, 
+						typename std::array<TYPE, SIZE>::const_iterator, ElementType>			RandomAccessConstIteratorType;
+					typedef BrainMuscles::type::container::array::Iterator<TYPE, SIZE, 
+						typename std::array<TYPE, SIZE>::reverse_iterator, ElementType>			RandomAccessReverseIteratorType;
+					typedef BrainMuscles::type::container::array::Iterator<TYPE, SIZE, 
+						typename std::array<TYPE, SIZE>::const_reverse_iterator, ElementType>	RandomAccessConstReverseIteratorType;
 					typedef void InputIteratorType;
 					typedef void InputConstIteratorType;
 					typedef void InputReverseIteratorType;
