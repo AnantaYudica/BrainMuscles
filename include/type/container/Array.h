@@ -1,24 +1,10 @@
 #ifndef TYPE_CONTAINER_ARRAY_H_
 #define TYPE_CONTAINER_ARRAY_H_
 
-#include "type\Container.h"
+#include <cstddef>
 #include <array>
 
-namespace BrainMuscles
-{
-	namespace type
-	{
-		namespace container
-		{
-			template<typename TYPE, size_t SIZE>
-			using Array = BrainMuscles::type::Container<BrainMuscles::type::container::Element<TYPE, std::array<TYPE, SIZE>>, std::array<TYPE, SIZE>>;
-		}
-	}
-}
-
-
-#include "type\container\Base.h"
-#include "type\container\Element.h"
+#include "type\container\array\Definition.h"
 
 #include "type\container\member\capacity\M_Empty.h"
 #include "type\container\member\capacity\M_MaximumSize.h"
@@ -38,102 +24,107 @@ namespace BrainMuscles
 #include "type\container\member\modifier\M_Fill.h"
 #include "type\container\member\modifier\M_Swap.h"
 
-#include "type\container\member\M_StandartContainer.h"
+#include "type\container\member\M_StandardContainer.h"
 
-#include "type\container\array\Iterator.h"
-
-
+#include "type\container\array\Get.h"
 
 namespace BrainMuscles
 {
 	namespace type
 	{
-		template<typename ELEMENT, size_t SIZE>
-		class Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>> :
-			public virtual BrainMuscles::type::container::Base<typename ELEMENT::ContainerType, Container<ELEMENT, typename ELEMENT::ContainerType>>,
+		namespace container
+		{
+			template<typename TYPE, std::size_t SIZE>
+			using Array = BrainMuscles::type::Container<std::array<TYPE, SIZE>>;
+		}
+	}
+}
+
+namespace BrainMuscles
+{
+	namespace type
+	{
+		template<typename TYPE, std::size_t SIZE>
+		class Container<std::array<TYPE, SIZE>> :
+			public virtual BrainMuscles::type::container::Base<std::array<TYPE, SIZE>>,
 			
 			public BrainMuscles::type::container::member::capacity::M_Empty,
 			public BrainMuscles::type::container::member::capacity::M_MaximumSize<
-				typename ELEMENT::ContainerType::size_type>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::capacity::M_Size<
-				typename ELEMENT::ContainerType::size_type>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::observer::M_Data<
-				typename ELEMENT::ContainerType::value_type>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::element::M_Element<
-				typename ELEMENT::ContainerType::reference,
-				typename ELEMENT::ContainerType::const_reference,
-				typename ELEMENT::ContainerType::size_type>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::element::M_First<
-				typename ELEMENT::ContainerType::reference,
-				typename ELEMENT::ContainerType::const_reference>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::element::M_Last<
-				typename ELEMENT::ContainerType::reference,
-				typename ELEMENT::ContainerType::const_reference>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::iterator::M_ConstIterator<
-				BrainMuscles::type::container::array::ConstIteratorHandle<typename ELEMENT::Type, SIZE>>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::iterator::M_ConstReverseIterator<
-				BrainMuscles::type::container::array::ConstReverseIteratorHandle<typename ELEMENT::Type, SIZE>>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::iterator::M_Iterator<
-				BrainMuscles::type::container::array::IteratorHandle<typename ELEMENT::Type, SIZE>,
-				BrainMuscles::type::container::array::ConstIteratorHandle<typename ELEMENT::Type, SIZE>>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::iterator::M_ReverseIterator<
-				BrainMuscles::type::container::array::ReverseIteratorHandle<typename ELEMENT::Type, SIZE>,
-				BrainMuscles::type::container::array::ConstReverseIteratorHandle<typename ELEMENT::Type, SIZE>>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::modifier::M_Fill<
-				typename ELEMENT::ContainerType::value_type>,
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
 			public BrainMuscles::type::container::member::modifier::M_Swap<
-				Container<ELEMENT, typename ELEMENT::ContainerType>>,
-			public BrainMuscles::type::container::member::M_StandartContainer<typename ELEMENT::ContainerType>
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>,
+			public BrainMuscles::type::container::member::M_StandardContainer<
+				BrainMuscles::type::container::array::Definition<TYPE, SIZE>>
 			
 		{
+		protected:
+			typedef BrainMuscles::type::container
+				::array::Definition<TYPE, SIZE>										DefinitionType;
 		public:
-			typedef std::array<typename ELEMENT::Type, SIZE> StdContainerType;
+			typedef typename DefinitionType::ContainerType							ContainerType;
+			typedef typename DefinitionType::HandleContainerType					HandleContainerType;
+			typedef typename DefinitionType::BaseType								BaseType;
+			typedef typename DefinitionType::RandomAccessIteratorType				IteratorType;
+			typedef typename DefinitionType::RandomAccessConstIteratorType			ConstIteratorType;
+			typedef typename DefinitionType::RandomAccessReverseIteratorType		ReverseIteratorType;
+			typedef typename DefinitionType::RandomAccessConstReverseIteratorType	ConstReverseIteratorType;
 
-			typedef typename StdContainerType::value_type ValueType;
-			typedef typename StdContainerType::size_type SizeType;
-			typedef typename StdContainerType::reference ReferenceType;
-			typedef typename StdContainerType::const_reference ConstReferenceType;
-
-			typedef Container<ELEMENT, StdContainerType> ContainerType;
-			typedef BrainMuscles::type::container::Base<StdContainerType, ContainerType> BaseType;
-
-			
-
-			typedef BrainMuscles::type::container::array::IteratorHandle<typename ELEMENT::Type, SIZE> Iterator;
-			typedef BrainMuscles::type::container::array::ReverseIteratorHandle<typename ELEMENT::Type, SIZE> ReverseIterator;
-			typedef BrainMuscles::type::container::array::ConstIteratorHandle<typename ELEMENT::Type, SIZE> ConstIterator;
-			typedef BrainMuscles::type::container::array::ConstReverseIteratorHandle<typename ELEMENT::Type, SIZE> ConstReverseIterator;
+			typedef typename BrainMuscles::type::container
+				::element::IsType<typename DefinitionType
+				::ElementType, true>::Type											ElementType;
+		public:
+			typedef typename ElementType::Type										Type;
+			typedef typename ElementType::DifferenceType							DifferenceType;
+			typedef typename ElementType::SizeType									SizeType;
+			typedef typename ElementType::PointerType								PointerType;
+			typedef typename ElementType::LeftValueReferenceType					LeftValueReferenceType;
+			typedef typename ElementType::RightValueReferenceType					RightValueReferenceType;
+			typedef typename ElementType::ConstPointerType							ConstPointerType;
+			typedef typename ElementType::ConstLeftValueReferenceType				ConstLeftValueReferenceType;
+			typedef typename ElementType::ConstRightValueReferenceType				ConstRightValueReferenceType;
 		public:
 			Container(ContainerType* ptr);
 			Container(const ContainerType& rhs);
-			Container(std::array<typename ELEMENT::Type, SIZE>* ptr);
-			Container(const std::array<typename ELEMENT::Type, SIZE>& rhs);
+			Container(HandleContainerType* ptr);
+			Container(const HandleContainerType& rhs);
 			template<typename... ARGS>
 			Container(ARGS... args);
+		public:
+			IteratorType Begin();
+			IteratorType End();
+			ConstIteratorType Begin() const;
+			ConstIteratorType End() const;
 
-			Iterator Begin();
+			ReverseIteratorType ReverseBegin();
+			ReverseIteratorType ReverseEnd();
+			ConstReverseIteratorType ReverseBegin() const;
+			ConstReverseIteratorType ReverseEnd() const;
 
-			Iterator End();
+			ConstIteratorType ConstBegin();
+			ConstIteratorType ConstEnd();
 
-			ConstIterator Begin() const;
-
-			ConstIterator End() const;
-
-			ReverseIterator ReverseBegin();
-
-			ReverseIterator ReverseEnd();
-
-			ConstReverseIterator ReverseBegin() const;
-
-			ConstReverseIterator ReverseEnd() const;
-
-			ConstIterator ConstBegin();
-
-			ConstIterator ConstEnd();
-
-			ConstReverseIterator ConstReverseBegin();
-
-			ConstReverseIterator ConstReverseEnd();
+			ConstReverseIteratorType ConstReverseBegin();
+			ConstReverseIteratorType ConstReverseEnd();
 
 			bool Empty();
 
@@ -141,258 +132,250 @@ namespace BrainMuscles
 
 			SizeType Size();
 
-			ReferenceType At(SizeType index);
+			LeftValueReferenceType At(SizeType index);
+			ConstLeftValueReferenceType At(SizeType index) const;
 
-			ConstReferenceType At(SizeType index) const;
+			LeftValueReferenceType Front();
+			ConstLeftValueReferenceType Front() const;
 
-			ReferenceType Front();
+			LeftValueReferenceType Back();
+			ConstLeftValueReferenceType Back() const;
 
-			ConstReferenceType Front() const;
+			PointerType Data();
+			ConstPointerType Data() const;
 
-			ReferenceType Back();
-
-			ConstReferenceType Back() const;
-
-			ValueType* Data();
-
-			const ValueType* Data() const;
-
-			void Fill(const ValueType& value);
+			void Fill(ConstLeftValueReferenceType value);
 
 			void Swap(ContainerType& container);
 
-			StdContainerType& StdContainer();
-
-			const StdContainerType& StdContainer() const;
+			HandleContainerType& StandardContainer();
+			const HandleContainerType& StandardContainer() const;
 
 		};
 
-		template<typename ELEMENT, size_t SIZE>
+		template<typename TYPE, std::size_t SIZE>
 		template<typename... ARGS>
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Container(ARGS... args) :
-			BaseType(std::array<typename ELEMENT::Type, SIZE>{args...})
+		Container<std::array<TYPE, SIZE>>::Container(ARGS... args) :
+			BaseType(std::array<TYPE, SIZE>{args...})
 		{}
 
-		template<typename ELEMENT, size_t SIZE>
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Container(ContainerType* ptr):
+		template<typename TYPE, std::size_t SIZE>
+		Container<std::array<TYPE, SIZE>>::Container(ContainerType* ptr):
 			BaseType(ptr)
 		{
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Container(const ContainerType& rhs):
+		template<typename TYPE, std::size_t SIZE>
+		Container<std::array<TYPE, SIZE>>::Container(const ContainerType& rhs):
 			BaseType(rhs)
 		{
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Container(std::array<typename ELEMENT::Type, SIZE>* ptr) :
+		template<typename TYPE, std::size_t SIZE>
+		Container<std::array<TYPE, SIZE>>::Container(HandleContainerType* ptr) :
 			BaseType(ptr)
 		{
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Container(const std::array<typename ELEMENT::Type, SIZE>& rhs) :
+		template<typename TYPE, std::size_t SIZE>
+		Container<std::array<TYPE, SIZE>>::Container(const HandleContainerType& rhs) :
 			BaseType(rhs)
 		{}
 
 		/////////////////////////////////////////////////////////////////////////
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Iterator 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Begin()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::IteratorType
+		Container<std::array<TYPE, SIZE>>::Begin()
 		{
-			return Iterator(GetContainer().begin());
+			return IteratorType(GetContainer().begin());
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Iterator
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::End()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::IteratorType
+		Container<std::array<TYPE, SIZE>>::End()
 		{
-			return Iterator(GetContainer().end());
+			return IteratorType(GetContainer().end());
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstIterator
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Begin() const
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstIteratorType
+		Container<std::array<TYPE, SIZE>>::Begin() const
 		{
-			return ConstIterator(GetContainer().begin());
+			return ConstIteratorType(GetContainer().begin());
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstIterator
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::End() const
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstIteratorType
+		Container<std::array<TYPE, SIZE>>::End() const
 		{
-			return ConstIterator(GetContainer().end());
-		}
-
-		/////////////////////////////////////////////////////////////////////////
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ReverseIterator 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ReverseBegin()
-		{
-			return ReverseIterator(GetContainer().rbegin());
-		}
-
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ReverseIterator 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ReverseEnd()
-		{
-			return ReverseIterator(GetContainer().rend());
+			return ConstIteratorType(GetContainer().end());
 		}
 
 		/////////////////////////////////////////////////////////////////////////
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstReverseIterator 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ReverseBegin() const
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ReverseIteratorType
+		Container<std::array<TYPE, SIZE>>::ReverseBegin()
 		{
-			return ConstReverseIterator(GetContainer().rbegin());
+			return ReverseIteratorType(GetContainer().rbegin());
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstReverseIterator 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ReverseEnd() const
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ReverseIteratorType
+		Container<std::array<TYPE, SIZE>>::ReverseEnd()
 		{
-			return ConstReverseIterator(GetContainer().rend());
+			return ReverseIteratorType(GetContainer().rend());
 		}
 
-		/////////////////////////////////////////////////////////////////////////
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstIterator 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstBegin()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstReverseIteratorType
+		Container<std::array<TYPE, SIZE>>::ReverseBegin() const
 		{
-			return ConstIterator(GetContainer().cbegin());
+			return ConstReverseIteratorType(GetContainer().rbegin());
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstIterator 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstEnd()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstReverseIteratorType
+		Container<std::array<TYPE, SIZE>>::ReverseEnd() const
 		{
-			return ConstIterator(GetContainer().cend());
-		}
-
-		/////////////////////////////////////////////////////////////////////////
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstReverseIterator 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstReverseBegin()
-		{
-			return ConstReverseIterator(GetContainer().crbegin());
-		}
-
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstReverseIterator 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstReverseEnd()
-		{
-			return ConstReverseIterator(GetContainer().crend());
+			return ConstReverseIteratorType(GetContainer().rend());
 		}
 
 		/////////////////////////////////////////////////////////////////////////
-		template<typename ELEMENT, size_t SIZE>
-		bool Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Empty()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstIteratorType
+		Container<std::array<TYPE, SIZE>>::ConstBegin()
+		{
+			return ConstIteratorType(GetContainer().cbegin());
+		}
+
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstIteratorType
+		Container<std::array<TYPE, SIZE>>::ConstEnd()
+		{
+			return ConstIteratorType(GetContainer().cend());
+		}
+
+		/////////////////////////////////////////////////////////////////////////
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstReverseIteratorType
+		Container<std::array<TYPE, SIZE>>::ConstReverseBegin()
+		{
+			return ConstReverseIteratorType(GetContainer().crbegin());
+		}
+
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstReverseIteratorType
+		Container<std::array<TYPE, SIZE>>::ConstReverseEnd()
+		{
+			return ConstReverseIteratorType(GetContainer().crend());
+		}
+
+		/////////////////////////////////////////////////////////////////////////
+		template<typename TYPE, std::size_t SIZE>
+		bool Container<std::array<TYPE, SIZE>>::Empty()
 		{
 			return GetContainer().empty();
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::SizeType 
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::MaximumSize()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::SizeType
+		Container<std::array<TYPE, SIZE>>::MaximumSize()
 		{
 			return GetContainer().max_size();
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::SizeType
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Size()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::SizeType
+		Container<std::array<TYPE, SIZE>>::Size()
 		{
 			return GetContainer().size();
 		}
 
 		/////////////////////////////////////////////////////////////////////////
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ReferenceType
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::At(SizeType index)
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::LeftValueReferenceType
+		Container<std::array<TYPE, SIZE>>::At(SizeType index)
 		{
 			return GetContainer().at(index);
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstReferenceType
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::At(SizeType index) const
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstLeftValueReferenceType
+		Container<std::array<TYPE, SIZE>>::At(SizeType index) const
 		{
 			return GetContainer().at(index);
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ReferenceType
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Front()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::LeftValueReferenceType
+		Container<std::array<TYPE, SIZE>>::Front()
 		{
 			return GetContainer().front();
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstReferenceType
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Front() const
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstLeftValueReferenceType
+		Container<std::array<TYPE, SIZE>>::Front() const
 		{
 			return GetContainer().front();
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ReferenceType
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Back()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::LeftValueReferenceType
+		Container<std::array<TYPE, SIZE>>::Back()
 		{
 			return GetContainer().back();
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ConstReferenceType
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Back() const
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstLeftValueReferenceType
+		Container<std::array<TYPE, SIZE>>::Back() const
 		{
 			return GetContainer().back();
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ValueType*
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Data()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::PointerType
+		Container<std::array<TYPE, SIZE>>::Data()
 		{
 			return GetContainer().data();
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		const typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::ValueType*
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Data() const
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::ConstPointerType
+		Container<std::array<TYPE, SIZE>>::Data() const
 		{
 			return GetContainer().data();
 		}
 
 		/////////////////////////////////////////////////////////////////////////
-		template<typename ELEMENT, size_t SIZE>
-		void Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Fill(const ValueType& value)
+		template<typename TYPE, std::size_t SIZE>
+		void Container<std::array<TYPE, SIZE>>::Fill(ConstLeftValueReferenceType value)
 		{
 			GetContainer().fill(value);
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		void Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::Swap(ContainerType& container)
+		template<typename TYPE, std::size_t SIZE>
+		void Container<std::array<TYPE, SIZE>>::Swap(ContainerType& container)
 		{
 			GetContainer().swap(container.GetContainer());
 		}
 
 		/////////////////////////////////////////////////////////////////////////
-		template<typename ELEMENT, size_t SIZE>
-		typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::StdContainerType&
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::StdContainer()
+		template<typename TYPE, std::size_t SIZE>
+		typename Container<std::array<TYPE, SIZE>>::HandleContainerType&
+		Container<std::array<TYPE, SIZE>>::StandardContainer()
 		{
 			return GetContainer();
 		}
 
-		template<typename ELEMENT, size_t SIZE>
-		const typename Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::StdContainerType&
-		Container<ELEMENT, std::array<typename ELEMENT::Type, SIZE>>::StdContainer() const
+		template<typename TYPE, std::size_t SIZE>
+		const typename Container<std::array<TYPE, SIZE>>::HandleContainerType&
+		Container<std::array<TYPE, SIZE>>::StandardContainer() const
 		{
 			return GetContainer();
 		}
 	}
 }
-
-#include "type\container\array\Get.h"
 
 #endif //!TYPE_CONTAINER_ARRAY_H_
