@@ -8,7 +8,6 @@
 
 #include "type\container\Element.h"
 
-#include "type\Container.h"
 #include "type\container\Base.h"
 
 #include "type\container\array\Iterator.h"
@@ -25,9 +24,9 @@ namespace BrainMuscles
 				struct Definition :
 					public BrainMuscles::type::container::definition::Base
 				{
-					typedef typename BrainMuscles::type
+					typedef BrainMuscles::type
 						::container::Element<TYPE>												ElementType;
-					typedef typename BrainMuscles::type::Container<std::array<TYPE, SIZE>>		ContainerType;
+					typedef BrainMuscles::type::Container<std::array<TYPE, SIZE>>				ContainerType;
 					typedef std::array<TYPE, SIZE>												HandleContainerType;
 					typedef typename BrainMuscles::type
 						::container::Base<std::array<TYPE, SIZE>>								BaseType;
