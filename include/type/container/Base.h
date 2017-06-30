@@ -15,7 +15,7 @@ namespace BrainMuscles
 			public:
 				typedef HANDLE_CONTAINER_TYPE							ContainerType;
 				typedef BrainMuscles::type::Container<ContainerType>	DerivedType;
-				typedef Base<HANDLE_CONTAINER_TYPE>						BaseType;
+				typedef Base<ContainerType>								BaseType;
 			private:
 				ContainerType * m_container;
 			protected:
