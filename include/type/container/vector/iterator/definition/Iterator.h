@@ -1,8 +1,10 @@
 #ifndef TYPE_CONTAINER_VECTOR_ITERATOR_DEFINITION_ITERATOR_H_
 #define TYPE_CONTAINER_VECTOR_ITERATOR_DEFINITION_ITERATOR_H_
 
-#include "type\iterator\derived\Definition.h"
-#include "type\iterator\Tag.h"
+#include "type\iterator\derived\definition\Base.h"
+
+#include "type\container\element\IsType.h"
+
 
 namespace BrainMuscles
 {
@@ -16,69 +18,19 @@ namespace BrainMuscles
 				{
 					namespace definition
 					{
-						template<BrainMuscles::type::iterator::tag::Type TAG, typename TYPE>
-						struct Iterator;
-					}
-				}
-			}
-		}
-	}
-}
-
-#include "type\container\vector\Iterator.h"
-#include "type\container\vector\iterator\RandomAccess.h"
-#include "type\container\vector\iterator\Input.h"
-
-#include "type\container\vector\iterator\Handle.h"
-
-namespace BrainMuscles
-{
-	namespace type
-	{
-		namespace container
-		{
-			namespace vector
-			{
-				namespace iterator
-				{
-					namespace definition
-					{
-						template<BrainMuscles::type::iterator::tag::Type TAG, typename TYPE>
-						struct Iterator
+						template<typename ELEMENT_TYPE>
+						struct Iterator :
+							public BrainMuscles::type::iterator::derived::definition::Base
 						{
-							typedef void IteratorTagType;
-							typedef void HandleType;
-						};
-
-						template<typename TYPE>
-						struct Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE> :
-							public BrainMuscles::type::iterator::derived::Definition<
-								BrainMuscles::type::container::vector::Iterator<
-									Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE>,
-									BrainMuscles::type::container::vector::iterator::RandomAccess<
-										Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE>>>,
-								TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
-						{
-							typedef BrainMuscles::type::container::vector::iterator::RandomAccess<
-								Iterator<BrainMuscles::type::iterator::tag::random_access, TYPE>>	IteratorTagType;
-							typedef BrainMuscles::type::container::vector::iterator
-								::handle::definition::ByIterator<TYPE>								HandleType;
-
-						};
-
-						template<typename TYPE>
-						struct Iterator<BrainMuscles::type::iterator::tag::input, TYPE> :
-							public BrainMuscles::type::iterator::derived::Definition<
-							BrainMuscles::type::container::vector::Iterator<
-								Iterator<BrainMuscles::type::iterator::tag::input, TYPE>,
-								BrainMuscles::type::container::vector::iterator::Input<
-									Iterator<BrainMuscles::type::iterator::tag::input, TYPE>>>,
-							TYPE, TYPE&, TYPE*, const TYPE&, const TYPE*>
-						{
-							typedef BrainMuscles::type::container::vector::iterator::Input<
-								Iterator<BrainMuscles::type::iterator::tag::input, TYPE>>	IteratorTagType;
-							typedef BrainMuscles::type::container::vector::iterator
-								::handle::definition::ByIterator<TYPE>						HandleType;
+						private:
+							typedef typename BrainMuscles::type::container
+								::element::IsType<ELEMENT_TYPE, true>::Type				ElementType;
+						public:
+							typedef typename ElementType::Type							Type;
+							typedef typename ElementType::LeftValueReferenceType		ReferenceType;
+							typedef typename ElementType::PointerType					PointerType;
+							typedef typename ElementType::ConstLeftValueReferenceType	ConstReferenceType;
+							typedef typename ElementType::ConstPointerType				ConstPointerType;
 						};
 					}
 				}
