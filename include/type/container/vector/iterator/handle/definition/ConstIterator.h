@@ -1,7 +1,9 @@
 #ifndef TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_DEFINITION_CONSTITERATOR_H_
 #define TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_DEFINITION_CONSTITERATOR_H_
 
-#include "type\iterator\handle\Definition.h"
+#include "type\iterator\handle\definition\Base.h"
+
+#include "type\container\element\IsType.h"
 
 namespace BrainMuscles
 {
@@ -17,11 +19,19 @@ namespace BrainMuscles
 					{
 						namespace definition
 						{
-							template <typename TYPE>
+							template <typename ELEMENT_TYPE>
 							struct ConstIterator :
-								public BrainMuscles::type::iterator::handle::Definition<const TYPE>
+								public BrainMuscles::type::iterator::handle::definition::Base
 							{
-								typedef TYPE Type;
+							private:
+								typedef typename BrainMuscles::type::container
+									::element::IsType<ELEMENT_TYPE, true>::Type				ElementType;
+							public:
+								typedef typename ElementType::Type							Type;
+								typedef const typename ElementType::Type					ValueType;
+								typedef typename ElementType::DifferenceType				DifferenceType;
+								typedef typename ElementType::ConstPointerType				PointerType;
+								typedef typename ElementType::ConstLeftValueReferenceType	ReferenceType;
 							protected:
 								ConstIterator() {};
 							};
