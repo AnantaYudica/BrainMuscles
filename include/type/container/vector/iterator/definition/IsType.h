@@ -1,8 +1,6 @@
 #ifndef TYPE_CONTAINER_VECTOR_ITERATOR_DEFINITION_ISTYPE_H_
 #define TYPE_CONTAINER_VECTOR_ITERATOR_DEFINITION_ISTYPE_H_
 
-#include "type\iterator\Tag.h"
-
 namespace BrainMuscles
 {
 	namespace type
@@ -50,18 +48,18 @@ namespace BrainMuscles
 							typedef DEFINITION_TYPE Type;
 						};
 
-						template<BrainMuscles::type::iterator::tag::Type TAG, typename TYPE, bool VALIDATION>
-						struct IsType<BrainMuscles::type::container::vector::iterator::definition::ConstIterator<TAG, TYPE>, VALIDATION>
+						template<typename ELEMENT_TYPE, bool VALIDATION>
+						struct IsType<BrainMuscles::type::container::vector::iterator::definition::ConstIterator<ELEMENT_TYPE>, VALIDATION>
 						{
 							static constexpr bool Value = true;
-							typedef BrainMuscles::type::container::vector::iterator::definition::ConstIterator<TAG, TYPE> Type;
+							typedef BrainMuscles::type::container::vector::iterator::definition::ConstIterator<ELEMENT_TYPE> Type;
 						};
 
-						template<BrainMuscles::type::iterator::tag::Type TAG, typename TYPE, bool VALIDATION>
-						struct IsType<BrainMuscles::type::container::vector::iterator::definition::Iterator<TAG, TYPE>, VALIDATION>
+						template<typename ELEMENT_TYPE, bool VALIDATION>
+						struct IsType<BrainMuscles::type::container::vector::iterator::definition::Iterator<ELEMENT_TYPE>, VALIDATION>
 						{
 							static constexpr bool Value = true;
-							typedef BrainMuscles::type::container::vector::iterator::definition::Iterator<TAG, TYPE> Type;
+							typedef BrainMuscles::type::container::vector::iterator::definition::Iterator<ELEMENT_TYPE> Type;
 						};
 					}
 				}
