@@ -24,14 +24,14 @@ namespace BrainMuscles
 								static constexpr bool Value = false;
 							};
 
-							template<typename TYPE>
-							struct IsType<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<TYPE>>
+							template<typename ELEMENT_TYPE>
+							struct IsType<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<ELEMENT_TYPE>>
 							{
 								static constexpr bool Value = true;
 							};
 
-							template<typename TYPE>
-							struct IsType<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<TYPE>>
+							template<typename ELEMENT_TYPE>
+							struct IsType<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<ELEMENT_TYPE>>
 							{
 								static constexpr bool Value = true;
 							};
