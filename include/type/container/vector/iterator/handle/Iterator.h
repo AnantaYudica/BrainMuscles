@@ -2,6 +2,11 @@
 #define TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_ITERATOR_H_
 
 #include <vector>
+
+#include "type\container\element\IsType.h"
+
+#include "type\container\vector\iterator\handle\definition\Iterator.h"
+
 #include "type\container\vector\iterator\Handle.h"
 
 namespace BrainMuscles
@@ -16,24 +21,30 @@ namespace BrainMuscles
 				{
 					namespace handle
 					{
-						template<typename TYPE>
+						template<typename ELEMENT_TYPE>
 						class Iterator :
-							public BrainMuscles::type::container::vector::iterator::handle::definition::ByIterator<TYPE>,
-							public std::vector<TYPE>::iterator
+							public BrainMuscles::type::container::vector::iterator::Handle<
+							BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<ELEMENT_TYPE>>,
+							public std::vector<typename BrainMuscles::type::container::element::IsType<ELEMENT_TYPE, true>::Type::Type>::iterator
 						{
+						private:
+							typedef typename BrainMuscles::type::container
+								::element::IsType<ELEMENT_TYPE, true>::Type				ElementType;
+							typedef BrainMuscles::type::container::vector::iterator
+								::handle::definition::Iterator<ElementType>				DefinitionType;
 						public:
-							typedef std::vector<TYPE>									StandardVectorType;
+							typedef std::vector<typename ElementType::Type>				StandardVectorType;
 							typedef typename StandardVectorType::iterator				HandleType;
+							typedef BrainMuscles::type::container::vector::iterator
+								::Handle<DefinitionType>								BaseType;
 							typedef BrainMuscles::type::container::vector
-								::iterator::handle::definition::ByIterator<TYPE>		BaseType;
-							typedef BrainMuscles::type::container::vector
-								::iterator::handle::Iterator<TYPE>						IteratorType;
+								::iterator::handle::Iterator<ElementType>				IteratorType;
 						public:
-							typedef typename BaseType::Type								Type;
-							typedef typename BaseType::ValueType						ValueType;
-							typedef typename BaseType::DifferenceType					DifferenceType;
-							typedef typename BaseType::Pointer							Pointer;
-							typedef typename BaseType::Reference						Reference;
+							typedef typename DefinitionType::Type						Type;
+							typedef typename DefinitionType::ValueType					ValueType;
+							typedef typename DefinitionType::DifferenceType				DifferenceType;
+							typedef typename DefinitionType::Pointer					PointerType;
+							typedef typename DefinitionType::Reference					ReferenceType;
 						public:
 							typedef typename BaseType::Cloneable						Cloneable;
 						public:
@@ -64,145 +75,149 @@ namespace BrainMuscles
 							ValueType& operator*();
 						};
 
-						template<typename TYPE>
-						Iterator<TYPE>::Iterator()
+						template<typename ELEMENT_TYPE>
+						Iterator<ELEMENT_TYPE>::Iterator()
 						{}
 
-						template<typename TYPE>
-						Iterator<TYPE>::Iterator(const HandleType& handle) :
+						template<typename ELEMENT_TYPE>
+						Iterator<ELEMENT_TYPE>::Iterator(const HandleType& handle) :
 							HandleType(handle)
 						{}
 
-						template<typename TYPE>
-						Iterator<TYPE>::Iterator(const IteratorType& handle) :
+						template<typename ELEMENT_TYPE>
+						Iterator<ELEMENT_TYPE>::Iterator(const IteratorType& handle) :
 							HandleType(handle)
 						{}
 
-						template<typename TYPE>
-						Iterator<TYPE>::~Iterator()
+						template<typename ELEMENT_TYPE>
+						Iterator<ELEMENT_TYPE>::~Iterator()
 						{}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::ValueType& Iterator<TYPE>::OnRequestReference()
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::ValueType& 
+						Iterator<ELEMENT_TYPE>::OnRequestReference()
 						{
 							return HandleType::operator*();
 						}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::Cloneable * Iterator<TYPE>::Clone()
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::Cloneable * 
+						Iterator<ELEMENT_TYPE>::Clone()
 						{
 							return new IteratorType(*this);
 						}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::Cloneable * Iterator<TYPE>::Clone() const
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::Cloneable * 
+						Iterator<ELEMENT_TYPE>::Clone() const
 						{
 							return new IteratorType(*this);
 						}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::Cloneable& Iterator<TYPE>::operator=(Cloneable& rhs)
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::Cloneable& 
+						Iterator<ELEMENT_TYPE>::operator=(Cloneable& rhs)
 						{
-							HandleType::operator=(dynamic_cast<Iterator<TYPE>&>(rhs));
+							HandleType::operator=(dynamic_cast<Iterator<ELEMENT_TYPE>&>(rhs));
 							return *this;
 						}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::Cloneable&
-							Iterator<TYPE>::operator-=(const DifferenceType& rhs)
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::Cloneable&
+						Iterator<ELEMENT_TYPE>::operator-=(const DifferenceType& rhs)
 						{
 							HandleType::operator-=(rhs);
 							return *this;
 						}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::Cloneable&
-							Iterator<TYPE>::operator+=(const DifferenceType& rhs)
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::Cloneable&
+						Iterator<ELEMENT_TYPE>::operator+=(const DifferenceType& rhs)
 						{
 							HandleType::operator+=(rhs);
 							return *this;
 						}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::DifferenceType
-							Iterator<TYPE>::operator-(const Cloneable& lhs)
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::DifferenceType
+						Iterator<ELEMENT_TYPE>::operator-(const Cloneable& lhs)
 						{
-							return HandleType::operator-(dynamic_cast<const Iterator<TYPE>&>(lhs));
+							return HandleType::operator-(dynamic_cast<const Iterator<ELEMENT_TYPE>&>(lhs));
 						}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::Cloneable&
-							Iterator<TYPE>::operator++()
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::Cloneable&
+						Iterator<ELEMENT_TYPE>::operator++()
 						{
 							HandleType::operator++();
 							return *this;
 						}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::Cloneable&
-							Iterator<TYPE>::operator--()
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::Cloneable&
+						Iterator<ELEMENT_TYPE>::operator--()
 						{
 							HandleType::operator--();
 							return *this;
 						}
 
-						template<typename TYPE>
-						Iterator<TYPE>
-							Iterator<TYPE>::operator++(int)
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::IteratorType
+						Iterator<ELEMENT_TYPE>::operator++(int)
 						{
-							Iterator<TYPE> copy(*this);
+							Iterator<ELEMENT_TYPE> copy(*this);
 							HandleType::operator++();
 							return copy;
 						}
 
-						template<typename TYPE>
-						Iterator<TYPE>
-							Iterator<TYPE>::operator--(int)
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::IteratorType
+						Iterator<ELEMENT_TYPE>::operator--(int)
 						{
-							Iterator<TYPE> copy(*this);
+							Iterator<ELEMENT_TYPE> copy(*this);
 							HandleType::operator--();
 							return copy;
 						}
 
-						template<typename TYPE>
-						bool Iterator<TYPE>::operator==(Cloneable& lhs)
+						template<typename ELEMENT_TYPE>
+						bool Iterator<ELEMENT_TYPE>::operator==(Cloneable& lhs)
 						{
-							return HandleType::operator==(dynamic_cast<Iterator<TYPE>&>(lhs));
+							return HandleType::operator==(dynamic_cast<Iterator<ELEMENT_TYPE>&>(lhs));
 						}
 
-						template<typename TYPE>
-						bool Iterator<TYPE>::operator!=(Cloneable& lhs)
+						template<typename ELEMENT_TYPE>
+						bool Iterator<ELEMENT_TYPE>::operator!=(Cloneable& lhs)
 						{
-							return HandleType::operator!=(dynamic_cast<Iterator<TYPE>&>(lhs));
+							return HandleType::operator!=(dynamic_cast<Iterator<ELEMENT_TYPE>&>(lhs));
 						}
 
-						template<typename TYPE>
-						bool Iterator<TYPE>::operator<(Cloneable& lhs)
+						template<typename ELEMENT_TYPE>
+						bool Iterator<ELEMENT_TYPE>::operator<(Cloneable& lhs)
 						{
-							return HandleType::operator<(dynamic_cast<Iterator<TYPE>&>(lhs));
+							return HandleType::operator<(dynamic_cast<Iterator<ELEMENT_TYPE>&>(lhs));
 						}
 
-						template<typename TYPE>
-						bool Iterator<TYPE>::operator<=(Cloneable& lhs)
+						template<typename ELEMENT_TYPE>
+						bool Iterator<ELEMENT_TYPE>::operator<=(Cloneable& lhs)
 						{
-							return HandleType::operator<=(dynamic_cast<Iterator<TYPE>&>(lhs));
+							return HandleType::operator<=(dynamic_cast<Iterator<ELEMENT_TYPE>&>(lhs));
 						}
 
-						template<typename TYPE>
-						bool Iterator<TYPE>::operator>(Cloneable& lhs)
+						template<typename ELEMENT_TYPE>
+						bool Iterator<ELEMENT_TYPE>::operator>(Cloneable& lhs)
 						{
-							return HandleType::operator>(dynamic_cast<Iterator<TYPE>&>(lhs));
+							return HandleType::operator>(dynamic_cast<Iterator<ELEMENT_TYPE>&>(lhs));
 						}
 
-						template<typename TYPE>
-						bool Iterator<TYPE>::operator>=(Cloneable& lhs)
+						template<typename ELEMENT_TYPE>
+						bool Iterator<ELEMENT_TYPE>::operator>=(Cloneable& lhs)
 						{
-							return HandleType::operator>=(dynamic_cast<Iterator<TYPE>&>(lhs));
+							return HandleType::operator>=(dynamic_cast<Iterator<ELEMENT_TYPE>&>(lhs));
 						}
 
-						template<typename TYPE>
-						typename Iterator<TYPE>::ValueType&
-							Iterator<TYPE>::operator*()
+						template<typename ELEMENT_TYPE>
+						typename Iterator<ELEMENT_TYPE>::ValueType&
+						Iterator<ELEMENT_TYPE>::operator*()
 						{
 							return HandleType::operator*();
 						}
