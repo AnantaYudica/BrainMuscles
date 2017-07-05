@@ -53,7 +53,7 @@ namespace BrainMuscles
 							Iterator(const IteratorType& rhs);
 							~Iterator();
 						protected:
-							ValueType& OnRequestReference();
+							ReferenceType OnRequestReference();
 						public:
 							Cloneable* Clone();
 							Cloneable* Clone() const;
@@ -72,7 +72,7 @@ namespace BrainMuscles
 							bool operator<=(Cloneable& lhs);
 							bool operator>(Cloneable& lhs);
 							bool operator>=(Cloneable& lhs);
-							ValueType& operator*();
+							ReferenceType operator*();
 						};
 
 						template<typename ELEMENT_TYPE>
@@ -94,7 +94,7 @@ namespace BrainMuscles
 						{}
 
 						template<typename ELEMENT_TYPE>
-						typename Iterator<ELEMENT_TYPE>::ValueType& 
+						typename Iterator<ELEMENT_TYPE>::ReferenceType
 						Iterator<ELEMENT_TYPE>::OnRequestReference()
 						{
 							return HandleType::operator*();
@@ -216,7 +216,7 @@ namespace BrainMuscles
 						}
 
 						template<typename ELEMENT_TYPE>
-						typename Iterator<ELEMENT_TYPE>::ValueType&
+						typename Iterator<ELEMENT_TYPE>::ReferenceType
 						Iterator<ELEMENT_TYPE>::operator*()
 						{
 							return HandleType::operator*();
