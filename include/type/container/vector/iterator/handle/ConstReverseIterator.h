@@ -53,7 +53,7 @@ namespace BrainMuscles
 							ConstReverseIterator(const ConstReverseIteratorType& rhs);
 							~ConstReverseIterator();
 						protected:
-							ValueType& OnRequestConstReference();
+							ReferenceType OnRequestConstReference();
 						public:
 							Cloneable* Clone();
 							Cloneable* Clone() const;
@@ -72,7 +72,7 @@ namespace BrainMuscles
 							bool operator<=(Cloneable& lhs);
 							bool operator>(Cloneable& lhs);
 							bool operator>=(Cloneable& lhs);
-							ValueType& operator*();
+							ReferenceType operator*();
 						};
 
 						template<typename ELEMENT_TYPE>
@@ -94,7 +94,7 @@ namespace BrainMuscles
 						{}
 
 						template<typename ELEMENT_TYPE>
-						typename ConstReverseIterator<ELEMENT_TYPE>::ValueType& 
+						typename ConstReverseIterator<ELEMENT_TYPE>::ReferenceType
 						ConstReverseIterator<ELEMENT_TYPE>::OnRequestConstReference()
 						{
 							return HandleType::operator*();
@@ -216,7 +216,7 @@ namespace BrainMuscles
 						}
 
 						template<typename ELEMENT_TYPE>
-						typename ConstReverseIterator<ELEMENT_TYPE>::ValueType&
+						typename ConstReverseIterator<ELEMENT_TYPE>::ReferenceType
 						ConstReverseIterator<ELEMENT_TYPE>::operator*()
 						{
 							return HandleType::operator*();
