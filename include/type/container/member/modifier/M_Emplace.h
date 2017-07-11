@@ -46,6 +46,7 @@ namespace BrainMuscles
 							::element::IsType<typename DefinitionType
 							::ElementType, true>::Type									ElementType;
 						typedef typename ElementType::Type								Type;
+						typedef typename ElementType::LeftValueReferenceType			LeftValueReferenceType;
 					public:
 						typedef typename DefinitionType::RandomAccessConstIteratorType	RandomAccessConstIteratorType;
 						typedef typename DefinitionType::RandomAccessIteratorType		RandomAccessIteratorType;
@@ -54,7 +55,7 @@ namespace BrainMuscles
 					public:
 						virtual ~M_Emplace();
 					protected:
-						virtual RandomAccessIteratorType DerivedEmplace(RandomAccessConstIteratorType constIterator, Type& constructor) = 0;
+						virtual RandomAccessIteratorType DerivedEmplace(RandomAccessConstIteratorType constIterator, LeftValueReferenceType constructor) = 0;
 					public:
 						template<typename... ARGS>
 						RandomAccessIteratorType Emplace(RandomAccessConstIteratorType constIterator, ARGS... args);
