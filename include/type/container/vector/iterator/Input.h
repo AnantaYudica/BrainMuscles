@@ -52,7 +52,7 @@ namespace BrainMuscles
 						typedef typename HandleType::ValueType								ValueType;
 						typedef typename HandleType::DifferenceType							DifferenceType;
 						typedef typename HandleType::ReferenceType							ReferenceType;
-						typedef typename HandleType::PointeTyper							PointerType;
+						typedef typename HandleType::PointerType							PointerType;
 					protected:
 						Input();
 						Input(const HandleType& handle);
