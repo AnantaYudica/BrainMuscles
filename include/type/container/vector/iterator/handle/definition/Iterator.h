@@ -19,7 +19,7 @@ namespace BrainMuscles
 					{
 						namespace definition
 						{
-							template <typename TYPE>
+							template <typename ELEMENT_TYPE>
 							struct Iterator :
 								public BrainMuscles::type::iterator::handle::definition::Base
 							{
