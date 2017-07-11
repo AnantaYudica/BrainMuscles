@@ -76,8 +76,9 @@ namespace BrainMuscles
 					private:
 						typedef typename BrainMuscles::type::container
 							::element::IsType<ELEMENT_TYPE, true>::Type			ElementType;
-						typedef BrainMuscles::type::container::vector::iterator
-							::handle::definition::ConstIterator<ELEMENT_TYPE>	HandleDefinitionConstIteratorType;
+						typedef Handle<BrainMuscles::type::container::vector
+							::iterator::handle::definition
+							::ConstIterator<ELEMENT_TYPE>>						HandleDefinitionConstIteratorType;
 					public:
 						typedef BrainMuscles::type::container::vector::iterator
 							::handle::definition::Iterator<ElementType>			HandleDefinitionType;
@@ -142,7 +143,7 @@ namespace BrainMuscles
 					{}
 
 					template<typename ELEMENT_TYPE>
-					const typename Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<ELEMENT_TYPE>>::ConstReferenceType
+					typename Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<ELEMENT_TYPE>>::ConstReferenceType
 						Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<ELEMENT_TYPE>>::OnRequestConstReference()
 					{
 						return OnRequestReference();
