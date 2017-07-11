@@ -37,7 +37,7 @@ namespace BrainMuscles
 					};
 
 					template<typename ELEMENT_TYPE>
-					struct Definition<ELEMENT_TYPE, BrainMuscles::type::container::vector::iterator::handle::ConstIterator<ELEMENT_TYPE>> :
+					struct Definition<ELEMENT_TYPE, BrainMuscles::type::container::vector::iterator::Handle<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<ELEMENT_TYPE>>> :
 						public BrainMuscles::type::container::vector::iterator::definition::ConstIterator<ELEMENT_TYPE>
 					{
 					protected:
@@ -52,37 +52,7 @@ namespace BrainMuscles
 					};
 
 					template<typename ELEMENT_TYPE>
-					struct Definition<ELEMENT_TYPE, BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<ELEMENT_TYPE>> :
-						public BrainMuscles::type::container::vector::iterator::definition::ConstIterator<ELEMENT_TYPE>
-					{
-					protected:
-						typedef BrainMuscles::type::container::vector::iterator
-							::definition::ConstIterator<ELEMENT_TYPE>				IteratorDefinitionType;
-					public:
-						typedef typename IteratorDefinitionType::Type				Type;
-						typedef typename IteratorDefinitionType::ReferenceType		ReferenceType;
-						typedef typename IteratorDefinitionType::PointerType		PointerType;
-						typedef typename IteratorDefinitionType::ConstReferenceType	ConstReferenceType;
-						typedef typename IteratorDefinitionType::ConstPointerType	ConstPointerType;
-					};
-
-					template<typename ELEMENT_TYPE>
-					struct Definition<ELEMENT_TYPE, BrainMuscles::type::container::vector::iterator::handle::Iterator<ELEMENT_TYPE>> :
-						public BrainMuscles::type::container::vector::iterator::definition::Iterator<ELEMENT_TYPE>
-					{
-					protected:
-						typedef BrainMuscles::type::container::vector::iterator
-							::definition::Iterator<ELEMENT_TYPE>					IteratorDefinitionType;
-					public:
-						typedef typename IteratorDefinitionType::Type				Type;
-						typedef typename IteratorDefinitionType::ReferenceType		ReferenceType;
-						typedef typename IteratorDefinitionType::PointerType		PointerType;
-						typedef typename IteratorDefinitionType::ConstReferenceType	ConstReferenceType;
-						typedef typename IteratorDefinitionType::ConstPointerType	ConstPointerType;
-					};
-
-					template<typename ELEMENT_TYPE>
-					struct Definition<ELEMENT_TYPE, BrainMuscles::type::container::vector::iterator::handle::ReverseIterator<ELEMENT_TYPE>> :
+					struct Definition<ELEMENT_TYPE, BrainMuscles::type::container::vector::iterator::Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<ELEMENT_TYPE>>> :
 						public BrainMuscles::type::container::vector::iterator::definition::Iterator<ELEMENT_TYPE>
 					{
 					protected:
