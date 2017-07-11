@@ -43,8 +43,8 @@ namespace BrainMuscles
 							typedef typename DefinitionType::Type						Type;
 							typedef typename DefinitionType::ValueType					ValueType;
 							typedef typename DefinitionType::DifferenceType				DifferenceType;
-							typedef typename DefinitionType::Pointer					PointerType;
-							typedef typename DefinitionType::Reference					ReferenceType;
+							typedef typename DefinitionType::PointerType				PointerType;
+							typedef typename DefinitionType::ReferenceType				ReferenceType;
 						public:
 							typedef typename BaseType::Cloneable						Cloneable;
 						public:
