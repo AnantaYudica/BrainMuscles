@@ -104,7 +104,7 @@ namespace BrainMuscles
 						typename ConstIterator<ELEMENT_TYPE>::Cloneable *
 							ConstIterator<ELEMENT_TYPE>::Clone() const
 						{
-							return new ConstIterator<TYPE>(*this);
+							return new ConstIterator<ELEMENT_TYPE>(*this);
 						}
 
 						template<typename ELEMENT_TYPE>
@@ -182,37 +182,37 @@ namespace BrainMuscles
 						template<typename ELEMENT_TYPE>
 						bool ConstIterator<ELEMENT_TYPE>::operator==(Cloneable& lhs)
 						{
-							return HandleType::operator==(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+							return HandleType::operator==(dynamic_cast<ConstIterator<ELEMENT_TYPE>&>(lhs));
 						}
 
 						template<typename ELEMENT_TYPE>
 						bool ConstIterator<ELEMENT_TYPE>::operator!=(Cloneable& lhs)
 						{
-							return HandleType::operator!=(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+							return HandleType::operator!=(dynamic_cast<ConstIterator<ELEMENT_TYPE>&>(lhs));
 						}
 
 						template<typename ELEMENT_TYPE>
 						bool ConstIterator<ELEMENT_TYPE>::operator<(Cloneable& lhs)
 						{
-							return HandleType::operator<(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+							return HandleType::operator<(dynamic_cast<ConstIterator<ELEMENT_TYPE>&>(lhs));
 						}
 
 						template<typename ELEMENT_TYPE>
 						bool ConstIterator<ELEMENT_TYPE>::operator<=(Cloneable& lhs)
 						{
-							return HandleType::operator<=(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+							return HandleType::operator<=(dynamic_cast<ConstIterator<ELEMENT_TYPE>&>(lhs));
 						}
 
 						template<typename ELEMENT_TYPE>
 						bool ConstIterator<ELEMENT_TYPE>::operator>(Cloneable& lhs)
 						{
-							return HandleType::operator>(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+							return HandleType::operator>(dynamic_cast<ConstIterator<ELEMENT_TYPE>&>(lhs));
 						}
 
 						template<typename ELEMENT_TYPE>
 						bool ConstIterator<ELEMENT_TYPE>::operator>=(Cloneable& lhs)
 						{
-							return HandleType::operator>=(dynamic_cast<ConstIterator<TYPE>&>(lhs));
+							return HandleType::operator>=(dynamic_cast<ConstIterator<ELEMENT_TYPE>&>(lhs));
 						}
 
 						template<typename ELEMENT_TYPE>
