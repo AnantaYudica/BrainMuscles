@@ -111,7 +111,7 @@ namespace BrainMuscles
 						typename ConstReverseIterator<ELEMENT_TYPE>::Cloneable * 
 						ConstReverseIterator<ELEMENT_TYPE>::Clone() const
 						{
-							return new ConstReverseIterator<TYPE>(*this);
+							return new ConstReverseIterator<ELEMENT_TYPE>(*this);
 						}
 
 						template<typename ELEMENT_TYPE>
