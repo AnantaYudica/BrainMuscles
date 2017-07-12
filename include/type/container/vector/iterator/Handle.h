@@ -25,6 +25,12 @@ namespace BrainMuscles
 					};
 
 					template<typename ELEMENT_TYPE>
+					using HandleDefinitionConstIterator = Handle<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<ELEMENT_TYPE>>;
+
+					template<typename ELEMENT_TYPE>
+					using HandleDefinitionIterator = Handle<BrainMuscles::type::container::vector::iterator::handle::definition::Iterator<ELEMENT_TYPE>>;
+
+					template<typename ELEMENT_TYPE>
 					class Handle<BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<ELEMENT_TYPE>> :
 						public BrainMuscles::type::Cloneable,
 						public BrainMuscles::type::container::vector::iterator::handle::definition::ConstIterator<ELEMENT_TYPE>
