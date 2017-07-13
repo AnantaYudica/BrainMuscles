@@ -1,32 +1,10 @@
 #ifndef TYPE_CONTAINER_VECTOR_H_
 #define TYPE_CONTAINER_VECTOR_H_
 
-#include "type\Container.h"
-#include "type\container\Element.h"
+#include <cstddef>
 #include <vector>
 
-namespace BrainMuscles
-{
-	namespace type
-	{
-		namespace container
-		{
-			template<typename TYPE>
-			using Vector = BrainMuscles::type::Container<BrainMuscles::type::container::Element<TYPE, std::vector<TYPE>>, std::vector<TYPE>>;
-		}
-	}
-}
-
-#include "type\container\Base.h"
-#include "type\container\vector\iterator\Handle.h"
-#include "type\container\vector\iterator\RandomAccess.h"
-#include "type\container\vector\iterator\Input.h"
-#include "type\container\vector\Iterator.h"
-
-#include "type\container\vector\iterator\handle\ConstIterator.h"
-#include "type\container\vector\iterator\handle\ConstReverseIterator.h"
-#include "type\container\vector\iterator\handle\Iterator.h"
-#include "type\container\vector\iterator\handle\ReverseIterator.h"
+#include "type\container\vector\Definition.h"
 
 #include "type\container\member\capacity\M_Size.h"
 #include "type\container\member\capacity\M_MaximumSize.h"
@@ -58,130 +36,96 @@ namespace BrainMuscles
 #include "type\container\member\observer\M_GetAllocator.h"
 #include "type\container\member\observer\M_Data.h"
 
-#include "type\container\member\M_StandartContainer.h"
+#include "type\container\member\M_StandardContainer.h"
 
 namespace BrainMuscles
 {
 	namespace type
 	{
-		template<typename ELEMENT>
-		class Container<ELEMENT, std::vector<typename ELEMENT::Type>> :
-			public virtual BrainMuscles::type::container::Base<
-				typename ELEMENT::ContainerType, 
-				BrainMuscles::type::Container<ELEMENT, std::vector<typename ELEMENT::Type>>>,
+		namespace container
+		{
+			template<typename TYPE>
+			using Vector = BrainMuscles::type::Container<std::vector<TYPE>>;
+		}
+	}
+}
 
-			public BrainMuscles::type::container::member::capacity::M_Size<typename ELEMENT::ContainerType::size_type>,
-			public BrainMuscles::type::container::member::capacity::M_MaximumSize<typename ELEMENT::ContainerType::size_type>,
+namespace BrainMuscles
+{
+	namespace type
+	{
+		template<typename TYPE>
+		class Container<std::vector<TYPE>> :
+			public virtual BrainMuscles::type::container::Base<std::vector<TYPE>>,
+
+			public BrainMuscles::type::container::member::capacity::M_Size<
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
+			public BrainMuscles::type::container::member::capacity::M_MaximumSize<
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 			public BrainMuscles::type::container::member::capacity::M_Empty,
 			public BrainMuscles::type::container::member::capacity::M_Resize<
-				typename ELEMENT::ContainerType::size_type,
-				typename ELEMENT::ContainerType::value_type>,
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 			public BrainMuscles::type::container::member::capacity::M_ShrinkToFit,
-			public BrainMuscles::type::container::member::capacity::M_Capacity<typename ELEMENT::ContainerType::size_type>,
-			public BrainMuscles::type::container::member::capacity::M_Reserve<typename ELEMENT::ContainerType::size_type>,
+			public BrainMuscles::type::container::member::capacity::M_Capacity<
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
+			public BrainMuscles::type::container::member::capacity::M_Reserve<
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 
 			public BrainMuscles::type::container::member::element::M_Element<
-				typename ELEMENT::ContainerType::reference,
-				typename ELEMENT::ContainerType::const_reference,
-				typename ELEMENT::ContainerType::size_type>,
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 			public BrainMuscles::type::container::member::element::M_First<
-				typename ELEMENT::ContainerType::reference,
-				typename ELEMENT::ContainerType::const_reference>,
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 			public BrainMuscles::type::container::member::element::M_Last<
-				typename ELEMENT::ContainerType::reference,
-				typename ELEMENT::ContainerType::const_reference>,
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 
 			public BrainMuscles::type::container::member::iterator::M_ConstIterator<
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::RandomAccess<
-						const typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>>,
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 			public BrainMuscles::type::container::member::iterator::M_ConstReverseIterator<
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::RandomAccess<
-						const typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>>,
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 			public BrainMuscles::type::container::member::iterator::M_Iterator<
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::RandomAccess<
-						typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>>,
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::RandomAccess<
-						const typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>>,
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 			public BrainMuscles::type::container::member::iterator::M_ReverseIterator<
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::RandomAccess<
-						typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>>,
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::RandomAccess<
-						const typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>>,
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 
 			public BrainMuscles::type::container::member::modifier::M_Assign<
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::Input<
-						typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>>,
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::Input<
-						const typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>,
-				typename ELEMENT::ContainerType::value_type,
-				typename ELEMENT::ContainerType::size_type>,
+				BrainMuscles::type::container::vector::Definition<TYPE>>,
 			public BrainMuscles::type::container::member::modifier::M_Emplace<
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::RandomAccess<
-						typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>>,
-				BrainMuscles::type::container::vector::Iterator<
-					BrainMuscles::type::container::vector::iterator::RandomAccess<
-						const typename ELEMENT::Type,
-						BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>>,
-				typename ELEMENT::ContainerType::value_type>
+				BrainMuscles::type::container::vector::Definition<TYPE>>
 			
 				
 		{
+		protected:
+			typedef BrainMuscles::type::container::vector::Definition<TYPE>			DefinitionType;
 		public:
-			typedef std::vector<typename ELEMENT::Type> StdContainerType;
-			typedef typename StdContainerType::value_type ValueType;
-			typedef typename StdContainerType::size_type SizeType;
-			typedef typename StdContainerType::reference ReferenceType;
-			typedef typename StdContainerType::const_reference ConstReferenceType;
-			typedef Container<ELEMENT, StdContainerType> ContainerType;
-			typedef BrainMuscles::type::container::Base<StdContainerType, ContainerType> BaseType;
-			typedef BrainMuscles::type::container::vector::Iterator<
-				BrainMuscles::type::container::vector::iterator::RandomAccess<
-					const typename ELEMENT::Type,
-					BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>> ConstIterator;
-			typedef BrainMuscles::type::container::vector::Iterator<
-				BrainMuscles::type::container::vector::iterator::RandomAccess<
-					const typename ELEMENT::Type,
-					BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>> ConstReverseIterator;
-			typedef BrainMuscles::type::container::vector::Iterator<
-				BrainMuscles::type::container::vector::iterator::RandomAccess<
-					typename ELEMENT::Type,
-					BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>> Iterator;
-			typedef BrainMuscles::type::container::vector::Iterator<
-				BrainMuscles::type::container::vector::iterator::RandomAccess<
-					typename ELEMENT::Type,
-					BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>> ReverseIterator;
-		public:
-			typedef BrainMuscles::type::container::vector::Iterator<
-				BrainMuscles::type::container::vector::iterator::Input<
-					typename ELEMENT::Type,
-					BrainMuscles::type::container::vector::iterator::Handle<typename ELEMENT::Type>>> InputIteratorType;
-			typedef BrainMuscles::type::container::vector::Iterator<
-				BrainMuscles::type::container::vector::iterator::Input<
-					const typename ELEMENT::Type,
-					BrainMuscles::type::container::vector::iterator::Handle<const typename ELEMENT::Type>>> InputIteratorConstType;
+			typedef typename DefinitionType::ContainerType							ContainerType;
+			typedef typename DefinitionType::HandleContainerType					HandleContainerType;
+			typedef typename DefinitionType::BaseType								BaseType;
+			typedef typename DefinitionType::RandomAccessIteratorType				IteratorType;
+			typedef typename DefinitionType::RandomAccessConstIteratorType			ConstIteratorType;
+			typedef typename DefinitionType::RandomAccessReverseIteratorType		ReverseIteratorType;
+			typedef typename DefinitionType::RandomAccessConstReverseIteratorType	ConstReverseIteratorType;
+			typedef typename DefinitionType::InputIteratorType						InputIteratorType;
+			typedef typename DefinitionType::InputConstIteratorType					InputConstIteratorType;
+			typedef typename DefinitionType::InputReverseIteratorType				InputReverseIteratorType;
+			typedef typename DefinitionType::InputConstReverseIteratorType			InputConstReverseIteratorType;
+
+			typedef typename BrainMuscles::type::container
+				::element::IsType<typename DefinitionType
+				::ElementType, true>::Type											ElementType;
+			typedef typename ElementType::Type										Type;
+			typedef typename ElementType::DifferenceType							DifferenceType;
+			typedef typename ElementType::SizeType									SizeType;
+			typedef typename ElementType::PointerType								PointerType;
+			typedef typename ElementType::LeftValueReferenceType					LeftValueReferenceType;
+			typedef typename ElementType::RightValueReferenceType					RightValueReferenceType;
+			typedef typename ElementType::ConstPointerType							ConstPointerType;
+			typedef typename ElementType::ConstLeftValueReferenceType				ConstLeftValueReferenceType;
+			typedef typename ElementType::ConstRightValueReferenceType				ConstRightValueReferenceType;
 		public:
 			Container(ContainerType* ptr);
 			Container(const ContainerType& rhs);
-			Container(std::vector<typename ELEMENT::Type>* ptr);
-			Container(const std::vector<typename ELEMENT::Type>& rhs);
+			Container(std::vector<TYPE>* ptr);
+			Container(const std::vector<TYPE>& rhs);
 			template<typename... ARGS>
 			Container(ARGS... args);
 		public:
@@ -189,279 +133,272 @@ namespace BrainMuscles
 			SizeType MaximumSize();
 			bool Empty();
 			void Resize(SizeType n) ;
-			void Resize(SizeType n, const ValueType& val);
+			void Resize(SizeType n, ConstLeftValueReferenceType val);
 			void ShrinkToFit();
 			SizeType Capacity() const;
 			void Reserve(SizeType n);
-			ReferenceType At(SizeType index);
-			ConstReferenceType At(SizeType index) const;
-			ReferenceType Front();
-			ConstReferenceType Front() const;
-			ReferenceType Back();
-			ConstReferenceType Back() const;
+			LeftValueReferenceType At(SizeType index);
+			ConstLeftValueReferenceType At(SizeType index) const;
+			LeftValueReferenceType Front();
+			ConstLeftValueReferenceType Front() const;
+			LeftValueReferenceType Back();
+			ConstLeftValueReferenceType Back() const;
 		public:
-			ConstIterator ConstBegin();
-			ConstIterator ConstEnd();
-			ConstReverseIterator ConstReverseBegin();
-			ConstReverseIterator ConstReverseEnd();
-			Iterator Begin();
-			Iterator End();
-			ConstIterator Begin() const;
-			ConstIterator End() const;
-			ReverseIterator ReverseBegin();
-			ReverseIterator ReverseEnd();
-			ConstReverseIterator ReverseBegin() const;
-			ConstReverseIterator ReverseEnd() const;
+			ConstIteratorType ConstBegin();
+			ConstIteratorType ConstEnd();
+			ConstReverseIteratorType ConstReverseBegin();
+			ConstReverseIteratorType ConstReverseEnd();
+			IteratorType Begin();
+			IteratorType End();
+			ConstIteratorType Begin() const;
+			ConstIteratorType End() const;
+			ReverseIteratorType ReverseBegin();
+			ReverseIteratorType ReverseEnd();
+			ConstReverseIteratorType ReverseBegin() const;
+			ConstReverseIteratorType ReverseEnd() const;
 		public:
-			void Assign(InputIteratorType first, InputIteratorType last);
-			void Assign(InputIteratorConstType first, InputIteratorConstType last);
-			void Assign(ValueType* first, ValueType* last);
-			void Assign(SizeType n, const ValueType& val);
-			void Assign(std::initializer_list<ValueType> il);
+			void Assign(InputConstIteratorType first, InputConstIteratorType last);
+			void Assign(PointerType first, PointerType last);
+			void Assign(SizeType n, ConstLeftValueReferenceType val);
+			void Assign(std::initializer_list<Type> il);
 		protected:
-			Iterator DerivedEmplace(Iterator iterator, ValueType& constructor);
+			IteratorType DerivedEmplace(ConstIteratorType constIterator, LeftValueReferenceType constructor);
 		};
 
-		template<typename ELEMENT>
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Container(ContainerType* ptr) :
+		template<typename TYPE>
+		Container<std::vector<TYPE>>::Container(ContainerType* ptr) :
 			BaseType(ptr)
 		{}
 
-		template<typename ELEMENT>
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Container(const ContainerType& rhs) :
+		template<typename TYPE>
+		Container<std::vector<TYPE>>::Container(const ContainerType& rhs) :
 			BaseType(rhs)
 		{}
 
-		template<typename ELEMENT>
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Container(std::vector<typename ELEMENT::Type>* ptr) :
+		template<typename TYPE>
+		Container<std::vector<TYPE>>::Container(std::vector<TYPE>* ptr) :
 			BaseType(ptr)
 		{}
 
-		template<typename ELEMENT>
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Container(const std::vector<typename ELEMENT::Type>& rhs) :
+		template<typename TYPE>
+		Container<std::vector<TYPE>>::Container(const std::vector<TYPE>& rhs) :
 			BaseType(rhs)
 		{}
 
-		template<typename ELEMENT>
+		template<typename TYPE>
 		template<typename... ARGS>
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Container(ARGS... args) :
-			BaseType(std::vector<typename ELEMENT::Type>{args...})
+		Container<std::vector<TYPE>>::Container(ARGS... args) :
+			BaseType(std::vector<TYPE>{args...})
 		{}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::SizeType 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Size()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::SizeType
+		Container<std::vector<TYPE>>::Size()
 		{
 			return GetContainer().size();
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::SizeType 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::MaximumSize()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::SizeType
+		Container<std::vector<TYPE>>::MaximumSize()
 		{
 			return GetContainer().max_size();
 		}
 
-		template<typename ELEMENT>
-		bool Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Empty()
+		template<typename TYPE>
+		bool Container<std::vector<TYPE>>::Empty()
 		{
 			return GetContainer().empty();
 		}
 
-		template<typename ELEMENT>
-		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Resize(SizeType n)
+		template<typename TYPE>
+		void Container<std::vector<TYPE>>::Resize(SizeType n)
 		{
 			GetContainer().resize(n);
 		}
 
-		template<typename ELEMENT>
-		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Resize(SizeType n, const ValueType& val)
+		template<typename TYPE>
+		void Container<std::vector<TYPE>>::Resize(SizeType n, ConstLeftValueReferenceType val)
 		{
 			GetContainer().resize(n, val);
 		}
 
-		template<typename ELEMENT>
-		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ShrinkToFit()
+		template<typename TYPE>
+		void Container<std::vector<TYPE>>::ShrinkToFit()
 		{
 			GetContainer().shrink_to_fit();
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::SizeType 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Capacity() const
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::SizeType
+		Container<std::vector<TYPE>>::Capacity() const
 		{
 			return GetContainer().capacity();
 		}
 
-		template<typename ELEMENT>
-		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Reserve(SizeType n)
+		template<typename TYPE>
+		void Container<std::vector<TYPE>>::Reserve(SizeType n)
 		{
 			return GetContainer().reserve(n);
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReferenceType 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::At(SizeType index)
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::LeftValueReferenceType
+		Container<std::vector<TYPE>>::At(SizeType index)
 		{
 			return GetContainer().at(index);
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstReferenceType 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::At(SizeType index) const
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstLeftValueReferenceType
+		Container<std::vector<TYPE>>::At(SizeType index) const
 		{
 			return GetContainer().at(index);
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReferenceType 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Front()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::LeftValueReferenceType
+		Container<std::vector<TYPE>>::Front()
 		{
 			return GetContainer().front();
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstReferenceType 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Front() const
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstLeftValueReferenceType
+		Container<std::vector<TYPE>>::Front() const
 		{
 			return GetContainer().front();
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReferenceType 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Back()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::LeftValueReferenceType
+		Container<std::vector<TYPE>>::Back()
 		{
 			return GetContainer().back();
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstReferenceType 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Back() const
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstLeftValueReferenceType
+		Container<std::vector<TYPE>>::Back() const
 		{
 			return GetContainer().back();
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstIterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstBegin()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstIteratorType
+		Container<std::vector<TYPE>>::ConstBegin()
 		{
-			return ConstIterator(BrainMuscles::type::container::vector::iterator::handle::ConstIterator<typename ELEMENT::Type>(GetContainer().cbegin()));
+			return BrainMuscles::type::container::vector::iterator::handle::ConstIterator<ElementType>(GetContainer().cbegin());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstIterator 
-			Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstEnd()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstIteratorType
+			Container<std::vector<TYPE>>::ConstEnd()
 		{
-			return ConstIterator(BrainMuscles::type::container::vector::iterator::handle::ConstIterator<typename ELEMENT::Type>(GetContainer().cend()));
+			return BrainMuscles::type::container::vector::iterator::handle::ConstIterator<ElementType>(GetContainer().cend());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstReverseIterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstReverseBegin()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstReverseIteratorType
+		Container<std::vector<TYPE>>::ConstReverseBegin()
 		{
-			return ConstReverseIterator(BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<typename ELEMENT::Type>(GetContainer().crbegin()));
+			return BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<ElementType>(GetContainer().crbegin());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstReverseIterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstReverseEnd()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstReverseIteratorType
+		Container<std::vector<TYPE>>::ConstReverseEnd()
 		{
-			return ConstReverseIterator(BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<typename ELEMENT::Type>(GetContainer().crend()));
+			return BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<ElementType>(GetContainer().crend());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Iterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Begin()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::IteratorType
+		Container<std::vector<TYPE>>::Begin()
 		{
-			return Iterator(BrainMuscles::type::container::vector::iterator::handle::Iterator<typename ELEMENT::Type>(GetContainer().begin()));
+			return BrainMuscles::type::container::vector::iterator::handle::Iterator<ElementType>(GetContainer().begin());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Iterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::End()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::IteratorType
+		Container<std::vector<TYPE>>::End()
 		{
-			return Iterator(BrainMuscles::type::container::vector::iterator::handle::Iterator<typename ELEMENT::Type>(GetContainer().end()));
+			return BrainMuscles::type::container::vector::iterator::handle::Iterator<ElementType>(GetContainer().end());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstIterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Begin() const
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstIteratorType
+		Container<std::vector<TYPE>>::Begin() const
 		{
-			return ConstIterator(BrainMuscles::type::container::vector::iterator::handle::ConstIterator<typename ELEMENT::Type>(GetContainer().begin()));
+			return BrainMuscles::type::container::vector::iterator::handle::ConstIterator<ElementType>(GetContainer().begin());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstIterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::End() const
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstIteratorType
+		Container<std::vector<TYPE>>::End() const
 		{
-			return ConstIterator(BrainMuscles::type::container::vector::iterator::handle::ConstIterator<typename ELEMENT::Type>(GetContainer().end()));
+			return BrainMuscles::type::container::vector::iterator::handle::ConstIterator<ElementType>(GetContainer().end());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReverseIterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReverseBegin()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ReverseIteratorType
+		Container<std::vector<TYPE>>::ReverseBegin()
 		{
-			return ReverseIterator(BrainMuscles::type::container::vector::iterator::handle::ReverseIterator<typename ELEMENT::Type>(GetContainer().rbegin()));
+			return BrainMuscles::type::container::vector::iterator::handle::ReverseIterator<ElementType>(GetContainer().rbegin());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReverseIterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReverseEnd()
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ReverseIteratorType
+		Container<std::vector<TYPE>>::ReverseEnd()
 		{
-			return ReverseIterator(BrainMuscles::type::container::vector::iterator::handle::ReverseIterator<typename ELEMENT::Type>(GetContainer().rend()));
+			return BrainMuscles::type::container::vector::iterator::handle::ReverseIterator<ElementType>(GetContainer().rend());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstReverseIterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReverseBegin() const
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstReverseIteratorType
+		Container<std::vector<TYPE>>::ReverseBegin() const
 		{
-			return ConstReverseIterator(BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<typename ELEMENT::Type>(GetContainer().rbegin()));
+			return BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<ElementType>(GetContainer().rbegin());
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ConstReverseIterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::ReverseEnd() const
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::ConstReverseIteratorType
+		Container<std::vector<TYPE>>::ReverseEnd() const
 		{
-			return ConstReverseIterator(BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<typename ELEMENT::Type>(GetContainer().rend()));
+			return BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<ElementType>(GetContainer().rend());
 		}
 
-		template<typename ELEMENT>
-		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(InputIteratorType first, InputIteratorType last)
-		{
-			GetContainer().assign(first, last);
-		}
-
-		template<typename ELEMENT>
-		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(InputIteratorConstType first, InputIteratorConstType last)
+		template<typename TYPE>
+		void Container<std::vector<TYPE>>::Assign(InputConstIteratorType first, InputConstIteratorType last)
 		{
 			GetContainer().assign(first, last);
 		}
 
-		template<typename ELEMENT>
-		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(ValueType* first, ValueType* last)
+		template<typename TYPE>
+		void Container<std::vector<TYPE>>::Assign(PointerType first, PointerType last)
 		{
 			GetContainer().assign(first, last);
 		}
 
-		template<typename ELEMENT>
-		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(SizeType n, const ValueType& val)
+		template<typename TYPE>
+		void Container<std::vector<TYPE>>::Assign(SizeType n, ConstLeftValueReferenceType val)
 		{
 			GetContainer().assign(n, val);
 		}
 
-		template<typename ELEMENT>
-		void Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Assign(std::initializer_list<ValueType> il)
+		template<typename TYPE>
+		void Container<std::vector<TYPE>>::Assign(std::initializer_list<Type> il)
 		{
 			GetContainer().assign(il);
 		}
 
-		template<typename ELEMENT>
-		typename Container<ELEMENT, std::vector<typename ELEMENT::Type>>::Iterator 
-		Container<ELEMENT, std::vector<typename ELEMENT::Type>>::DerivedEmplace(Iterator iterator, ValueType& constructor)
+		template<typename TYPE>
+		typename Container<std::vector<TYPE>>::IteratorType
+		Container<std::vector<TYPE>>::DerivedEmplace(ConstIteratorType constIterator, LeftValueReferenceType constructor)
 		{
 			
 					//GetContainer().emplace(iterator, constructor)
-			return Iterator(0);
+			return IteratorType(0);
 		}
 	}
 }
