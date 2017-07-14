@@ -1,29 +1,11 @@
 #ifndef TYPE_CONTAINER_STANDARD_VECTOR_CONSTREVERSEITERATOR_H_
 #define TYPE_CONTAINER_STANDARD_VECTOR_CONSTREVERSEITERATOR_H_
 
-namespace BrainMuscles
-{
-	namespace type
-	{
-		namespace container
-		{
-			namespace standard
-			{
-				namespace vector
-				{
-					template<typename TYPE>
-					class ConstReverseIterator;
-				}
-			}
-		}
-	}
-}
-
-#include "type\container\Vector.h"
-#include "type\container\vector\iterator\handle\ReverseIterator.h"
-#include "type\container\vector\iterator\handle\ConstReverseIterator.h"
+#include <cstddef>
 #include <cassert>
 #include <vector>
+
+#include "type\container\vector\Definition.h"
 
 namespace BrainMuscles
 {
@@ -37,33 +19,46 @@ namespace BrainMuscles
 				{
 					template<typename TYPE>
 					class ConstReverseIterator :
-						std::vector<TYPE>::const_reverse_iterator
+						private BrainMuscles::type::container::vector::Definition<TYPE>::RandomAccessConstReverseIteratorType,
+						public std::vector<TYPE>::const_reverse_iterator
 					{
+					private:
+						typedef BrainMuscles::type::container::vector::Definition<TYPE>	DefinitionType;
+						typedef typename DefinitionType::ElementType					ElementType;
+						typedef BrainMuscles::type::container::vector::iterator
+							::handle::ConstReverseIterator<ElementType>					HandleConstReverseIteratorType;
+						typedef BrainMuscles::type::container::vector::iterator
+							::handle::ReverseIterator<ElementType>						HandleReverseIteratorType;
 					public:
-						typedef BrainMuscles::type::container::Vector<TYPE> VectorType;
-						typedef typename VectorType::ReverseIterator VectorReverseIteratorType;
-						typedef typename VectorType::ConstReverseIterator VectorConstReverseIteratorType;
-						typedef BrainMuscles::type::container::vector::iterator::handle::ReverseIterator<TYPE> HandleReverseIteratorType;
-						typedef BrainMuscles::type::container::vector::iterator::handle::ConstReverseIterator<TYPE> HandleConstReverseIteratorType;
+						typedef typename std::vector<TYPE>::const_reverse_iterator		StandardHandleType;
+						typedef typename DefinitionType
+							::RandomAccessConstReverseIteratorType						RandomAccessConstReverseIteratorType;
+					private:
+						typedef typename RandomAccessConstReverseIteratorType
+							::HandleBaseType											HandleBaseType;
 					public:
-						ConstReverseIterator(VectorReverseIteratorType& reverse_iterator);
-						ConstReverseIterator(VectorConstReverseIteratorType& const_reverse_iterator);
+						ConstReverseIterator(const RandomAccessConstReverseIteratorType& const_reverse_iterator);
 					};
 
 					template<typename TYPE>
-					ConstReverseIterator<TYPE>::ConstReverseIterator(VectorReverseIteratorType& reverse_iterator)
+					ConstReverseIterator<TYPE>::ConstReverseIterator(const RandomAccessConstReverseIteratorType& const_reverse_iterator) :
+						HandleBaseType(const_reverse_iterator),
+						RandomAccessConstReverseIteratorType(const_reverse_iterator)
 					{
-						HandleReverseIteratorType* castToReverseIterator = dynamic_cast<HandleReverseIteratorType*>(&reverse_iterator.GetHandle());
-						assert(castToReverseIterator != 0);
-						std::vector<TYPE>::const_reverse_iterator::operator=(*castToReverseIterator);
-					}
-
-					template<typename TYPE>
-					ConstReverseIterator<TYPE>::ConstReverseIterator(VectorConstReverseIteratorType& const_reverse_iterator)
-					{
-						HandleConstReverseIteratorType* castToConstReverseIterator = dynamic_cast<HandleConstReverseIteratorType*>(&const_reverse_iterator.GetHandle());
-						assert(castToConstReverseIterator != 0);
-						std::vector<TYPE>::const_reverse_iterator::operator=(*castToConstReverseIterator);
+						HandleConstReverseIteratorType* castToConstReverseIterator = dynamic_cast<HandleConstReverseIteratorType*>(&GetHandle());
+						if (castToConstReverseIterator)
+						{
+							StandardHandleType::operator=(*castToConstReverseIterator);
+						}
+						else
+						{
+							HandleReverseIteratorType* castToReverseIterator = dynamic_cast<HandleReverseIteratorType*>(&GetHandle());
+							if (castToReverseIterator)
+							{
+								StandardHandleType::operator=(*castToReverseIterator);
+							}
+							assert(castToConstReverseIterator != 0 || castToReverseIterator != 0);
+						}
 					}
 				}
 			}
