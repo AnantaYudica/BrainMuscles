@@ -2,6 +2,7 @@
 #define TYPE_CONTAINER_STANDARD_VECTOR_CONSTITERATOR_H_
 
 #include <cstddef>
+#include <cassert>
 #include <vector>
 
 #include "type\container\vector\Definition.h"
@@ -45,14 +46,14 @@ namespace BrainMuscles
 						HandleConstIteratorType* castToConstIterator = dynamic_cast<HandleConstIteratorType*>(&GetHandle());
 						if (castToConstIterator)
 						{
-							std::vector<TYPE>::const_iterator::operator=(*castToConstIterator);
+							StandardHandleType::operator=(*castToConstIterator);
 						}
 						else
 						{
 							HandleIteratorType* castToIterator = dynamic_cast<HandleIteratorType*>(&GetHandle());
 							if (castToIterator)
 							{
-								std::vector<TYPE>::const_iterator::operator=(*castToIterator);
+								StandardHandleType::operator=(*castToIterator);
 							}
 							assert(castToConstIterator != 0 || castToIterator != 0);
 						}
