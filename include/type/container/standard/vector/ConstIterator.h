@@ -1,29 +1,10 @@
 #ifndef TYPE_CONTAINER_STANDARD_VECTOR_CONSTITERATOR_H_
 #define TYPE_CONTAINER_STANDARD_VECTOR_CONSTITERATOR_H_
 
-namespace BrainMuscles
-{
-	namespace type
-	{
-		namespace container
-		{
-			namespace standard
-			{
-				namespace vector
-				{
-					template<typename TYPE>
-					class ConstIterator;
-				}
-			}
-		}
-	}
-}
-
-#include "type\container\Vector.h"
-#include "type\container\vector\iterator\handle\Iterator.h"
-#include "type\container\vector\iterator\handle\ConstIterator.h"
-#include <cassert>
+#include <cstddef>
 #include <vector>
+
+#include "type\container\vector\Definition.h"
 
 namespace BrainMuscles
 {
@@ -37,33 +18,44 @@ namespace BrainMuscles
 				{
 					template<typename TYPE>
 					class ConstIterator :
+						private BrainMuscles::type::container::vector::Definition<TYPE>::RandomAccessConstIteratorType,
 						std::vector<TYPE>::const_iterator
 					{
+					private:
+						typedef BrainMuscles::type::container::vector::Definition<TYPE>	DefinitionType;
+						typedef typename DefinitionType::ElementType					ElementType;
+						typedef BrainMuscles::type::container::vector::iterator
+							::handle::ConstIterator<ElementType>						HandleConstIteratorType;
+						typedef BrainMuscles::type::container::vector::iterator
+							::handle::Iterator<ElementType>								HandleIteratorType;
 					public:
-						typedef BrainMuscles::type::container::Vector<TYPE> VectorType;
-						typedef typename VectorType::Iterator VectorIteratorType;
-						typedef typename VectorType::ConstIterator VectorConstIteratorType;
-						typedef BrainMuscles::type::container::vector::iterator::handle::Iterator<TYPE> HandleIteratorType;
-						typedef BrainMuscles::type::container::vector::iterator::handle::ConstIterator<TYPE> HandleConstIteratorType;
+						typedef typename std::vector<TYPE>::const_iterator				StandardHandleType;
+						typedef typename DefinitionType::RandomAccessConstIteratorType	RandomAccessConstIteratorType;
+					private:
+						typedef typename RandomAccessConstIteratorType::HandleBaseType	HandleBaseType;
 					public:
-						ConstIterator(VectorIteratorType& iterator);
-						ConstIterator(VectorConstIteratorType& const_iterator);
+						ConstIterator(const RandomAccessConstIteratorType& const_iterator);
 					};
 
 					template<typename TYPE>
-					ConstIterator<TYPE>::ConstIterator(VectorIteratorType& iterator)
+					ConstIterator<TYPE>::ConstIterator(const RandomAccessConstIteratorType& const_iterator) :
+						HandleBaseType(const_iterator),
+						RandomAccessConstIteratorType(const_iterator)
 					{
-						HandleIteratorType* castToIterator = dynamic_cast<HandleIteratorType*>(&iterator.GetHandle());
-						assert(castToIterator != 0);
-						std::vector<TYPE>::const_iterator::operator=(*castToIterator);
-					}
-
-					template<typename TYPE>
-					ConstIterator<TYPE>::ConstIterator(VectorConstIteratorType& const_iterator)
-					{
-						HandleConstIteratorType* castToConstIterator = dynamic_cast<HandleConstIteratorType*>(&const_iterator.GetHandle());
-						assert(castToConstIterator != 0);
-						std::vector<TYPE>::const_iterator::operator=(*castToConstIterator);
+						HandleConstIteratorType* castToConstIterator = dynamic_cast<HandleConstIteratorType*>(&GetHandle());
+						if (castToConstIterator)
+						{
+							std::vector<TYPE>::const_iterator::operator=(*castToConstIterator);
+						}
+						else
+						{
+							HandleIteratorType* castToIterator = dynamic_cast<HandleIteratorType*>(&GetHandle());
+							if (castToIterator)
+							{
+								std::vector<TYPE>::const_iterator::operator=(*castToIterator);
+							}
+							assert(castToConstIterator != 0 || castToIterator != 0);
+						}
 					}
 				}
 			}
