@@ -19,7 +19,7 @@ namespace BrainMuscles
 					template<typename TYPE>
 					class ConstIterator :
 						private BrainMuscles::type::container::vector::Definition<TYPE>::RandomAccessConstIteratorType,
-						std::vector<TYPE>::const_iterator
+						public std::vector<TYPE>::const_iterator
 					{
 					private:
 						typedef BrainMuscles::type::container::vector::Definition<TYPE>	DefinitionType;
