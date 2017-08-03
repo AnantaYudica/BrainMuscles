@@ -24,12 +24,13 @@ namespace BrainMuscles
 					public:
 						typedef CALLER_TYPE							CallerType;
 						typedef ARG									Type;
-						typedef Arguments<CallerType, ARG, ARGS...>	Argumentsype;
+						typedef Arguments<CallerType, ARG, ARGS...>	ArgumentsType;
 						typedef Arguments<CallerType, ARGS...>		BaseType;
-						template<typename RETURN_TYPE>
-						using CallFunctionType = RETURN_TYPE(*)(ARG, ARGS...);
-						template<typename RETURN_TYPE, typename CLASS_TYPE>
-						using CallMemberFunctionType = RETURN_TYPE(CLASS_TYPE::*)(ARG, ARGS...);
+					public:
+						template<typename RETURN_TYPE, typename... BEGIN_ARGS>
+						using CallFunctionType = RETURN_TYPE(*)(ARG, BEGIN_ARGS..., ARGS...);
+						template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
+						using CallMemberFunctionType = RETURN_TYPE(CLASS_TYPE::*)(ARG, BEGIN_ARGS..., ARGS...);
 					private:
 						Type m_value;
 					public:
@@ -49,19 +50,20 @@ namespace BrainMuscles
 						typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
 							Filler(FUNCTION_TYPE function, FILL_ARGS... fill_args) const;
 					public:
-						template<typename RETURN_TYPE, typename CLASS_TYPE>
+						template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type 
-							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const;
-						template<typename RETURN_TYPE, typename CLASS_TYPE>
+							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
+						template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type 
-							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const;
+							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
 						
-						template<typename RETURN_TYPE>
+						template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type 
-							Fill(CallFunctionType<RETURN_TYPE> function) const;
-						template<typename RETURN_TYPE>
+							Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
+						template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type 
-							Fill(CallFunctionType<RETURN_TYPE> function) const;
+							Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
+
 					};
 
 					template<typename CALLER_TYPE, typename ARG>
@@ -72,10 +74,11 @@ namespace BrainMuscles
 						typedef ARG							Type;
 						typedef Arguments<CallerType, ARG>	ArgumentsType;
 						typedef void						BaseType;
-						template<typename RETURN_TYPE>
-						using CallFunctionType = RETURN_TYPE(*)(ARG);
-						template<typename RETURN_TYPE, typename CLASS_TYPE>
-						using CallMemberFunctionType = RETURN_TYPE(CLASS_TYPE::*)(ARG);
+					public:
+						template<typename RETURN_TYPE, typename... BEGIN_ARGS>
+						using CallFunctionType = RETURN_TYPE(*)(BEGIN_ARGS..., ARG);
+						template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
+						using CallMemberFunctionType = RETURN_TYPE(CLASS_TYPE::*)(BEGIN_ARGS..., ARG);
 					private:
 						Type m_value;
 					public:
@@ -95,19 +98,20 @@ namespace BrainMuscles
 						typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
 							Filler(FUNCTION_TYPE function, FILL_ARGS... fill_args) const;
 					public:
-						template<typename RETURN_TYPE, typename CLASS_TYPE>
+						template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type
-							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const;
-						template<typename RETURN_TYPE, typename CLASS_TYPE>
+							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
+						template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
-							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const;
+							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
 
-						template<typename RETURN_TYPE>
+						template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type
-							Fill(CallFunctionType<RETURN_TYPE> function) const;
-						template<typename RETURN_TYPE>
+							Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
+						template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
-							Fill(CallFunctionType<RETURN_TYPE> function) const;
+							Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
+
 					};
 
 					template<typename CALLER_TYPE>
@@ -117,10 +121,11 @@ namespace BrainMuscles
 						typedef CALLER_TYPE					CallerType;
 						typedef Arguments<CallerType, void>	ArgumentsType;
 						typedef void						BaseType;
-						template<typename RETURN_TYPE>
-						using CallFunctionType = RETURN_TYPE(*)(void);
-						template<typename RETURN_TYPE, typename CLASS_TYPE>
-						using CallMemberFunctionType = RETURN_TYPE(CLASS_TYPE::*)(void);
+					public:
+						template<typename RETURN_TYPE, typename... ARGS_BEGIN>
+						using CallFunctionType = RETURN_TYPE(*)(ARGS_BEGIN...);
+						template<typename RETURN_TYPE, typename CLASS_TYPE, typename... ARGS_BEGIN>
+						using CallMemberFunctionType = RETURN_TYPE(CLASS_TYPE::*)(ARGS_BEGIN...);
 					public:
 						Arguments();
 					protected:
@@ -138,19 +143,20 @@ namespace BrainMuscles
 						typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
 							Filler(FUNCTION_TYPE function) const;
 					public:
-						template<typename RETURN_TYPE, typename CLASS_TYPE>
+						template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type
-							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const;
-						template<typename RETURN_TYPE, typename CLASS_TYPE>
+							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
+						template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
-							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const;
+							Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
 
-						template<typename RETURN_TYPE>
+						template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type
-							Fill(CallFunctionType<RETURN_TYPE> function) const;
-						template<typename RETURN_TYPE>
+							Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
+						template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 						typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
-							Fill(CallFunctionType<RETURN_TYPE> function) const;
+							Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const;
+
 					};
 
 					/////////////////////////////////////////////////////////////////////////////////
@@ -194,35 +200,35 @@ namespace BrainMuscles
 					}
 
 					template<typename CALLER_TYPE, typename ARG, typename... ARGS>
-					template<typename RETURN_TYPE, typename CLASS_TYPE>
+					template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type 
-						Arguments<CALLER_TYPE, ARG, ARGS...>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const
+						Arguments<CALLER_TYPE, ARG, ARGS...>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						BaseType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE>, ARG>(object, function, m_value);
+						BaseType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...>, BEGIN_ARGS..., ARG>(object, function, begin_args..., m_value);
 					}
 
 					template<typename CALLER_TYPE, typename ARG, typename... ARGS>
-					template<typename RETURN_TYPE, typename CLASS_TYPE>
+					template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type 
-						Arguments<CALLER_TYPE, ARG, ARGS...>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const
+						Arguments<CALLER_TYPE, ARG, ARGS...>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						return BaseType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE>, ARG>(object, function, m_value);
+						return BaseType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...>, BEGIN_ARGS..., ARG>(object, function, begin_args..., m_value);
 					}
 
 					template<typename CALLER_TYPE, typename ARG, typename... ARGS>
-					template<typename RETURN_TYPE>
+					template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type  
-						Arguments<CALLER_TYPE, ARG, ARGS...>::Fill(CallFunctionType<RETURN_TYPE> function) const
+						Arguments<CALLER_TYPE, ARG, ARGS...>::Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						BaseType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE>, ARG>(function, m_value);
+						BaseType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE, BEGIN_ARGS...>, BEGIN_ARGS..., ARG>(function, begin_args..., m_value);
 					}
 
 					template<typename CALLER_TYPE, typename ARG, typename... ARGS>
-					template<typename RETURN_TYPE>
+					template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
-						Arguments<CALLER_TYPE, ARG, ARGS...>::Fill(CallFunctionType<RETURN_TYPE> function) const
+						Arguments<CALLER_TYPE, ARG, ARGS...>::Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						return BaseType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE>, ARG>(function, m_value);
+						return BaseType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE, BEGIN_ARGS...>, BEGIN_ARGS..., ARG>(function, begin_args..., m_value);
 					}
 
 					/////////////////////////////////////////////////////////////////////////////////
@@ -265,35 +271,35 @@ namespace BrainMuscles
 					}
 
 					template<typename CALLER_TYPE, typename ARG>
-					template<typename RETURN_TYPE, typename CLASS_TYPE>
+					template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type
-						Arguments<CALLER_TYPE, ARG>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const
+						Arguments<CALLER_TYPE, ARG>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						ArgumentsType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE>>(object, function);
+						ArgumentsType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...>, BEGIN_ARGS...>(object, function, begin_args...);
 					}
 
 					template<typename CALLER_TYPE, typename ARG>
-					template<typename RETURN_TYPE, typename CLASS_TYPE>
+					template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
-						Arguments<CALLER_TYPE, ARG>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const
+						Arguments<CALLER_TYPE, ARG>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						return ArgumentsType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE>>(object, function);
+						return ArgumentsType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...>, BEGIN_ARGS...>(object, function, begin_args...);
 					}
 
 					template<typename CALLER_TYPE, typename ARG>
-					template<typename RETURN_TYPE>
+					template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type
-						Arguments<CALLER_TYPE, ARG>::Fill(CallFunctionType<RETURN_TYPE> function) const
+						Arguments<CALLER_TYPE, ARG>::Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						ArgumentsType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE>>(function);
+						ArgumentsType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE, BEGIN_ARGS...>, BEGIN_ARGS...>(function, begin_args...);
 					}
 
 					template<typename CALLER_TYPE, typename ARG>
-					template<typename RETURN_TYPE>
+					template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
-						Arguments<CALLER_TYPE, ARG>::Fill(CallFunctionType<RETURN_TYPE> function) const
+						Arguments<CALLER_TYPE, ARG>::Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						return ArgumentsType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE>>(function);
+						return ArgumentsType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE, BEGIN_ARGS...>, BEGIN_ARGS...>(function, begin_args...);
 					}
 
 					/////////////////////////////////////////////////////////////////////////////////
@@ -335,35 +341,35 @@ namespace BrainMuscles
 					}
 
 					template<typename CALLER_TYPE>
-					template<typename RETURN_TYPE, typename CLASS_TYPE>
+					template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type
-						Arguments<CALLER_TYPE, void>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const
+						Arguments<CALLER_TYPE, void>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						ArgumentsType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE>>(object, function);
+						ArgumentsType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...>, BEGIN_ARGS...>(object, function, begin_args...);
 					}
 
 					template<typename CALLER_TYPE>
-					template<typename RETURN_TYPE, typename CLASS_TYPE>
+					template<typename RETURN_TYPE, typename CLASS_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
-						Arguments<CALLER_TYPE, void>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE> function) const
+						Arguments<CALLER_TYPE, void>::Fill(CLASS_TYPE* object, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						return ArgumentsType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE>>(object, function);
+						return ArgumentsType::Filler<RETURN_TYPE, CLASS_TYPE, CallMemberFunctionType<RETURN_TYPE, CLASS_TYPE, BEGIN_ARGS...>, BEGIN_ARGS...>(object, function, begin_args...);
 					}
 
 					template<typename CALLER_TYPE>
-					template<typename RETURN_TYPE>
+					template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<std::is_void<RETURN_TYPE>::value, void>::type
-						Arguments<CALLER_TYPE, void>::Fill(CallFunctionType<RETURN_TYPE> function) const
+						Arguments<CALLER_TYPE, void>::Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						ArgumentsType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE>>(function);
+						ArgumentsType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE, BEGIN_ARGS...>, BEGIN_ARGS...>(function, begin_args...);
 					}
 
 					template<typename CALLER_TYPE>
-					template<typename RETURN_TYPE>
+					template<typename RETURN_TYPE, typename... BEGIN_ARGS>
 					typename std::enable_if<!std::is_void<RETURN_TYPE>::value, RETURN_TYPE>::type
-						Arguments<CALLER_TYPE, void>::Fill(CallFunctionType<RETURN_TYPE> function) const
+						Arguments<CALLER_TYPE, void>::Fill(CallFunctionType<RETURN_TYPE, BEGIN_ARGS...> function, BEGIN_ARGS... begin_args) const
 					{
-						return ArgumentsType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE>>(function);
+						return ArgumentsType::Filler<RETURN_TYPE, CallFunctionType<RETURN_TYPE, BEGIN_ARGS...>, BEGIN_ARGS...>(function, begin_args...);
 					}
 				}
 			}
