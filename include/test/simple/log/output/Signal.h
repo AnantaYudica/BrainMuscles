@@ -22,6 +22,7 @@ namespace BrainMuscles
 						static constexpr FlagType OutputSignalBitIndex = 1;
 						static constexpr FlagType PrintSignalBitIndex = 1 << 1;
 						static constexpr FlagType NewlineSignalBitIndex = 1 << 2;
+						static constexpr FlagType ForceNewlineSignalBitIndex = 1 << 3;
 					private:
 						FlagType m_flag;
 					public:
@@ -43,6 +44,10 @@ namespace BrainMuscles
 						void NewlineSignal();
 						void CurrentlineSignal();
 						bool IsNewline();
+					public:
+						void ForceNewlineSignal();
+						void PassiveNewlineSignal();
+						bool IsForceNewline();
 					};
 
 					Signal::Signal() :
@@ -56,6 +61,8 @@ namespace BrainMuscles
 					{
 						OutputEndSignal();
 						PrintEndSignal();
+						NewlineSignal();
+						ForceNewlineSignal();
 					}
 
 					void Signal::OutputStartSignal()
@@ -120,6 +127,24 @@ namespace BrainMuscles
 					bool Signal::IsNewline()
 					{
 						return (m_flag & NewlineSignalBitIndex);
+					}
+
+					void Signal::ForceNewlineSignal()
+					{
+						m_flag |= ForceNewlineSignalBitIndex;
+					}
+
+					void Signal::PassiveNewlineSignal()
+					{
+						if (IsForceNewline())
+						{
+							m_flag ^= ForceNewlineSignalBitIndex;
+						}
+					}
+
+					bool Signal::IsForceNewline()
+					{
+						return (m_flag & ForceNewlineSignalBitIndex);
 					}
 				}
 			}
