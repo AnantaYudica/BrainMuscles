@@ -78,7 +78,8 @@ namespace BrainMuscles
 						{}
 
 						Length::Length() :
-							m_size(0)
+							m_size(0),
+							m_length{0}
 						{}
 
 						Length::Length(const Length& length) :
