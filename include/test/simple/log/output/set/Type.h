@@ -17,12 +17,22 @@ namespace BrainMuscles
 				{
 					namespace set
 					{
-						enum Type
+						enum Type : unsigned char
 						{
-							local_value = 0,
-							global_value = 1,
-							all_value
+							local_value = 1,
+							global_value = 1 << 1,
+							local_and_global_value = (local_value | global_value)
 						};
+
+						bool operator==(Type a, Type b)
+						{
+							return (a & b);
+						}
+
+						bool operator!=(Type a, Type b)
+						{
+							return !(operator==(a,b));
+						}
 					}
 				}
 			}
