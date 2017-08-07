@@ -40,6 +40,7 @@ namespace BrainMuscles
 								{
 									format_string[index++] = value[i];
 								}
+								format_string[index] = 0;
 							}
 						}
 					}
