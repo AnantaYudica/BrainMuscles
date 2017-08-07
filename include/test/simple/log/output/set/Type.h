@@ -20,7 +20,8 @@ namespace BrainMuscles
 						enum Type
 						{
 							local_value = 0,
-							global_value = 1
+							global_value = 1,
+							all_value
 						};
 					}
 				}
