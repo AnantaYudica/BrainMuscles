@@ -27,26 +27,26 @@ namespace BrainMuscles
 								Type() = delete;
 							public:
 								static constexpr bool IsDefault = 
-									std::is_same<TYPE, int>::value ||
-									std::is_same<TYPE, unsigned int>::value ||
-									std::is_same<TYPE, float>::value ||
-									std::is_same<TYPE, double>::value ||
-									std::is_same<TYPE, char*>::value ||
-									std::is_same<TYPE, void*>::value;
+									std::is_same<std::remove_const<TYPE>::type, int>::value ||
+									std::is_same<std::remove_const<TYPE>::type, unsigned int>::value ||
+									std::is_same<std::remove_const<TYPE>::type, float>::value ||
+									std::is_same<std::remove_const<TYPE>::type, double>::value ||
+									std::is_same<std::remove_const<TYPE>::type, char*>::value ||
+									std::is_same<std::remove_const<TYPE>::type, void*>::value;
 								static constexpr bool IsChar =
-									std::is_same<TYPE, char>::value ||
-									std::is_same<TYPE, unsigned char>::value;
+									std::is_same<std::remove_const<TYPE>::type, char>::value ||
+									std::is_same<std::remove_const<TYPE>::type, unsigned char>::value;
 								static constexpr bool IsShort = 
-									std::is_same<TYPE, short>::value ||
-									std::is_same<TYPE, unsigned short>::value;
+									std::is_same<std::remove_const<TYPE>::type, short>::value ||
+									std::is_same<std::remove_const<TYPE>::type, unsigned short>::value;
 								static constexpr bool IsLong =
-									std::is_same<TYPE, long>::value ||
-									std::is_same<TYPE, unsigned long>::value;
+									std::is_same<std::remove_const<TYPE>::type, long>::value ||
+									std::is_same<std::remove_const<TYPE>::type, unsigned long>::value;
 								static constexpr bool IsLongLong =
-									std::is_same<TYPE, long long>::value ||
-									std::is_same<TYPE, unsigned long long>::value;
+									std::is_same<std::remove_const<TYPE>::type, long long>::value ||
+									std::is_same<std::remove_const<TYPE>::type, unsigned long long>::value;
 								static constexpr bool IsLongDouble =
-									std::is_same<TYPE, long double>::value;
+									std::is_same<std::remove_const<TYPE>::type, long double>::value;
 							};
 						}
 					}
