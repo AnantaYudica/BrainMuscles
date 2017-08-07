@@ -18,11 +18,12 @@ namespace BrainMuscles
 					class Signal
 					{
 					private:
-						typedef unsigned char FlagType;
+						typedef unsigned short FlagType;
 						static constexpr FlagType OutputSignalBitIndex = 1;
 						static constexpr FlagType PrintSignalBitIndex = 1 << 1;
 						static constexpr FlagType NewlineSignalBitIndex = 1 << 2;
 						static constexpr FlagType ForceNewlineSignalBitIndex = 1 << 3;
+						static constexpr FlagType PrintLoopSignalBitIndex = 1 << 4;
 					private:
 						FlagType m_flag;
 					public:
@@ -48,6 +49,10 @@ namespace BrainMuscles
 						void ForceNewlineSignal();
 						void PassiveNewlineSignal();
 						bool IsForceNewline();
+					public:
+						void BeginPrintLoopSignal();
+						void EndPrintLoopSignal();
+						bool IsPrintLoop();
 					};
 
 					Signal::Signal() :
@@ -145,6 +150,24 @@ namespace BrainMuscles
 					bool Signal::IsForceNewline()
 					{
 						return (m_flag & ForceNewlineSignalBitIndex);
+					}
+
+					void Signal::BeginPrintLoopSignal()
+					{
+						m_flag |= PrintLoopSignalBitIndex;
+					}
+
+					void Signal::EndPrintLoopSignal()
+					{
+						if (IsPrintLoop())
+						{
+							m_flag ^= PrintLoopSignalBitIndex;
+						}
+					}
+
+					bool Signal::IsPrintLoop()
+					{
+						return (m_flag & PrintLoopSignalBitIndex);
 					}
 				}
 			}
