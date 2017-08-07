@@ -32,6 +32,7 @@ namespace BrainMuscles
 									std::is_same<std::remove_const<TYPE>::type, float>::value ||
 									std::is_same<std::remove_const<TYPE>::type, double>::value ||
 									std::is_same<std::remove_const<TYPE>::type, char*>::value ||
+									std::is_same<std::remove_const<TYPE>::type, const char*>::value ||
 									std::is_same<std::remove_const<TYPE>::type, void*>::value;
 								static constexpr bool IsChar =
 									std::is_same<std::remove_const<TYPE>::type, char>::value ||
