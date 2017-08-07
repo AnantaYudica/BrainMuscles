@@ -367,7 +367,7 @@ namespace BrainMuscles
 						{
 							if (!IsCanCharacterEnable<ARG>())
 							{
-								//Length::Instance<ARG>().CopyToFormat(m_formatString, index);
+								Length::Instance<ARG>().CopyToFormat(m_formatString, index);
 							}
 						}
 
