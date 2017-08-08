@@ -29,13 +29,13 @@ namespace BrainMuscles
 							typedef BrainMuscles::test::simple::log::output::format::Value	ValueType;
 							typedef BrainMuscles::test::simple::log::output::Set<
 								ValueType, void, void>										BaseType;
-							typedef BrainMuscles::test::simple::log::output::set::Type		SetType;
+							typedef BrainMuscles::test::simple::log::output::set::Type		SetTypeType;
 						public:
 							Clear();
 						};
 
 						Clear::Clear() :
-							BaseType(SetType::local_and_global_value, &ValueType::Default)
+							BaseType(SetTypeType::local_and_global_value, &ValueType::Default)
 						{}
 					}
 				}
