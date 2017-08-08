@@ -186,18 +186,18 @@ namespace BrainMuscles
 							{
 								if (m_value.IsDecimalEnable())
 								{
-									if (m_value.IsFloatEnable())
+									if (m_value.IsFloatAndFloatExponentEnable())
+									{
+										return SpecifierCase::FloatAndFloatExponentDecimalEnable;
+									}
+									else if (m_value.IsFloatEnable())
 									{
 										return SpecifierCase::FloatDecimalEnable;
 									}
 									else if (m_value.IsFloatExponentEnable())
 									{
 										return SpecifierCase::FloatExponentDecimalEnable;
-									}
-									else if (m_value.IsFloatAndFloatExponentEnable())
-									{
-										return SpecifierCase::FloatAndFloatExponentDecimalEnable;
-									}
+									} 
 								}
 								else if (m_value.IsHexadecimalEnable())
 								{
