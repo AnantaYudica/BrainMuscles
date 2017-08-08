@@ -28,7 +28,7 @@ namespace BrainMuscles
 							typedef Base<FUNCTION_TYPE, CLASS_TYPE, RETURN_TYPE, ARGS...>		ParentType;
 							typedef typename ParentType::FunctionType							FunctionType;
 						private:
-							ARG m_value;
+							typename std::remove_reference<ARG>::type m_value;
 						protected:
 							Base(FunctionType function, ARG arg, ARGS... args);
 						protected:
@@ -47,7 +47,7 @@ namespace BrainMuscles
 							typedef Base<FUNCTION_TYPE, CLASS_TYPE, void, ARGS...>				ParentType;
 							typedef typename ParentType::FunctionType							FunctionType;
 						private:
-							ARG m_value;
+							typename std::remove_reference<ARG>::type m_value;
 						protected:
 							Base(FunctionType function, ARG arg, ARGS... args);
 						protected:
@@ -65,7 +65,7 @@ namespace BrainMuscles
 							typedef void												ParentType;
 							typedef FUNCTION_TYPE										FunctionType;
 						private:
-							ARG m_value;
+							typename std::remove_reference<ARG>::type m_value;
 							FunctionType m_function;
 						protected:
 							Base(FunctionType function, ARG arg);
@@ -84,7 +84,7 @@ namespace BrainMuscles
 							typedef void												ParentType;
 							typedef FUNCTION_TYPE										FunctionType;
 						private:
-							ARG m_value;
+							typename std::remove_reference<ARG>::type m_value;
 							FunctionType m_function;
 						protected:
 							Base(FunctionType function, ARG arg);
