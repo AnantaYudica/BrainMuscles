@@ -37,14 +37,14 @@ namespace BrainMuscles
 								Character, int>											ArgumentsType;
 						public:
 							Character();
-							ArgumentsType operator()(const int& character);
+							ArgumentsType operator()(const int& character) const;
 						};
 
 						Character::Character() :
 							BaseType(SetTypeType::local_value, &ValueType::CharacterEnable)
 						{}
 
-						typename Character::ArgumentsType Character::operator()(const int& character)
+						typename Character::ArgumentsType Character::operator()(const int& character) const
 						{
 							return ArgumentsType(character);
 						}

@@ -38,16 +38,16 @@ namespace BrainMuscles
 						public:
 							Decimal();
 						public:
-							ArgumentsType<unsigned char> operator()(const unsigned char& value);
-							ArgumentsType<char> operator()(const char& value);
-							ArgumentsType<unsigned short> operator()(const unsigned short& value);
-							ArgumentsType<short> operator()(const short& value);
-							ArgumentsType<unsigned int> operator()(const unsigned int& value);
-							ArgumentsType<int> operator()(const int& value);
-							ArgumentsType<unsigned long> operator()(const unsigned long& value);
-							ArgumentsType<long> operator()(const long& value);
-							ArgumentsType<unsigned long long> operator()(const unsigned long long& value);
-							ArgumentsType<long long> operator()(const long long& value);
+							ArgumentsType<unsigned char> operator()(const unsigned char& value) const;
+							ArgumentsType<char> operator()(const char& value)  const;
+							ArgumentsType<unsigned short> operator()(const unsigned short& value)  const;
+							ArgumentsType<short> operator()(const short& value)  const;
+							ArgumentsType<unsigned int> operator()(const unsigned int& value)  const;
+							ArgumentsType<int> operator()(const int& value)  const;
+							ArgumentsType<unsigned long> operator()(const unsigned long& value) const;
+							ArgumentsType<long> operator()(const long& value) const;
+							ArgumentsType<unsigned long long> operator()(const unsigned long long& value) const;
+							ArgumentsType<long long> operator()(const long long& value) const;
 						};
 
 						Decimal::Decimal() :
@@ -55,61 +55,61 @@ namespace BrainMuscles
 						{}
 
 						typename Decimal::ArgumentsType<unsigned char> 
-							Decimal::operator()(const unsigned char& value)
+							Decimal::operator()(const unsigned char& value) const
 						{
 							return ArgumentsType<unsigned char>(value);
 						}
 
 						typename Decimal::ArgumentsType<char> 
-							Decimal::operator()(const char& value)
+							Decimal::operator()(const char& value) const
 						{
 							return ArgumentsType<char>(value);
 						}
 
 						typename Decimal::ArgumentsType<unsigned short> 
-							Decimal::operator()(const unsigned short& value)
+							Decimal::operator()(const unsigned short& value) const
 						{
 							return ArgumentsType<unsigned short>(value);
 						}
 
 						typename Decimal::ArgumentsType<short> 
-							Decimal::operator()(const short& value)
+							Decimal::operator()(const short& value) const
 						{
 							return ArgumentsType<short>(value);
 						}
 
 						typename Decimal::ArgumentsType<unsigned int> 
-							Decimal::operator()(const unsigned int& value)
+							Decimal::operator()(const unsigned int& value) const
 						{
 							return ArgumentsType<unsigned int>(value);
 						}
 
 						typename Decimal::ArgumentsType<int> 
-							Decimal::operator()(const int& value)
+							Decimal::operator()(const int& value) const
 						{
 							return ArgumentsType<int>(value);
 						}
 
 						typename Decimal::ArgumentsType<unsigned long> 
-							Decimal::operator()(const unsigned long& value)
+							Decimal::operator()(const unsigned long& value) const
 						{
 							return ArgumentsType<unsigned long>(value);
 						}
 
 						typename Decimal::ArgumentsType<long> 
-							Decimal::operator()(const long& value)
+							Decimal::operator()(const long& value) const
 						{
 							return ArgumentsType<long>(value);
 						}
 
 						typename Decimal::ArgumentsType<unsigned long long> 
-							Decimal::operator()(const unsigned long long& value)
+							Decimal::operator()(const unsigned long long& value) const
 						{
 							return ArgumentsType<unsigned long long>(value);
 						}
 
 						typename Decimal::ArgumentsType<long long> 
-							Decimal::operator()(const long long& value)
+							Decimal::operator()(const long long& value) const
 						{
 							return ArgumentsType<long long>(value);
 						}

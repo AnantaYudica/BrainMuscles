@@ -38,9 +38,9 @@ namespace BrainMuscles
 						public:
 							Float();
 						public:
-							ArgumentsType<float> operator()(const float& value);
-							ArgumentsType<double> operator()(const double& value);
-							ArgumentsType<long double> operator()(const long double& value);
+							ArgumentsType<float> operator()(const float& value) const;
+							ArgumentsType<double> operator()(const double& value) const;
+							ArgumentsType<long double> operator()(const long double& value) const;
 						};
 
 						Float::Float() :
@@ -48,19 +48,19 @@ namespace BrainMuscles
 						{}
 
 						typename Float::ArgumentsType<float> 
-							Float::operator()(const float& value)
+							Float::operator()(const float& value) const
 						{
 							return ArgumentsType<float>(value);
 						}
 
 						typename Float::ArgumentsType<double> 
-							Float::operator()(const double& value)
+							Float::operator()(const double& value) const
 						{
 							return ArgumentsType<double>(value);
 						}
 
 						typename Float::ArgumentsType<long double> 
-							Float::operator()(const long double& value)
+							Float::operator()(const long double& value) const
 						{
 							return ArgumentsType<long double>(value);
 						}

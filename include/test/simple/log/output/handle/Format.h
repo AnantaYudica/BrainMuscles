@@ -26,12 +26,12 @@ namespace BrainMuscles
 							using ArgumentsType = BrainMuscles::test::simple::log::output::Arguments<Format, const char*, ARGS...>;
 						public:
 							template<typename... ARGS>
-							ArgumentsType<ARGS...> operator()(const char* format, ARGS... args);
+							ArgumentsType<ARGS...> operator()(const char* format, ARGS... args) const;
 						};
 
 						template<typename... ARGS>
 						typename Format::ArgumentsType<ARGS...>
-						Format::operator()(const char* format, ARGS... args)
+						Format::operator()(const char* format, ARGS... args) const
 						{
 							return ArgumentsType<ARGS...>(format, args...);
 						}

@@ -38,9 +38,9 @@ namespace BrainMuscles
 						public:
 							Exponent();
 						public:
-							ArgumentsType<float> operator()(const float& value);
-							ArgumentsType<double> operator()(const double& value);
-							ArgumentsType<long double> operator()(const long double& value);
+							ArgumentsType<float> operator()(const float& value) const;
+							ArgumentsType<double> operator()(const double& value) const;
+							ArgumentsType<long double> operator()(const long double& value) const;
 						};
 
 						Exponent::Exponent() :
@@ -48,19 +48,19 @@ namespace BrainMuscles
 						{}
 
 						typename Exponent::ArgumentsType<float> 
-							Exponent::operator()(const float& value)
+							Exponent::operator()(const float& value) const
 						{
 							return ArgumentsType<float>(value);
 						}
 
 						typename Exponent::ArgumentsType<double> 
-							Exponent::operator()(const double& value)
+							Exponent::operator()(const double& value) const
 						{
 							return ArgumentsType<double>(value);
 						}
 
 						typename Exponent::ArgumentsType<long double> 
-							Exponent::operator()(const long double& value)
+							Exponent::operator()(const long double& value) const
 						{
 							return ArgumentsType<long double>(value);
 						}
