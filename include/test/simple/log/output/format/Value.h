@@ -342,7 +342,7 @@ namespace BrainMuscles
 
 						bool Value::IsFloatAndFloatExponentEnable() const
 						{
-							return (m_setting & (FloatBitIndex | FloatExponentBitIndex));
+							return IsFloatEnable() && IsFloatExponentEnable();
 						}
 
 						void Value::SetDecimalOrOctalOrHexadecimal()
