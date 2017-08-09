@@ -372,6 +372,8 @@ namespace BrainMuscles
 						{
 							if (m_value.IsSetPrecision() && !IsCanCharacterEnable<ARG>())
 							{
+								m_formatString[index++] = ConstantType::BeginPrecisionCharacter;
+								m_formatString[index] = 0;
 								m_value.GetPrecision().CopyToFormat(m_formatString, index);
 							}
 						}
