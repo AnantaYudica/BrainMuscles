@@ -5,9 +5,11 @@
 
 #if defined(_USING_TEST_)
 
+#include "test\simple\log\output\format\Value.h"
 #include "test\simple\log\output\format\Flags.h"
 
 #include "test\simple\log\output\Arguments.h"
+#include "test\simple\log\output\Set.h"
 
 namespace BrainMuscles
 {
