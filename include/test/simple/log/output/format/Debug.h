@@ -178,21 +178,21 @@ namespace BrainMuscles
 						void Debug::PrintType(std::FILE* out_file, const float& f)
 						{
 							fprintf(out_file, "float{");
-							fprintf(out_file, "%f", f);
+							fprintf(out_file, "%g", f);
 							fprintf(out_file, "}");
 						}
 
 						void Debug::PrintType(std::FILE* out_file, const double& d)
 						{
 							fprintf(out_file, "double{");
-							fprintf(out_file, "%f", d);
+							fprintf(out_file, "%g", d);
 							fprintf(out_file, "}");
 						}
 
 						void Debug::PrintType(std::FILE* out_file, const long double& ld)
 						{
 							fprintf(out_file, "long double{");
-							fprintf(out_file, "%Lf", ld);
+							fprintf(out_file, "%Lg", ld);
 							fprintf(out_file, "}");
 						}
 
