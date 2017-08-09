@@ -40,7 +40,7 @@ namespace BrainMuscles
 							typedef typename ConstantType::FormatStringType		FormatStringType;
 							typedef typename ConstantType::SizeType				SizeType;
 						private:
-							enum SpecifierCase : int;
+							enum SpecifierCase : char;
 						private:
 							FormatStringType m_formatString;
 							ValueType m_value;
@@ -71,7 +71,8 @@ namespace BrainMuscles
 							void InCaseCharacterEnable(SizeType& index);
 							void InCaseStringEnable(SizeType& index);
 							void InCasePointerEnable(SizeType& index);
-							void InCaseIntegerDecimalEnable(SizeType& index);
+							void InCaseIntegerSignedDecimalEnable(SizeType& index);
+							void InCaseIntegerUnsignedDecimalEnable(SizeType& index);
 							void InCaseIntegerOctalEnable(SizeType& index);
 							void InCaseIntegerHexadecimalEnable(SizeType& index);
 							void InCaseFloatDecimalEnable(SizeType& index);
@@ -99,13 +100,14 @@ namespace BrainMuscles
 							ValueType& GetValue();
 						};
 
-						enum Prototype::SpecifierCase : int
+						enum Prototype::SpecifierCase : char
 						{
 							Disable,
 							CharacterEnable,
 							StringEnable,
 							PointerEnable,
-							IntegerDecimalEnable,
+							IntegerSignedDecimalEnable,
+							IntegerUnsignedDecimalEnable,
 							IntegerOctalEnable,
 							IntegerHexadecimalEnable,
 							FloatDecimalEnable,
@@ -171,7 +173,14 @@ namespace BrainMuscles
 							{
 								if (m_value.IsDecimalEnable())
 								{
-									return SpecifierCase::IntegerDecimalEnable;
+									if (std::is_signed<TYPE>::value)
+									{
+										return SpecifierCase::IntegerSignedDecimalEnable;
+									}
+									else
+									{
+										return SpecifierCase::IntegerUnsignedDecimalEnable;
+									}
 								}
 								else if (m_value.IsOctalEnable())
 								{
@@ -252,7 +261,7 @@ namespace BrainMuscles
 							SpecifierType::Pointer().CopyToFormat(m_formatString, index);
 						}
 
-						void Prototype::InCaseIntegerDecimalEnable(SizeType& index)
+						void Prototype::InCaseIntegerSignedDecimalEnable(SizeType& index)
 						{
 							if (m_value.isSignedEnable())
 							{
@@ -262,6 +271,11 @@ namespace BrainMuscles
 							{
 								SpecifierType::UnsignedDecimal().CopyToFormat(m_formatString, index);
 							}
+						}
+
+						void Prototype::InCaseIntegerUnsignedDecimalEnable(SizeType& index)
+						{
+							SpecifierType::UnsignedDecimal().CopyToFormat(m_formatString, index);
 						}
 
 						void Prototype::InCaseIntegerOctalEnable(SizeType& index)
@@ -385,8 +399,11 @@ namespace BrainMuscles
 							case SpecifierCase::PointerEnable:
 								InCasePointerEnable(index);
 								break;
-							case SpecifierCase::IntegerDecimalEnable:
-								InCaseIntegerDecimalEnable(index);
+							case SpecifierCase::IntegerSignedDecimalEnable:
+								InCaseIntegerSignedDecimalEnable(index);
+								break;
+							case SpecifierCase::IntegerUnsignedDecimalEnable:
+								InCaseIntegerUnsignedDecimalEnable(index);
 								break;
 							case SpecifierCase::IntegerOctalEnable:
 								InCaseIntegerOctalEnable(index);
