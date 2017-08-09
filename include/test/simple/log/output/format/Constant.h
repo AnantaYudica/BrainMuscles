@@ -5,6 +5,7 @@
 
 #if defined(_USING_TEST_)
 
+#include <limits>
 #include <cstdint>
 
 namespace BrainMuscles
@@ -37,8 +38,8 @@ namespace BrainMuscles
 							static constexpr SizeType SizeMaxFlag = 1;
 							static constexpr SizeType SizeMaxLength = 2;
 							static constexpr SizeType SizeMaxSpecifier = 1;
-							static constexpr SizeType SizeMaxWidth = 5;
-							static constexpr SizeType SizeMaxPrecision = 5;
+							static constexpr SizeType SizeMaxWidth = std::numeric_limits<WidthInputType>::digits10 + 1;
+							static constexpr SizeType SizeMaxPrecision = std::numeric_limits<PrecisionInputType>::digits10 + 1;
 							static constexpr SizeType SizeMaxFormat = SizeBeginCharacter + 
 																		SizeMaxFlag + 
 																		SizeMaxWidth + 
