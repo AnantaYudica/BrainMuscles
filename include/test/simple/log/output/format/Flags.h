@@ -54,7 +54,8 @@ namespace BrainMuscles
 							static Flags Zero();
 						};
 
-						Flags::Flags()
+						Flags::Flags() :
+							m_flag {0}
 						{}
 
 						template<typename... ARGS>
