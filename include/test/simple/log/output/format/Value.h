@@ -361,6 +361,7 @@ namespace BrainMuscles
 							m_setting |= DecimalBitIndex;
 							OctalDisable();
 							HexadecimalDisable();
+							CharacterDisable();
 						}
 
 						void Value::OctalEnable()
@@ -369,6 +370,7 @@ namespace BrainMuscles
 							m_setting |= OctalBitIndex;
 							DecimalDisable();
 							HexadecimalDisable();
+							CharacterDisable();
 						}
 
 						void Value::HexadecimalEnable()
@@ -377,6 +379,7 @@ namespace BrainMuscles
 							m_setting |= HexadecimalBitIndex;
 							DecimalDisable();
 							OctalDisable();
+							CharacterDisable();
 						}
 
 						void Value::DecimalDisable()
