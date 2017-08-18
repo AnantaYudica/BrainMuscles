@@ -2,8 +2,13 @@
 #include <cstring>
 #include <algorithm>
 #include <functional>
+#include <tuple>
+#include <type_traits>
+#include <typeinfo>
 #include "test\simple\functional\Function.h"
 #include "test\simple\functional\function\Member.h"
+#include "test\simple\functional\function\helper\parameter\Element.h"
+#include "test\simple\functional\function\helper\parameter\Size.h"
 
 using namespace BrainMuscles::test::simple;
 using namespace std;
@@ -142,80 +147,89 @@ TestFunctionMember<R T::*> CallTestFunctionMember(R T::* function_member)
 	return TestFunctionMember<R T::*>();
 }
 
+void TestArgs(int a, int b, int c, int d, int e, int f)
+{
+	printf("TestArgs(a = %d, b = %d, c = %d, d = %d, e = %d, f = %d)\n", a, b, c, d, e, f);
+}
+
 int main(int argc, char *argv[])
 {
+	//experiment with test\simple\functional\Function.h
 	{
-		//declaration f_PrintIntegerInt and initializing with function PrintInteger where T = int
-		functional::Function<int, const int&> f_PrintIntegerInt(&PrintInteger);
-		//call f_PrintIntegerInt with value = 4
-		f_PrintIntegerInt(4);
+		{
+			//declaration f_PrintIntegerInt and initializing with function PrintInteger where T = int
+			functional::Function<int, const int&> f_PrintIntegerInt(&PrintInteger);
+			//call f_PrintIntegerInt with value = 4
+			f_PrintIntegerInt(4);
+		}
+
+		{
+			//declaration f_PrintString and initializing with function PrintString
+			functional::Function<int, const char*> f_PrintString(&PrintString);
+			//call f_PrintString with str = "test print with PrintString"
+			f_PrintString("test print with PrintString");
+		}
+
+		{
+			//declaration f_CallPrintf and initializing with function CallPrintf where ARGS = {int}
+			functional::Function<int, const char*, int> f_CallPrintf(&CallPrintf);
+			//call f_CallPrintf with format = "call CallPrintf with integer %d\n" and args = {4}
+			f_CallPrintf("call CallPrintf with integer %d\n", 4);
+		}
+
+		{
+			//declaration f_printf and initializing with function printf
+			functional::Function<int, const char*, int> f_printf(&printf);
+			//call f_printf with format = "call printf with integer %d\n" and args = {4}
+			f_printf("call printf with integer %d\n", 4);
+		}
+
+		{
+			//declaration person1
+			Person person1;
+
+			//declaration f_callPersonMemberFunction1 and initializing with function CallMemberFunction 
+			//where T = Person, R = void and ARGS = {const char *, const char *}
+			functional::Function<void, decltype(&Person::SetName), Person&, const char *, const char * >
+				f_callPersonMemberFunction1(&CallMemberFunction);
+			//Call f_callPersonMemberFunction1 with 
+			//function = &Person::SetName, object = person1, args = {"person1", "test"}
+			f_callPersonMemberFunction1(&Person::SetName, person1, "person1", "test");
+
+			//declaration f_callPersonMemberFunction2 and initialization with function CallMemberFunction
+			//where T = Person, R = const char*, and ARGS = {}
+			functional::Function<const char*, const char*(Person::*)() const, const Person&>
+				f_callPersonMemberFunction2(&CallMemberFunction);
+
+			//call printf with format = "First Name from person1 : %s\n" and args = { 
+			// {from return call f_callPersonMemberFunction2 with function = &Person::GetFirstName and object = person1}}
+			printf("First Name from person1 : %s\n", f_callPersonMemberFunction2(&Person::GetFirstName, person1));
+
+			//call printf with format = "Last Name from person1 : %s\n" and args = { 
+			// {from return call f_callPersonMemberFunction2 with function = &Person::GetLastName and object = person1}}
+			printf("Last Name form person1 : %s\n", f_callPersonMemberFunction2(&Person::GetLastName, person1));
+
+			//declaration f_callPersonMemberFunction3 and initialization with function CallMemberFunction
+			//where T = Person, R = void, and ARGS = {const unsigned char&}
+			functional::Function<void, void(Person::*)(const unsigned char&), Person&, const unsigned char&>
+				f_callPersonMemberFunction3(&CallMemberFunction);
+
+			//Call f_callPersonMemberFunction1 with 
+			//function = &Person::SetAge, object = person1, args = {26}
+			f_callPersonMemberFunction3(&Person::SetAge, person1, 26);
+
+			//declaration f_callPersonMemberFunction4 and initialization with function CallMemberFunction
+			//where T = Person, R = unsigned char, and ARGS = {}
+			functional::Function<unsigned char, unsigned char(Person::*)() const, const Person&>
+				f_callPersonMemberFunction4(&CallMemberFunction);
+
+			//call printf with format = "Age from person1 : %u\n" and args = { 
+			// {from return call f_callPersonMemberFunction4 with function = &Person::GetAge and object = person1}}
+			printf("Age from person1 : %u\n", f_callPersonMemberFunction4(&Person::GetAge, person1));
+		}
 	}
 
-	{
-		//declaration f_PrintString and initializing with function PrintString
-		functional::Function<int, const char*> f_PrintString(&PrintString);
-		//call f_PrintString with str = "test print with PrintString"
-		f_PrintString("test print with PrintString");
-	}
-
-	{
-		//declaration f_CallPrintf and initializing with function CallPrintf where ARGS = {int}
-		functional::Function<int, const char*, int> f_CallPrintf(&CallPrintf);
-		//call f_CallPrintf with format = "call CallPrintf with integer %d\n" and args = {4}
-		f_CallPrintf("call CallPrintf with integer %d\n", 4);
-	}
-
-	{
-		//declaration f_printf and initializing with function printf
-		functional::Function<int, const char*, int> f_printf(&printf);
-		//call f_printf with format = "call printf with integer %d\n" and args = {4}
-		f_printf("call printf with integer %d\n", 4);
-	}
-
-	{
-		//declaration person1
-		Person person1;
-
-		//declaration f_callPersonMemberFunction1 and initializing with function CallMemberFunction 
-		//where T = Person, R = void and ARGS = {const char *, const char *}
-		functional::Function<void, decltype(&Person::SetName), Person&, const char *, const char * >
-			f_callPersonMemberFunction1(&CallMemberFunction);
-		//Call f_callPersonMemberFunction1 with 
-		//function = &Person::SetName, object = person1, args = {"person1", "test"}
-		f_callPersonMemberFunction1(&Person::SetName, person1, "person1", "test");
-
-		//declaration f_callPersonMemberFunction2 and initialization with function CallMemberFunction
-		//where T = Person, R = const char*, and ARGS = {}
-		functional::Function<const char*, const char*(Person::*)() const, const Person&>
-			f_callPersonMemberFunction2(&CallMemberFunction);
-
-		//call printf with format = "First Name from person1 : %s\n" and args = { 
-		// {from return call f_callPersonMemberFunction2 with function = &Person::GetFirstName and object = person1}}
-		printf("First Name from person1 : %s\n", f_callPersonMemberFunction2(&Person::GetFirstName, person1));
-		
-		//call printf with format = "Last Name from person1 : %s\n" and args = { 
-		// {from return call f_callPersonMemberFunction2 with function = &Person::GetLastName and object = person1}}
-		printf("Last Name form person1 : %s\n", f_callPersonMemberFunction2(&Person::GetLastName, person1));
-
-		//declaration f_callPersonMemberFunction3 and initialization with function CallMemberFunction
-		//where T = Person, R = void, and ARGS = {const unsigned char&}
-		functional::Function<void, void(Person::*)(const unsigned char&), Person&, const unsigned char&>
-			f_callPersonMemberFunction3(&CallMemberFunction);
-
-		//Call f_callPersonMemberFunction1 with 
-		//function = &Person::SetAge, object = person1, args = {26}
-		f_callPersonMemberFunction3(&Person::SetAge, person1, 26);
-
-		//declaration f_callPersonMemberFunction4 and initialization with function CallMemberFunction
-		//where T = Person, R = unsigned char, and ARGS = {}
-		functional::Function<unsigned char, unsigned char(Person::*)() const, const Person&>
-			f_callPersonMemberFunction4(&CallMemberFunction);
-
-		//call printf with format = "Age from person1 : %u\n" and args = { 
-		// {from return call f_callPersonMemberFunction4 with function = &Person::GetAge and object = person1}}
-		printf("Age from person1 : %u\n", f_callPersonMemberFunction4(&Person::GetAge, person1));
-	}
-
+	//experiment with test\simple\functional\function\Member.h
 	{
 		//declaration person1
 		Person person1;
@@ -363,5 +377,82 @@ int main(int argc, char *argv[])
 		//{from return call f_callFunctionVolatileMemberPersonAddAge with args = {2}}}
 		printf("add age of person1, age : %d\n", f_callFunctionVolatileMemberPersonAddAge(2));
 	}
+
+	//experiment with test\simple\functional\function\helper\parameter\Element.h
+	{
+		//declaration type Func_1_Type with functional::Function 
+		// where RETURN_TYPE = void and ARGS = {char, short, int, long, long long}
+		typedef functional::Function<void, char, short, int, long, long long> Func_1_Type;
+
+		//declaration type Func_1_param_1_type with functional::function::helper::parameter::Element
+		// where INDEX = 0 and FUNCTION_TYPE = Func_1_Type
+		typedef typename functional::function::helper::parameter::Element<0, Func_1_Type>::Type Func_1_param_1_type;
+
+		//call printf with format = "1st parameter function Func_1_Type : %s\n" and args = {
+		// {from return call typeid(Func_1_param_1_type).name()}}
+		printf("1st parameter function Func_1_Type : %s\n", typeid(Func_1_param_1_type).name());
+		
+		//declaration type Func_1_param_2_type with functional::function::helper::parameter::Element
+		// where INDEX = 1 and FUNCTION_TYPE = Func_1_Type
+		typedef typename functional::function::helper::parameter::Element<1, Func_1_Type>::Type Func_1_param_2_type;
+
+		//call printf with format "2nd parameter function Func_1_Type : %s\n" and args = 
+		// {from return call typeof(Func_1_param_2_type).name()}
+		printf("2nd parameter function Func_1_Type : %s\n", typeid(Func_1_param_2_type).name());
+		
+		//declaration type Func_1_param_3_type with functional::function::helper::parameter::Element
+		// where INDEX = 2 and FUNCTION_TYPE = Func_1_Type
+		typedef typename functional::function::helper::parameter::Element<2, Func_1_Type>::Type Func_1_param_3_type;
+
+		//call printf with format "3rd parameter function Func_1_Type : %s\n" and args = 
+		// {from return call typeof(Func_1_param_3_type).name()}
+		printf("3rd parameter function Func_1_Type : %s\n", typeid(Func_1_param_3_type).name());
+
+		//declaration type Func_1_param_4_type with functional::function::helper::parameter::Element
+		// where INDEX = 3 and FUNCTION_TYPE = Func_1_Type
+		typedef typename functional::function::helper::parameter::Element<3, Func_1_Type>::Type Func_1_param_4_type;
+
+		//call printf with format "4th parameter function Func_1_Type : %s\n" and args = 
+		// {from return call typeof(Func_1_param_4_type).name()}
+		printf("4th parameter function Func_1_Type : %s\n", typeid(Func_1_param_4_type).name());
+
+		//declaration type Func_1_param_5_type with functional::function::helper::parameter::Element
+		// where INDEX = 4 and FUNCTION_TYPE = Func_1_Type
+		typedef typename functional::function::helper::parameter::Element<4, Func_1_Type>::Type Func_1_param_5_type;
+
+		//call printf with format "5th parameter function Func_1_Type : %s\n" and args = 
+		// {from return call typeof(Func_1_param_5_type).name()}
+		printf("5th parameter function Func_1_Type : %s\n", typeid(Func_1_param_5_type).name());
+
+		//declaration type Func_2_Type with functional::Function 
+		// where RETURN_TYPE = void and ARGS = {}
+		typedef functional::Function<void> Func_2_Type;
+
+		//error undefined type because index 0 of ARGS is undefied type 
+		//typedef typename functional::function::helper::parameter::Element<0, Func_2_Type>::Type Func_1_param_1_type;
+	}
+
+	//expriment with test\simple\functional\function\helper\parameter\Size.h
+	{
+		//declaration type Func_1_Type with functional::Function 
+		// where RETURN_TYPE = void and ARGS = {char, short, int, long, long long}
+		typedef functional::Function<void, char, short, int, long, long long> Func_1_Type;
+
+		//call printf with format = "size parameter of Func_1_Type : %d\n" and args = {
+		// {from get value from functional::function::helper::parameter::Size<Func_1_Type>::Value 
+		// where FUNCTION_TYPE = Func_1_Type}}
+		printf("size parameter of Func_1_Type : %d\n", functional::function::helper::parameter::Size<Func_1_Type>::Value);
+	
+		//declaration type Func_2_Type with functional::Function 
+		// where RETURN_TYPE = void and ARGS = {}
+		typedef functional::Function<void> Func_2_Type;
+
+		//call printf with format = "size parameter of Func_2_Type : %d\n" and args = {
+		// {from get value from functional::function::helper::parameter::Size<Func_2_Type>::Value 
+		// where FUNCTION_TYPE = Func_2_Type}}
+		printf("size parameter of Func_2_Type : %d\n", functional::function::helper::parameter::Size<Func_2_Type>::Value);
+
+	}
+
 	return 1;
 }
