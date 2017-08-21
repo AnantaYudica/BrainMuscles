@@ -1,5 +1,5 @@
-#ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_CLEAR_H_
-#define TEST_SIMPLE_LOG_OUTPUT_HANDLE_CLEAR_H_
+#ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_CLEAR_H_
+#define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_CLEAR_H_
 
 #include "test\Configure.h"
 
@@ -7,7 +7,8 @@
 
 #include "test\simple\log\output\format\Value.h"
 
-#include "test\simple\log\output\Set.h"
+#include "test\simple\log\output\call\value\Tag.h"
+#include "test\simple\log\output\call\Value.h"
 
 namespace BrainMuscles
 {
@@ -19,23 +20,21 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					namespace handle
+					namespace delegate
 					{
 						class Clear :
-							public BrainMuscles::test::simple::log::output::Set<
-								BrainMuscles::test::simple::log::output::format::Value, void, void>
+							public BrainMuscles::test::simple::log::output::call::Value
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::format::Value	ValueType;
-							typedef BrainMuscles::test::simple::log::output::Set<
-								ValueType, void, void>										BaseType;
-							typedef BrainMuscles::test::simple::log::output::set::Type		SetTypeType;
+							typedef BrainMuscles::test::simple::log::output::call::Value		BaseType;
+							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
+							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
 						public:
 							Clear();
 						};
 
 						Clear::Clear() :
-							BaseType(SetTypeType::local_and_global_value, &ValueType::Default)
+							BaseType(ValueTagType::local_and_global_value, std::bind(&FormatValueType::Default, std::placeholders::_1))
 						{}
 					}
 				}
@@ -46,4 +45,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUTPUT_HANDLE_CLEAR_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_CLEAR_H_

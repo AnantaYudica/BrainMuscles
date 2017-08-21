@@ -64,4 +64,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUTPUT_HANDLE_CHARACTER_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_CHARACTER_H_
