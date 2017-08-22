@@ -1,5 +1,5 @@
-#ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_EXPONENT_H_
-#define TEST_SIMPLE_LOG_OUTPUT_HANDLE_EXPONENT_H_
+#ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_EXPONENT_H_
+#define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_EXPONENT_H_
 
 #include "test\Configure.h"
 
@@ -7,8 +7,9 @@
 
 #include "test\simple\log\output\format\Value.h"
 
-#include "test\simple\log\output\Arguments.h"
-#include "test\simple\log\output\Set.h"
+#include "test\simple\log\output\call\value\Tag.h"
+#include "test\simple\log\output\call\Value.h"
+#include "test\simple\log\output\call\Handle.h"
 
 namespace BrainMuscles
 {
@@ -20,49 +21,58 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					namespace handle
+					namespace delegate
 					{
 						class Exponent :
-							public BrainMuscles::test::simple::log::output::Set<
-								BrainMuscles::test::simple::log::output::format::Value, void, void>
+							public BrainMuscles::test::simple::log::output::call::Value
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::format::Value	ValueType;
-							typedef BrainMuscles::test::simple::log::output::Set<
-								ValueType, void, void>										BaseType;
-							typedef BrainMuscles::test::simple::log::output::set::Type		SetTypeType;
+							typedef BrainMuscles::test::simple::log::output::call::Value		BaseType;
+							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
+							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
+							typedef BrainMuscles::test::simple::functional::Function<void,
+								FormatValueType*>												FunctionMemberFormatValueType;
+
+							typedef BrainMuscles::test::simple::log::output::Handle				HandleType;
+							typedef BrainMuscles::test::simple::log::output::call::Handle<>		CallHandleType;
 						public:
-							template<typename TYPE>
-							using ArgumentsType = BrainMuscles::test::simple::log::output::Arguments<
-								Exponent, TYPE>;
+							template<typename ARG>
+							using FunctionMemberHandlePrintType = BrainMuscles::test::simple::functional::Function<void,
+								HandleType*, const char*, ARG>;
 						public:
 							Exponent();
 						public:
-							ArgumentsType<float> operator()(const float& value) const;
-							ArgumentsType<double> operator()(const double& value) const;
-							ArgumentsType<long double> operator()(const long double& value) const;
+							CallHandleType operator()(const float& value) const;
+							CallHandleType operator()(const double& value) const;
+							CallHandleType operator()(const long double& value) const;
 						};
 
 						Exponent::Exponent() :
-							BaseType(SetTypeType::local_value, &ValueType::FloatExponentEnable)
+							BaseType(ValueTagType::local_value, &FormatValueType::FloatExponentEnable)
 						{}
 
-						typename Exponent::ArgumentsType<float> 
+						typename Exponent::CallHandleType
 							Exponent::operator()(const float& value) const
 						{
-							return ArgumentsType<float>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<float>, FunctionMemberFormatValueType, float)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<float>>(&HandleType::Print<float>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::FloatExponentEnable), value);
 						}
 
-						typename Exponent::ArgumentsType<double> 
+						typename Exponent::CallHandleType
 							Exponent::operator()(const double& value) const
 						{
-							return ArgumentsType<double>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<double>, FunctionMemberFormatValueType, double)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<double>>(&HandleType::Print<double>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::FloatExponentEnable), value);
 						}
 
-						typename Exponent::ArgumentsType<long double> 
+						typename Exponent::CallHandleType
 							Exponent::operator()(const long double& value) const
 						{
-							return ArgumentsType<long double>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<long double>, FunctionMemberFormatValueType, long double)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<long double>>(&HandleType::Print<long double>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::FloatExponentEnable), value);
 						}
 					}
 				}
@@ -73,4 +83,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUTPUT_HANDLE_EXPONENT_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_EXPONENT_H_
