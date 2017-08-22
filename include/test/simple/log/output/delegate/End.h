@@ -1,11 +1,11 @@
-#ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_END_H_
-#define TEST_SIMPLE_LOG_OUTPUT_HANDLE_END_H_
+#ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_END_H_
+#define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_END_H_
 
 #include "test\Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\log\output\Arguments.h"
+#include "test\simple\log\output\call\Handle.h"
 
 namespace BrainMuscles
 {
@@ -17,11 +17,21 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					namespace handle
+					namespace delegate
 					{
 						class End :
-							public BrainMuscles::test::simple::log::output::Arguments<End, void>
-						{};
+							public BrainMuscles::test::simple::log::output::call::Handle<>
+						{
+						public:
+							typedef BrainMuscles::test::simple::log::output::call::Handle<>		BaseType;
+							typedef BrainMuscles::test::simple::log::output::Handle				HandleType;
+						public:
+							End();
+						};
+
+						End::End() :
+							BaseType(&HandleType::EndPrintOutput)
+						{}
 					}
 				}
 			}
@@ -31,4 +41,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUTPUT_HANDLE_END_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_END_H_
