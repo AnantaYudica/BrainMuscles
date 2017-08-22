@@ -1,5 +1,5 @@
-#ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_FLAG_H_
-#define TEST_SIMPLE_LOG_OUTPUT_HANDLE_FLAG_H_
+#ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_FLAG_H_
+#define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_FLAG_H_
 
 #include "test\Configure.h"
 
@@ -8,8 +8,8 @@
 #include "test\simple\log\output\format\Value.h"
 #include "test\simple\log\output\format\Flags.h"
 
-#include "test\simple\log\output\Arguments.h"
-#include "test\simple\log\output\Set.h"
+#include "test\simple\log\output\call\value\Tag.h"
+#include "test\simple\log\output\call\Value.h"
 
 namespace BrainMuscles
 {
@@ -21,32 +21,32 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					namespace handle
+					namespace delegate
 					{
 						class Flag
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::format::Flags	FlagsType;
-							typedef BrainMuscles::test::simple::log::output::format::Value	ValueType;
-							typedef BrainMuscles::test::simple::log::output::Set<
-								ValueType, void, const FlagsType&>							SetType;
-							typedef BrainMuscles::test::simple::log::output::set::Type		SetTypeType;
+							typedef BrainMuscles::test::simple::log::output::call::Value		CallValueType;
+							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
+							typedef BrainMuscles::test::simple::log::output::format::Flags		FormatFlagsType;
+							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
+							typedef void (FormatValueType::*FunctionMemberValueSetFlagType)(const FormatFlagsType& flag);
 						public:
-							const SetType Negative;
-							const SetType Positive;
-							const SetType Space;
-							const SetType Hash;
-							const SetType Zero;
+							const CallValueType Negative;
+							const CallValueType Positive;
+							const CallValueType Space;
+							const CallValueType Hash;
+							const CallValueType Zero;
 						public:
 							Flag();
 						};
 
 						Flag::Flag() :
-							Negative(SetTypeType::local_value, &ValueType::SetFlag, FlagsType::Negative()),
-							Positive(SetTypeType::local_value, &ValueType::SetFlag, FlagsType::Positive()),
-							Space(SetTypeType::local_value, &ValueType::SetFlag, FlagsType::Space()),
-							Hash(SetTypeType::local_value, &ValueType::SetFlag, FlagsType::Hash()),
-							Zero(SetTypeType::local_value, &ValueType::SetFlag, FlagsType::Zero())
+							Negative(ValueTagType::local_value, std::bind(static_cast<FunctionMemberValueSetFlagType>(&FormatValueType::SetFlag), std::placeholders::_1, FormatFlagsType::Negative())),
+							Positive(ValueTagType::local_value, std::bind(static_cast<FunctionMemberValueSetFlagType>(&FormatValueType::SetFlag), std::placeholders::_1, FormatFlagsType::Positive())),
+							Space(ValueTagType::local_value, std::bind(static_cast<FunctionMemberValueSetFlagType>(&FormatValueType::SetFlag), std::placeholders::_1, FormatFlagsType::Space())),
+							Hash(ValueTagType::local_value, std::bind(static_cast<FunctionMemberValueSetFlagType>(&FormatValueType::SetFlag), std::placeholders::_1, FormatFlagsType::Hash())),
+							Zero(ValueTagType::local_value, std::bind(static_cast<FunctionMemberValueSetFlagType>(&FormatValueType::SetFlag), std::placeholders::_1, FormatFlagsType::Zero()))
 						{}
 					}
 				}
@@ -57,4 +57,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUTPUT_HANDLE_FLAG_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_FLAG_H_
