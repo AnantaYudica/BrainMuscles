@@ -44,16 +44,14 @@ namespace BrainMuscles
 						};
 
 						Character::Character() :
-							BaseType(ValueTagType::local_value, std::bind(&FormatValueType::CharacterEnable, std::placeholders::_1))
+							BaseType(ValueTagType::local_value, &FormatValueType::CharacterEnable)
 						{}
 
 						typename Character::CallHandleType Character::operator()(const int& character) const
 						{
-							FunctionMemberFormatValueType functionMemberFormatValue = std::bind(&FormatValueType::CharacterEnable, std::placeholders::_1);
-							FunctionMemberHandlePrintType functionMemberHandlePrint = std::bind(&HandleType::Print<char>, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3);
-
 							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType, FunctionMemberFormatValueType, int)>
-								(&HandleType::PrintDelegate), std::placeholders::_1, functionMemberHandlePrint, functionMemberFormatValue, character);
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType>(&HandleType::Print<char>) , 
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::CharacterEnable), character);
 						}
 					}
 				}
