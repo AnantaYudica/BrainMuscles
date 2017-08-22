@@ -34,7 +34,7 @@ namespace BrainMuscles
 						};
 
 						Clear::Clear() :
-							BaseType(ValueTagType::local_and_global_value, std::bind(&FormatValueType::Default, std::placeholders::_1))
+							BaseType(ValueTagType::local_and_global_value, &FormatValueType::Default)
 						{}
 					}
 				}
