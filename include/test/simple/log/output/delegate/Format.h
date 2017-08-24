@@ -1,11 +1,11 @@
-#ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_FORMAT_H_
-#define TEST_SIMPLE_LOG_OUTPUT_HANDLE_FORMAT_H_
+#ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_FORMAT_H_
+#define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_FORMAT_H_
 
 #include "test\Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\log\output\Arguments.h"
+#include "test\simple\log\output\call\Handle.h"
 
 namespace BrainMuscles
 {
@@ -17,23 +17,31 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					namespace handle
+					namespace delegate
 					{
+						template<typename OUTPUT_TYPE>
 						class Format
 						{
 						public:
-							template<typename... ARGS>
-							using ArgumentsType = BrainMuscles::test::simple::log::output::Arguments<Format, const char*, ARGS...>;
+							typedef BrainMuscles::test::simple::log::output::Handle<
+								OUTPUT_TYPE>													HandleType;
+							typedef BrainMuscles::test::simple::log::output::call::Handle<
+								OUTPUT_TYPE>													CallHandleType;
+							typedef BrainMuscles::test::simple::functional::Function<void,
+								HandleType*>													FunctionMemberHandlePrintType;
 						public:
 							template<typename... ARGS>
-							ArgumentsType<ARGS...> operator()(const char* format, ARGS... args) const;
+							CallHandleType operator()(const char* format, ARGS... args) const;
 						};
 
+						template<typename OUTPUT_TYPE>
 						template<typename... ARGS>
-						typename Format::ArgumentsType<ARGS...>
-						Format::operator()(const char* format, ARGS... args) const
+						typename Format<OUTPUT_TYPE>::CallHandleType
+							Format<OUTPUT_TYPE>::operator()(const char* format, ARGS... args) const
 						{
-							return ArgumentsType<ARGS...>(format, args...);
+							FunctionMemberHandlePrintType function_print = std::bind(&HandleType::Print<ARGS...>, std::placeholders::_1, format, args...);
+							return std::bind(static_cast<void (HandleType::*)(FunctionMemberHandlePrintType)>(&HandleType::PrintDelegate),
+								std::placeholders::_1, function_print);
 						}
 					}
 				}
@@ -44,4 +52,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUTPUT_HANDLE_FORMAT_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_FORMAT_H_
