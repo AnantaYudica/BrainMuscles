@@ -31,7 +31,9 @@ namespace BrainMuscles
 						typedef BrainMuscles::test::simple::log::output::format::Value	FormatValueType;
 						typedef BrainMuscles::test::simple::log::output::Handle<
 							DERIVED_TYPE>												HandleType;
-						typedef BrainMuscles::test::simple::log::output::call::Value	CallValueType;
+					public:
+						template<typename CALLER_TYPE>
+						using CallValueType = BrainMuscles::test::simple::log::output::call::Value<CALLER_TYPE>;
 					protected:
 						typedef BrainMuscles::test::simple::log::output::Signal			SignalType;
 					public:
@@ -55,7 +57,8 @@ namespace BrainMuscles
 						virtual void OnEndPrintOutput(std::FILE* outfile) = 0;
 						virtual DERIVED_TYPE* Derived() = 0;
 					public:
-						void SetValueFormat(const CallValueType& call_value);
+						template<typename CALLER_TYPE>
+						void SetValueFormat(const CallValueType<CALLER_TYPE>& call_value);
 					public:
 						void SetGlobalValue();
 						void SetLocalValue();
@@ -85,7 +88,8 @@ namespace BrainMuscles
 							BEFORE_PRINT_TYPE before_print = ConstantType::LoopBeforePrintDefault,
 							AFTER_PRINT_TYPE after_print = ConstantType::LoopAfterPrintDefault);
 					public:
-						Handle& operator<< (const CallValueType& call_value);
+						template<typename CALLER_TYPE>
+						Handle& operator<< (const CallValueType<CALLER_TYPE>& call_value);
 					};
 
 					template<typename DERIVED_TYPE>
@@ -101,7 +105,8 @@ namespace BrainMuscles
 					{}
 
 					template<typename DERIVED_TYPE>
-					void Handle<DERIVED_TYPE>::SetValueFormat(const CallValueType& call_value)
+					template<typename CALLER_TYPE>
+					void Handle<DERIVED_TYPE>::SetValueFormat(const CallValueType<CALLER_TYPE>& call_value)
 					{
 						if (call_value.IsSetGlobalValue())
 						{
@@ -239,7 +244,8 @@ namespace BrainMuscles
 					}
 
 					template<typename DERIVED_TYPE>
-					Handle<DERIVED_TYPE>& Handle<DERIVED_TYPE>::operator<< (const CallValueType& call_value)
+					template<typename CALLER_TYPE>
+					Handle<DERIVED_TYPE>& Handle<DERIVED_TYPE>::operator<< (const CallValueType<CALLER_TYPE>& call_value)
 					{
 						SetValueFormat(call_value);
 						return *this;
