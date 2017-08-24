@@ -23,10 +23,12 @@ namespace BrainMuscles
 						class Format
 						{
 						public:
+							typedef BrainMuscles::test::simple::log::output::delegate
+								::Format<OUTPUT_TYPE>											FormatType;
 							typedef BrainMuscles::test::simple::log::output::Handle<
 								OUTPUT_TYPE>													HandleType;
 							typedef BrainMuscles::test::simple::log::output::call::Handle<
-								OUTPUT_TYPE>													CallHandleType;
+								FormatType, OUTPUT_TYPE>										CallHandleType;
 							typedef BrainMuscles::test::simple::functional::Function<void,
 								HandleType*>													FunctionMemberHandlePrintType;
 						public:
