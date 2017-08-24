@@ -22,13 +22,15 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
+					template<typename DERIVED_TYPE>
 					class Handle :
 						public BrainMuscles::test::simple::log::output::Format
 					{
 					public:
 						typedef BrainMuscles::test::simple::log::output::Format			BaseType;
 						typedef BrainMuscles::test::simple::log::output::format::Value	FormatValueType;
-						typedef BrainMuscles::test::simple::log::output::Handle			HandleType;
+						typedef BrainMuscles::test::simple::log::output::Handle<
+							DERIVED_TYPE>												HandleType;
 						typedef BrainMuscles::test::simple::log::output::call::Value	CallValueType;
 					protected:
 						typedef BrainMuscles::test::simple::log::output::Signal			SignalType;
@@ -45,12 +47,13 @@ namespace BrainMuscles
 						ValueType m_outputValue;
 						SignalType m_outputSignal;
 					protected:
-						Handle();
+						Handle(std::FILE* file_output);
 					public:
 						virtual ~Handle();
 					protected:
 						virtual void OnBeginPrintOutput(std::FILE* outfile) = 0;
 						virtual void OnEndPrintOutput(std::FILE* outfile) = 0;
+						virtual DERIVED_TYPE* Derived() = 0;
 					public:
 						void SetValueFormat(const CallValueType& call_value);
 					public:
@@ -85,7 +88,20 @@ namespace BrainMuscles
 						Handle& operator<< (const CallValueType& call_value);
 					};
 
-					void Handle::SetValueFormat(const CallValueType& call_value)
+					template<typename DERIVED_TYPE>
+					Handle<DERIVED_TYPE>::Handle(std::FILE* file_output) :
+						BaseType(file_output)
+					{
+						m_globalValue.Default();
+						m_outputSignal.Default();
+					}
+
+					template<typename DERIVED_TYPE>
+					Handle<DERIVED_TYPE>::~Handle()
+					{}
+
+					template<typename DERIVED_TYPE>
+					void Handle<DERIVED_TYPE>::SetValueFormat(const CallValueType& call_value)
 					{
 						if (call_value.IsSetGlobalValue())
 						{
@@ -97,17 +113,20 @@ namespace BrainMuscles
 						}
 					}
 
-					void Handle::SetGlobalValue()
+					template<typename DERIVED_TYPE>
+					void Handle<DERIVED_TYPE>::SetGlobalValue()
 					{
 						m_globalValue = m_outputValue;
 					}
 
-					void Handle::SetLocalValue()
+					template<typename DERIVED_TYPE>
+					void Handle<DERIVED_TYPE>::SetLocalValue()
 					{
 						m_outputValue = m_globalValue;
 					}
 
-					void Handle::BeginPrintOutput()
+					template<typename DERIVED_TYPE>
+					void Handle<DERIVED_TYPE>::BeginPrintOutput()
 					{
 						if (m_outputSignal.IsPrintEnd())
 						{
@@ -128,7 +147,8 @@ namespace BrainMuscles
 						}
 					}
 
-					void Handle::NewlineOutput()
+					template<typename DERIVED_TYPE>
+					void Handle<DERIVED_TYPE>::NewlineOutput()
 					{
 						if (!m_outputSignal.IsNewline())
 						{
@@ -137,7 +157,8 @@ namespace BrainMuscles
 						}
 					}
 
-					void Handle::EndPrintOutput()
+					template<typename DERIVED_TYPE>
+					void Handle<DERIVED_TYPE>::EndPrintOutput()
 					{
 						if (!m_outputSignal.IsOutputEnd())
 						{
@@ -146,8 +167,9 @@ namespace BrainMuscles
 						}
 					}
 
+					template<typename DERIVED_TYPE>
 					template<typename ARG>
-					void Handle::PrintOutput(ARG arg)
+					void Handle<DERIVED_TYPE>::PrintOutput(ARG arg)
 					{
 						BeginPrintOutput();
 						BaseType::Output(PrototypeType(m_outputValue), arg);
@@ -157,14 +179,16 @@ namespace BrainMuscles
 						}
 					}
 
-					void Handle::PrintDelegate(FunctionPrintType<> function_print)
+					template<typename DERIVED_TYPE>
+					void Handle<DERIVED_TYPE>::PrintDelegate(FunctionPrintType<> function_print)
 					{
 						m_outputSignal.PassiveNewlineSignal();
 						function_print(this);
 					}
 
+					template<typename DERIVED_TYPE>
 					template<typename ARG>
-					void Handle::PrintDelegate(FunctionPrintType<const char*, ARG> function_print, FunctionMemberFormatValueType<> function_member_value, ARG value)
+					void Handle<DERIVED_TYPE>::PrintDelegate(FunctionPrintType<const char*, ARG> function_print, FunctionMemberFormatValueType<> function_member_value, ARG value)
 					{
 						m_outputSignal.PassiveNewlineSignal();
 						PrototypeType proto(m_outputValue);
@@ -172,8 +196,9 @@ namespace BrainMuscles
 						function_print(this, proto.GetFormat<ARG>(), value);
 					}
 
+					template<typename DERIVED_TYPE>
 					template<typename... ARGS>
-					void Handle::Print(const char* format, ARGS... args)
+					void Handle<DERIVED_TYPE>::Print(const char* format, ARGS... args)
 					{
 						if (m_outputSignal.IsForceNewline())
 						{
@@ -190,29 +215,31 @@ namespace BrainMuscles
 						}
 					}
 
+					template<typename DERIVED_TYPE>
 					template<typename ITERATOR_TYPE, typename CONJUNCTION_TYPE, typename BEFORE_PRINT_TYPE, typename AFTER_PRINT_TYPE>
-					void Handle::PrintLoop(ITERATOR_TYPE iterator_begin, ITERATOR_TYPE iterator_end, CONJUNCTION_TYPE conjunction, BEFORE_PRINT_TYPE before_print, AFTER_PRINT_TYPE after_print)
+					void Handle<DERIVED_TYPE>::PrintLoop(ITERATOR_TYPE iterator_begin, ITERATOR_TYPE iterator_end, CONJUNCTION_TYPE conjunction, BEFORE_PRINT_TYPE before_print, AFTER_PRINT_TYPE after_print)
 					{
 						BeginPrintOutput();
 						m_outputSignal.BeginPrintLoopSignal();
-						*this << before_print;
-						bool reverse = itrator_begin > iterator_end;
-						ITERATOR_TYPE it = itrator_begin;
+						*Derived() << before_print;
+						bool reverse = iterator_begin > iterator_end;
+						ITERATOR_TYPE it = iterator_begin;
 						while ((reverse ? it > iterator_end : it < iterator_end))
 						{
-							if (it != itrator_begin)
+							if (it != iterator_begin)
 							{
-								*this << conjunction;
+								*Derived() << conjunction;
 							}
-							*this << *it;
+							*Derived() << *it;
 							(reverse ? --it : ++it);
 						}
-						*this << after_print;
+						*Derived() << after_print;
 						m_outputSignal.EndPrintLoopSignal();
 						m_outputSignal.PrintEndSignal();
 					}
 
-					Handle& Handle::operator<< (const CallValueType& call_value)
+					template<typename DERIVED_TYPE>
+					Handle<DERIVED_TYPE>& Handle<DERIVED_TYPE>::operator<< (const CallValueType& call_value)
 					{
 						SetValueFormat(call_value);
 						return *this;
