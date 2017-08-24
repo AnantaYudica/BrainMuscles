@@ -26,21 +26,23 @@ namespace BrainMuscles
 						class Width
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::format::Width		WidthType;
-							typedef typename WidthType::WidthInputType							WidthInputType;
-							typedef BrainMuscles::test::simple::log::output::call::Value		CallValueType;
+							typedef BrainMuscles::test::simple::log::output::delegate::Width	WidthType;
+							typedef BrainMuscles::test::simple::log::output::format::Width		FormatWidthType;
+							typedef typename FormatWidthType::WidthInputType					FormatWidthInputType;
+							typedef BrainMuscles::test::simple::log::output::call::Value<
+								WidthType>														CallValueType;
 							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
 							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
 						public:
-							CallValueType operator()(const WidthInputType& value) const;
+							CallValueType operator()(const FormatWidthInputType& value) const;
 						};
 
 						typename Width::CallValueType
-							Width::operator()(const WidthInputType& value) const
+							Width::operator()(const FormatWidthInputType& value) const
 						{
-							WidthType width;
+							FormatWidthType width;
 							width.SetValue(value);
-							return CallValueType(ValueTagType::local_value, std::bind(static_cast<void(FormatValueType::*)(const WidthType&)>
+							return CallValueType(ValueTagType::local_value, std::bind(static_cast<void(FormatValueType::*)(const FormatWidthType&)>
 								(&FormatValueType::SetWidth), std::placeholders::_1, width));
 						}
 					}
