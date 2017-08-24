@@ -23,6 +23,7 @@ namespace BrainMuscles
 				{
 					namespace delegate
 					{
+						template<typename OUTPUT_TYPE>
 						class Character :
 							public BrainMuscles::test::simple::log::output::call::Value
 						{
@@ -33,21 +34,25 @@ namespace BrainMuscles
 							typedef BrainMuscles::test::simple::functional::Function<void,
 								FormatValueType*>												FunctionMemberFormatValueType;
 							
-							typedef BrainMuscles::test::simple::log::output::Handle				HandleType;
+							typedef BrainMuscles::test::simple::log::output::Handle<
+								OUTPUT_TYPE>													HandleType;
 							typedef BrainMuscles::test::simple::functional::Function<void,
 								HandleType*, const char*, int>									FunctionMemberHandlePrintType;
 
-							typedef BrainMuscles::test::simple::log::output::call::Handle<>		CallHandleType;
+							typedef BrainMuscles::test::simple::log::output::call::Handle<
+								OUTPUT_TYPE>													CallHandleType;
 						public:
 							Character();
 							CallHandleType operator()(const int& character) const;
 						};
 
-						Character::Character() :
+						template<typename OUTPUT_TYPE>
+						Character<OUTPUT_TYPE>::Character() :
 							BaseType(ValueTagType::local_value, &FormatValueType::CharacterEnable)
 						{}
 
-						typename Character::CallHandleType Character::operator()(const int& character) const
+						template<typename OUTPUT_TYPE>
+						typename Character<OUTPUT_TYPE>::CallHandleType Character<OUTPUT_TYPE>::operator()(const int& character) const
 						{
 							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType, FunctionMemberFormatValueType, int)>
 								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType>(&HandleType::Print<char>) , 
