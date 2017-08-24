@@ -23,10 +23,13 @@ namespace BrainMuscles
 					namespace delegate
 					{
 						class Lower : 
-							public BrainMuscles::test::simple::log::output::call::Value
+							public BrainMuscles::test::simple::log::output::call::Value<
+								BrainMuscles::test::simple::log::output::delegate::Lower>
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::call::Value		BaseType;
+							typedef BrainMuscles::test::simple::log::output::delegate::Lower	LowerType;
+							typedef BrainMuscles::test::simple::log::output::call::Value<
+								LowerType>														BaseType;
 							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
 							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
 						public:
