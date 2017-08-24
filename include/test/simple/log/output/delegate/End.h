@@ -19,17 +19,21 @@ namespace BrainMuscles
 				{
 					namespace delegate
 					{
+						template<typename OUTPUT_TYPE>
 						class End :
-							public BrainMuscles::test::simple::log::output::call::Handle<>
+							public BrainMuscles::test::simple::log::output::call::Handle<OUTPUT_TYPE>
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::call::Handle<>		BaseType;
-							typedef BrainMuscles::test::simple::log::output::Handle				HandleType;
+							typedef BrainMuscles::test::simple::log::output::call::Handle<
+								OUTPUT_TYPE>													BaseType;
+							typedef BrainMuscles::test::simple::log::output::Handle<
+								OUTPUT_TYPE>													HandleType;
 						public:
 							End();
 						};
 
-						End::End() :
+						template<typename OUTPUT_TYPE>
+						End<OUTPUT_TYPE>::End() :
 							BaseType(&HandleType::EndPrintOutput)
 						{}
 					}
