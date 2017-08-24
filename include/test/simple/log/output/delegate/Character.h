@@ -25,10 +25,14 @@ namespace BrainMuscles
 					{
 						template<typename OUTPUT_TYPE>
 						class Character :
-							public BrainMuscles::test::simple::log::output::call::Value
+							public BrainMuscles::test::simple::log::output::call::Value<
+								BrainMuscles::test::simple::log::output::delegate::Character<OUTPUT_TYPE>>
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::call::Value		BaseType;
+							typedef BrainMuscles::test::simple::log::output::delegate::
+								Character<OUTPUT_TYPE>											CharacterType;
+							typedef BrainMuscles::test::simple::log::output::call::Value<
+								CharacterType>													BaseType;
 							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
 							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
 							typedef BrainMuscles::test::simple::functional::Function<void,
@@ -40,7 +44,7 @@ namespace BrainMuscles
 								HandleType*, const char*, int>									FunctionMemberHandlePrintType;
 
 							typedef BrainMuscles::test::simple::log::output::call::Handle<
-								OUTPUT_TYPE>													CallHandleType;
+								CharacterType, OUTPUT_TYPE>										CallHandleType;
 						public:
 							Character();
 							CallHandleType operator()(const int& character) const;
