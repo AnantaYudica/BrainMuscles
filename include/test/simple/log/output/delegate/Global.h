@@ -21,13 +21,16 @@ namespace BrainMuscles
 					{
 						template<typename OUTPUT_TYPE>
 						class Global :
-							public BrainMuscles::test::simple::log::output::call::Handle<OUTPUT_TYPE>
+							public BrainMuscles::test::simple::log::output::call::Handle<
+								BrainMuscles::test::simple::log::output::delegate::Global<OUTPUT_TYPE>, OUTPUT_TYPE>
 						{
 						public:
+							typedef BrainMuscles::test::simple::log::output::delegate::Global<
+								OUTPUT_TYPE>													GlobalType;
 							typedef BrainMuscles::test::simple::log::output::Handle<
 								OUTPUT_TYPE>													HandleType;
 							typedef BrainMuscles::test::simple::log::output::call::Handle<
-								OUTPUT_TYPE>													BaseType;
+								GlobalType, OUTPUT_TYPE>										BaseType;
 						public:
 							Global();
 						};
