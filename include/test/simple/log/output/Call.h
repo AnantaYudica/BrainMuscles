@@ -17,11 +17,11 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					template<typename FUNCTION_TYPE>
+					template<typename CALLER_TYPE, typename FUNCTION_TYPE>
 					class Call;
 
-					template<typename RETURN_TYPE, typename OBJECT_TYPE, typename... ARGS>
-					class Call<BrainMuscles::test::simple::functional::Function<RETURN_TYPE, OBJECT_TYPE, ARGS...>> :
+					template<typename CALLER_TYPE, typename RETURN_TYPE, typename OBJECT_TYPE, typename... ARGS>
+					class Call<CALLER_TYPE, BrainMuscles::test::simple::functional::Function<RETURN_TYPE, OBJECT_TYPE, ARGS...>> :
 						public BrainMuscles::test::simple::functional::Function<RETURN_TYPE, OBJECT_TYPE, ARGS...>
 					{
 					public:
@@ -31,8 +31,8 @@ namespace BrainMuscles
 						Call(FunctionType function);
 					};
 
-					template<typename RETURN_TYPE, typename OBJECT_TYPE, typename... ARGS>
-					Call<BrainMuscles::test::simple::functional::Function<RETURN_TYPE, OBJECT_TYPE, ARGS...>>
+					template<typename CALLER_TYPE, typename RETURN_TYPE, typename OBJECT_TYPE, typename... ARGS>
+					Call<CALLER_TYPE, BrainMuscles::test::simple::functional::Function<RETURN_TYPE, OBJECT_TYPE, ARGS...>>
 						::Call(FunctionType function) :
 						FunctionType(function)
 					{}
