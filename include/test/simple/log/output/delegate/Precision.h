@@ -26,21 +26,24 @@ namespace BrainMuscles
 						class Precision
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::format::Precision	PrecisionType;
-							typedef typename PrecisionType::PrecisionInputType					PrecisionInputType;
-							typedef BrainMuscles::test::simple::log::output::call::Value		CallValueType;
+							typedef BrainMuscles::test::simple::log::output::delegate
+								::Precision														PrecisionType;
+							typedef BrainMuscles::test::simple::log::output::format::Precision	FormatPrecisionType;
+							typedef typename FormatPrecisionType::PrecisionInputType			FormatPrecisionInputType;
+							typedef BrainMuscles::test::simple::log::output::call::Value<
+								PrecisionType>													CallValueType;
 							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
 							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
 						public:
-							CallValueType operator()(const PrecisionInputType& value) const;
+							CallValueType operator()(const FormatPrecisionInputType& value) const;
 						};
 
 						typename Precision::CallValueType
-							Precision::operator()(const PrecisionInputType& value) const
+							Precision::operator()(const FormatPrecisionInputType& value) const
 						{
-							PrecisionType percision;
+							FormatPrecisionType percision;
 							percision.SetValue(value);
-							return CallValueType(ValueTagType::local_value, std::bind(static_cast<void(FormatValueType::*)(const PrecisionType&)>
+							return CallValueType(ValueTagType::local_value, std::bind(static_cast<void(FormatValueType::*)(const FormatPrecisionType&)>
 								(&FormatValueType::SetPrecision), std::placeholders::_1, percision));
 						}
 					}
