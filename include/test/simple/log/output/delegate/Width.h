@@ -1,5 +1,5 @@
-#ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_WIDTH_H_
-#define TEST_SIMPLE_LOG_OUTPUT_HANDLE_WIDTH_H_
+#ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_WIDTH_H_
+#define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_WIDTH_H_
 
 #include "test\Configure.h"
 
@@ -8,8 +8,8 @@
 #include "test\simple\log\output\format\Value.h"
 #include "test\simple\log\output\format\Width.h"
 
-#include "test\simple\log\output\Arguments.h"
-#include "test\simple\log\output\Set.h"
+#include "test\simple\log\output\call\value\Tag.h"
+#include "test\simple\log\output\call\Value.h"
 
 namespace BrainMuscles
 {
@@ -21,29 +21,27 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					namespace handle
+					namespace delegate
 					{
 						class Width
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output
-								::format::Width											WidthType;
-							typedef typename WidthType::WidthInputType					WidthInputType;
-							typedef BrainMuscles::test::simple::log::output	
-								::format::Value											ValueType;
-							typedef BrainMuscles::test::simple::log::output::Set<
-								ValueType, void, const WidthType&>						SetType;
-							typedef BrainMuscles::test::simple::log::output::set::Type	SetTypeType;
+							typedef BrainMuscles::test::simple::log::output::format::Width		WidthType;
+							typedef typename WidthType::WidthInputType							WidthInputType;
+							typedef BrainMuscles::test::simple::log::output::call::Value		CallValueType;
+							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
+							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
 						public:
-							SetType operator()(const WidthInputType& value) const;
+							CallValueType operator()(const WidthInputType& value) const;
 						};
 
-						typename Width::SetType
+						typename Width::CallValueType
 							Width::operator()(const WidthInputType& value) const
 						{
 							WidthType width;
 							width.SetValue(value);
-							return SetType(SetTypeType::local_value, &ValueType::SetWidth, width);
+							return CallValueType(ValueTagType::local_value, std::bind(static_cast<void(FormatValueType::*)(const WidthType&)>
+								(&FormatValueType::SetWidth), std::placeholders::_1, width));
 						}
 					}
 				}
@@ -54,4 +52,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUTPUT_HANDLE_WIDTH_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_WIDTH_H_
