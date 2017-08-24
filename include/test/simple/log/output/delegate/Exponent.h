@@ -23,6 +23,7 @@ namespace BrainMuscles
 				{
 					namespace delegate
 					{
+						template<typename OUTPUT_TYPE>
 						class Exponent :
 							public BrainMuscles::test::simple::log::output::call::Value
 						{
@@ -33,8 +34,10 @@ namespace BrainMuscles
 							typedef BrainMuscles::test::simple::functional::Function<void,
 								FormatValueType*>												FunctionMemberFormatValueType;
 
-							typedef BrainMuscles::test::simple::log::output::Handle				HandleType;
-							typedef BrainMuscles::test::simple::log::output::call::Handle<>		CallHandleType;
+							typedef BrainMuscles::test::simple::log::output::Handle<
+								OUTPUT_TYPE>													HandleType;
+							typedef BrainMuscles::test::simple::log::output::call::Handle<
+								OUTPUT_TYPE>													CallHandleType;
 						public:
 							template<typename ARG>
 							using FunctionMemberHandlePrintType = BrainMuscles::test::simple::functional::Function<void,
@@ -47,28 +50,32 @@ namespace BrainMuscles
 							CallHandleType operator()(const long double& value) const;
 						};
 
-						Exponent::Exponent() :
+						template<typename OUTPUT_TYPE>
+						Exponent<OUTPUT_TYPE>::Exponent() :
 							BaseType(ValueTagType::local_value, &FormatValueType::FloatExponentEnable)
 						{}
 
-						typename Exponent::CallHandleType
-							Exponent::operator()(const float& value) const
+						template<typename OUTPUT_TYPE>
+						typename Exponent<OUTPUT_TYPE>::CallHandleType
+							Exponent<OUTPUT_TYPE>::operator()(const float& value) const
 						{
 							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<float>, FunctionMemberFormatValueType, float)>
 								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<float>>(&HandleType::Print<float>),
 								static_cast<FunctionMemberFormatValueType>(&FormatValueType::FloatExponentEnable), value);
 						}
 
-						typename Exponent::CallHandleType
-							Exponent::operator()(const double& value) const
+						template<typename OUTPUT_TYPE>
+						typename Exponent<OUTPUT_TYPE>::CallHandleType
+							Exponent<OUTPUT_TYPE>::operator()(const double& value) const
 						{
 							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<double>, FunctionMemberFormatValueType, double)>
 								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<double>>(&HandleType::Print<double>),
 								static_cast<FunctionMemberFormatValueType>(&FormatValueType::FloatExponentEnable), value);
 						}
 
-						typename Exponent::CallHandleType
-							Exponent::operator()(const long double& value) const
+						template<typename OUTPUT_TYPE>
+						typename Exponent<OUTPUT_TYPE>::CallHandleType
+							Exponent<OUTPUT_TYPE>::operator()(const long double& value) const
 						{
 							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<long double>, FunctionMemberFormatValueType, long double)>
 								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<long double>>(&HandleType::Print<long double>),
