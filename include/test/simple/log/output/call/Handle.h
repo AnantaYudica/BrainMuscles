@@ -21,30 +21,31 @@ namespace BrainMuscles
 				{
 					namespace call
 					{
-						template<typename... ARGS>
+						template<typename DERIVED_TYPE>
 						class Handle :
 							public BrainMuscles::test::simple::log::output::Call<
 								BrainMuscles::test::simple::functional::Function<
-									void, BrainMuscles::test::simple::log::output::Handle*, ARGS...>>
+									void, BrainMuscles::test::simple::log::output::Handle<DERIVED_TYPE>*>>
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::Handle			HandleType;
+							typedef BrainMuscles::test::simple::log::output::Handle<
+								DERIVED_TYPE>												HandleType;
 							typedef BrainMuscles::test::simple::functional::Function<
-								void, HandleType*, ARGS...>									FunctionType;
+								void, HandleType*>									FunctionType;
 							typedef BrainMuscles::test::simple::log::output::Call<
 								FunctionType>												BaseType;
 						public:
 							Handle(FunctionType function);
-							Handle(std::function<void(HandleType*, ARGS...)> function);
+							Handle(std::function<void(HandleType*)> function);
 						};
 
-						template<typename... ARGS>
-						Handle<ARGS...>::Handle(FunctionType function) :
+						template<typename DERIVED_TYPE>
+						Handle<DERIVED_TYPE>::Handle(FunctionType function) :
 							BaseType(function)
 						{}
 
-						template<typename... ARGS>
-						Handle<ARGS...>::Handle(std::function<void(HandleType*, ARGS...)> function) :
+						template<typename DERIVED_TYPE>
+						Handle<DERIVED_TYPE>::Handle(std::function<void(HandleType*)> function) :
 							BaseType(function)
 						{}
 					}
