@@ -25,10 +25,14 @@ namespace BrainMuscles
 					{
 						template<typename OUTPUT_TYPE>
 						class Decimal :
-							public BrainMuscles::test::simple::log::output::call::Value
+							public BrainMuscles::test::simple::log::output::call::Value<
+								BrainMuscles::test::simple::log::output::delegate::Decimal<OUTPUT_TYPE>>
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::call::Value		BaseType;
+							typedef BrainMuscles::test::simple::log::output::delegate::Decimal<
+								OUTPUT_TYPE>													DecimalType;
+							typedef BrainMuscles::test::simple::log::output::call::Value<
+								DecimalType>													BaseType;
 							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
 							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
 							typedef BrainMuscles::test::simple::functional::Function<void,
@@ -37,7 +41,7 @@ namespace BrainMuscles
 							typedef BrainMuscles::test::simple::log::output::Handle<
 								OUTPUT_TYPE>													HandleType;
 							typedef BrainMuscles::test::simple::log::output::call::Handle<
-								OUTPUT_TYPE>													CallHandleType;
+								DecimalType, OUTPUT_TYPE>										CallHandleType;
 						public:
 							template<typename ARG>
 							using FunctionMemberHandlePrintType = BrainMuscles::test::simple::functional::Function<void,
