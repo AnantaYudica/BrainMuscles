@@ -21,11 +21,14 @@ namespace BrainMuscles
 					{
 						template<typename OUTPUT_TYPE>
 						class End :
-							public BrainMuscles::test::simple::log::output::call::Handle<OUTPUT_TYPE>
+							public BrainMuscles::test::simple::log::output::call::Handle<
+								BrainMuscles::test::simple::log::output::delegate::End<OUTPUT_TYPE>, OUTPUT_TYPE>
 						{
 						public:
+							typedef BrainMuscles::test::simple::log::output::delegate::End<
+								OUTPUT_TYPE>													EndType;
 							typedef BrainMuscles::test::simple::log::output::call::Handle<
-								OUTPUT_TYPE>													BaseType;
+								EndType, OUTPUT_TYPE>											BaseType;
 							typedef BrainMuscles::test::simple::log::output::Handle<
 								OUTPUT_TYPE>													HandleType;
 						public:
