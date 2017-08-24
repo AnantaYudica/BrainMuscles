@@ -1,11 +1,11 @@
-#ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_GLOBAL_H_
-#define TEST_SIMPLE_LOG_OUTPUT_HANDLE_GLOBAL_H_
+#ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_GLOBAL_H_
+#define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_GLOBAL_H_
 
 #include "test\Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\log\output\Arguments.h"
+#include "test\simple\log\output\call\Handle.h"
 
 namespace BrainMuscles
 {
@@ -17,11 +17,25 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					namespace handle
+					namespace delegate
 					{
+						template<typename OUTPUT_TYPE>
 						class Global :
-							public BrainMuscles::test::simple::log::output::Arguments<Global, void>
-						{};
+							public BrainMuscles::test::simple::log::output::call::Handle<OUTPUT_TYPE>
+						{
+						public:
+							typedef BrainMuscles::test::simple::log::output::Handle<
+								OUTPUT_TYPE>													HandleType;
+							typedef BrainMuscles::test::simple::log::output::call::Handle<
+								OUTPUT_TYPE>													BaseType;
+						public:
+							Global();
+						};
+
+						template<typename OUTPUT_TYPE>
+						Global<OUTPUT_TYPE>::Global() :
+							BaseType(&HandleType::SetGlobalValue)
+						{}
 					}
 				}
 			}
@@ -31,4 +45,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUTPUT_HANDLE_GLOBAL_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_GLOBAL_H_
