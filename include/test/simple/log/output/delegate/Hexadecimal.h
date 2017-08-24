@@ -1,5 +1,5 @@
-#ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_HEXADECIMAL_H_
-#define TEST_SIMPLE_LOG_OUTPUT_HANDLE_HEXADECIMAL_H_
+#ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_HEXADECIMAL_H_
+#define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_HEXADECIMAL_H_
 
 #include "test\Configure.h"
 
@@ -7,8 +7,9 @@
 
 #include "test\simple\log\output\format\Value.h"
 
-#include "test\simple\log\output\Arguments.h"
-#include "test\simple\log\output\Set.h"
+#include "test\simple\log\output\call\value\Tag.h"
+#include "test\simple\log\output\call\Value.h"
+#include "test\simple\log\output\call\Handle.h"
 
 namespace BrainMuscles
 {
@@ -20,98 +21,135 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					namespace handle
+					namespace delegate
 					{
+						template<typename OUTPUT_TYPE>
 						class Hexadecimal :
-							public BrainMuscles::test::simple::log::output::Set<
-								BrainMuscles::test::simple::log::output::format::Value, void, void>
+							public BrainMuscles::test::simple::log::output::call::Value
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::format::Value	ValueType;
-							typedef BrainMuscles::test::simple::log::output::Set<
-								ValueType, void, void>										BaseType;
-							typedef BrainMuscles::test::simple::log::output::set::Type		SetTypeType;
+							typedef BrainMuscles::test::simple::log::output::call::Value		BaseType;
+							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
+							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
+							typedef BrainMuscles::test::simple::functional::Function<void,
+								FormatValueType*>												FunctionMemberFormatValueType;
+
+							typedef BrainMuscles::test::simple::log::output::Handle<
+								OUTPUT_TYPE>													HandleType;
+							typedef BrainMuscles::test::simple::log::output::call::Handle<
+								OUTPUT_TYPE>													CallHandleType;
 						public:
-							template<typename TYPE>
-							using ArgumentsType = BrainMuscles::test::simple::log::output::Arguments<
-								Hexadecimal, TYPE>;
+							template<typename ARG>
+							using FunctionMemberHandlePrintType = BrainMuscles::test::simple::functional::Function<void,
+								HandleType*, const char*, ARG>;
 						public:
 							Hexadecimal();
 						public:
-							ArgumentsType<unsigned char> operator()(const unsigned char& value) const;
-							ArgumentsType<char> operator()(const char& value)  const;
-							ArgumentsType<unsigned short> operator()(const unsigned short& value)  const;
-							ArgumentsType<short> operator()(const short& value)  const;
-							ArgumentsType<unsigned int> operator()(const unsigned int& value)  const;
-							ArgumentsType<int> operator()(const int& value)  const;
-							ArgumentsType<unsigned long> operator()(const unsigned long& value) const;
-							ArgumentsType<long> operator()(const long& value) const;
-							ArgumentsType<unsigned long long> operator()(const unsigned long long& value) const;
-							ArgumentsType<long long> operator()(const long long& value) const;
+							CallHandleType operator()(const unsigned char& value) const;
+							CallHandleType operator()(const char& value)  const;
+							CallHandleType operator()(const unsigned short& value)  const;
+							CallHandleType operator()(const short& value)  const;
+							CallHandleType operator()(const unsigned int& value)  const;
+							CallHandleType operator()(const int& value)  const;
+							CallHandleType operator()(const unsigned long& value) const;
+							CallHandleType operator()(const long& value) const;
+							CallHandleType operator()(const unsigned long long& value) const;
+							CallHandleType operator()(const long long& value) const;
 						};
 
-						Hexadecimal::Hexadecimal() :
-							BaseType(SetTypeType::local_value, &ValueType::HexadecimalEnable)
+						template<typename OUTPUT_TYPE>
+						Hexadecimal<OUTPUT_TYPE>::Hexadecimal() :
+							BaseType(ValueTagType::local_value, &FormatValueType::HexadecimalEnable)
 						{}
 
-						typename Hexadecimal::ArgumentsType<unsigned char> 
-							Hexadecimal::operator()(const unsigned char& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const unsigned char& value) const
 						{
-							return ArgumentsType<unsigned char>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<unsigned char>, FunctionMemberFormatValueType, unsigned char)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<unsigned char>>(&HandleType::Print<unsigned char>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 
-						typename Hexadecimal::ArgumentsType<char> 
-							Hexadecimal::operator()(const char& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const char& value) const
 						{
-							return ArgumentsType<char>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<char>, FunctionMemberFormatValueType, char)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<char>>(&HandleType::Print<char>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 
-						typename Hexadecimal::ArgumentsType<unsigned short> 
-							Hexadecimal::operator()(const unsigned short& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const unsigned short& value) const
 						{
-							return ArgumentsType<unsigned short>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<unsigned short>, FunctionMemberFormatValueType, unsigned short)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<unsigned short>>(&HandleType::Print<unsigned short>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 
-						typename Hexadecimal::ArgumentsType<short> 
-							Hexadecimal::operator()(const short& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const short& value) const
 						{
-							return ArgumentsType<short>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<short>, FunctionMemberFormatValueType, short)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<short>>(&HandleType::Print<short>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 
-						typename Hexadecimal::ArgumentsType<unsigned int> 
-							Hexadecimal::operator()(const unsigned int& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const unsigned int& value) const
 						{
-							return ArgumentsType<unsigned int>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<unsigned int>, FunctionMemberFormatValueType, unsigned int)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<unsigned int>>(&HandleType::Print<unsigned int>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 
-						typename Hexadecimal::ArgumentsType<int> 
-							Hexadecimal::operator()(const int& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const int& value) const
 						{
-							return ArgumentsType<int>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<int>, FunctionMemberFormatValueType, int)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<int>>(&HandleType::Print<int>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 
-						typename Hexadecimal::ArgumentsType<unsigned long> 
-							Hexadecimal::operator()(const unsigned long& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const unsigned long& value) const
 						{
-							return ArgumentsType<unsigned long>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<unsigned long>, FunctionMemberFormatValueType, unsigned long)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<unsigned long>>(&HandleType::Print<unsigned long>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 
-						typename Hexadecimal::ArgumentsType<long> 
-							Hexadecimal::operator()(const long& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const long& value) const
 						{
-							return ArgumentsType<long>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<long>, FunctionMemberFormatValueType, long)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<long>>(&HandleType::Print<long>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 
-						typename Hexadecimal::ArgumentsType<unsigned long long> 
-							Hexadecimal::operator()(const unsigned long long& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const unsigned long long& value) const
 						{
-							return ArgumentsType<unsigned long long>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<unsigned long long>, FunctionMemberFormatValueType, unsigned long long)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<unsigned long long>>(&HandleType::Print<unsigned long long>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 
-						typename Hexadecimal::ArgumentsType<long long> 
-							Hexadecimal::operator()(const long long& value) const
+						template<typename OUTPUT_TYPE>
+						typename Hexadecimal<OUTPUT_TYPE>::CallHandleType
+							Hexadecimal<OUTPUT_TYPE>::operator()(const long long& value) const
 						{
-							return ArgumentsType<long long>(value);
+							return std::bind(static_cast<void(HandleType::*)(FunctionMemberHandlePrintType<long long>, FunctionMemberFormatValueType, long long)>
+								(&HandleType::PrintDelegate), std::placeholders::_1, static_cast<FunctionMemberHandlePrintType<long long>>(&HandleType::Print<long long>),
+								static_cast<FunctionMemberFormatValueType>(&FormatValueType::HexadecimalEnable), value);
 						}
 					}
 				}
@@ -122,4 +160,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUTPUT_HANDLE_HEXADECIMAL_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_HEXADECIMAL_H_
