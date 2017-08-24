@@ -1,5 +1,5 @@
-#ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_PRECISION_H_
-#define TEST_SIMPLE_LOG_OUTPUT_HANDLE_PRECISION_H_
+#ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_PRECISION_H_
+#define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_PRECISION_H_
 
 #include "test\Configure.h"
 
@@ -8,8 +8,8 @@
 #include "test\simple\log\output\format\Value.h"
 #include "test\simple\log\output\format\Precision.h"
 
-#include "test\simple\log\output\Arguments.h"
-#include "test\simple\log\output\Set.h"
+#include "test\simple\log\output\call\value\Tag.h"
+#include "test\simple\log\output\call\Value.h"
 
 namespace BrainMuscles
 {
@@ -21,29 +21,27 @@ namespace BrainMuscles
 			{
 				namespace output
 				{
-					namespace handle
+					namespace delegate
 					{
 						class Precision
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output
-								::format::Precision										PrecisionType;
-							typedef typename PrecisionType::PrecisionInputType			PrecisionInputType;
-							typedef BrainMuscles::test::simple::log::output
-								::format::Value											ValueType;
-							typedef BrainMuscles::test::simple::log::output::Set<
-								ValueType, void, const PrecisionType&>					SetType;
-							typedef BrainMuscles::test::simple::log::output::set::Type	SetTypeType;
+							typedef BrainMuscles::test::simple::log::output::format::Precision	PrecisionType;
+							typedef typename PrecisionType::PrecisionInputType					PrecisionInputType;
+							typedef BrainMuscles::test::simple::log::output::call::Value		CallValueType;
+							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
+							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
 						public:
-							SetType operator()(const PrecisionInputType& value) const;
+							CallValueType operator()(const PrecisionInputType& value) const;
 						};
 
-						typename Precision::SetType 
+						typename Precision::CallValueType
 							Precision::operator()(const PrecisionInputType& value) const
 						{
 							PrecisionType percision;
 							percision.SetValue(value);
-							return SetType(SetTypeType::local_value, &ValueType::SetPrecision, percision);
+							return CallValueType(ValueTagType::local_value, std::bind(static_cast<void(FormatValueType::*)(const PrecisionType&)>
+								(&FormatValueType::SetPrecision), std::placeholders::_1, percision));
 						}
 					}
 				}
@@ -54,4 +52,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_LOG_OUT_CALL_HANDLE_PRECISION_H_
+#endif //!TEST_SIMPLE_LOG_OUTPUT_DELEGATE_PRECISION_H_
