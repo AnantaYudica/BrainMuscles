@@ -26,7 +26,9 @@ namespace BrainMuscles
 						class Flag
 						{
 						public:
-							typedef BrainMuscles::test::simple::log::output::call::Value		CallValueType;
+							typedef BrainMuscles::test::simple::log::output::delegate::Flag		FlagType;
+							typedef BrainMuscles::test::simple::log::output::call::Value<
+								FlagType>														CallValueType;
 							typedef BrainMuscles::test::simple::log::output::call::value::Tag	ValueTagType;
 							typedef BrainMuscles::test::simple::log::output::format::Flags		FormatFlagsType;
 							typedef BrainMuscles::test::simple::log::output::format::Value		FormatValueType;
