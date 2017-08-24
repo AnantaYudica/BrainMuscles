@@ -27,11 +27,13 @@ namespace BrainMuscles
 						class Loop
 						{
 						public:
+							typedef BrainMuscles::test::simple::log::output::delegate::Loop<
+								OUTPUT_TYPE>													LoopType;
 							typedef BrainMuscles::test::simple::log::output::Constant			ConstantType;
 							typedef BrainMuscles::test::simple::log::output::Handle<
 								OUTPUT_TYPE>													HandleType;
 							typedef BrainMuscles::test::simple::log::output::call::Handle<
-								OUTPUT_TYPE>													CallHandleType;
+								LoopType, OUTPUT_TYPE>											CallHandleType;
 							template<typename ITERATOR_TYPE, 
 								typename CONJUNCTION_TYPE = ConstantType::LoopConjunctionDefaultType,
 								typename BEFORE_PRINT_TYPE = ConstantType::LoopBeforePrintDefaultType,
