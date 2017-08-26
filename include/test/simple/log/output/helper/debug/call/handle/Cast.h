@@ -9,6 +9,8 @@
 
 #include <type_traits>
 
+#include "test\simple\log\output\call\Handle.h"
+
 #include "test\simple\log\output\helper\debug\call\handle\Caller.h"
 #include "test\simple\log\output\helper\debug\call\handle\Output.h"
 
@@ -40,7 +42,7 @@ namespace BrainMuscles
 											::debug::call::handle::Output<TYPE>::Type						OutputType;
 										typedef typename std::conditional<std::is_void<CallerType>::value
 											|| std::is_void<OutputType>::value, TYPE,
-											BrainMuscles::test::simple::log::output::Call<
+											BrainMuscles::test::simple::log::output::call::Handle<
 											CallerType, OutputType>>::type									Type;
 									public:
 										static Type& Value(TYPE& type);
