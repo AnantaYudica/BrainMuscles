@@ -15,6 +15,11 @@ add_executable (Test-Simple-Functional ${PROJECT_SOURCE_DIR}/../experiment/test/
 set_property(TARGET Test-Simple-Functional PROPERTY FOLDER experiment/test/simple)
 target_link_libraries (Test-Simple-Functional BrainMuscles)
 
+#PROJECT_TEST_SIMPLE_JSON
+add_executable (Test-Simple-Json ${PROJECT_SOURCE_DIR}/../experiment/test/test-simple-json.cpp)
+set_property(TARGET Test-Simple-Json PROPERTY FOLDER experiment/test/simple)
+target_link_libraries (Test-Simple-Json BrainMuscles)
+
 #PROJECT_TEST_SIMPLE_LOG
 add_executable (Test-Simple-Log ${PROJECT_SOURCE_DIR}/../experiment/test/test-simple-log.cpp)
 set_property(TARGET Test-Simple-Log PROPERTY FOLDER experiment/test/simple)
