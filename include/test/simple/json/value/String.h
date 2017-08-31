@@ -1,13 +1,11 @@
-#ifndef TEST_SIMPLE_OUTPUT_JSON_TYPE_STRING_H_
-#define TEST_SIMPLE_OUTPUT_JSON_TYPE_STRING_H_
+#ifndef TEST_SIMPLE_JSON_VALUE_STRING_H_
+#define TEST_SIMPLE_JSON_VALUE_STRING_H_
 
 #include "test\Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include <string>
-
-#include "test\simple\output\json\Type.h"
+#include "test\simple\json\Constant.h"
 
 namespace BrainMuscles
 {
@@ -15,58 +13,45 @@ namespace BrainMuscles
 	{
 		namespace simple
 		{
-			namespace output
+			namespace json
 			{
-				namespace json
+				namespace value
 				{
-					namespace type
+					class String :
+						public BrainMuscles::test::simple::json::Constant::ValueType,
+						public BrainMuscles::test::simple::json::Constant::StringType
 					{
-						class String :
-							public BrainMuscles::test::simple::output::json::Type
-						{
-						public:
-							typedef BrainMuscles::test::simple::output::json::Type		JsonType;
-						private:
-							std::string m_value;
-						public:
-							String(const char* key);
-							String(const String& copy);
-							String(String&& move);
-							~String();
-						public:
-							void PrintValue(std::FILE* output_file);
-							String& operator= (const char* value);
-						};
+					public:
+						typedef BrainMuscles::test::simple::json::Constant				ConstantType;
+						typedef typename ConstantType::ValueType						ValueType;
+						typedef typename ConstantType::StringType						StringType;
+					public:
+						String();
+						String(const char* value);
+						String(const String& copy);
+						String(String&& move);
+						~String();
+					};
 
-						String::String(const char* key) :
-							JsonType(key)
-						{
-						}
+					String::String() :
+						StringType()
+					{}
 
-						String::String(const String& copy) :
-							JsonType(copy),
-							m_value(copy.m_value)
-						{}
-
-						String::String(String&& move) :
-							JsonType(move),
-							m_value(move.m_value)
-						{}
-
-						String::~String()
-						{}
-
-						void String::PrintValue(std::FILE* output_file)
-						{
-							fprintf(output_file, "\"%s\"", m_value.c_str());
-						}
-
-						String& String::operator= (const char* value)
-						{
-							m_value = value;
-							return *this;
-						}
+					String::String(const char* value) :
+						StringType(value)
+					{
 					}
+
+					String::String(const String& copy) :
+						StringType(copy)
+					{}
+
+					String::String(String&& move) :
+						StringType(move)
+					{}
+
+					String::~String()
+					{}
 				}
 			}
 		}
@@ -75,4 +60,4 @@ namespace BrainMuscles
 
 #endif 
 
-#endif //!TEST_SIMPLE_OUTPUT_JSON_TYPE_STRING_H_
+#endif //!TEST_SIMPLE_JSON_VALUE_STRING_H_
