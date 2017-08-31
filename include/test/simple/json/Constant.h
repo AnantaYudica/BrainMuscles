@@ -5,9 +5,13 @@
 
 #if defined(_USING_TEST_)
 
+#include <string>
 #include <memory>
+#include <vector>
+#include <map>
 
 #include "test\simple\json\Value.h"
+#include "test\simple\json\pointer\Value.h"
 
 namespace BrainMuscles
 {
@@ -21,8 +25,11 @@ namespace BrainMuscles
 				{
 					Constant() = delete;
 				public:
-					typedef BrainMuscles::test::simple::json::Value		ValueType;
-					typedef std::shared_ptr<ValueType>					PointerValueType;
+					typedef BrainMuscles::test::simple::json::Value			ValueType;
+					typedef BrainMuscles::test::simple::json
+						::pointer::Value									PointerValueType;
+					typedef std::vector<PointerValueType>					ContainerArrayType;
+					typedef std::map<std::string, PointerValueType>			ContainerObjectType;
 				};
 			}
 		}
