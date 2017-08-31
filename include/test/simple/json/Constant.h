@@ -28,8 +28,9 @@ namespace BrainMuscles
 					typedef BrainMuscles::test::simple::json::Value			ValueType;
 					typedef BrainMuscles::test::simple::json
 						::pointer::Value									PointerValueType;
+					typedef std::string										StringType;
 					typedef std::vector<PointerValueType>					ContainerArrayType;
-					typedef std::map<std::string, PointerValueType>			ContainerObjectType;
+					typedef std::map<StringType, PointerValueType>			ContainerObjectType;
 				};
 			}
 		}
