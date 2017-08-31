@@ -31,6 +31,10 @@ namespace BrainMuscles
 					typedef std::string										StringType;
 					typedef std::vector<PointerValueType>					ContainerArrayType;
 					typedef std::map<StringType, PointerValueType>			ContainerObjectType;
+				public:
+					static constexpr const char * const FalseCString = "false";
+					static constexpr const char * const TrueCString = "true";
+					static constexpr const char * const NullCString = "null";
 				};
 			}
 		}
