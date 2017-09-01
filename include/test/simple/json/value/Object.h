@@ -24,6 +24,7 @@ namespace BrainMuscles
 					public:
 						typedef BrainMuscles::test::simple::json::Constant				ConstantType;
 						typedef typename ConstantType::ValueType						ValueType;
+						typedef typename ValueType::SharedPointerType					SharedPointerType;
 						typedef typename ConstantType::ContainerObjectType				ContainerType;
 					public:
 						Object();
@@ -31,6 +32,8 @@ namespace BrainMuscles
 						Object(Object&& move);
 					public:
 						~Object();
+					public:
+						SharedPointerType MakeShared() const;
 					};
 
 					Object::Object()
@@ -46,6 +49,11 @@ namespace BrainMuscles
 
 					Object::~Object()
 					{}
+
+					typename Object::SharedPointerType Object::MakeShared() const
+					{
+						return SharedPointerType(new Object(*this));
+					}
 				}
 			}
 		}
