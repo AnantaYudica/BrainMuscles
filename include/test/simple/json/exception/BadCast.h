@@ -1,0 +1,63 @@
+#ifndef TEST_SIMPLE_JSON_EXCEPTION_BADCAST_H_
+#define TEST_SIMPLE_JSON_EXCEPTION_BADCAST_H_
+
+#include "test\Configure.h"
+
+#if defined(_USING_TEST_)
+
+#include <exception>
+#include <string>
+#include <typeindex>
+
+namespace BrainMuscles
+{
+	namespace test
+	{
+		namespace simple
+		{
+			namespace json
+			{
+				namespace exception
+				{
+					template<typename FROM_TYPE, typename TO_TYPE>
+					class BadCast :
+						public std::exception
+					{
+					public:
+						static const std::string Message;
+					public:
+						BadCast() = default;
+						~BadCast() = default;
+					private:
+						static const std::string InstanceMessage();
+					public:
+						const char* what() const;
+					};
+
+					template<typename FROM_TYPE, typename TO_TYPE>
+					const char* BadCast<FROM_TYPE, TO_TYPE>::what() const
+					{
+						return Message.c_str();
+					}
+
+					template<typename FROM_TYPE, typename TO_TYPE>
+					const std::string BadCast<FROM_TYPE, TO_TYPE>::Message = InstanceMessage();
+			
+					template<typename FROM_TYPE, typename TO_TYPE>
+					const std::string BadCast<FROM_TYPE, TO_TYPE>::InstanceMessage()
+					{
+						std::string message = "Cannot cast from ";
+						message += typeid(FROM_TYPE).name();
+						message += " to ";
+						message += typeid(TO_TYPE).name();
+						return message;
+					}
+				}
+			}
+		}
+	}
+}
+
+#endif
+
+#endif //!TEST_SIMPLE_JSON_EXCEPTION_BADCAST_H_
