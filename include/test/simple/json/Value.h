@@ -5,6 +5,8 @@
 
 #if defined(_USING_TEST_)
 
+#include "test\simple\json\Memory.h"
+
 namespace BrainMuscles
 {
 	namespace test
@@ -13,27 +15,22 @@ namespace BrainMuscles
 		{
 			namespace json
 			{
-				class Value
+				class Value :
+					private BrainMuscles::test::simple::json::Memory<Value>
 				{
-				protected:
-					Value();
+				private:
+					typedef BrainMuscles::test::simple::json::Memory<Value>			BaseType;
 				public:
-					Value(const Value& copy);
-					Value(Value&& move);
-					virtual ~Value();
+					typedef typename BaseType::SharedPointerType					SharedPointerType;
+				protected:
+					Value() = default;
+				public:
+					Value(const Value& copy) = default;
+					Value(Value&& move) = default;
+					virtual ~Value() = default;
+				public:
+					virtual SharedPointerType MakeShared() const = 0;
 				};
-
-				Value::Value()
-				{}
-
-				Value::Value(const Value& copy)
-				{}
-
-				Value::Value(Value&& move)
-				{}
-
-				Value::~Value()
-				{}
 			}
 		}
 	}
