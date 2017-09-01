@@ -53,7 +53,7 @@ namespace BrainMuscles
 
 					typename Array::SharedPointerType Array::MakeShared() const
 					{
-						return std::shared_ptr<ValueType>(new Array(*this));
+						return SharedPointerType(new Array(*this));
 					}
 				}
 			}
