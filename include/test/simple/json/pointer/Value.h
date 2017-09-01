@@ -6,7 +6,6 @@
 #if defined(_USING_TEST_)
 
 #include <type_traits>
-#include <memory>
 
 #include "test\simple\json\Value.h"
 
@@ -21,30 +20,26 @@ namespace BrainMuscles
 				namespace pointer
 				{
 					class Value :
-						public std::shared_ptr<BrainMuscles::test::simple::json::Value>
+						public BrainMuscles::test::simple::json::Memory<
+							BrainMuscles::test::simple::json::Value>::SharedPointerType
 					{
 					public:
-						typedef BrainMuscles::test::simple::json::Value ValueType;
-						typedef std::shared_ptr<ValueType>				BaseType;
+						typedef BrainMuscles::test::simple::json::Value					ValueType;
+						typedef BrainMuscles::test::simple::json::Memory<ValueType>		MemoryType;
+						typedef typename MemoryType::SharedPointerType					BaseType;
 					public:
-						Value();
-						template<typename VALUE_TYPE = BrainMuscles::test::simple::json::Value>
-						Value(const typename std::enable_if<std::is_base_of<ValueType, VALUE_TYPE>::value, VALUE_TYPE>::type& value);
+						Value() = default;
+						Value(const ValueType& value);
 						Value(const Value& copy);
 					};
 
-					Value::Value()
-					{}
-
-					template<typename VALUE_TYPE>
-					Value::Value(const typename std::enable_if<std::is_base_of<ValueType, VALUE_TYPE>::value, VALUE_TYPE>::type& value) :
-						BaseType(new VALUE_TYPE(value))
+					Value::Value(const ValueType& value) :
+						BaseType(value.MakeShared())
 					{}
 
 					Value::Value(const Value& copy) :
 						BaseType(copy)
-					{
-					}
+					{}
 				}
 			}
 		}
