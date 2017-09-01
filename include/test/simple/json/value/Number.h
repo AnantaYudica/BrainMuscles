@@ -23,27 +23,16 @@ namespace BrainMuscles
 					protected:
 						typedef BrainMuscles::test::simple::json::Constant				ConstantType;
 						typedef typename ConstantType::ValueType						ValueType;
+						typedef typename ValueType::SharedPointerType					SharedPointerType;
 					protected:
-						Number();
+						Number() = default;
 					public:
-						Number(const Number& copy);
-						Number(Number&& move);
-						virtual ~Number();
+						Number(const Number& copy) = default;
+						Number(Number&& move) = default;
+						virtual ~Number() = default;
+					public:
+						virtual SharedPointerType MakeShared() const = 0;
 					};
-
-					Number::Number()
-					{}
-
-					Number::Number(const Number& copy) :
-						ValueType(copy)
-					{}
-
-					Number::Number(Number&& move) :
-						ValueType(move)
-					{}
-
-					Number::~Number()
-					{}
 				}
 			}
 		}
