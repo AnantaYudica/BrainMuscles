@@ -28,6 +28,7 @@ namespace BrainMuscles
 						typedef typename ConstantType::StringType						StringType;
 					public:
 						String();
+						String(const char* cstr);
 						String(const String& copy);
 						String(String&& move);
 						~String();
@@ -37,6 +38,10 @@ namespace BrainMuscles
 
 					String::String() :
 						StringType()
+					{}
+
+					String::String(const char* cstr) :
+						StringType(cstr)
 					{}
 
 					String::String(const String& copy) :
