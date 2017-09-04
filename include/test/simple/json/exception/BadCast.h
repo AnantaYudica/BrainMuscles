@@ -9,6 +9,8 @@
 #include <string>
 #include <typeindex>
 
+#include "test\simple\type\Name.h"
+
 namespace BrainMuscles
 {
 	namespace test
@@ -47,9 +49,9 @@ namespace BrainMuscles
 					const std::string BadCast<FROM_TYPE, TO_TYPE>::InstanceMessage()
 					{
 						std::string message = "Cannot cast from ";
-						message += typeid(FROM_TYPE).name();
+						message += BrainMuscles::test::simple::type::Name<FROM_TYPE>::Value();
 						message += " to ";
-						message += typeid(TO_TYPE).name();
+						message += BrainMuscles::test::simple::type::Name<TO_TYPE>::Value();
 						return message;
 					}
 				}
