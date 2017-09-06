@@ -17,6 +17,7 @@ namespace BrainMuscles
 				{
 					enum Tag : char
 					{
+						undefined = 0,
 						value_array = 1,
 						value_false = 2,
 						value_null = 3,
