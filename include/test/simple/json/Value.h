@@ -15,13 +15,12 @@ namespace BrainMuscles
 		{
 			namespace json
 			{
-				class Value :
-					private BrainMuscles::test::simple::json::Memory<Value>
+				class Value
 				{
 				private:
-					typedef BrainMuscles::test::simple::json::Memory<Value>			BaseType;
+					typedef BrainMuscles::test::simple::json::Memory				MemoryType;
 				public:
-					typedef typename BaseType::SharedPointerType					SharedPointerType;
+					typedef typename MemoryType::SharedPointerType<Value>			SharedPointerType;
 				protected:
 					Value() = default;
 				public:
