@@ -21,13 +21,13 @@ namespace BrainMuscles
 					namespace value
 					{
 						class String :
-							public BrainMuscles::test::simple::json::Memory<
-								BrainMuscles::test::simple::json::value::String>::SharedPointerType
+							public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+								BrainMuscles::test::simple::json::value::String>
 						{
 						public:
 							typedef BrainMuscles::test::simple::json::value::String				ValueStringType;
-							typedef BrainMuscles::test::simple::json::Memory<ValueStringType>	MemoryValueStringType;
-							typedef typename MemoryValueStringType::SharedPointerType			BaseType;
+							typedef BrainMuscles::test::simple::json::Memory					MemoryType;
+							typedef typename MemoryType::SharedPointerType<ValueStringType>		BaseType;
 						public:
 							String() = default;
 							String(const ValueStringType& value);

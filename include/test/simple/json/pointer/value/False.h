@@ -21,13 +21,13 @@ namespace BrainMuscles
 					namespace value
 					{
 						class False :
-							public BrainMuscles::test::simple::json::Memory<
-								BrainMuscles::test::simple::json::value::False>::SharedPointerType
+							public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+								BrainMuscles::test::simple::json::value::False>
 						{
 						public:
 							typedef BrainMuscles::test::simple::json::value::False				ValueFalseType;
-							typedef BrainMuscles::test::simple::json::Memory<ValueFalseType>	MemoryValueFalseType;
-							typedef typename MemoryValueFalseType::SharedPointerType			BaseType;
+							typedef BrainMuscles::test::simple::json::Memory					MemoryType;
+							typedef typename MemoryType::SharedPointerType<ValueFalseType>		BaseType;
 						public:
 							False() = default;
 							False(const ValueFalseType& value);

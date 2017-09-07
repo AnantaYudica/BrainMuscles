@@ -21,13 +21,13 @@ namespace BrainMuscles
 					namespace value
 					{
 						class Array :
-							public BrainMuscles::test::simple::json::Memory<
-								BrainMuscles::test::simple::json::value::Array>::SharedPointerType
+							public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+								BrainMuscles::test::simple::json::value::Array>
 						{
 						public:
 							typedef BrainMuscles::test::simple::json::value::Array				ValueArrayType;
-							typedef BrainMuscles::test::simple::json::Memory<ValueArrayType>	MemoryValueArrayType;
-							typedef typename MemoryValueArrayType::SharedPointerType			BaseType;
+							typedef BrainMuscles::test::simple::json::Memory					MemoryType;
+							typedef typename MemoryType::SharedPointerType<ValueArrayType>		BaseType;
 						public:
 							Array() = default;
 							Array(const ValueArrayType& value);

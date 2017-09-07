@@ -21,15 +21,14 @@ namespace BrainMuscles
 					namespace value
 					{
 						class Number :
-							public BrainMuscles::test::simple::json::Memory<
-							BrainMuscles::test::simple::json::value::Number>::SharedPointerType
+							public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+								BrainMuscles::test::simple::json::value::Number>
 						{
 						public:
 							typedef BrainMuscles::test::simple::json::Value						ValueType;
 							typedef BrainMuscles::test::simple::json::value::Number				ValueNumberType;
-							typedef BrainMuscles::test::simple::json::Memory<ValueType>			MemoryValueType;
-							typedef BrainMuscles::test::simple::json::Memory<ValueNumberType>	MemoryValueNumberType;
-							typedef typename MemoryValueNumberType::SharedPointerType			BaseType;
+							typedef BrainMuscles::test::simple::json::Memory					MemoryType;
+							typedef typename MemoryType::SharedPointerType<ValueNumberType>		BaseType;
 						public:
 							Number() = default;
 							Number(const ValueNumberType& value);
@@ -37,7 +36,7 @@ namespace BrainMuscles
 						};
 
 						Number::Number(const ValueNumberType& value) :
-							BaseType(MemoryValueType::DynamicPointerCast<ValueNumberType>(value.MakeShared()))
+							BaseType(MemoryType::DynamicPointerCast<ValueType, ValueNumberType>(value.MakeShared()))
 						{}
 
 						Number::Number(const Number& copy) :

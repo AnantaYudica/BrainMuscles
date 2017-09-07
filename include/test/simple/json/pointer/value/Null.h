@@ -21,13 +21,13 @@ namespace BrainMuscles
 					namespace value
 					{
 						class Null :
-							public BrainMuscles::test::simple::json::Memory<
-							BrainMuscles::test::simple::json::value::Null>::SharedPointerType
+							public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+								BrainMuscles::test::simple::json::value::Null>
 						{
 						public:
 							typedef BrainMuscles::test::simple::json::value::Null				ValueNullType;
-							typedef BrainMuscles::test::simple::json::Memory<ValueNullType>		MemoryValueNullType;
-							typedef typename MemoryValueNullType::SharedPointerType				BaseType;
+							typedef BrainMuscles::test::simple::json::Memory					MemoryType;
+							typedef typename MemoryType::SharedPointerType<ValueNullType>		BaseType;
 						public:
 							Null() = default;
 							Null(const ValueNullType& value);
