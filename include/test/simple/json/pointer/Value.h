@@ -20,13 +20,13 @@ namespace BrainMuscles
 				namespace pointer
 				{
 					class Value :
-						public BrainMuscles::test::simple::json::Memory<
-							BrainMuscles::test::simple::json::Value>::SharedPointerType
+						public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+							BrainMuscles::test::simple::json::Value>
 					{
 					public:
 						typedef BrainMuscles::test::simple::json::Value					ValueType;
-						typedef BrainMuscles::test::simple::json::Memory<ValueType>		MemoryType;
-						typedef typename MemoryType::SharedPointerType					BaseType;
+						typedef BrainMuscles::test::simple::json::Memory				MemoryType;
+						typedef typename MemoryType::SharedPointerType<ValueType>		BaseType;
 					public:
 						Value() = default;
 						Value(const ValueType& value);
