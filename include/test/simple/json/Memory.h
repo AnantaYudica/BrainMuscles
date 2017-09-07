@@ -25,7 +25,7 @@ namespace BrainMuscles
 					template<typename TYPE>
 					static std::true_type IsBaseOfSharedPointerImpl(const SharedPointerType<TYPE>&);
 					static std::false_type IsBaseOfSharedPointerImpl(...);
-				private:
+				public:
 					template<typename TYPE>
 					using IsBaseOfSharedPointer = decltype(IsBaseOfSharedPointerImpl(std::declval<TYPE>()));
 				private:
