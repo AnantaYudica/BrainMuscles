@@ -23,16 +23,15 @@ namespace BrainMuscles
 						namespace number
 						{
 							class Long :
-								public BrainMuscles::test::simple::json::Memory<
-									BrainMuscles::test::simple::json::value::number::Long>::SharedPointerType
+								public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+									BrainMuscles::test::simple::json::value::number::Long>
 							{
 							public:
 								typedef BrainMuscles::test::simple::json::value
 									::number::Long										ValueNumberLongType;
-								typedef BrainMuscles::test::simple::json::Memory<
-									ValueNumberLongType>								MemoryValueNumberLongType;
-								typedef typename MemoryValueNumberLongType
-									::SharedPointerType									BaseType;
+								typedef BrainMuscles::test::simple::json::Memory		MemoryType;
+								typedef typename MemoryType::SharedPointerType<
+									ValueNumberLongType>								BaseType;
 							public:
 								Long() = default;
 								Long(const ValueNumberLongType& value);

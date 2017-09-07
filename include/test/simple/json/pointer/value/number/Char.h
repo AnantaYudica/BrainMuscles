@@ -23,16 +23,15 @@ namespace BrainMuscles
 						namespace number
 						{
 							class Char :
-								public BrainMuscles::test::simple::json::Memory<
-									BrainMuscles::test::simple::json::value::number::Char>::SharedPointerType
+								public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+									BrainMuscles::test::simple::json::value::number::Char>
 							{
 							public:
 								typedef BrainMuscles::test::simple::json::value
 									::number::Char										ValueNumberCharType;
-								typedef BrainMuscles::test::simple::json::Memory<
-									ValueNumberCharType>								MemoryValueNumberCharType;
-								typedef typename MemoryValueNumberCharType
-									::SharedPointerType									BaseType;
+								typedef BrainMuscles::test::simple::json::Memory		MemoryType;
+								typedef typename MemoryType::SharedPointerType<
+									ValueNumberCharType>								BaseType;
 							public:
 								Char() = default;
 								Char(const ValueNumberCharType& value);

@@ -23,16 +23,15 @@ namespace BrainMuscles
 						namespace number
 						{
 							class Float :
-								public BrainMuscles::test::simple::json::Memory<
-									BrainMuscles::test::simple::json::value::number::Float>::SharedPointerType
+								public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+									BrainMuscles::test::simple::json::value::number::Float>
 							{
 							public:
 								typedef BrainMuscles::test::simple::json::value
 									::number::Float										ValueNumberFloatType;
-								typedef BrainMuscles::test::simple::json::Memory<
-									ValueNumberFloatType>								MemoryValueNumberFloatType;
-								typedef typename MemoryValueNumberFloatType
-									::SharedPointerType									BaseType;
+								typedef BrainMuscles::test::simple::json::Memory		MemoryType;
+								typedef typename MemoryType::SharedPointerType<
+									ValueNumberFloatType>								BaseType;
 							public:
 								Float() = default;
 								Float(const ValueNumberFloatType& value);

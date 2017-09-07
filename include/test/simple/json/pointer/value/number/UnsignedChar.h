@@ -23,16 +23,15 @@ namespace BrainMuscles
 						namespace number
 						{
 							class UnsignedChar :
-								public BrainMuscles::test::simple::json::Memory<
-									BrainMuscles::test::simple::json::value::number::UnsignedChar>::SharedPointerType
+								public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+									BrainMuscles::test::simple::json::value::number::UnsignedChar>
 							{
 							public:
 								typedef BrainMuscles::test::simple::json::value
 									::number::UnsignedChar								ValueNumberUnsignedCharType;
-								typedef BrainMuscles::test::simple::json::Memory<
-									ValueNumberUnsignedCharType>						MemoryValueNumberUnsignedCharType;
-								typedef typename MemoryValueNumberUnsignedCharType
-									::SharedPointerType									BaseType;
+								typedef BrainMuscles::test::simple::json::Memory		MemoryType;
+								typedef typename MemoryType::SharedPointerType<
+									ValueNumberUnsignedCharType>						BaseType;
 							public:
 								UnsignedChar() = default;
 								UnsignedChar(const ValueNumberUnsignedCharType& value);

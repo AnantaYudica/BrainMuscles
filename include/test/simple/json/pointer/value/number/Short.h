@@ -23,16 +23,15 @@ namespace BrainMuscles
 						namespace number
 						{
 							class Short :
-								public BrainMuscles::test::simple::json::Memory<
-									BrainMuscles::test::simple::json::value::number::Short>::SharedPointerType
+								public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+									BrainMuscles::test::simple::json::value::number::Short>
 							{
 							public:
 								typedef BrainMuscles::test::simple::json::value
 									::number::Short										ValueNumberShortType;
-								typedef BrainMuscles::test::simple::json::Memory<
-									ValueNumberShortType>								MemoryValueNumberShortType;
-								typedef typename MemoryValueNumberShortType
-									::SharedPointerType									BaseType;
+								typedef BrainMuscles::test::simple::json::Memory		MemoryType;
+								typedef typename MemoryType::SharedPointerType<
+									ValueNumberShortType>								BaseType;
 							public:
 								Short() = default;
 								Short(const ValueNumberShortType& value);

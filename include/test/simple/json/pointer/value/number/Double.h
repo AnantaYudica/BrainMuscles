@@ -23,16 +23,15 @@ namespace BrainMuscles
 						namespace number
 						{
 							class Double :
-								public BrainMuscles::test::simple::json::Memory<
-									BrainMuscles::test::simple::json::value::number::Double>::SharedPointerType
+								public BrainMuscles::test::simple::json::Memory::SharedPointerType<
+									BrainMuscles::test::simple::json::value::number::Double>
 							{
 							public:
 								typedef BrainMuscles::test::simple::json::value
 									::number::Double									ValueNumberDoubleType;
-								typedef BrainMuscles::test::simple::json::Memory<
-									ValueNumberDoubleType>								MemoryValueNumberDoubleType;
-								typedef typename MemoryValueNumberDoubleType
-									::SharedPointerType									BaseType;
+								typedef BrainMuscles::test::simple::json::Memory		MemoryType;
+								typedef typename MemoryType::SharedPointerType<
+									ValueNumberDoubleType>								BaseType;
 							public:
 								Double() = default;
 								Double(const ValueNumberDoubleType& value);
