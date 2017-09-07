@@ -15,46 +15,39 @@ namespace BrainMuscles
 		{
 			namespace json
 			{
-				template<typename VALUE_TYPE>
-				class Memory
+				class Memory final
 				{
 				public:
-					typedef std::shared_ptr<VALUE_TYPE>			SharedPointerType;
-				protected:
-					Memory() = default;
+					template<typename TYPE>
+					using SharedPointerType = std::shared_ptr<TYPE>;
+				private:
+					Memory() = delete;
 				public:
-					virtual ~Memory() = default;
-				public:
-					virtual SharedPointerType MakeShared() const = 0;
-				public:
-					template<typename TO_TYPE>
-					static typename Memory<TO_TYPE>::SharedPointerType DynamicPointerCast(const SharedPointerType& pointer);
-					template<typename TO_TYPE>
-					static typename Memory<TO_TYPE>::SharedPointerType StaticPointerCast(const SharedPointerType& pointer);
-					template<typename TO_TYPE>
-					static typename Memory<TO_TYPE>::SharedPointerType ConstPointerCast(const SharedPointerType& pointer);
+					template<typename FROM_TYPE, typename TO_TYPE>
+					static SharedPointerType<TO_TYPE> DynamicPointerCast(const SharedPointerType<FROM_TYPE>& pointer);
+					template<typename FROM_TYPE, typename TO_TYPE>
+					static SharedPointerType<TO_TYPE> StaticPointerCast(const SharedPointerType<FROM_TYPE>& pointer);
+					template<typename FROM_TYPE, typename TO_TYPE>
+					static SharedPointerType<TO_TYPE> ConstPointerCast(const SharedPointerType<FROM_TYPE>& pointer);
 				};
 
-				template<typename VALUE_TYPE>
-				template<typename TO_TYPE>
-				static typename Memory<TO_TYPE>::SharedPointerType 
-					Memory<VALUE_TYPE>::DynamicPointerCast(const SharedPointerType& pointer)
+				template<typename FROM_TYPE, typename TO_TYPE>
+				typename Memory::SharedPointerType<TO_TYPE>
+					Memory::DynamicPointerCast(const SharedPointerType<FROM_TYPE>& pointer)
 				{
 					return std::dynamic_pointer_cast<TO_TYPE>(pointer);
 				}
 				
-				template<typename VALUE_TYPE>
-				template<typename TO_TYPE>
-				static typename Memory<TO_TYPE>::SharedPointerType 
-					Memory<VALUE_TYPE>::StaticPointerCast(const SharedPointerType& pointer)
+				template<typename FROM_TYPE, typename TO_TYPE>
+				typename Memory::SharedPointerType<TO_TYPE>
+					Memory::StaticPointerCast(const SharedPointerType<FROM_TYPE>& pointer)
 				{
 					return std::static_pointer_cast<TO_TYPE>(pointer);
 				}
 				
-				template<typename VALUE_TYPE>
-				template<typename TO_TYPE>
-				static typename Memory<TO_TYPE>::SharedPointerType 
-					Memory<VALUE_TYPE>::ConstPointerCast(const SharedPointerType& pointer)
+				template<typename FROM_TYPE, typename TO_TYPE>
+				typename Memory::SharedPointerType<TO_TYPE>
+					Memory::ConstPointerCast(const SharedPointerType<FROM_TYPE>& pointer)
 				{
 					return std::const_pointer_cast<TO_TYPE>(pointer);
 				}
