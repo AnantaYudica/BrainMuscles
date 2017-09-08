@@ -70,7 +70,7 @@ namespace BrainMuscles
 						static bool IsNumberUnsignedLongLong(const ValueType& value);
 						static bool IsNumberUnsignedShort(const ValueType& value);
 					public:
-						static ValueTagType ValueTag(const ValueType& value);
+						static ValueTagType ToTag(const ValueType& value);
 					};
 
 					bool Traits::IsArray(const ValueType& value)
@@ -173,89 +173,9 @@ namespace BrainMuscles
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedShort*>(&value) != 0;
 					}
 
-					typename Traits::ValueTagType Traits::ValueTag(const ValueType& value)
+					typename Traits::ValueTagType Traits::ToTag(const ValueType& value)
 					{
-						if (IsArray(value))
-						{
-							return ValueTagType::value_array;
-						}
-						else if (IsFalse(value))
-						{
-							return ValueTagType::value_false;
-						}
-						else if (IsNull(value))
-						{
-							return ValueTagType::value_null;
-						}
-						else if (IsNumber(value))
-						{
-							if (IsNumberChar(value))
-							{
-								return ValueTagType::value_number_char;
-							}
-							else if (IsNumberDouble(value))
-							{
-								return ValueTagType::value_number_double;
-							}
-							else if (IsNumberFloat(value))
-							{
-								return ValueTagType::value_number_float;
-							}
-							else if (IsNumberInt(value))
-							{
-								return ValueTagType::value_number_int;
-							}
-							else if (IsNumberLong(value))
-							{
-								return ValueTagType::value_number_long;
-							}
-							else if (IsNumberLongDouble(value))
-							{
-								return ValueTagType::value_number_longdouble;
-							}
-							else if (IsNumberLongLong(value))
-							{
-								return ValueTagType::value_number_longlong;
-							}
-							else if (IsNumberShort(value))
-							{
-								return ValueTagType::value_number_short;
-							}
-							else if (IsNumberUnsignedChar(value))
-							{
-								return ValueTagType::value_number_unsignedchar;
-							}
-							else if (IsNumberUnsignedInt(value))
-							{
-								return ValueTagType::value_number_unsignedint;
-							}
-							else if (IsNumberUnsignedLong(value))
-							{
-								return ValueTagType::value_number_unsignedlong;
-							}
-							else if (IsNumberUnsignedLongLong(value))
-							{
-								return ValueTagType::value_number_unsignedlonglong;
-							}
-							else if (IsNumberUnsignedShort(value))
-							{
-								return ValueTagType::value_number_unsignedshort;
-							}
-							return ValueTagType::value_number;
-						}
-						else if (IsObject(value))
-						{
-							return ValueTagType::value_object;
-						}
-						else if (IsString(value))
-						{
-							return ValueTagType::value_string;
-						}
-						else if (IsTrue(value))
-						{
-							return ValueTagType::value_true;
-						}
-						return ValueTagType::undefined;
+						return BrainMuscles::test::simple::json::helper::ValueToTag<Traits, ValueType>(value);
 					}
 				}
 			}
