@@ -28,20 +28,22 @@ namespace BrainMuscles
 						typedef typename ConstantType::StringType						StringType;
 					public:
 						String();
-						String(const char* cstr);
+						String(const StringType& string);
 						String(const String& copy);
 						String(String&& move);
 						~String();
 					public:
 						SharedPointerType MakeShared() const;
+					public:
+						operator const char*() const;
 					};
 
 					String::String() :
 						StringType()
 					{}
 
-					String::String(const char* cstr) :
-						StringType(cstr)
+					String::String(const StringType& string) :
+						StringType(string)
 					{}
 
 					String::String(const String& copy) :
@@ -58,6 +60,11 @@ namespace BrainMuscles
 					typename String::SharedPointerType String::MakeShared() const
 					{
 						return SharedPointerType(new String(*this));
+					}
+
+					String::operator const char*() const
+					{
+						return ConstantType::StringToConstCString(*this);
 					}
 				}
 			}
