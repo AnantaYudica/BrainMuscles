@@ -1,5 +1,5 @@
-#ifndef TEST_SIMPLE_JSON_HELPER_TRAITS_H_
-#define TEST_SIMPLE_JSON_HELPER_TRAITS_H_
+#ifndef TEST_SIMPLE_JSON_HELPER_VALUE_H_
+#define TEST_SIMPLE_JSON_HELPER_VALUE_H_
 
 #include "test\Configure.h"
 
@@ -40,13 +40,13 @@ namespace BrainMuscles
 			{
 				namespace helper
 				{
-					class Traits final
+					class Value final
 					{
 					public:
 						typedef BrainMuscles::test::simple::json::helper::Tag		ValueTagType;
 						typedef BrainMuscles::test::simple::json::Value				ValueType;
 					private:
-						Traits() = delete;
+						Value() = delete;
 					public:
 						static bool IsArray(const ValueType& value);
 						static bool IsFalse(const ValueType& value);
@@ -73,109 +73,109 @@ namespace BrainMuscles
 						static ValueTagType ToTag(const ValueType& value);
 					};
 
-					bool Traits::IsArray(const ValueType& value)
+					bool Value::IsArray(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::Array*>(&value) != 0;
 					}
 
-					bool Traits::IsFalse(const ValueType& value)
+					bool Value::IsFalse(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::False*>(&value) != 0;
 					}
 
-					bool Traits::IsNull(const ValueType& value)
+					bool Value::IsNull(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::Null*>(&value) != 0;
 					}
 
-					bool Traits::IsNumber(const ValueType& value)
+					bool Value::IsNumber(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::Number*>(&value) != 0;
 					}
 
-					bool Traits::IsObject(const ValueType& value)
+					bool Value::IsObject(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::Object*>(&value) != 0;
 					}
 
-					bool Traits::IsString(const ValueType& value)
+					bool Value::IsString(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::String*>(&value) != 0;
 					}
 
-					bool Traits::IsTrue(const ValueType& value)
+					bool Value::IsTrue(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::True*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberChar(const ValueType& value)
+					bool Value::IsNumberChar(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Char*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberDouble(const ValueType& value)
+					bool Value::IsNumberDouble(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Double*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberFloat(const ValueType& value)
+					bool Value::IsNumberFloat(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Float*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberInt(const ValueType& value)
+					bool Value::IsNumberInt(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Int*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberLong(const ValueType& value)
+					bool Value::IsNumberLong(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Long*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberLongDouble(const ValueType& value)
+					bool Value::IsNumberLongDouble(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::LongDouble*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberLongLong(const ValueType& value)
+					bool Value::IsNumberLongLong(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::LongLong*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberShort(const ValueType& value)
+					bool Value::IsNumberShort(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Short*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberUnsignedChar(const ValueType& value)
+					bool Value::IsNumberUnsignedChar(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedChar*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberUnsignedInt(const ValueType& value)
+					bool Value::IsNumberUnsignedInt(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedInt*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberUnsignedLong(const ValueType& value)
+					bool Value::IsNumberUnsignedLong(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedLong*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberUnsignedLongLong(const ValueType& value)
+					bool Value::IsNumberUnsignedLongLong(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedLongLong*>(&value) != 0;
 					}
 
-					bool Traits::IsNumberUnsignedShort(const ValueType& value)
+					bool Value::IsNumberUnsignedShort(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedShort*>(&value) != 0;
 					}
 
-					typename Traits::ValueTagType Traits::ToTag(const ValueType& value)
+					typename Value::ValueTagType Value::ToTag(const ValueType& value)
 					{
-						return BrainMuscles::test::simple::json::helper::ValueToTag<Traits, ValueType>(value);
+						return BrainMuscles::test::simple::json::helper::ValueToTag<Value, ValueType>(value);
 					}
 				}
 			}
@@ -185,4 +185,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_JSON_HELPER_TRAITS_H_
+#endif //!TEST_SIMPLE_JSON_HELPER_VALUE_H_
