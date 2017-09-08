@@ -5,7 +5,7 @@
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\json\helper\Tag.h"
+#include "test\simple\json\helper\value\Tag.h"
 
 #include "test\simple\json\Value.h"
 #include "test\simple\json\value\Array.h"
@@ -43,8 +43,8 @@ namespace BrainMuscles
 					class Value final
 					{
 					public:
-						typedef BrainMuscles::test::simple::json::helper::Tag		ValueTagType;
-						typedef BrainMuscles::test::simple::json::Value				ValueType;
+						typedef BrainMuscles::test::simple::json::helper::value::Tag	ValueTagType;
+						typedef BrainMuscles::test::simple::json::Value					ValueType;
 					private:
 						Value() = delete;
 					public:
@@ -175,7 +175,7 @@ namespace BrainMuscles
 
 					typename Value::ValueTagType Value::ToTag(const ValueType& value)
 					{
-						return BrainMuscles::test::simple::json::helper::ValueToTag<Value, ValueType>(value);
+						return BrainMuscles::test::simple::json::helper::value::ToTag<Value, ValueType>(value);
 					}
 				}
 			}
