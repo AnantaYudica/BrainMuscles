@@ -28,7 +28,7 @@
 #include "test\simple\json\value\number\UnsignedShort.h"
 
 #include "test\simple\json\helper\Cast.h"
-#include "test\simple\json\helper\Traits.h"
+#include "test\simple\json\helper\Value.h"
 
 #include "test\simple\json\pointer\value\Array.h"
 #include "test\simple\json\pointer\value\False.h"
@@ -38,7 +38,22 @@
 #include "test\simple\json\pointer\value\String.h"
 #include "test\simple\json\pointer\value\True.h"
 
+#include "test\simple\json\pointer\value\number\Char.h"
+#include "test\simple\json\pointer\value\number\Double.h"
+#include "test\simple\json\pointer\value\number\Float.h"
+#include "test\simple\json\pointer\value\number\Int.h"
+#include "test\simple\json\pointer\value\number\Long.h"
+#include "test\simple\json\pointer\value\number\LongDouble.h"
+#include "test\simple\json\pointer\value\number\LongLong.h"
+#include "test\simple\json\pointer\value\number\Short.h"
+#include "test\simple\json\pointer\value\number\UnsignedChar.h"
+#include "test\simple\json\pointer\value\number\UnsignedInt.h"
+#include "test\simple\json\pointer\value\number\UnsignedLong.h"
+#include "test\simple\json\pointer\value\number\UnsignedLongLong.h"
+#include "test\simple\json\pointer\value\number\UnsignedShort.h"
+
 #include "test\simple\json\helper\pointer\Cast.h"
+#include "test\simple\json\helper\pointer\Value.h"
 
 using namespace BrainMuscles::test::simple;
 
@@ -943,7 +958,6 @@ int main(int argc, char *argv[])
 		//check true1 is "true" or json::Constant::TrueCString
 		assert(strcmp(true1, json::Constant::TrueCString) == 0);
 	}
-
 
 	return 1;
 }
