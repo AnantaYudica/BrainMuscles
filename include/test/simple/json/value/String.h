@@ -29,6 +29,7 @@ namespace BrainMuscles
 					public:
 						String();
 						String(const StringType& string);
+						String(StringType&& string);
 						String(const String& copy);
 						String(String&& move);
 						~String();
@@ -36,13 +37,17 @@ namespace BrainMuscles
 						SharedPointerType MakeShared() const;
 					public:
 						operator const char*() const;
+						String& operator=(const StringType& string);
 					};
 
-					String::String() :
-						StringType()
+					String::String()
 					{}
 
 					String::String(const StringType& string) :
+						StringType(string)
+					{}
+
+					String::String(StringType&& string) :
 						StringType(string)
 					{}
 
@@ -65,6 +70,12 @@ namespace BrainMuscles
 					String::operator const char*() const
 					{
 						return ConstantType::StringToConstCString(*this);
+					}
+
+					String& String::operator=(const StringType& string)
+					{
+						StringType::operator=(string);
+						return *this;
 					}
 				}
 			}
