@@ -1,11 +1,11 @@
-#ifndef TEST_SIMPLE_JSON_HELPER_POINTER_TRAITS_H_
-#define TEST_SIMPLE_JSON_HELPER_POINTER_TRAITS_H_
+#ifndef TEST_SIMPLE_JSON_HELPER_POINTER_VALUE_H_
+#define TEST_SIMPLE_JSON_HELPER_POINTER_VALUE_H_
 
 #include "test\Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\json\helper\Tag.h"
+#include "test\simple\json\helper\value\Tag.h"
 
 #include "test\simple\json\Memory.h"
 
@@ -44,13 +44,15 @@ namespace BrainMuscles
 				{
 					namespace pointer
 					{
-						class Traits final
+						class Value final
 						{
 						public:
-							typedef BrainMuscles::test::simple::json::helper::Tag		ValueTagType;
-							typedef BrainMuscles::test::simple::json::pointer::Value	PointerValueType;
+							typedef BrainMuscles::test::simple::json::helper::value::Tag	ValueTagType;
+							typedef BrainMuscles::test::simple::json::pointer::Value		PointerValueType;
 						private:
-							typedef BrainMuscles::test::simple::json::Memory			MemoryType;
+							typedef BrainMuscles::test::simple::json::Memory				MemoryType;
+						private:
+							Value() = delete;
 						public:
 							static bool IsArray(const PointerValueType& value);
 							static bool IsFalse(const PointerValueType& value);
@@ -77,109 +79,109 @@ namespace BrainMuscles
 							static ValueTagType ToTag(const PointerValueType& value);
 						};
 
-						bool Traits::IsArray(const PointerValueType& value)
+						bool Value::IsArray(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::Array>(value) != 0;
 						}
 
-						bool Traits::IsFalse(const PointerValueType& value)
+						bool Value::IsFalse(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::False>(value) != 0;
 						}
 
-						bool Traits::IsNull(const PointerValueType& value)
+						bool Value::IsNull(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::Null>(value) != 0;
 						}
 
-						bool Traits::IsNumber(const PointerValueType& value)
+						bool Value::IsNumber(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::Number>(value) != 0;
 						}
 
-						bool Traits::IsObject(const PointerValueType& value)
+						bool Value::IsObject(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::Object>(value) != 0;
 						}
 
-						bool Traits::IsString(const PointerValueType& value)
+						bool Value::IsString(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::String>(value) != 0;
 						}
 
-						bool Traits::IsTrue(const PointerValueType& value)
+						bool Value::IsTrue(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::True>(value) != 0;
 						}
 
-						bool Traits::IsNumberChar(const PointerValueType& value)
+						bool Value::IsNumberChar(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::Char>(value) != 0;
 						}
 
-						bool Traits::IsNumberDouble(const PointerValueType& value)
+						bool Value::IsNumberDouble(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::Double>(value) != 0;
 						}
 
-						bool Traits::IsNumberFloat(const PointerValueType& value)
+						bool Value::IsNumberFloat(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::Float>(value) != 0;
 						}
 
-						bool Traits::IsNumberInt(const PointerValueType& value)
+						bool Value::IsNumberInt(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::Int>(value) != 0;
 						}
 
-						bool Traits::IsNumberLong(const PointerValueType& value)
+						bool Value::IsNumberLong(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::Long>(value) != 0;
 						}
 
-						bool Traits::IsNumberLongDouble(const PointerValueType& value)
+						bool Value::IsNumberLongDouble(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::LongDouble>(value) != 0;
 						}
 
-						bool Traits::IsNumberLongLong(const PointerValueType& value)
+						bool Value::IsNumberLongLong(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::LongLong>(value) != 0;
 						}
 
-						bool Traits::IsNumberShort(const PointerValueType& value)
+						bool Value::IsNumberShort(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::Short>(value) != 0;
 						}
 
-						bool Traits::IsNumberUnsignedChar(const PointerValueType& value)
+						bool Value::IsNumberUnsignedChar(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::UnsignedChar>(value) != 0;
 						}
 
-						bool Traits::IsNumberUnsignedInt(const PointerValueType& value)
+						bool Value::IsNumberUnsignedInt(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::UnsignedInt>(value) != 0;
 						}
 
-						bool Traits::IsNumberUnsignedLong(const PointerValueType& value)
+						bool Value::IsNumberUnsignedLong(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::UnsignedLong>(value) != 0;
 						}
 
-						bool Traits::IsNumberUnsignedLongLong(const PointerValueType& value)
+						bool Value::IsNumberUnsignedLongLong(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::UnsignedLongLong>(value) != 0;
 						}
 
-						bool Traits::IsNumberUnsignedShort(const PointerValueType& value)
+						bool Value::IsNumberUnsignedShort(const PointerValueType& value)
 						{
 							return MemoryType::DynamicPointerCast<PointerValueType, BrainMuscles::test::simple::json::pointer::value::number::UnsignedShort>(value) != 0;
 						}
 
-						typename Traits::ValueTagType Traits::ToTag(const PointerValueType& value)
+						typename Value::ValueTagType Value::ToTag(const PointerValueType& value)
 						{
-							return BrainMuscles::test::simple::json::helper::ValueToTag<Traits, PointerValueType>(value);
+							return BrainMuscles::test::simple::json::helper::value::ToTag<Value, PointerValueType>(value);
 						}
 					}
 				}
@@ -190,4 +192,4 @@ namespace BrainMuscles
 
 #endif
 
-#endif //!TEST_SIMPLE_JSON_HELPER_POINTER_TRAITS_H_
+#endif //!TEST_SIMPLE_JSON_HELPER_POINTER_VALUE_H_
