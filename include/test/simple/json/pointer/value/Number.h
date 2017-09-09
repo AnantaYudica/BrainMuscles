@@ -31,17 +31,30 @@ namespace BrainMuscles
 							typedef typename MemoryType::SharedPointerType<ValueNumberType>		BaseType;
 						public:
 							Number() = default;
-							Number(const ValueNumberType& value);
+							template<typename VALUE_NUMBER_TYPE>
+							Number(const VALUE_NUMBER_TYPE& value);
 							Number(const Number& copy);
+						private:
+							template<typename VALUE_NUMBER_TYPE>
+							static BaseType MakeShared(const VALUE_NUMBER_TYPE& value);
 						};
 
-						Number::Number(const ValueNumberType& value) :
-							BaseType(MemoryType::DynamicPointerCast<ValueType, ValueNumberType>(value.MakeShared()))
+						template<typename VALUE_NUMBER_TYPE>
+						Number::Number(const VALUE_NUMBER_TYPE& value) :
+							BaseType(MakeShared(value))
 						{}
 
 						Number::Number(const Number& copy) :
 							BaseType(copy)
 						{}
+
+						template<typename VALUE_NUMBER_TYPE>
+						typename Number::BaseType Number::MakeShared(const VALUE_NUMBER_TYPE& value)
+						{
+							static_assert(std::is_base_of<ValueNumberType, VALUE_NUMBER_TYPE>::value, "VALUE_NUMBER_TYPE is not base of BrainMuscles::test::simple::json::value::Number");
+							static_assert(!std::is_abstract<VALUE_NUMBER_TYPE>::value, "VALUE_NUMBER_TYPE is abstract");
+							return BaseType(new VALUE_NUMBER_TYPE(value));
+						}
 					}
 				}
 			}
