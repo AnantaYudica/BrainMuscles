@@ -23,12 +23,10 @@ namespace BrainMuscles
 					typedef typename MemoryType::SharedPointerType<Value>			SharedPointerType;
 				protected:
 					Value() = default;
-				public:
 					Value(const Value& copy) = default;
 					Value(Value&& move) = default;
-					virtual ~Value() = default;
 				public:
-					virtual SharedPointerType MakeShared() const = 0;
+					virtual ~Value() = default;
 				};
 			}
 		}
