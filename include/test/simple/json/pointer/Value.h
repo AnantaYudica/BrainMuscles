@@ -50,6 +50,7 @@ namespace BrainMuscles
 					typename Value::BaseType Value::MakeShared(const VALUE_TYPE& value)
 					{
 						static_assert(std::is_base_of<ValueType, VALUE_TYPE>::value, "VALUE_TYPE is not base of BrainMuscles::test::simple::json::Value");
+						static_assert(!std::is_abstract<VALUE_TYPE>::value, "VALUE_TYPE is abstract");
 						return BaseType(new VALUE_TYPE(value));
 					}
 				}
