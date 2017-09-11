@@ -26,7 +26,6 @@ namespace BrainMuscles
 							typedef BrainMuscles::test::simple::json::value::Number	NumberType;
 							typedef typename NumberType::ConstantType				ConstantType;
 							typedef typename NumberType::ValueType					ValueType;
-							typedef typename NumberType::SharedPointerType			SharedPointerType;
 						private:
 							unsigned short m_value;
 						public:
@@ -34,8 +33,6 @@ namespace BrainMuscles
 							UnsignedShort(const unsigned short& value);
 							UnsignedShort(const UnsignedShort& copy);
 							UnsignedShort(UnsignedShort&& move);
-						public:
-							SharedPointerType MakeShared() const;
 						public:
 							UnsignedShort& operator= (const unsigned short& value);
 							operator unsigned short&();
@@ -57,11 +54,6 @@ namespace BrainMuscles
 						UnsignedShort::UnsignedShort(UnsignedShort&& move) :
 							m_value(move.m_value)
 						{}
-
-						typename UnsignedShort::SharedPointerType UnsignedShort::MakeShared() const
-						{
-							return SharedPointerType(new UnsignedShort(*this));
-						}
 
 						UnsignedShort& UnsignedShort::operator= (const unsigned short& value)
 						{

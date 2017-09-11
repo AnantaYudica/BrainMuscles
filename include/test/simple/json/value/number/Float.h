@@ -26,7 +26,6 @@ namespace BrainMuscles
 							typedef BrainMuscles::test::simple::json::value::Number	NumberType;
 							typedef typename NumberType::ConstantType				ConstantType;
 							typedef typename NumberType::ValueType					ValueType;
-							typedef typename NumberType::SharedPointerType			SharedPointerType;
 						private:
 							float m_value;
 						public:
@@ -34,8 +33,6 @@ namespace BrainMuscles
 							Float(const float& value);
 							Float(const Float& copy);
 							Float(Float&& move);
-						public:
-							SharedPointerType MakeShared() const;
 						public:
 							Float& operator= (const float& value);
 							operator float&();
@@ -57,11 +54,6 @@ namespace BrainMuscles
 						Float::Float(Float&& move) :
 							m_value(move.m_value)
 						{}
-
-						typename Float::SharedPointerType Float::MakeShared() const
-						{
-							return SharedPointerType(new Float(*this));
-						}
 
 						Float& Float::operator= (const float& value)
 						{
