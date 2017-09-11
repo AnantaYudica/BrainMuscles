@@ -44,7 +44,7 @@ namespace BrainMuscles
 							value_number_unsignedshort
 						};
 
-						bool IsTagNumber(const Tag& tag)
+						constexpr bool IsTagNumber(const Tag& tag)
 						{
 							return (tag >= Tag::value_number_char && tag <= value_number_unsignedshort) || tag == value_number;
 						}
