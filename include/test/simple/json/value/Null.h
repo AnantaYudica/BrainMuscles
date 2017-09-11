@@ -23,7 +23,6 @@ namespace BrainMuscles
 					public:
 						typedef BrainMuscles::test::simple::json::Constant				ConstantType;
 						typedef typename ConstantType::ValueType						ValueType;
-						typedef typename ValueType::SharedPointerType					SharedPointerType;
 					public:
 						Null() = default;
 						Null(const Null& copy) = default;
@@ -32,18 +31,11 @@ namespace BrainMuscles
 						~Null() = default;
 					public:
 						operator const char* const();
-					public:
-						SharedPointerType MakeShared() const;
 					};
 
 					Null::operator const char* const()
 					{
 						return ConstantType::NullCString;
-					}
-
-					typename Null::SharedPointerType Null::MakeShared() const
-					{
-						return SharedPointerType(new Null(*this));
 					}
 				}
 			}

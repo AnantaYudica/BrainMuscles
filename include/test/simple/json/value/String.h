@@ -24,7 +24,6 @@ namespace BrainMuscles
 					public:
 						typedef BrainMuscles::test::simple::json::Constant				ConstantType;
 						typedef typename ConstantType::ValueType						ValueType;
-						typedef typename ValueType::SharedPointerType					SharedPointerType;
 						typedef typename ConstantType::StringType						StringType;
 					public:
 						String();
@@ -33,8 +32,6 @@ namespace BrainMuscles
 						String(const String& copy);
 						String(String&& move);
 						~String();
-					public:
-						SharedPointerType MakeShared() const;
 					public:
 						operator const char*() const;
 						String& operator=(const StringType& string);
@@ -61,11 +58,6 @@ namespace BrainMuscles
 
 					String::~String()
 					{}
-
-					typename String::SharedPointerType String::MakeShared() const
-					{
-						return SharedPointerType(new String(*this));
-					}
 
 					String::operator const char*() const
 					{

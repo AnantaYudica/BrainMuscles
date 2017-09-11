@@ -24,8 +24,6 @@ namespace BrainMuscles
 					public:
 						typedef BrainMuscles::test::simple::json::Constant				ConstantType;
 						typedef typename ConstantType::ValueType						ValueType;
-						typedef typename ValueType::SharedPointerType					SharedPointerType;
-						typedef typename ConstantType::PointerValueType					PointerValueType;
 						typedef typename ConstantType::ContainerArrayType				ContainerType;
 					public:
 						Array();
@@ -33,8 +31,6 @@ namespace BrainMuscles
 						Array(Array&& move);
 					public:
 						~Array();
-					public:
-						SharedPointerType MakeShared() const;
 					};
 
 					Array::Array()
@@ -50,11 +46,6 @@ namespace BrainMuscles
 
 					Array::~Array()
 					{}
-
-					typename Array::SharedPointerType Array::MakeShared() const
-					{
-						return SharedPointerType(new Array(*this));
-					}
 				}
 			}
 		}
