@@ -44,9 +44,46 @@ namespace BrainMuscles
 							value_number_unsignedshort
 						};
 
+						constexpr bool IsTag(const Tag& tag)
+						{
+							return tag == value_array ||
+								tag == value_false ||
+								tag == value_null ||
+								tag == value_number ||
+								tag == value_object ||
+								tag == value_string ||
+								tag == value_true ||
+								tag == value_number_char ||
+								tag == value_number_double ||
+								tag == value_number_float ||
+								tag == value_number_int ||
+								tag == value_number_long ||
+								tag == value_number_longdouble ||
+								tag == value_number_longlong ||
+								tag == value_number_short ||
+								tag == value_number_unsignedchar ||
+								tag == value_number_unsignedint ||
+								tag == value_number_unsignedlong ||
+								tag == value_number_unsignedlonglong ||
+								tag == value_number_unsignedshort;
+						}
+
 						constexpr bool IsTagNumber(const Tag& tag)
 						{
-							return (tag >= Tag::value_number_char && tag <= value_number_unsignedshort) || tag == value_number;
+							return tag == value_number ||
+								tag == value_number_char ||
+								tag == value_number_double ||
+								tag == value_number_float ||
+								tag == value_number_int ||
+								tag == value_number_long ||
+								tag == value_number_longdouble ||
+								tag == value_number_longlong ||
+								tag == value_number_short ||
+								tag == value_number_unsignedchar ||
+								tag == value_number_unsignedint ||
+								tag == value_number_unsignedlong ||
+								tag == value_number_unsignedlonglong ||
+								tag == value_number_unsignedshort;
 						}
 
 						template<typename HANDLE_TYPE, typename INPUT_VALUE_TYPE>
