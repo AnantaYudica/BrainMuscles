@@ -29,8 +29,27 @@ namespace BrainMuscles
 					typedef BrainMuscles::test::simple::json
 						::pointer::Value									PointerValueType;
 					typedef std::string										StringType;
+				public:
 					typedef std::vector<PointerValueType>					ContainerArrayType;
 					typedef std::map<StringType, PointerValueType>			ContainerObjectType;
+				public:
+					typedef typename ContainerArrayType::value_type			ContainerArrayElementType;
+					typedef typename ContainerObjectType::value_type		ContainerObjectElementType;
+				public:
+					typedef typename ContainerArrayType::iterator			ContainerArrayIteratorType;
+					typedef typename ContainerArrayType::const_iterator		ContainerArrayConstIteratorType;
+				public:
+					typedef typename ContainerObjectType::iterator			ContainerObjectIteratorType;
+					typedef typename ContainerObjectType::const_iterator	ContainerObjectConstIteratorType;
+				public:
+					typedef typename ContainerArrayType::size_type			ContainerArraySizeType;
+					typedef typename ContainerObjectType::size_type			ContainerObjectSizeType;
+				public:
+					typedef typename ContainerArrayType::size_type			ContainerArrayKeyType;
+					typedef typename ContainerObjectType::key_type			ContainerObjectKeyType;
+				public:
+					typedef typename ContainerArrayType::value_type			ContainerArrayValueType;
+					typedef typename ContainerObjectType::mapped_type		ContainerObjectValueType;
 				public:
 					static constexpr const char * const FalseCString = "false";
 					static constexpr const char * const TrueCString = "true";
