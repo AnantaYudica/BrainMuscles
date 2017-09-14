@@ -6,6 +6,7 @@
 #if defined(_USING_TEST_)
 
 #include "test\simple\json\Constant.h"
+#include "test\simple\json\Container.h"
 
 namespace BrainMuscles
 {
@@ -18,37 +19,248 @@ namespace BrainMuscles
 				namespace value
 				{
 					class Array :
-						public BrainMuscles::test::simple::json::Constant::ValueType,
-						public BrainMuscles::test::simple::json::Constant::ContainerArrayType
+						public BrainMuscles::test::simple::json::Constant::ValueType
 					{
 					public:
 						typedef BrainMuscles::test::simple::json::Constant				ConstantType;
-						typedef typename ConstantType::ValueType						ValueType;
 						typedef typename ConstantType::ContainerArrayType				ContainerType;
+						typedef BrainMuscles::test::simple::json::Container
+							::ArrayElementType											ElementType;
+						typedef BrainMuscles::test::simple::json::Container
+							::ArrayIteratorType											IteratorType;
+						typedef BrainMuscles::test::simple::json::Container
+							::ArrayConstIteratorType									ConstIteratorType;
+						typedef BrainMuscles::test::simple::json::Container
+							::ArraySizeType												SizeType;
+						typedef BrainMuscles::test::simple::json::Container
+							::ArrayKeyType												KeyType;
+						typedef BrainMuscles::test::simple::json::Container
+							::ArrayValueType											ValueType;
+					private:
+						ContainerType m_container;
 					public:
 						Array();
 						Array(const Array& copy);
 						Array(Array&& move);
 					public:
 						~Array();
+					public:
+						ValueType& At(const KeyType& key);
+						const ValueType& At(const KeyType& key) const;
+						IteratorType Begin();
+						ConstIteratorType Begin() const;
+						ConstIteratorType ConstBegin();
+						IteratorType End();
+						ConstIteratorType End() const;
+						ConstIteratorType ConstEnd();
+						IteratorType Insert(const ElementType& value);
+						template<typename INPUT_ITERATOR_TYPE>
+						void Insert(INPUT_ITERATOR_TYPE first, INPUT_ITERATOR_TYPE last);
+						template<typename... ARGS>
+						IteratorType Emplace(ARGS... args);
+						IteratorType Erase(ConstIteratorType position);
+						IteratorType Erase(ConstIteratorType first, ConstIteratorType last);
+						void Clear();
+						SizeType Size() const;
+						IteratorType Find(const KeyType& key);
+						ConstIteratorType Find(const KeyType& key) const;
+						void Swap(Array& array);
+					public:
+						ValueType& operator[](const KeyType& key);
+						const ValueType& operator[](const KeyType& key) const;
+					public:
+						bool operator==(const Array& array) const;
+						bool operator!=(const Array& array) const;
+						bool operator<(const Array& array) const;
+						bool operator<=(const Array& array) const;
+						bool operator>(const Array& array) const;
+						bool operator>=(const Array& array) const;
+					public:
+						ContainerType& Container();
+						const ContainerType& Container() const;
 					};
 
 					Array::Array()
 					{}
 
 					Array::Array(const Array& copy) :
-						ContainerType(copy)
+						m_container(copy.m_container)
 					{}
 
 					Array::Array(Array&& move) :
-						ContainerType(move)
+						m_container(move.m_container)
 					{}
 
 					Array::~Array()
 					{}
+
+					typename Array::ValueType& Array::At(const KeyType& key)
+					{
+						return BrainMuscles::test::simple::json::Container::AtImpl(m_container, key);
+					}
+
+					const typename Array::ValueType& Array::At(const KeyType& key) const
+					{
+						return BrainMuscles::test::simple::json::Container::AtImpl(m_container, key);
+					}
+
+					typename Array::IteratorType Array::Begin()
+					{
+						return BrainMuscles::test::simple::json::Container::BeginImpl(m_container);
+					}
+
+					typename Array::ConstIteratorType Array::Begin() const
+					{
+						return BrainMuscles::test::simple::json::Container::BeginImpl(m_container);
+					}
+
+					typename Array::ConstIteratorType Array::ConstBegin()
+					{
+						return BrainMuscles::test::simple::json::Container::ConstBeginImpl(m_container);
+					}
+
+					typename Array::IteratorType Array::End()
+					{
+						return BrainMuscles::test::simple::json::Container::EndImpl(m_container);
+					}
+
+					typename Array::ConstIteratorType Array::End() const
+					{
+						return BrainMuscles::test::simple::json::Container::EndImpl(m_container);
+					}
+
+					typename Array::ConstIteratorType Array::ConstEnd()
+					{
+						return BrainMuscles::test::simple::json::Container::ConstEndImpl(m_container);
+					}
+
+					typename Array::IteratorType Array::Insert(const ElementType& value)
+					{
+						return BrainMuscles::test::simple::json::Container::InsertImpl(m_container, value);
+					}
+
+					template<typename INPUT_ITERATOR_TYPE>
+					void Array::Insert(INPUT_ITERATOR_TYPE first, INPUT_ITERATOR_TYPE last)
+					{
+						return BrainMuscles::test::simple::json::Container::InsertImpl(m_container, first, last);
+					}
+
+					template<typename... ARGS>
+					typename Array::IteratorType Array::Emplace(ARGS... args)
+					{
+						return BrainMuscles::test::simple::json::Container::EmplaceImpl(m_container, args...);
+					}
+
+					typename Array::IteratorType Array::Erase(ConstIteratorType position)
+					{
+						return BrainMuscles::test::simple::json::Container::EraseImpl(m_container, position);
+					}
+
+					typename Array::IteratorType Array::Erase(ConstIteratorType first, ConstIteratorType last)
+					{
+						return BrainMuscles::test::simple::json::Container::EraseImpl(m_container, first, last);
+					}
+
+					void Array::Clear()
+					{
+						return BrainMuscles::test::simple::json::Container::ClearImpl(m_container);
+					}
+
+					typename Array::SizeType Array::Size() const
+					{
+						return BrainMuscles::test::simple::json::Container::SizeImpl(m_container);
+					}
+
+					typename Array::IteratorType Array::Find(const KeyType& key)
+					{
+						return BrainMuscles::test::simple::json::Container::FindImpl(m_container, key);
+					}
+
+					typename Array::ConstIteratorType Array::Find(const KeyType& key) const
+					{
+						return BrainMuscles::test::simple::json::Container::FindImpl(m_container, key);
+					}
+
+					void Array::Swap(Array& array)
+					{
+						return BrainMuscles::test::simple::json::Container::SwapImpl(m_container, array.m_container);
+					}
+
+					typename Array::ValueType& Array::operator[](const KeyType& key)
+					{
+						return At(key);
+					}
+
+					const typename Array::ValueType& Array::operator[](const KeyType& key) const
+					{
+						return At(key);
+					}
+
+					bool Array::operator==(const Array& array) const
+					{
+						return BrainMuscles::test::simple::json::Container::IsEqualImpl(m_container, array.m_container);
+					}
+
+					bool Array::operator!=(const Array& array) const 
+					{
+						return !BrainMuscles::test::simple::json::Container::IsEqualImpl(m_container, array.m_container);
+					}
+
+					bool Array::operator<(const Array& array) const
+					{
+						return BrainMuscles::test::simple::json::Container::IsLessImpl(m_container, array.m_container);
+					}
+
+					bool Array::operator<=(const Array& array) const
+					{
+						return BrainMuscles::test::simple::json::Container::IsLessOrEqualImpl(m_container, array.m_container);
+					}
+
+					bool Array::operator>(const Array& array) const
+					{
+						return BrainMuscles::test::simple::json::Container::IsGreaterImpl(m_container, array.m_container);
+					}
+
+					bool Array::operator>=(const Array& array) const
+					{
+						return BrainMuscles::test::simple::json::Container::IsGreaterOrEqualImpl(m_container, array.m_container);
+					}
+
+					typename Array::ContainerType& Array::Container()
+					{
+						return m_container;
+					}
+
+					const typename Array::ContainerType& Array::Container() const
+					{
+						return m_container;
+					}
 				}
 			}
 		}
+	}
+}
+
+namespace std
+{
+	auto inline begin(BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.Begin())
+	{
+		return _Cont.Begin();
+	}
+
+	auto inline end(BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.End())
+	{
+		return _Cont.End();
+	}
+
+	auto inline begin(const BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.Begin())
+	{
+		return _Cont.Begin();
+	}
+
+	auto inline end(const BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.End())
+	{
+		return _Cont.End();
 	}
 }
 
