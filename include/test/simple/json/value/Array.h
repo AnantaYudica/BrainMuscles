@@ -183,12 +183,12 @@ namespace BrainMuscles
 
 					typename Array::ValueType& Array::operator[](const KeyType& key)
 					{
-						return At(key);
+						return BrainMuscles::test::simple::json::Container::ArraySubscriptImpl(m_container, key);
 					}
 
 					const typename Array::ValueType& Array::operator[](const KeyType& key) const
 					{
-						return At(key);
+						return BrainMuscles::test::simple::json::Container::ArraySubscriptImpl(m_container, key);
 					}
 
 					Array& Array::operator=(const Array& array)
