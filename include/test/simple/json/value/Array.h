@@ -69,12 +69,7 @@ namespace BrainMuscles
 						ValueType& operator[](const KeyType& key);
 						const ValueType& operator[](const KeyType& key) const;
 					public:
-						bool operator==(const Array& array) const;
-						bool operator!=(const Array& array) const;
-						bool operator<(const Array& array) const;
-						bool operator<=(const Array& array) const;
-						bool operator>(const Array& array) const;
-						bool operator>=(const Array& array) const;
+						Array& operator=(const Array& array);
 					public:
 						ContainerType& Container();
 						const ContainerType& Container() const;
@@ -196,34 +191,10 @@ namespace BrainMuscles
 						return At(key);
 					}
 
-					bool Array::operator==(const Array& array) const
+					Array& Array::operator=(const Array& array)
 					{
-						return BrainMuscles::test::simple::json::Container::IsEqualImpl(m_container, array.m_container);
-					}
-
-					bool Array::operator!=(const Array& array) const 
-					{
-						return !BrainMuscles::test::simple::json::Container::IsEqualImpl(m_container, array.m_container);
-					}
-
-					bool Array::operator<(const Array& array) const
-					{
-						return BrainMuscles::test::simple::json::Container::IsLessImpl(m_container, array.m_container);
-					}
-
-					bool Array::operator<=(const Array& array) const
-					{
-						return BrainMuscles::test::simple::json::Container::IsLessOrEqualImpl(m_container, array.m_container);
-					}
-
-					bool Array::operator>(const Array& array) const
-					{
-						return BrainMuscles::test::simple::json::Container::IsGreaterImpl(m_container, array.m_container);
-					}
-
-					bool Array::operator>=(const Array& array) const
-					{
-						return BrainMuscles::test::simple::json::Container::IsGreaterOrEqualImpl(m_container, array.m_container);
+						m_container.operator=(array.m_container);
+						return *this;
 					}
 
 					typename Array::ContainerType& Array::Container()
