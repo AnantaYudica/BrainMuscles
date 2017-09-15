@@ -196,19 +196,19 @@ namespace BrainMuscles
 				template<typename INPUT_ITERATOR_TYPE>
 				void Container::InsertImpl(ArrayType& array, INPUT_ITERATOR_TYPE first, INPUT_ITERATOR_TYPE last)
 				{
-					return array.insert(array.end(), first, last);
+					array.insert(array.end(), first, last);
 				}
 
 				template<typename INPUT_ITERATOR_TYPE>
 				void Container::InsertImpl(ObjectType& object, INPUT_ITERATOR_TYPE first, INPUT_ITERATOR_TYPE last)
 				{
-					return object.insert(object.end(), first, last);
+					object.insert(object.end(), first, last);
 				}
 
 				template<typename... ARGS>
 				typename Container::ArrayIteratorType Container::EmplaceImpl(ArrayType& array, ARGS... args)
 				{
-					return array.emplace(args...);
+					return array.emplace(array.end(), args...);
 				}
 
 				template<typename... ARGS>
@@ -239,12 +239,12 @@ namespace BrainMuscles
 
 				void Container::ClearImpl(ArrayType& array)
 				{
-					return array.clear();
+					array.clear();
 				}
 
 				void Container::ClearImpl(ObjectType& object)
 				{
-					return object.clear();
+					object.clear();
 				}
 
 				typename Container::ArraySizeType Container::SizeImpl(const ArrayType& array)
@@ -329,12 +329,12 @@ namespace BrainMuscles
 
 				void Container::SwapImpl(ArrayType& array_a, ArrayType& array_b)
 				{
-					return array_a.swap(array_b);
+					array_a.swap(array_b);
 				}
 
 				void Container::SwapImpl(ObjectType& object_a, ObjectType& object_b)
 				{
-					return object_a.swap(object_b);
+					object_a.swap(object_b);
 				}
 			}
 		}
