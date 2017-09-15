@@ -45,6 +45,12 @@ namespace BrainMuscles
 					public:
 						~Array();
 					public:
+						static ValueType& Value(ElementType& element);
+						static const ValueType& Value(const ElementType& element);
+					public:
+						template<bool IS_ARRAY_HAS_KEY_IN_ELEMENT = BrainMuscles::test::simple::json::Container::ArrayHasKeyInElement>
+						KeyType Key(const ElementType& element);
+					public:
 						ValueType& At(const KeyType& key);
 						const ValueType& At(const KeyType& key) const;
 						IteratorType Begin();
@@ -88,6 +94,22 @@ namespace BrainMuscles
 
 					Array::~Array()
 					{}
+
+					typename Array::ValueType& Array::Value(ElementType& element)
+					{
+						return BrainMuscles::test::simple::json::Container::ValueImpl(element);
+					}
+
+					const typename Array::ValueType& Array::Value(const ElementType& element)
+					{
+						return BrainMuscles::test::simple::json::Container::ValueImpl(element);
+					}
+				
+					template<bool IS_ARRAY_HAS_KEY_IN_ELEMENT>
+					typename Array::KeyType Array::Key(const ElementType& element)
+					{
+						return BrainMuscles::test::simple::json::Container::KeyImpl<IS_ARRAY_HAS_KEY_IN_ELEMENT>(m_container, element);
+					}
 
 					typename Array::ValueType& Array::At(const KeyType& key)
 					{
