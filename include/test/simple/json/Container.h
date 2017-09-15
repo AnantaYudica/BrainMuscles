@@ -41,6 +41,19 @@ namespace BrainMuscles
 					typedef typename ArrayType::value_type					ArrayValueType;
 					typedef typename ObjectType::mapped_type				ObjectValueType;
 				public:
+					static constexpr bool ArrayHasKeyInElement = false;
+					static constexpr bool ObjectHasKeyInElement = true;
+				public:
+					static ArrayValueType& ValueImpl(ArrayElementType& element);
+					static ObjectValueType& ValueImpl(ObjectElementType& element);
+					static const ArrayValueType& ValueImpl(const ArrayElementType& element);
+					static const ObjectValueType& ValueImpl(const ObjectElementType& element);
+				public:
+					template<bool IS_ARRAY_HAS_KEY_IN_ELEMENT = ArrayHasKeyInElement>
+					static ArrayKeyType KeyImpl(const ArrayType& array, const ArrayElementType& element);
+					template<bool IS_OBJECT_HAS_KEY_IN_ELEMENT = ObjectHasKeyInElement>
+					static ObjectKeyType KeyImpl(const ObjectType& object, const ObjectElementType& element);
+				public:
 					static ArrayValueType& AtImpl(ArrayType& array, const ArrayKeyType& key);
 					static const ArrayValueType& AtImpl(const ArrayType& array, const ArrayKeyType& key);
 				public:
@@ -96,6 +109,60 @@ namespace BrainMuscles
 					static void SwapImpl(ArrayType& array_a, ArrayType& array_b);
 					static void SwapImpl(ObjectType& object_a, ObjectType& object_b);
 				};
+
+				typename Container::ArrayValueType& Container::ValueImpl(ArrayElementType& element)
+				{
+					return element;
+				}
+
+				typename Container::ObjectValueType& Container::ValueImpl(ObjectElementType& element)
+				{
+					return element.second;
+				}
+
+				const typename Container::ArrayValueType& Container::ValueImpl(const ArrayElementType& element)
+				{
+					return element;
+				}
+
+				const typename Container::ObjectValueType& Container::ValueImpl(const ObjectElementType& element)
+				{
+					return element.second;
+				}
+
+
+				template<>
+				typename Container::ArrayKeyType Container::KeyImpl<true>(const ArrayType& array, const ArrayElementType& element)
+				{
+					static_assert(true, "in this case function KeyImpl no support for ArrayType");
+					return 0;
+				}
+
+				template<>
+				typename Container::ArrayKeyType Container::KeyImpl<false>(const ArrayType& array, const ArrayElementType& element)
+				{
+					ArrayKeyType key = 0;
+					for (auto it : array)
+					{
+						if (it == element) break;
+						key++;
+					}
+					return key;
+				}
+
+				template<>
+				typename Container::ObjectKeyType Container::KeyImpl<true>(const ObjectType& object, const ObjectElementType& element)
+				{
+					return element.first;
+				}
+
+				template<>
+				typename Container::ObjectKeyType Container::KeyImpl<false>(const ObjectType& object, const ObjectElementType& element)
+				{
+					static_assert(true, "in this case function KeyImpl no support for ObjectType");
+					return 0;
+				}
+
 
 				typename Container::ArrayValueType& Container::AtImpl(ArrayType& array, const ArrayKeyType& key)
 				{
@@ -196,7 +263,7 @@ namespace BrainMuscles
 				template<typename INPUT_ITERATOR_TYPE>
 				void Container::InsertImpl(ObjectType& object, INPUT_ITERATOR_TYPE first, INPUT_ITERATOR_TYPE last)
 				{
-					object.insert(object.end(), first, last);
+					object.insert(first, last);
 				}
 
 				template<typename... ARGS>
@@ -208,7 +275,7 @@ namespace BrainMuscles
 				template<typename... ARGS>
 				typename Container::ObjectIteratorType Container::EmplaceImpl(ObjectType& object, ARGS... args)
 				{
-					return object.emplace(args...);
+					return object.emplace_hint(object.end(), args...);
 				}
 
 				typename Container::ArrayIteratorType Container::EraseImpl(ArrayType& array, ArrayConstIteratorType position)
