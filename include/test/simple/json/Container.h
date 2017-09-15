@@ -83,6 +83,11 @@ namespace BrainMuscles
 					static ArraySizeType SizeImpl(const ArrayType& array);
 					static ObjectSizeType SizeImpl(const ObjectType& object);
 				public:
+					static ArrayValueType& ArraySubscriptImpl(ArrayType& array, const ArrayKeyType& key);
+					static ObjectValueType& ArraySubscriptImpl(ObjectType& object, const ObjectKeyType& key);
+					static const ArrayValueType& ArraySubscriptImpl(const ArrayType& array, const ArrayKeyType& key);
+					static const ObjectValueType& ArraySubscriptImpl(const ObjectType& object, const ObjectKeyType& key);
+				public:
 					static ArrayIteratorType FindImpl(ArrayType& array, const ArrayKeyType& key);
 					static ObjectIteratorType FindImpl(ObjectType& object, const ObjectKeyType& key);
 					static ArrayConstIteratorType FindImpl(const ArrayType& array, const ArrayKeyType& key);
@@ -244,6 +249,27 @@ namespace BrainMuscles
 				typename Container::ObjectSizeType Container::SizeImpl(const ObjectType& object)
 				{
 					return object.size();
+				}
+
+				typename Container::ArrayValueType& Container::ArraySubscriptImpl(ArrayType& array, const ArrayKeyType& key)
+				{
+					return array.operator[](key);
+				}
+
+				typename Container::ObjectValueType& Container::ArraySubscriptImpl(ObjectType& object, const ObjectKeyType& key)
+				{
+					return object.operator[](key);
+				}
+
+
+				const typename Container::ArrayValueType& Container::ArraySubscriptImpl(const ArrayType& array, const ArrayKeyType& key)
+				{
+					return array.operator[](key);
+				}
+
+				const typename Container::ObjectValueType& Container::ArraySubscriptImpl(const ObjectType& object, const ObjectKeyType& key)
+				{
+					return object.at(key);
 				}
 
 				typename Container::ArrayIteratorType Container::FindImpl(ArrayType& array, const ArrayKeyType& key)
