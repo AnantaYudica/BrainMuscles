@@ -88,17 +88,6 @@ namespace BrainMuscles
 					static ArrayConstIteratorType FindImpl(const ArrayType& array, const ArrayKeyType& key);
 					static ObjectConstIteratorType FindImpl(const ObjectType& object, const ObjectKeyType& key);
 				public:
-					static bool IsEqualImpl(const ArrayType& array_a, const ArrayType& array_b);
-					static bool IsEqualImpl(const ObjectType& object_a, const ObjectType& object_b);
-					static bool IsLessImpl(const ArrayType& array_a, const ArrayType& array_b);
-					static bool IsLessImpl(const ObjectType& object_a, const ObjectType& object_b);
-					static bool IsLessOrEqualImpl(const ArrayType& array_a, const ArrayType& array_b);
-					static bool IsLessOrEqualImpl(const ObjectType& object_a, const ObjectType& object_b);
-					static bool IsGreaterImpl(const ArrayType& array_a, const ArrayType& array_b);
-					static bool IsGreaterImpl(const ObjectType& object_a, const ObjectType& object_b);
-					static bool IsGreaterOrEqualImpl(const ArrayType& array_a, const ArrayType& array_b);
-					static bool IsGreaterOrEqualImpl(const ObjectType& object_a, const ObjectType& object_b);
-				public:
 					static void SwapImpl(ArrayType& array_a, ArrayType& array_b);
 					static void SwapImpl(ObjectType& object_a, ObjectType& object_b);
 				};
@@ -275,56 +264,6 @@ namespace BrainMuscles
 				typename Container::ObjectConstIteratorType Container::FindImpl(const ObjectType& object, const ObjectKeyType& key)
 				{
 					return object.find(key);
-				}
-
-				bool Container::IsEqualImpl(const ArrayType& array_a, const ArrayType& array_b)
-				{
-					return array_a == array_b;
-				}
-
-				bool Container::IsEqualImpl(const ObjectType& object_a, const ObjectType& object_b)
-				{
-					return object_a == object_b;
-				}
-
-				bool Container::IsLessImpl(const ArrayType& array_a, const ArrayType& array_b) 
-				{
-					return array_a < array_b;
-				}
-
-				bool Container::IsLessImpl(const ObjectType& object_a, const ObjectType& object_b)
-				{
-					return object_a < object_b;
-				}
-
-				bool Container::IsLessOrEqualImpl(const ArrayType& array_a, const ArrayType& array_b)
-				{
-					return array_a <= array_b;
-				}
-
-				bool Container::IsLessOrEqualImpl(const ObjectType& object_a, const ObjectType& object_b)
-				{
-					return object_a <= object_b;
-				}
-
-				bool Container::IsGreaterImpl(const ArrayType& array_a, const ArrayType& array_b)
-				{
-					return array_a > array_b;
-				}
-
-				bool Container::IsGreaterImpl(const ObjectType& object_a, const ObjectType& object_b)
-				{
-					return object_a > object_b;
-				}
-
-				bool Container::IsGreaterOrEqualImpl(const ArrayType& array_a, const ArrayType& array_b)
-				{
-					return array_a >= array_b;
-				}
-
-				bool Container::IsGreaterOrEqualImpl(const ObjectType& object_a, const ObjectType& object_b)
-				{
-					return object_a >= object_b;
 				}
 
 				void Container::SwapImpl(ArrayType& array_a, ArrayType& array_b)
