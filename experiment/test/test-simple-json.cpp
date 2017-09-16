@@ -723,7 +723,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert1 = array1.Insert(pointer_value_array4);
 			//check value between it_array1_insert1 and 1st index of array1 is same
-			assert(*it_array1_insert1 == array1[0]);
+			assert(json::value::Array::Value(*it_array1_insert1) == array1[0]);
 			//check value between 1st index of array1 and pointer_value_array4 is same
 			assert(array1[0] == pointer_value_array4);
 
@@ -731,7 +731,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert2 = array1.Insert(pointer_value_false1);
 			//check value between it_array1_insert2 and 2nd index of array1 is same
-			assert(*it_array1_insert2 == array1[1]);
+			assert(json::value::Array::Value(*it_array1_insert2) == array1[1]);
 			//check value between 2nd index of array1 and pointer_value_false1 is same
 			assert(array1[1] == pointer_value_false1);
 
@@ -739,7 +739,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert3 = array1.Insert(pointer_value_null1);
 			//check value between it_array1_insert3 and 3rd index of array1 is same
-			assert(*it_array1_insert3 == array1[2]);
+			assert(json::value::Array::Value(*it_array1_insert3) == array1[2]);
 			//check value between 3rd index of array1 and pointer_value_null1 is same
 			assert(array1[2] == pointer_value_null1);
 
@@ -747,7 +747,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert4 = array1.Insert(pointer_value_object1);
 			//check value between it_array1_insert4 and 4th index of array1 is same
-			assert(*it_array1_insert4 == array1[3]);
+			assert(json::value::Array::Value(*it_array1_insert4) == array1[3]);
 			//check value between 4th index of array1 and pointer_value_object1 is same
 			assert(array1[3] == pointer_value_object1);
 
@@ -755,7 +755,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert5 = array1.Insert(pointer_value_string1);
 			//check value between it_array1_insert5 and 5th index of array1 is same
-			assert(*it_array1_insert5 == array1[4]);
+			assert(json::value::Array::Value(*it_array1_insert5) == array1[4]);
 			//check value between 5th index of array1 and pointer_value_string1 is same
 			assert(array1[4] == pointer_value_string1);
 
@@ -763,7 +763,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert6 = array1.Insert(pointer_value_true1);
 			//check value between it_array1_insert6 and 6th index of array1 is same
-			assert(*it_array1_insert6 == array1[5]);
+			assert(json::value::Array::Value(*it_array1_insert6) == array1[5]);
 			//check value between 6th index of array1 and pointer_value_true1 is same
 			assert(array1[5] == pointer_value_true1);
 
@@ -772,7 +772,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert7 = array1.Insert(pointer_value_number_char1);
 			//check value between it_array1_insert7 and 7th index of array1 is same
-			assert(*it_array1_insert7 == array1[6]);
+			assert(json::value::Array::Value(*it_array1_insert7) == array1[6]);
 			//check value between 7th index of array1 and pointer_value_number_char1 is same
 			assert(array1[6] == pointer_value_number_char1);
 
@@ -780,7 +780,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert8 = array1.Insert(pointer_value_number_double1);
 			//check value between it_array1_insert8 and 8th index of array1 is same
-			assert(*it_array1_insert8 == array1[7]);
+			assert(json::value::Array::Value(*it_array1_insert8) == array1[7]);
 			//check value between 8th index of array1 and pointer_value_number_double1 is same
 			assert(array1[7] == pointer_value_number_double1);
 
@@ -788,7 +788,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert9 = array1.Insert(pointer_value_number_float1);
 			//check value between it_array1_insert9 and 9th index of array1 is same
-			assert(*it_array1_insert9 == array1[8]);
+			assert(json::value::Array::Value(*it_array1_insert9) == array1[8]);
 			//check value between 9th index of array1 and pointer_value_number_float1 is same
 			assert(array1[8] == pointer_value_number_float1);
 
@@ -796,7 +796,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert10 = array1.Insert(pointer_value_number_int1);
 			//check value between it_array1_insert10 and 10th index of array1 is same
-			assert(*it_array1_insert10 == array1[9]);
+			assert(json::value::Array::Value(*it_array1_insert10) == array1[9]);
 			//check value between 10th index of array1 and pointer_value_number_int1 is same
 			assert(array1[9] == pointer_value_number_int1);
 
@@ -804,7 +804,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert11 = array1.Insert(pointer_value_number_long1);
 			//check value between it_array1_insert11 and 11th index of array1 is same
-			assert(*it_array1_insert11 == array1[10]);
+			assert(json::value::Array::Value(*it_array1_insert11) == array1[10]);
 			//check value between 11th index of array1 and pointer_value_number_long1 is same
 			assert(array1[10] == pointer_value_number_long1);
 
@@ -812,7 +812,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert12 = array1.Insert(pointer_value_number_longdouble1);
 			//check value between it_array1_insert12 and 12th index of array1 is same
-			assert(*it_array1_insert12 == array1[11]);
+			assert(json::value::Array::Value(*it_array1_insert12) == array1[11]);
 			//check value between 12th index of array1 and pointer_value_number_longdouble1 is same
 			assert(array1[11] == pointer_value_number_longdouble1);
 
@@ -820,7 +820,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert13 = array1.Insert(pointer_value_number_longlong1);
 			//check value between it_array1_insert13 and 13th index of array1 is same
-			assert(*it_array1_insert13 == array1[12]);
+			assert(json::value::Array::Value(*it_array1_insert13) == array1[12]);
 			//check value between 13th index of array1 and pointer_value_number_longlong1 is same
 			assert(array1[12] == pointer_value_number_longlong1);
 
@@ -828,7 +828,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert14 = array1.Insert(pointer_value_number_short1);
 			//check value between it_array1_insert14 and 14th index of array1 is same
-			assert(*it_array1_insert14 == array1[13]);
+			assert(json::value::Array::Value(*it_array1_insert14) == array1[13]);
 			//check value between 14th index of array1 and pointer_value_number_short1 is same
 			assert(array1[13] == pointer_value_number_short1);
 
@@ -836,7 +836,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert15 = array1.Insert(pointer_value_number_unsignedchar1);
 			//check value between it_array1_insert15 and 15th index of array1 is same
-			assert(*it_array1_insert15 == array1[14]);
+			assert(json::value::Array::Value(*it_array1_insert15) == array1[14]);
 			//check value between 15th index of array1 and pointer_value_number_unsignedchar1 is same
 			assert(array1[14] == pointer_value_number_unsignedchar1);
 
@@ -844,7 +844,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert16 = array1.Insert(pointer_value_number_unsignedint1);
 			//check value between it_array1_insert16 and 16th index of array1 is same
-			assert(*it_array1_insert16 == array1[15]);
+			assert(json::value::Array::Value(*it_array1_insert16) == array1[15]);
 			//check value between 16th index of array1 and pointer_value_number_unsignedint1 is same
 			assert(array1[15] == pointer_value_number_unsignedint1);
 
@@ -852,7 +852,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert17 = array1.Insert(pointer_value_number_unsignedlong1);
 			//check value between it_array1_insert17 and 17th index of array1 is same
-			assert(*it_array1_insert17 == array1[16]);
+			assert(json::value::Array::Value(*it_array1_insert17) == array1[16]);
 			//check value between 17th index of array1 and pointer_value_number_unsignedlong1 is same
 			assert(array1[16] == pointer_value_number_unsignedlong1);
 
@@ -860,7 +860,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert18 = array1.Insert(pointer_value_number_unsignedlonglong1);
 			//check value between it_array1_insert18 and 18th index of array1 is same
-			assert(*it_array1_insert18 == array1[17]);
+			assert(json::value::Array::Value(*it_array1_insert18) == array1[17]);
 			//check value between 18th index of array1 and pointer_value_number_unsignedlonglong1 is same
 			assert(array1[17] == pointer_value_number_unsignedlonglong1);
 
@@ -868,35 +868,26 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array1_insert19 = array1.Insert(pointer_value_number_unsignedshort1);
 			//check value between it_array1_insert19 and 19th index of array1 is same
-			assert(*it_array1_insert19 == array1[18]);
+			assert(json::value::Array::Value(*it_array1_insert19) == array1[18]);
 			//check value between 19th index of array1 and pointer_value_number_unsignedshort1 is same
 			assert(array1[18] == pointer_value_number_unsignedshort1);
 
 			//check range-for is work
+			for (auto it : array1)
 			{
-				std::size_t index = 0;
-				for (auto it : array1)
-				{
-					assert(it == array1[index++]);
-				}
+				assert(json::value::Array::Value(it) == array1[array1.Key(it)]);
 			}
 
 			//check range-for is work with const variable of array1
+			for (auto it : std::as_const(array1))
 			{
-				std::size_t index = 0;
-				for (auto it : std::as_const(array1))
-				{
-					assert(it == array1[index++]);
-				}
+				assert(json::value::Array::Value(it) == array1[array1.Key(it)]);
 			}
 
 			//check ConstBegin and ConstEnd from variable of array1 is work
+			for (auto it = array1.ConstBegin(); it < array1.ConstEnd(); ++it)
 			{
-				std::size_t index = 0;
-				for (auto it = array1.ConstBegin(); it < array1.ConstEnd(); ++it)
-				{
-					assert(*it == array1[index++]);
-				}
+				assert(json::value::Array::Value(*it) == array1[array1.Key(*it)]);
 			}
 
 			//insert to array1 with iterator first and last of array
@@ -911,7 +902,7 @@ int main(int argc, char *argv[])
 			// and assignment to iterator of array1 
 			auto it_array_emplace1 = array1.Emplace(json::value::Array());
 			//check value of cast value of it_array_emplace1 to json::value::Array* is not null
-			assert(dynamic_cast<json::value::Array*>(it_array_emplace1->get()) != 0);
+			assert(dynamic_cast<json::value::Array*>(json::value::Array::Value(*it_array_emplace1).get()) != 0);
 
 			//erase value the last element of array1
 			array1.Erase(array1.End() - 1);
@@ -930,46 +921,53 @@ int main(int argc, char *argv[])
 			array1.Swap(array2);
 
 			//check value between return from Find in array2 with key is 0 and pointer_value_array4 is same
-			assert(*array2.Find(0) == pointer_value_array4);
+			assert(json::value::Array::Value(*array2.Find(0)) == pointer_value_array4);
 			//check value between return from Find in array2 with key is 1 and pointer_value_false1 is same
-			assert(*array2.Find(1) == pointer_value_false1);
+			assert(json::value::Array::Value(*array2.Find(1)) == pointer_value_false1);
 			//check value between return from Find in array2 with key is 2 and pointer_value_null1 is same
-			assert(*array2.Find(2) == pointer_value_null1);
+			assert(json::value::Array::Value(*array2.Find(2)) == pointer_value_null1);
 			//check value between return from Find in array2 with key is 3 and pointer_value_object1 is same
-			assert(*array2.Find(3) == pointer_value_object1);
+			assert(json::value::Array::Value(*array2.Find(3)) == pointer_value_object1);
 			//check value between return from Find in array2 with key is 4 and pointer_value_string1 is same
-			assert(*array2.Find(4) == pointer_value_string1);
+			assert(json::value::Array::Value(*array2.Find(4)) == pointer_value_string1);
 			//check value between return from Find in array2 with key is 5 and pointer_value_true1 is same
-			assert(*array2.Find(5) == pointer_value_true1);
+			assert(json::value::Array::Value(*array2.Find(5)) == pointer_value_true1);
 
 			//check value between return from Find in array2 with key is 6 and pointer_value_number_char1 is same
-			assert(*array2.Find(6) == pointer_value_number_char1);
+			assert(json::value::Array::Value(*array2.Find(6)) == pointer_value_number_char1);
 			//check value between return from Find in array2 with key is 7 and pointer_value_number_double1 is same
-			assert(*array2.Find(7) == pointer_value_number_double1);
+			assert(json::value::Array::Value(*array2.Find(7)) == pointer_value_number_double1);
 			//check value between return from Find in array2 with key is 8 and pointer_value_number_float1 is same
-			assert(*array2.Find(8) == pointer_value_number_float1);
+			assert(json::value::Array::Value(*array2.Find(8)) == pointer_value_number_float1);
 			//check value between return from Find in array2 with key is 9 and pointer_value_number_int1 is same
-			assert(*array2.Find(9) == pointer_value_number_int1);
+			assert(json::value::Array::Value(*array2.Find(9)) == pointer_value_number_int1);
 			//check value between return from Find in array2 with key is 10 and pointer_value_number_long1 is same
-			assert(*array2.Find(10) == pointer_value_number_long1);
+			assert(json::value::Array::Value(*array2.Find(10)) == pointer_value_number_long1);
 			//check value between return from Find in array2 with key is 11 and pointer_value_number_longdouble1 is same
-			assert(*array2.Find(11) == pointer_value_number_longdouble1);
+			assert(json::value::Array::Value(*array2.Find(11)) == pointer_value_number_longdouble1);
 			//check value between return from Find in array2 with key is 12 and pointer_value_number_longlong1 is same
-			assert(*array2.Find(12) == pointer_value_number_longlong1);
+			assert(json::value::Array::Value(*array2.Find(12)) == pointer_value_number_longlong1);
 			//check value between return from Find in array2 with key is 13 and pointer_value_number_short1 is same
-			assert(*array2.Find(13) == pointer_value_number_short1);
+			assert(json::value::Array::Value(*array2.Find(13)) == pointer_value_number_short1);
 			//check value between return from Find in array2 with key is 14 and pointer_value_number_unsignedchar1 is same
-			assert(*array2.Find(14) == pointer_value_number_unsignedchar1);
+			assert(json::value::Array::Value(*array2.Find(14)) == pointer_value_number_unsignedchar1);
 			//check value between return from Find in array2 with key is 15 and pointer_value_number_unsignedint1 is same
-			assert(*array2.Find(15) == pointer_value_number_unsignedint1);
+			assert(json::value::Array::Value(*array2.Find(15)) == pointer_value_number_unsignedint1);
 			//check value between return from Find in array2 with key is 16 and pointer_value_number_unsignedlong1 is same
-			assert(*array2.Find(16) == pointer_value_number_unsignedlong1);
+			assert(json::value::Array::Value(*array2.Find(16)) == pointer_value_number_unsignedlong1);
 			//check value between return from Find in array2 with key is 17 and pointer_value_number_unsignedlonglong1 is same
-			assert(*array2.Find(17) == pointer_value_number_unsignedlonglong1);
+			assert(json::value::Array::Value(*array2.Find(17)) == pointer_value_number_unsignedlonglong1);
 			//check value between return from Find in array2 with key is 18 and pointer_value_number_unsignedshort1 is same
-			assert(*array2.Find(18) == pointer_value_number_unsignedshort1);
+			assert(json::value::Array::Value(*array2.Find(18)) == pointer_value_number_unsignedshort1);
 			//check value between return from Find in array2 with key is 18 and End of array2 is same
 			assert(array2.Find(19) == array2.End());
+
+			//check value between function (or const) member of json::value::Array operator[] and At is same 
+			for (size_t i = 0; i < array2.Size(); ++i)
+			{
+				assert(array2[i] == array2.At(i));
+				assert(as_const(array2)[i] == as_const(array2).At(i));
+			}
 		}
 
 		//copy from array1
@@ -1471,167 +1469,492 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	//experiment with 'json/value/Object.h'
+	//experiment with json/value/Object.h
 	{
 		//main variable with default constructor json::value::Object
 		json::value::Object object1;
+		json::value::Object object2;
 
-		//add json value array to value object with key is "array1"
-		object1["array1"] = json::value::Array();
+		//experiment with Insert and operator[] of json::value::Object with initialization value of json\value
+		{
+			//add json value array to value object with key is "array1"
+			object1["array1"] = json::value::Array();
 
-		//add json value false to value object with key is "false1"
-		object1["false1"] = json::value::False();
+			//add json value false to value object with key is "false1"
+			object1["false1"] = json::value::False();
 
-		//add json value null to value object with key is "null1"
-		object1["null1"] = json::value::Null();
+			//add json value null to value object with key is "null1"
+			object1["null1"] = json::value::Null();
 
-		//add json value object to value object with key is "object2"
-		object1["object2"] = json::value::Object();
+			//add json value object to value object with key is "object2"
+			object1["object3"] = json::value::Object();
 
-		//add json value string to value object with key is "string1"
-		object1["string1"] = json::value::String();
+			//add json value string to value object with key is "string1"
+			object1["string1"] = json::value::String();
 
-		//add json value true to value object with key is "true1"
-		object1["true1"] = json::value::True();
+			//add json value true to value object with key is "true1"
+			object1["true1"] = json::value::True();
 
-		//add json value number char to value object with key is "number_char1"
-		object1["number_char1"] = json::value::number::Char();
+			//add json value number char to value object with key is "number_char1"
+			object1["number_char1"] = json::value::number::Char();
 
-		//add json value number double to value object with key is "number_double1"
-		object1["number_double1"] = json::value::number::Double();
+			//add json value number double to value object with key is "number_double1"
+			object1["number_double1"] = json::value::number::Double();
 
-		//add json value number float to value object with key is "number_float1"
-		object1["number_float1"] = json::value::number::Float();
+			//add json value number float to value object with key is "number_float1"
+			object1["number_float1"] = json::value::number::Float();
 
-		//add json value number int to value object with key is "number_int1"
-		object1["number_int1"] = json::value::number::Int();
+			//add json value number int to value object with key is "number_int1"
+			object1["number_int1"] = json::value::number::Int();
 
-		//add json value number long to value object with key is "number_long1"
-		object1["number_long1"] = json::value::number::Long();
+			//add json value number long to value object with key is "number_long1"
+			object1["number_long1"] = json::value::number::Long();
 
-		//add json value number long double to value object with key is "number_longdouble1"
-		object1["number_longdouble1"] = json::value::number::LongDouble();
+			//add json value number long double to value object with key is "number_longdouble1"
+			object1["number_longdouble1"] = json::value::number::LongDouble();
 
-		//add json value number long long to value object with key is "number_longlong1"
-		object1["number_longlong1"] = json::value::number::LongLong();
+			//add json value number long long to value object with key is "number_longlong1"
+			object1["number_longlong1"] = json::value::number::LongLong();
 
-		//add json value number short to value object with key is "number_short1"
-		object1["number_short1"] = json::value::number::Short();
+			//add json value number short to value object with key is "number_short1"
+			object1["number_short1"] = json::value::number::Short();
 
-		//add json value number unsigned char to value object with key is "number_unsignedchar1"
-		object1["number_unsignedchar1"] = json::value::number::UnsignedChar();
+			//add json value number unsigned char to value object with key is "number_unsignedchar1"
+			object1["number_unsignedchar1"] = json::value::number::UnsignedChar();
 
-		//add json value number unsigned int to value object with key is "number_unsignedint1"
-		object1["number_unsignedint1"] = json::value::number::UnsignedInt();
+			//add json value number unsigned int to value object with key is "number_unsignedint1"
+			object1["number_unsignedint1"] = json::value::number::UnsignedInt();
 
-		//add json value number unsigned long to value object with key is "number_unsignedlong1"
-		object1["number_unsignedlong1"] = json::value::number::UnsignedLong();
+			//add json value number unsigned long to value object with key is "number_unsignedlong1"
+			object1["number_unsignedlong1"] = json::value::number::UnsignedLong();
 
-		//add json value number unsigned long long to value object with key is "number_unsignedlonglong1"
-		object1["number_unsignedlonglong1"] = json::value::number::UnsignedLongLong();
+			//add json value number unsigned long long to value object with key is "number_unsignedlonglong1"
+			object1["number_unsignedlonglong1"] = json::value::number::UnsignedLongLong();
 
-		//add json value number unsigned short to value object with key is "number_unsignedshort1"
-		object1["number_unsignedshort1"] = json::value::number::UnsignedShort();
+			//add json value number unsigned short to value object with key is "number_unsignedshort1"
+			object1["number_unsignedshort1"] = json::value::number::UnsignedShort();
 
-		//get key "array1" of json value object and cast to json value array
-		auto pointer_array1 = dynamic_cast<json::value::Array*>(object1["array1"].get());
-		//check pointer_array1 is not null
-		assert(pointer_array1);
+			//get key "array1" of json value object and cast to json value array
+			auto pointer_array1 = dynamic_cast<json::value::Array*>(object1["array1"].get());
+			//check pointer_array1 is not null
+			assert(pointer_array1);
 
-		//get key "false1" of json value object and cast to json value false
-		auto pointer_false1 = dynamic_cast<json::value::False*>(object1["false1"].get());
-		//check pointer_false1 is not null
-		assert(pointer_false1);
+			//get key "false1" of json value object and cast to json value false
+			auto pointer_false1 = dynamic_cast<json::value::False*>(object1["false1"].get());
+			//check pointer_false1 is not null
+			assert(pointer_false1);
 
-		//get key "null1" of json value object and cast to json value null
-		auto pointer_null1 = dynamic_cast<json::value::Null*>(object1["null1"].get());
-		//check pointer_null1 is not null
-		assert(pointer_null1);
+			//get key "null1" of json value object and cast to json value null
+			auto pointer_null1 = dynamic_cast<json::value::Null*>(object1["null1"].get());
+			//check pointer_null1 is not null
+			assert(pointer_null1);
 
-		//get key "object2" of json value object and cast to json value object
-		auto pointer_object2 = dynamic_cast<json::value::Object*>(object1["object2"].get());
-		//check pointer_object1 is not null
-		assert(pointer_object2);
+			//get key "object2" of json value object and cast to json value object
+			auto pointer_object2 = dynamic_cast<json::value::Object*>(object1["object3"].get());
+			//check pointer_object1 is not null
+			assert(pointer_object2);
 
-		//get key "string1" of json value object and cast to json value string
-		auto pointer_string1 = dynamic_cast<json::value::String*>(object1["string1"].get());
-		//check pointer_string1 is not null
-		assert(pointer_string1);
+			//get key "string1" of json value object and cast to json value string
+			auto pointer_string1 = dynamic_cast<json::value::String*>(object1["string1"].get());
+			//check pointer_string1 is not null
+			assert(pointer_string1);
 
-		//get key "true1" of json value object and cast to json value true
-		auto pointer_true1 = dynamic_cast<json::value::True*>(object1["true1"].get());
-		//check pointer_true1 is not null
-		assert(pointer_true1);
+			//get key "true1" of json value object and cast to json value true
+			auto pointer_true1 = dynamic_cast<json::value::True*>(object1["true1"].get());
+			//check pointer_true1 is not null
+			assert(pointer_true1);
 
-		//get key "number_char1" of json value object and cast to json value number char
-		auto pointer_number_char1 = dynamic_cast<json::value::number::Char*>(object1["number_char1"].get());
-		//check pointer_number_char1 is not null
-		assert(pointer_number_char1);
+			//get key "number_char1" of json value object and cast to json value number char
+			auto pointer_number_char1 = dynamic_cast<json::value::number::Char*>(object1["number_char1"].get());
+			//check pointer_number_char1 is not null
+			assert(pointer_number_char1);
 
-		//get key "number_double1" of json value object and cast to json value number double
-		auto pointer_number_double1 = dynamic_cast<json::value::number::Double*>(object1["number_double1"].get());
-		//check pointer_number_double1 is not null
-		assert(pointer_number_double1);
+			//get key "number_double1" of json value object and cast to json value number double
+			auto pointer_number_double1 = dynamic_cast<json::value::number::Double*>(object1["number_double1"].get());
+			//check pointer_number_double1 is not null
+			assert(pointer_number_double1);
 
-		//get key "number_float1" of json value object and cast to json value number float
-		auto pointer_number_float1 = dynamic_cast<json::value::number::Float*>(object1["number_float1"].get());
-		//check pointer_number_float1 is not null
-		assert(pointer_number_float1);
+			//get key "number_float1" of json value object and cast to json value number float
+			auto pointer_number_float1 = dynamic_cast<json::value::number::Float*>(object1["number_float1"].get());
+			//check pointer_number_float1 is not null
+			assert(pointer_number_float1);
 
-		//get key "number_int1" of json value object and cast to json value number int
-		auto pointer_number_int1 = dynamic_cast<json::value::number::Int*>(object1["number_int1"].get());
-		//check pointer_number_int1 is not null
-		assert(pointer_number_int1);
+			//get key "number_int1" of json value object and cast to json value number int
+			auto pointer_number_int1 = dynamic_cast<json::value::number::Int*>(object1["number_int1"].get());
+			//check pointer_number_int1 is not null
+			assert(pointer_number_int1);
 
-		//get key "number_long1" of json value object and cast to json value number long
-		auto pointer_number_long1 = dynamic_cast<json::value::number::Long*>(object1["number_long1"].get());
-		//check pointer_number_long1 is not null
-		assert(pointer_number_long1);
+			//get key "number_long1" of json value object and cast to json value number long
+			auto pointer_number_long1 = dynamic_cast<json::value::number::Long*>(object1["number_long1"].get());
+			//check pointer_number_long1 is not null
+			assert(pointer_number_long1);
 
-		//get key "number_longdouble1" of json value object and cast to json value number long double
-		auto pointer_number_longdouble1 = dynamic_cast<json::value::number::LongDouble*>(object1["number_longdouble1"].get());
-		//check pointer_number_longdouble1 is not null
-		assert(pointer_number_longdouble1);
+			//get key "number_longdouble1" of json value object and cast to json value number long double
+			auto pointer_number_longdouble1 = dynamic_cast<json::value::number::LongDouble*>(object1["number_longdouble1"].get());
+			//check pointer_number_longdouble1 is not null
+			assert(pointer_number_longdouble1);
 
-		//get key "number_longlong1" of json value object and cast to json value number long long
-		auto pointer_number_longlong1 = dynamic_cast<json::value::number::LongLong*>(object1["number_longlong1"].get());
-		//check pointer_number_longlong1 is not null
-		assert(pointer_number_longlong1);
+			//get key "number_longlong1" of json value object and cast to json value number long long
+			auto pointer_number_longlong1 = dynamic_cast<json::value::number::LongLong*>(object1["number_longlong1"].get());
+			//check pointer_number_longlong1 is not null
+			assert(pointer_number_longlong1);
 
-		//get key "number_short1" of json value object and cast to json value number short
-		auto pointer_number_short1 = dynamic_cast<json::value::number::Short*>(object1["number_short1"].get());
-		//check pointer_number_short1 is not null
-		assert(pointer_number_short1);
+			//get key "number_short1" of json value object and cast to json value number short
+			auto pointer_number_short1 = dynamic_cast<json::value::number::Short*>(object1["number_short1"].get());
+			//check pointer_number_short1 is not null
+			assert(pointer_number_short1);
 
-		//get key "number_unsignedchar1" of json value object and cast to json value number unsigned char
-		auto pointer_number_unsignedchar1 = dynamic_cast<json::value::number::UnsignedChar*>(object1["number_unsignedchar1"].get());
-		//check pointer_number_unsignedchar1 is not null
-		assert(pointer_number_unsignedchar1);
+			//get key "number_unsignedchar1" of json value object and cast to json value number unsigned char
+			auto pointer_number_unsignedchar1 = dynamic_cast<json::value::number::UnsignedChar*>(object1["number_unsignedchar1"].get());
+			//check pointer_number_unsignedchar1 is not null
+			assert(pointer_number_unsignedchar1);
 
-		//get key "number_unsignedint1" of json value object and cast to json value number unsigned int
-		auto pointer_number_unsignedint1 = dynamic_cast<json::value::number::UnsignedInt*>(object1["number_unsignedint1"].get());
-		//check pointer_number_unsignedint1 is not null
-		assert(pointer_number_unsignedint1);
+			//get key "number_unsignedint1" of json value object and cast to json value number unsigned int
+			auto pointer_number_unsignedint1 = dynamic_cast<json::value::number::UnsignedInt*>(object1["number_unsignedint1"].get());
+			//check pointer_number_unsignedint1 is not null
+			assert(pointer_number_unsignedint1);
 
-		//get key "number_unsignedlong1" of json value object and cast to json value number unsigned long
-		auto pointer_number_unsignedlong1 = dynamic_cast<json::value::number::UnsignedLong*>(object1["number_unsignedlong1"].get());
-		//check pointer_number_unsignedlong1 is not null
-		assert(pointer_number_unsignedlong1);
+			//get key "number_unsignedlong1" of json value object and cast to json value number unsigned long
+			auto pointer_number_unsignedlong1 = dynamic_cast<json::value::number::UnsignedLong*>(object1["number_unsignedlong1"].get());
+			//check pointer_number_unsignedlong1 is not null
+			assert(pointer_number_unsignedlong1);
 
-		//get key "number_unsignedlonglong1" of json value object and cast to json value number unsigned long long
-		auto pointer_number_unsignedlonglong1 = dynamic_cast<json::value::number::UnsignedLongLong*>(object1["number_unsignedlonglong1"].get());
-		//check pointer_number_unsignedlonglong1 is not null
-		assert(pointer_number_unsignedlonglong1);
+			//get key "number_unsignedlonglong1" of json value object and cast to json value number unsigned long long
+			auto pointer_number_unsignedlonglong1 = dynamic_cast<json::value::number::UnsignedLongLong*>(object1["number_unsignedlonglong1"].get());
+			//check pointer_number_unsignedlonglong1 is not null
+			assert(pointer_number_unsignedlonglong1);
 
-		//get key "number_unsignedshort1" of json value object and cast to json value number unsigned short
-		auto pointer_number_unsignedshort1 = dynamic_cast<json::value::number::UnsignedShort*>(object1["number_unsignedshort1"].get());
-		//check pointer_number_unsignedshort1 is not null
-		assert(pointer_number_unsignedshort1);
+			//get key "number_unsignedshort1" of json value object and cast to json value number unsigned short
+			auto pointer_number_unsignedshort1 = dynamic_cast<json::value::number::UnsignedShort*>(object1["number_unsignedshort1"].get());
+			//check pointer_number_unsignedshort1 is not null
+			assert(pointer_number_unsignedshort1);
+		}
+		
+		//clear elements object1 
+		object1.Clear();
+		//check size object1 is zero
+		assert(object1.Size() == 0);
+
+		//experiment with Insert of json::value::Object with assignment variable of json\pointer\value
+		{
+			//declare json::pointer::Value from default constructor json::value::Array
+			json::pointer::Value pointer_value_array1 = json::value::Array();
+			//declare json::pointer::Value from default constructor json::value::False
+			json::pointer::Value pointer_value_false1 = json::value::False();
+			//declare json::pointer::Value from default constructor json::value::Null
+			json::pointer::Value pointer_value_null1 = json::value::Null();
+			//declare json::pointer::Value from default constructor json::value::Object
+			json::pointer::Value pointer_value_object4 = json::value::Object();
+			//declare json::pointer::Value from default constructor json::value::String
+			json::pointer::Value pointer_value_string1 = json::value::String();
+			//declare json::pointer::Value from default constructor json::value::True
+			json::pointer::Value pointer_value_true1 = json::value::True();
+
+			//declare json::pointer::Value from default constructor json::value::number::Char
+			json::pointer::Value pointer_value_number_char1 = json::value::number::Char();
+			//declare json::pointer::Value from default constructor json::value::number::Double
+			json::pointer::Value pointer_value_number_double1 = json::value::number::Double();
+			//declare json::pointer::Value from default constructor json::value::number::Float
+			json::pointer::Value pointer_value_number_float1 = json::value::number::Float();
+			//declare json::pointer::Value from default constructor json::value::number::Int
+			json::pointer::Value pointer_value_number_int1 = json::value::number::Int();
+			//declare json::pointer::Value from default constructor json::value::number::Long
+			json::pointer::Value pointer_value_number_long1 = json::value::number::Long();
+			//declare json::pointer::Value from default constructor json::value::number::LongDouble
+			json::pointer::Value pointer_value_number_longdouble1 = json::value::number::LongDouble();
+			//declare json::pointer::Value from default constructor json::value::number::LongLong
+			json::pointer::Value pointer_value_number_longlong1 = json::value::number::LongLong();
+			//declare json::pointer::Value from default constructor json::value::number::Short
+			json::pointer::Value pointer_value_number_short1 = json::value::number::Short();
+			//declare json::pointer::Value from default constructor json::value::number::UnsignedChar
+			json::pointer::Value pointer_value_number_unsignedchar1 = json::value::number::UnsignedChar();
+			//declare json::pointer::Value from default constructor json::value::number::UnsignedInt
+			json::pointer::Value pointer_value_number_unsignedint1 = json::value::number::UnsignedInt();
+			//declare json::pointer::Value from default constructor json::value::number::UnsignedLong
+			json::pointer::Value pointer_value_number_unsignedlong1 = json::value::number::UnsignedLong();
+			//declare json::pointer::Value from default constructor json::value::number::UnsignedLongLong
+			json::pointer::Value pointer_value_number_unsignedlonglong1 = json::value::number::UnsignedLongLong();
+			//declare json::pointer::Value from default constructor json::value::number::UnsignedShort
+			json::pointer::Value pointer_value_number_unsignedshort1 = json::value::number::UnsignedShort();
+
+			//add json::pointer::Value to object1 with key is "value_array1" and value is variable of pointer_value_array1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_array1 = object1.Emplace("value_array1", pointer_value_array1);
+			//check value between value of it_object1_emplace_value_array1 and element of object1 with key is "value_array1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_array1) == object1["value_array1"]);
+			//check value between element of object1 with key is "value_array1" and pointer_value_array1 is same
+			assert(object1["value_array1"] == pointer_value_array1);
+
+			//add json::pointer::Value to object1 with key is "value_false1" and value is variable of pointer_value_false1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_false1 = object1.Emplace("value_false1", pointer_value_false1);
+			//check value between value of it_object1_emplace_value_false1 and element of object1 with key is "value_false1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_false1) == object1["value_false1"]);
+			//check value between element of object1 with key is "value_false1" and pointer_value_false1 is same
+			assert(object1["value_false1"] == pointer_value_false1);
+
+			//add json::pointer::Value to object1 with key is "value_null1" and value is variable of pointer_value_null1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_null1 = object1.Emplace("value_null1", pointer_value_null1);
+			//check value between value of it_object1_emplace_value_null1 and element of object1 with key is "value_null1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_null1) == object1["value_null1"]);
+			//check value between element of object1 with key is "value_null1" and pointer_value_null1 is same
+			assert(object1["value_null1"] == pointer_value_null1);
+
+			//add json::pointer::Value to object1 with key is "value_object4" and value is variable of pointer_value_object4
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_object4 = object1.Emplace("value_object4", pointer_value_object4);
+			//check value between value of it_object1_emplace_value_object4 and element of object1 with key is "value_object4" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_object4) == object1["value_object4"]);
+			//check value between element of object1 with key is "value_object1" and pointer_value_object4 is same
+			assert(object1["value_object4"] == pointer_value_object4);
+
+			//add json::pointer::Value to object1 with key is "value_string1" and value is variable of pointer_value_string1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_string1 = object1.Emplace("value_string1", pointer_value_string1);
+			//check value between value of it_object1_emplace_value_string1 and element of object1 with key is "value_string1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_string1) == object1["value_string1"]);
+			//check value between element of object1 with key is "value_string1" and pointer_value_string1 is same
+			assert(object1["value_string1"] == pointer_value_string1);
+
+			//add json::pointer::Value to object1 with key is "value_true1" and value is variable of pointer_value_true1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_true1 = object1.Emplace("value_true1", pointer_value_true1);
+			//check value between value of it_object1_emplace_value_true1 and element of object1 with key is "value_true1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_true1) == object1["value_true1"]);
+			//check value between element of object1 with key is "value_true1" and pointer_value_true1 is same
+			assert(object1["value_true1"] == pointer_value_true1);
+
+
+			//add json::pointer::Value to object1 with key is "value_number_char1" and value is variable of pointer_value_number_char1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_char1 = object1.Emplace("value_number_char1", pointer_value_number_char1);
+			//check value between value of it_object1_emplace_value_number_char1 and element of object1 with key is "value_number_char1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_char1) == object1["value_number_char1"]);
+			//check value between element of object1 with key is "value_number_char1" and pointer_value_number_char1 is same
+			assert(object1["value_number_char1"] == pointer_value_number_char1);
+
+			//add json::pointer::Value to object1 with key is "value_number_double1" and value is variable of pointer_value_number_double1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_double1 = object1.Emplace("value_number_double1", pointer_value_number_double1);
+			//check value between value of it_object1_emplace_value_number_double1 and element of object1 with key is "value_number_double1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_double1) == object1["value_number_double1"]);
+			//check value between element of object1 with key is "value_number_double1" and pointer_value_number_double1 is same
+			assert(object1["value_number_double1"] == pointer_value_number_double1);
+
+			//add json::pointer::Value to object1 with key is "value_number_float1" and value is variable of pointer_value_number_float1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_float1 = object1.Emplace("value_number_float1", pointer_value_number_float1);
+			//check value between value of it_object1_emplace_value_number_float1 and element of object1 with key is "value_number_float1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_float1) == object1["value_number_float1"]);
+			//check value between element of object1 with key is "value_number_float1" and pointer_value_number_float1 is same
+			assert(object1["value_number_float1"] == pointer_value_number_float1);
+
+			//add json::pointer::Value to object1 with key is "value_number_int1" and value is variable of pointer_value_number_int1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_int1 = object1.Emplace("value_number_int1", pointer_value_number_int1);
+			//check value between value of it_object1_emplace_value_number_int1 and element of object1 with key is "value_number_int1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_int1) == object1["value_number_int1"]);
+			//check value between element of object1 with key is "value_number_int1" and pointer_value_number_int1 is same
+			assert(object1["value_number_int1"] == pointer_value_number_int1);
+
+			//add json::pointer::Value to object1 with key is "value_number_long1" and value is variable of pointer_value_number_long1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_long1 = object1.Emplace("value_number_long1", pointer_value_number_long1);
+			//check value between value of it_object1_emplace_value_number_long1 and element of object1 with key is "value_number_long1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_long1) == object1["value_number_long1"]);
+			//check value between element of object1 with key is "value_number_long1" and pointer_value_number_long1 is same
+			assert(object1["value_number_long1"] == pointer_value_number_long1);
+
+			//add json::pointer::Value to object1 with key is "value_number_longdouble1" and value is variable of pointer_value_number_longdouble1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_longdouble1 = object1.Emplace("value_number_longdouble1", pointer_value_number_longdouble1);
+			//check value between value of it_object1_emplace_value_number_longdouble1 and element of object1 with key is "value_number_longdouble1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_longdouble1) == object1["value_number_longdouble1"]);
+			//check value between element of object1 with key is "value_number_longdouble1" and pointer_value_number_longdouble1 is same
+			assert(object1["value_number_longdouble1"] == pointer_value_number_longdouble1);
+
+			//add json::pointer::Value to object1 with key is "value_number_longlong1" and value is variable of pointer_value_number_longlong1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_longlong1 = object1.Emplace("value_number_longlong1", pointer_value_number_longlong1);
+			//check value between value of it_object1_emplace_value_number_longlong1 and element of object1 with key is "value_number_longlong1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_longlong1) == object1["value_number_longlong1"]);
+			//check value between element of object1 with key is "" and  is same
+			assert(object1["value_number_longlong1"] == pointer_value_number_longlong1);
+
+			//add json::pointer::Value to object1 with key is "value_number_short1" and value is variable of pointer_value_number_short1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_short1 = object1.Emplace("value_number_short1", pointer_value_number_short1);
+			//check value between value of it_object1_emplace_value_number_short1 and element of object1 with key is "value_number_short1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_short1) == object1["value_number_short1"]);
+			//check value between element of object1 with key is "value_number_longlong1" and pointer_value_number_short1 is same
+			assert(object1["value_number_short1"] == pointer_value_number_short1);
+
+			//add json::pointer::Value to object1 with key is "value_number_unsignedchar1" and value is variable of pointer_value_number_unsignedchar1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_unsignedchar1 = object1.Emplace("value_number_unsignedchar1", pointer_value_number_unsignedchar1);
+			//check value between value of it_object1_emplace_value_number_unsignedchar1 and element of object1 with key is "value_number_unsignedchar1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_unsignedchar1) == object1["value_number_unsignedchar1"]);
+			//check value between element of object1 with key is "value_number_unsignedchar1" and pointer_value_number_unsignedchar1 is same
+			assert(object1["value_number_unsignedchar1"] == pointer_value_number_unsignedchar1);
+
+			//add json::pointer::Value to object1 with key is "value_number_unsignedint1" and value is variable of pointer_value_number_unsignedint1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_unsignedint1 = object1.Emplace("value_number_unsignedint1", pointer_value_number_unsignedint1);
+			//check value between it_object1_emplace_value_number_unsignedint1 and element of object1 with key is "value_number_unsignedint1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_unsignedint1) == object1["value_number_unsignedint1"]);
+			//check value between element of object1 with key is "value_number_unsignedint1" and  pointer_value_number_unsignedint1is same
+			assert(object1["value_number_unsignedint1"] == pointer_value_number_unsignedint1);
+
+			//add json::pointer::Value to object1 with key is "value_number_unsignedlong1" and value is variable of pointer_value_number_unsignedlong1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_unsignedlong1 = object1.Emplace("value_number_unsignedlong1", pointer_value_number_unsignedlong1);
+			//check value between value of it_object1_emplace_value_number_unsignedlong1 and element of object1 with key is "value_number_unsignedlong1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_unsignedlong1) == object1["value_number_unsignedlong1"]);
+			//check value between element of object1 with key is "value_number_unsignedlong1" and pointer_value_number_unsignedlong1 is same
+			assert(object1["value_number_unsignedlong1"] == pointer_value_number_unsignedlong1);
+
+			//add json::pointer::Value to object1 with key is "value_number_unsignedlonglong1" and value is variable of pointer_value_number_unsignedlonglong1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_unsignedlonglong1 = object1.Emplace("value_number_unsignedlonglong1", pointer_value_number_unsignedlonglong1);
+			//check value between value of it_object1_emplace_value_number_unsignedlonglong1 and element of object1 with key is "value_number_unsignedlonglong1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_unsignedlonglong1) == object1["value_number_unsignedlonglong1"]);
+			//check value between element of object1 with key is "value_number_unsignedlonglong1" and pointer_value_number_unsignedlonglong1 is same
+			assert(object1["value_number_unsignedlonglong1"] == pointer_value_number_unsignedlonglong1);
+
+			//add json::pointer::Value to object1 with key is "value_number_unsignedshort1" and value is variable of pointer_value_number_unsignedshort1
+			// and assignment to iterator of object1 
+			auto it_object1_emplace_value_number_unsignedshort1 = object1.Emplace("value_number_unsignedshort1", pointer_value_number_unsignedshort1);
+			//check value between value of it_object1_emplace_value_number_unsignedshort1 and element of object1 with key is "value_number_unsignedshort1" is same
+			assert(json::value::Object::Value(*it_object1_emplace_value_number_unsignedshort1) == object1["value_number_unsignedshort1"]);
+			//check value between element of object1 with key is "value_number_unsignedshort1" and pointer_value_number_unsignedshort1 is same
+			assert(object1["value_number_unsignedshort1"] == pointer_value_number_unsignedshort1);
+
+			//check range-for is work
+			for (auto it : object1)
+			{
+				assert(json::value::Object::Value(it) == object1[object1.Key(it)]);
+			}
+
+			//check range-for is work with const variable of object1
+			for (auto it : std::as_const(object1))
+			{
+				assert(json::value::Object::Value(it) == object1[object1.Key(it)]);
+			}
+
+			//check ConstBegin and ConstEnd from variable of object1 is work
+			for (auto it = object1.ConstBegin(); it != object1.ConstEnd(); ++it)
+			{
+				assert(json::value::Object::Value(*it) == object1[object1.Key(*it)]);
+			}
+
+			//declare default constructor of json::value::Object
+			json::value::Object object5;
+
+			//declare json::value::Object::KeyType from assignment const char* = "z_"
+			typename json::value::Object::KeyType key = "z_";
+
+			//copy elements of object1 with key added "z_" in beginning
+			{
+				for (auto it : object1)
+				{
+					object5[key + object1.Key(it)] = json::value::Object::Value(it);
+				}
+			}
+
+			//insert to object1 with iterator first and last of object
+			object1.Insert(object5.Begin(), object5.End());
+
+			//check value between value of element with key "(name)" and value of element with key "z_(name)" is same
+			for (auto it : object1)
+			{
+				if (!(object1.Key(it)[0] == key[0] && object1.Key(it)[1] == key[1]))
+				{
+					assert(json::value::Object::Value(it) == object1[key + object1.Key(it)]);
+				}
+			}
+
+			//insert to object1 with json::value::Array 
+			// and assignment to iterator of object1 
+			auto it_object_insert_i_value_array2 = object1.Insert(json::value::Object::ElementType("i_value_array2", json::value::Array()));
+			//check value of cast value of it_object_insert_i_value_array2 to json::value::Array* is not null
+			assert(dynamic_cast<json::value::Array*>(json::value::Object::Value(*it_object_insert_i_value_array2).get()) != 0);
+
+			//erase element with key is "i_value_array2"
+			object1.Erase(object1.Find("i_value_array2"));
+
+			//erase elements of object5
+			object5.Erase(object5.Begin(), object5.End());
+			//check value between size of object5 is zero 
+			assert(object5.Size() == 0);
+
+			//swap value from object1 to object2
+			object1.Swap(object2);
+
+			//check value between return from Find in object2 with key is value_array1 and pointer_value_array4 is same
+			assert(json::value::Object::Value(*object2.Find("value_array1")) == pointer_value_array1);
+			//check value between return from Find in object2 with key is value_false1 and pointer_value_false1 is same
+			assert(json::value::Object::Value(*object2.Find("value_false1")) == pointer_value_false1);
+			//check value between return from Find in object2 with key is value_null1 and pointer_value_null1 is same
+			assert(json::value::Object::Value(*object2.Find("value_null1")) == pointer_value_null1);
+			//check value between return from Find in object2 with key is value_object4 and pointer_value_object4 is same
+			assert(json::value::Object::Value(*object2.Find("value_object4")) == pointer_value_object4);
+			//check value between return from Find in object2 with key is value_string1 and pointer_value_string1 is same
+			assert(json::value::Object::Value(*object2.Find("value_string1")) == pointer_value_string1);
+			//check value between return from Find in object2 with key is value_true1 and pointer_value_true1 is same
+			assert(json::value::Object::Value(*object2.Find("value_true1")) == pointer_value_true1);
+
+			//check value between return from Find in object2 with key is value_number_char1 and pointer_value_number_char1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_char1")) == pointer_value_number_char1);
+			//check value between return from Find in object2 with key is value_number_double1 and pointer_value_number_double1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_double1")) == pointer_value_number_double1);
+			//check value between return from Find in object2 with key is value_number_float1 and pointer_value_number_float1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_float1")) == pointer_value_number_float1);
+			//check value between return from Find in object2 with key is value_number_int1 and pointer_value_number_int1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_int1")) == pointer_value_number_int1);
+			//check value between return from Find in object2 with key is value_number_long1 and pointer_value_number_long1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_long1")) == pointer_value_number_long1);
+			//check value between return from Find in object2 with key is value_number_longdouble1 and pointer_value_number_longdouble1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_longdouble1")) == pointer_value_number_longdouble1);
+			//check value between return from Find in object2 with key is value_number_longlong1 and pointer_value_number_longlong1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_longlong1")) == pointer_value_number_longlong1);
+			//check value between return from Find in object2 with key is value_number_short1 and pointer_value_number_short1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_short1")) == pointer_value_number_short1);
+			//check value between return from Find in object2 with key is value_number_unsignedchar1 and pointer_value_number_unsignedchar1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_unsignedchar1")) == pointer_value_number_unsignedchar1);
+			//check value between return from Find in object2 with key is value_number_unsignedint1 and pointer_value_number_unsignedint1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_unsignedint1")) == pointer_value_number_unsignedint1);
+			//check value between return from Find in object2 with key is value_number_unsignedlong1 and pointer_value_number_unsignedlong1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_unsignedlong1")) == pointer_value_number_unsignedlong1);
+			//check value between return from Find in object2 with key is value_number_unsignedlonglong1 and pointer_value_number_unsignedlonglong1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_unsignedlonglong1")) == pointer_value_number_unsignedlonglong1);
+			//check value between return from Find in object2 with key is value_number_unsignedshort1 and pointer_value_number_unsignedshort1 is same
+			assert(json::value::Object::Value(*object2.Find("value_number_unsignedshort1")) == pointer_value_number_unsignedshort1);
+			//check value between return from Find in object2 with key is "" and End of object2 is same
+			assert(object2.Find("") == object2.End());
+
+			//check value between function (or const) member of json::value::Object operator[] and At is same 
+			for (auto it : object2)
+			{
+				assert(object2[object2.Key(it)] == object2.At(object2.Key(it)));
+				assert(as_const(object2)[object2.Key(it)] == as_const(object2).At(object2.Key(it)));
+			}
+		}
 
 		//copy object1
-		json::value::Object object3(object1);
-		//check object3 and object1 is same pointer
-		assert(object3 == object1);
+		json::value::Object object6(object2);
+
+		//assignment from object
+		json::value::Object object7 = object6;
+
+		//check value of object2 and object6 and object7 is same
+		for (auto it : object2)
+		{
+			assert(json::value::Object::Value(it) == object6[object2.Key(it)] && json::value::Object::Value(it) == object7[object2.Key(it)]);
+		}
+
+		//check type between return type of object2.Container() and json::Constant::ContainerObjectType is same
+		assert(typeid(object2.Container()).hash_code() == typeid(json::Constant::ContainerObjectType).hash_code());
 	}
 
 	//experiment with 'json/value/String.h'
