@@ -34,3 +34,8 @@ target_link_libraries (Test-Simple-Memory BrainMuscles)
 add_executable (Test-Simple-Output-Json ${PROJECT_SOURCE_DIR}/../experiment/test/test-simple-output-json.cpp)
 set_property(TARGET Test-Simple-Output-Json PROPERTY FOLDER experiment/test/simple/output)
 target_link_libraries (Test-Simple-Output-Json BrainMuscles)
+
+#PROJECT_TEST_SIMPLE_TYPE_NAME
+add_executable (Test-Simple-Type-Name ${PROJECT_SOURCE_DIR}/../experiment/test/test-simple-type-name.cpp)
+set_property(TARGET Test-Simple-Type-Name PROPERTY FOLDER experiment/test/simple/type)
+target_link_libraries (Test-Simple-Type-Name BrainMuscles)
