@@ -28,7 +28,7 @@ namespace BrainMuscles
 						Tag(const Tag& copy);
 					public:
 						bool operator==(const Tag& tag) const;
-						bool operator==(const EnumType& tag) const;
+						bool operator==(const EnumType& value) const;
 						operator const BrainMuscles::test::simple::json::helper::Enum&() const;
 					public:
 						static constexpr bool IsValue(const EnumType& value);
