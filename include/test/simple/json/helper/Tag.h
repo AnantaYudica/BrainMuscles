@@ -33,6 +33,10 @@ namespace BrainMuscles
 					public:
 						static constexpr bool IsValue(const EnumType& value);
 						static constexpr bool IsValueNumber(const EnumType& value);
+						static constexpr bool IsValueNumberFloatingPoint(const EnumType& value);
+						static constexpr bool IsValueNumberInteger(const EnumType& value);
+						static constexpr bool IsValueNumberIntegerSigned(const EnumType& value);
+						static constexpr bool IsValueNumberIntegerUnsigned(const EnumType& value);
 						template<typename HELPER_VALUE_TYPE, typename INPUT_VALUE_TYPE>
 						static Tag Identification(const INPUT_VALUE_TYPE& input_value);
 					};
@@ -112,37 +116,42 @@ namespace BrainMuscles
 						return value == EnumType::value_array ||
 							value == EnumType::value_false ||
 							value == EnumType::value_null ||
-							value == EnumType::value_number ||
+							IsValueNumber(value) ||
 							value == EnumType::value_object ||
 							value == EnumType::value_string ||
-							value == EnumType::value_true ||
-							value == EnumType::value_number_char ||
-							value == EnumType::value_number_double ||
-							value == EnumType::value_number_float ||
-							value == EnumType::value_number_int ||
-							value == EnumType::value_number_long ||
-							value == EnumType::value_number_longdouble ||
-							value == EnumType::value_number_longlong ||
-							value == EnumType::value_number_short ||
-							value == EnumType::value_number_unsignedchar ||
-							value == EnumType::value_number_unsignedint ||
-							value == EnumType::value_number_unsignedlong ||
-							value == EnumType::value_number_unsignedlonglong ||
-							value == EnumType::value_number_unsignedshort;
+							value == EnumType::value_true;
 					}
 
 					constexpr bool Tag::IsValueNumber(const EnumType& value)
 					{
 						return value == EnumType::value_number ||
-							value == EnumType::value_number_char ||
-							value == EnumType::value_number_double ||
+							IsValueNumberFloatingPoint(value) ||
+							IsValueNumberInteger(value);
+					}
+
+					constexpr bool Tag::IsValueNumberFloatingPoint(const EnumType& value)
+					{
+						return value == EnumType::value_number_double ||
 							value == EnumType::value_number_float ||
+							value == EnumType::value_number_longdouble;
+					}
+
+					constexpr bool Tag::IsValueNumberInteger(const EnumType& value)
+					{
+						return IsValueNumberIntegerSigned(value) || IsValueNumberIntegerUnsigned(value);
+					}
+
+					constexpr bool Tag::IsValueNumberIntegerSigned(const EnumType& value)
+					{
+						return value == EnumType::value_number_char ||
 							value == EnumType::value_number_int ||
 							value == EnumType::value_number_long ||
-							value == EnumType::value_number_longdouble ||
 							value == EnumType::value_number_longlong ||
-							value == EnumType::value_number_short ||
-							value == EnumType::value_number_unsignedchar ||
+							value == EnumType::value_number_short;
+					}
+					constexpr bool Tag::IsValueNumberIntegerUnsigned(const EnumType& value)
+					{
+						return value == EnumType::value_number_unsignedchar ||
 							value == EnumType::value_number_unsignedint ||
 							value == EnumType::value_number_unsignedlong ||
 							value == EnumType::value_number_unsignedlonglong ||
