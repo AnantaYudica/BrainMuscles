@@ -49,6 +49,11 @@ namespace BrainMuscles
 #include "test\simple\json\helper\tag\String.h"
 #include "test\simple\json\helper\tag\True.h"
 
+#include "test\simple\json\helper\tag\number\FloatingPoint.h"
+#include "test\simple\json\helper\tag\number\Integer.h"
+#include "test\simple\json\helper\tag\number\Signed.h"
+#include "test\simple\json\helper\tag\number\Unsigned.h"
+
 #include "test\simple\json\helper\tag\number\Char.h"
 #include "test\simple\json\helper\tag\number\Double.h"
 #include "test\simple\json\helper\tag\number\Float.h"
