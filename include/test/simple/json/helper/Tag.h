@@ -27,7 +27,8 @@ namespace BrainMuscles
 						Tag(const EnumType& value);
 						Tag(const Tag& copy);
 					public:
-						bool operator==(const Tag& tag);
+						bool operator==(const Tag& tag) const;
+						bool operator==(const EnumType& tag) const;
 						operator const BrainMuscles::test::simple::json::helper::Enum&() const;
 					public:
 						static constexpr bool IsValue(const EnumType& value);
@@ -91,9 +92,14 @@ namespace BrainMuscles
 						Value(copy.Value)
 					{}
 
-					bool Tag::operator==(const Tag& tag)
+					bool Tag::operator==(const Tag& tag) const
 					{
 						return Value == tag.Value;
+					}
+
+					bool Tag::operator==(const EnumType& value) const
+					{
+						return Value == value;
 					}
 
 					Tag::operator const BrainMuscles::test::simple::json::helper::Enum&() const
