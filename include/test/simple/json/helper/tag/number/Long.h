@@ -66,7 +66,7 @@ namespace BrainMuscles
 						namespace number
 						{
 							Long::Long() :
-								BaseType(EnumType::value_number_float)
+								BaseType(EnumType::value_number_long)
 							{}
 						}
 					}
