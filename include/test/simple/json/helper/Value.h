@@ -5,8 +5,6 @@
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\json\helper\value\Tag.h"
-
 #include "test\simple\json\Value.h"
 #include "test\simple\json\value\Array.h"
 #include "test\simple\json\value\False.h"
@@ -43,7 +41,6 @@ namespace BrainMuscles
 					class Value final
 					{
 					public:
-						typedef BrainMuscles::test::simple::json::helper::value::Tag	ValueTagType;
 						typedef BrainMuscles::test::simple::json::Value					ValueType;
 					private:
 						Value() = delete;
@@ -69,8 +66,6 @@ namespace BrainMuscles
 						static bool IsNumberUnsignedLong(const ValueType& value);
 						static bool IsNumberUnsignedLongLong(const ValueType& value);
 						static bool IsNumberUnsignedShort(const ValueType& value);
-					public:
-						static ValueTagType ToTag(const ValueType& value);
 					};
 
 					bool Value::IsArray(const ValueType& value)
@@ -171,11 +166,6 @@ namespace BrainMuscles
 					bool Value::IsNumberUnsignedShort(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedShort*>(&value) != 0;
-					}
-
-					typename Value::ValueTagType Value::ToTag(const ValueType& value)
-					{
-						return BrainMuscles::test::simple::json::helper::value::ToTag<Value, ValueType>(value);
 					}
 				}
 			}
