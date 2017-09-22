@@ -5,6 +5,9 @@
 #include <cassert>
 #include <typeindex>
 
+#include "test\simple\json\exception\BadCast.h"
+#include "test\simple\json\exception\UndefinedType.h"
+
 #include "test\simple\json\Value.h"
 
 #include "test\simple\json\Memory.h"
@@ -33,10 +36,14 @@
 #include "test\simple\json\value\number\UnsignedLongLong.h"
 #include "test\simple\json\value\number\UnsignedShort.h"
 
-#include "test\simple\json\helper\value\Tag.h"
-#include "test\simple\json\helper\value\Declare.h"
 #include "test\simple\json\helper\Cast.h"
 #include "test\simple\json\helper\Value.h"
+
+#include "test\simple\json\helper\Tag.h"
+
+#include "test\simple\json\helper\value\Declare.h"
+
+#include "test\simple\json\helper\value\Case.h"
 
 #include "test\simple\json\pointer\value\Array.h"
 #include "test\simple\json\pointer\value\False.h"
@@ -63,6 +70,10 @@
 #include "test\simple\json\helper\pointer\Cast.h"
 #include "test\simple\json\helper\pointer\Value.h"
 
+#include "test\simple\json\helper\value\Case.h"
+
+//#include "test\simple\json\helper\value\Copy.h"
+
 //macro function AssertIfNotThrowException for check CALL_FUNCTION is throw exception
 #define AssertIfNotThrowException(CALL_FUNCTION)\
 do\
@@ -80,6 +91,193 @@ do\
 using namespace BrainMuscles::test::simple;
 
 using namespace std;
+
+
+//helper enum for Identify for return static function 'Case' in experiment /json/helper/value/Case.h
+enum ReturnHelperValueCase
+{
+	call_with_parameter_tag,
+	call_with_parameter_tag_array,
+	call_with_parameter_tag_false,
+	call_with_parameter_tag_null,
+	call_with_parameter_tag_number,
+	call_with_parameter_tag_object,
+	call_with_parameter_tag_string,
+	call_with_parameter_tag_true,
+	call_with_parameter_tag_number_char,
+	call_with_parameter_tag_number_double,
+	call_with_parameter_tag_number_float,
+	call_with_parameter_tag_number_floatingpoint,
+	call_with_parameter_tag_number_int,
+	call_with_parameter_tag_number_integer,
+	call_with_parameter_tag_number_long,
+	call_with_parameter_tag_number_longdouble,
+	call_with_parameter_tag_number_longlong,
+	call_with_parameter_tag_number_short,
+	call_with_parameter_tag_number_signed,
+	call_with_parameter_tag_number_unsigned,
+	call_with_parameter_tag_number_unsignedchar,
+	call_with_parameter_tag_number_unsignedint,
+	call_with_parameter_tag_number_unsignedlong,
+	call_with_parameter_tag_number_unsignedlonglong,
+	call_with_parameter_tag_number_unsignedshort
+};
+
+//helper struct for full implement class of json::helper::value::Case in experiment /json/helper/value/Case.h
+struct FullImplementHelperValueCase
+{
+	static ReturnHelperValueCase Case(const json::helper::tag::Array&, const json::Value& value)
+	{
+		return call_with_parameter_tag_array;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::False&, const json::Value& value)
+	{
+		return call_with_parameter_tag_false;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::Null&, const json::Value& value)
+	{
+		return call_with_parameter_tag_null;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::Number&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::Object&, const json::Value& value)
+	{
+		return call_with_parameter_tag_object;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::String&, const json::Value& value)
+	{
+		return call_with_parameter_tag_string;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::True&, const json::Value& value)
+	{
+		return call_with_parameter_tag_true;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::Char&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_char;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::Double&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_double;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::Float&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_float;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::Int&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_int;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::Long&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_long;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::LongDouble&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_longdouble;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::LongLong&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_longlong;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::Short&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_short;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::UnsignedChar&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_unsignedchar;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::UnsignedInt&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_unsignedint;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::UnsignedLong&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_unsignedlong;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::UnsignedLongLong&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_unsignedlonglong;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::UnsignedShort&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_unsignedshort;
+	}
+};
+
+//helper struct for default implement class of json::helper::value::Case in experiment /json/helper/value/Case.h
+struct DefaultImplementHelperValueCase
+{
+	static ReturnHelperValueCase Case(const json::helper::Tag&, const json::Value& value)
+	{
+		return call_with_parameter_tag;
+	}
+};
+
+//helper struct for handle FloatingPoint, Signed or Unsigned implement class of json::helper::value::Case in experiment /json/helper/value/Case.h
+struct TypeNumber1ImplementHelperValueCase
+{
+	static ReturnHelperValueCase Case(const json::helper::Tag&, const json::Value& value)
+	{
+		return call_with_parameter_tag;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::FloatingPoint&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_floatingpoint;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::Signed&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_signed;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::Unsigned&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_unsigned;
+	}
+};
+
+//helper struct for handle integer or number implement class of json::helper::value::Case in experiment /json/helper/value/Case.h
+struct TypeNumber2ImplementHelperValueCase
+{
+	static ReturnHelperValueCase Case(const json::helper::Tag&, const json::Value& value)
+	{
+		return call_with_parameter_tag;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::Number&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number;
+	}
+
+	static ReturnHelperValueCase Case(const json::helper::tag::number::Integer&, const json::Value& value)
+	{
+		return call_with_parameter_tag_number_integer;
+	}
+};
 
 int main(int argc, char *argv[])
 {
@@ -517,7 +715,7 @@ int main(int argc, char *argv[])
 		json::value::Array array1;
 		json::value::Array array2;
 
-		//experiment with Insert and operator[] of json::value::Array with initialization value of json\value
+		//experiment with Insert and operator[] of json::value::Array with initialization value of jsonvalue
 		{
 			//add json value array to value array
 			array1.Insert(json::value::Array());
@@ -677,7 +875,7 @@ int main(int argc, char *argv[])
 		//check size array1 is zero
 		assert(array1.Size() == 0);
 
-		//experiment with Insert of json::value::Array with assignment variable of json\pointer\value
+		//experiment with Insert of json::value::Array with assignment variable of json/pointer/value
 		{
 			//declare json::pointer::Value from default constructor json::value::Array
 			json::pointer::Value pointer_value_array4 = json::value::Array();
@@ -1475,7 +1673,7 @@ int main(int argc, char *argv[])
 		json::value::Object object1;
 		json::value::Object object2;
 
-		//experiment with Insert and operator[] of json::value::Object with initialization value of json\value
+		//experiment with Insert and operator[] of json::value::Object with initialization value of json/value
 		{
 			//add json value array to value object with key is "array1"
 			object1["array1"] = json::value::Array();
@@ -1635,7 +1833,7 @@ int main(int argc, char *argv[])
 		//check size object1 is zero
 		assert(object1.Size() == 0);
 
-		//experiment with Insert of json::value::Object with assignment variable of json\pointer\value
+		//experiment with Insert of json::value::Object with assignment variable of json/pointer/value
 		{
 			//declare json::pointer::Value from default constructor json::value::Array
 			json::pointer::Value pointer_value_array1 = json::value::Array();
@@ -1991,97 +2189,9 @@ int main(int argc, char *argv[])
 		assert(strcmp(true1, json::Constant::TrueCString) == 0);
 	}
 
-	//experiment with json\helper\value\Tag.h
+	//experiment with json/helper/value/Declare.h
 	{
-		//check json::helper::value::Tag::undefined is not value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::undefined) == false);
-		//check json::helper::value::Tag::value_array is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_array) == true);
-		//check json::helper::value::Tag::value_false is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_false) == true);
-		//check json::helper::value::Tag::value_null is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_null) == true);
-		//check json::helper::value::Tag::value_number is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number) == true);
-		//check json::helper::value::Tag::value_object is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_object) == true);
-		//check json::helper::value::Tag::value_string is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_string) == true);
-		//check json::helper::value::Tag::value_true is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_true) == true);
-		//check json::helper::value::Tag::value_number_char is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_char) == true);
-		//check json::helper::value::Tag::value_number_double is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_double) == true);
-		//check json::helper::value::Tag::value_number_float is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_float) == true);
-		//check json::helper::value::Tag::value_number_int is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_int) == true);
-		//check json::helper::value::Tag::value_number_long is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_long) == true);
-		//check json::helper::value::Tag::value_number_longdouble is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_longdouble) == true);
-		//check json::helper::value::Tag::value_number_longlong is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_longlong) == true);
-		//check json::helper::value::Tag::value_number_short is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_short) == true);
-		//check json::helper::value::Tag::value_number_unsignedchar is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_unsignedchar) == true);
-		//check json::helper::value::Tag::value_number_unsignedint is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_unsignedint) == true);
-		//check json::helper::value::Tag::value_number_unsignedlong is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_unsignedlong) == true);
-		//check json::helper::value::Tag::value_number_unsignedlonglong is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_unsignedlonglong) == true);
-		//check json::helper::value::Tag::value_number_unsignedshort is value tag
-		assert(json::helper::value::IsTag(json::helper::value::Tag::value_number_unsignedshort) == true);
-
-		//check json::helper::value::Tag::undefined is not value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::undefined) == false);
-		//check json::helper::value::Tag::value_array is not value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_array) == false);
-		//check json::helper::value::Tag::value_false is not value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_false) == false);
-		//check json::helper::value::Tag::value_null is not value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_null) == false);
-		//check json::helper::value::Tag::value_number is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number) == true);
-		//check json::helper::value::Tag::value_object is not value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_object) == false);
-		//check json::helper::value::Tag::value_string is not value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_string) == false);
-		//check json::helper::value::Tag::value_true is not value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_true) == false);
-		//check json::helper::value::Tag::value_number_char is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_char) == true);
-		//check json::helper::value::Tag::value_number_double is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_double) == true);
-		//check json::helper::value::Tag::value_number_float is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_float) == true);
-		//check json::helper::value::Tag::value_number_int is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_int) == true);
-		//check json::helper::value::Tag::value_number_long is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_long) == true);
-		//check json::helper::value::Tag::value_number_longdouble is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_longdouble) == true);
-		//check json::helper::value::Tag::value_number_longlong is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_longlong) == true);
-		//check json::helper::value::Tag::value_number_short is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_short) == true);
-		//check json::helper::value::Tag::value_number_unsignedchar is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_unsignedchar) == true);
-		//check json::helper::value::Tag::value_number_unsignedint is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_unsignedint) == true);
-		//check json::helper::value::Tag::value_number_unsignedlong is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_unsignedlong) == true);
-		//check json::helper::value::Tag::value_number_unsignedlonglong is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_unsignedlonglong) == true);
-		//check json::helper::value::Tag::value_number_unsignedshort is value number tag
-		assert(json::helper::value::IsTagNumber(json::helper::value::Tag::value_number_unsignedshort) == true);
-	}
-
-	//experiment with json\helper\value\Declare.h
-	{
+		/*
 		//check type between json::helper::value::Declare<json::helper::value::Tag::value_array>::Type 
 		// and json::value::Array is same
 		assert(typeid(json::helper::value::Declare<json::helper::value::Tag::value_array>::Type).hash_code() ==
@@ -2163,9 +2273,10 @@ int main(int argc, char *argv[])
 		// and json::value::number::UnsignedShort is same
 		assert(typeid(json::helper::value::Declare<json::helper::value::Tag::value_number_unsignedshort>::Type).hash_code() ==
 			typeid(json::value::number::UnsignedShort).hash_code());
+			*/
 	}
 
-	//experiment with json\helper\Cast.h
+	//experiment with json/helper/Cast.h
 	{
 		//experiment with json::value::Array
 		{
@@ -3073,5 +3184,2604 @@ int main(int argc, char *argv[])
 			AssertIfNotThrowException(json::helper::Cast::ToNumberUnsignedLongLong(value_number_unsignedshort1));
 		}
 	}
+	
+	//experiment with /json/helper/Value.h
+	{
+		//check function json::helper::Value::IsArray with /json/value
+		{
+			//check function json::helper::Value::IsArray with json::value::Array() is true
+			assert(json::helper::Value::IsArray(json::value::Array()) == true);
+			//check function json::helper::Value::IsArray with json::value::False() is false
+			assert(json::helper::Value::IsArray(json::value::False()) == false);
+			//check function json::helper::Value::IsArray with json::value::Null() is false
+			assert(json::helper::Value::IsArray(json::value::Null()) == false);
+			//check function json::helper::Value::IsArray with json::value::Object() is false
+			assert(json::helper::Value::IsArray(json::value::Object()) == false);
+			//check function json::helper::Value::IsArray with json::value::String() is false
+			assert(json::helper::Value::IsArray(json::value::String()) == false);
+			//check function json::helper::Value::IsArray with json::value::True() is false
+			assert(json::helper::Value::IsArray(json::value::True()) == false);
+
+			//check function json::helper::Value::IsArray with json::value::Char() is false
+			assert(json::helper::Value::IsArray(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsArray with json::value::Double() is false
+			assert(json::helper::Value::IsArray(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsArray with json::value::Float() is false
+			assert(json::helper::Value::IsArray(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsArray with json::value::Int() is false
+			assert(json::helper::Value::IsArray(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsArray with json::value::Long() is false
+			assert(json::helper::Value::IsArray(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsArray with json::value::LongDouble() is false
+			assert(json::helper::Value::IsArray(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsArray with json::value::LongLong() is false
+			assert(json::helper::Value::IsArray(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsArray with json::value::Short() is false
+			assert(json::helper::Value::IsArray(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsArray with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsArray(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsArray with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsArray(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsArray with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsArray(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsArray with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsArray(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsArray with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsArray(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsFalse with /json/value
+		{
+			//check function json::helper::Value::IsFalse with json::value::Array() is false
+			assert(json::helper::Value::IsFalse(json::value::Array()) == false);
+			//check function json::helper::Value::IsFalse with json::value::False() is true
+			assert(json::helper::Value::IsFalse(json::value::False()) == true);
+			//check function json::helper::Value::IsFalse with json::value::Null() is false
+			assert(json::helper::Value::IsFalse(json::value::Null()) == false);
+			//check function json::helper::Value::IsFalse with json::value::Object() is false
+			assert(json::helper::Value::IsFalse(json::value::Object()) == false);
+			//check function json::helper::Value::IsFalse with json::value::String() is false
+			assert(json::helper::Value::IsFalse(json::value::String()) == false);
+			//check function json::helper::Value::IsFalse with json::value::True() is false
+			assert(json::helper::Value::IsFalse(json::value::True()) == false);
+
+			//check function json::helper::Value::IsFalse with json::value::Char() is false
+			assert(json::helper::Value::IsFalse(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsFalse with json::value::Double() is false
+			assert(json::helper::Value::IsFalse(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsFalse with json::value::Float() is false
+			assert(json::helper::Value::IsFalse(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsFalse with json::value::Int() is false
+			assert(json::helper::Value::IsFalse(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsFalse with json::value::Long() is false
+			assert(json::helper::Value::IsFalse(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsFalse with json::value::LongDouble() is false
+			assert(json::helper::Value::IsFalse(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsFalse with json::value::LongLong() is false
+			assert(json::helper::Value::IsFalse(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsFalse with json::value::Short() is false
+			assert(json::helper::Value::IsFalse(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsFalse with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsFalse(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsFalse with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsFalse(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsFalse with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsFalse(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsFalse with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsFalse(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsFalse with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsFalse(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNull with /json/value
+		{
+			//check function json::helper::Value::IsNull with json::value::Array() is false
+			assert(json::helper::Value::IsNull(json::value::Array()) == false);
+			//check function json::helper::Value::IsNull with json::value::False() is false
+			assert(json::helper::Value::IsNull(json::value::False()) == false);
+			//check function json::helper::Value::IsNull with json::value::Null() is true
+			assert(json::helper::Value::IsNull(json::value::Null()) == true);
+			//check function json::helper::Value::IsNull with json::value::Object() is false
+			assert(json::helper::Value::IsNull(json::value::Object()) == false);
+			//check function json::helper::Value::IsNull with json::value::String() is false
+			assert(json::helper::Value::IsNull(json::value::String()) == false);
+			//check function json::helper::Value::IsNull with json::value::True() is false
+			assert(json::helper::Value::IsNull(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNull with json::value::Char() is false
+			assert(json::helper::Value::IsNull(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNull with json::value::Double() is false
+			assert(json::helper::Value::IsNull(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNull with json::value::Float() is false
+			assert(json::helper::Value::IsNull(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNull with json::value::Int() is false
+			assert(json::helper::Value::IsNull(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNull with json::value::Long() is false
+			assert(json::helper::Value::IsNull(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNull with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNull(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNull with json::value::LongLong() is false
+			assert(json::helper::Value::IsNull(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNull with json::value::Short() is false
+			assert(json::helper::Value::IsNull(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNull with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNull(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNull with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNull(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNull with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNull(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNull with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNull(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNull with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNull(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumber with /json/value
+		{
+			//check function json::helper::Value::IsNumber with json::value::Array() is false
+			assert(json::helper::Value::IsNumber(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumber with json::value::False() is false
+			assert(json::helper::Value::IsNumber(json::value::False()) == false);
+			//check function json::helper::Value::IsNumber with json::value::Null() is false
+			assert(json::helper::Value::IsNumber(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumber with json::value::Object() is false
+			assert(json::helper::Value::IsNumber(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumber with json::value::String() is false
+			assert(json::helper::Value::IsNumber(json::value::String()) == false);
+			//check function json::helper::Value::IsNumber with json::value::True() is false
+			assert(json::helper::Value::IsNumber(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumber with json::value::Char() is true
+			assert(json::helper::Value::IsNumber(json::value::number::Char()) == true);
+			//check function json::helper::Value::IsNumber with json::value::Double() is true
+			assert(json::helper::Value::IsNumber(json::value::number::Double()) == true);
+			//check function json::helper::Value::IsNumber with json::value::Float() is true
+			assert(json::helper::Value::IsNumber(json::value::number::Float()) == true);
+			//check function json::helper::Value::IsNumber with json::value::Int() is true
+			assert(json::helper::Value::IsNumber(json::value::number::Int()) == true);
+			//check function json::helper::Value::IsNumber with json::value::Long() is true
+			assert(json::helper::Value::IsNumber(json::value::number::Long()) == true);
+			//check function json::helper::Value::IsNumber with json::value::LongDouble() is true
+			assert(json::helper::Value::IsNumber(json::value::number::LongDouble()) == true);
+			//check function json::helper::Value::IsNumber with json::value::LongLong() is true
+			assert(json::helper::Value::IsNumber(json::value::number::LongLong()) == true);
+			//check function json::helper::Value::IsNumber with json::value::Short() is true
+			assert(json::helper::Value::IsNumber(json::value::number::Short()) == true);
+			//check function json::helper::Value::IsNumber with json::value::UnsignedChar() is true
+			assert(json::helper::Value::IsNumber(json::value::number::UnsignedChar()) == true);
+			//check function json::helper::Value::IsNumber with json::value::UnsignedInt() is true
+			assert(json::helper::Value::IsNumber(json::value::number::UnsignedInt()) == true);
+			//check function json::helper::Value::IsNumber with json::value::UnsignedLong() is true
+			assert(json::helper::Value::IsNumber(json::value::number::UnsignedLong()) == true);
+			//check function json::helper::Value::IsNumber with json::value::UnsignedLongLong() is true
+			assert(json::helper::Value::IsNumber(json::value::number::UnsignedLongLong()) == true);
+			//check function json::helper::Value::IsNumber with json::value::UnsignedShort() is true
+			assert(json::helper::Value::IsNumber(json::value::number::UnsignedShort()) == true);
+		}
+
+		//check function json::helper::Value::IsObject with /json/value
+		{
+			//check function json::helper::Value::IsObject with json::value::Array() is false
+			assert(json::helper::Value::IsObject(json::value::Array()) == false);
+			//check function json::helper::Value::IsObject with json::value::False() is false
+			assert(json::helper::Value::IsObject(json::value::False()) == false);
+			//check function json::helper::Value::IsObject with json::value::Null() is false
+			assert(json::helper::Value::IsObject(json::value::Null()) == false);
+			//check function json::helper::Value::IsObject with json::value::Object() is true
+			assert(json::helper::Value::IsObject(json::value::Object()) == true);
+			//check function json::helper::Value::IsObject with json::value::String() is false
+			assert(json::helper::Value::IsObject(json::value::String()) == false);
+			//check function json::helper::Value::IsObject with json::value::True() is false
+			assert(json::helper::Value::IsObject(json::value::True()) == false);
+
+			//check function json::helper::Value::IsObject with json::value::Char() is false
+			assert(json::helper::Value::IsObject(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsObject with json::value::Double() is false
+			assert(json::helper::Value::IsObject(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsObject with json::value::Float() is false
+			assert(json::helper::Value::IsObject(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsObject with json::value::Int() is false
+			assert(json::helper::Value::IsObject(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsObject with json::value::Long() is false
+			assert(json::helper::Value::IsObject(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsObject with json::value::LongDouble() is false
+			assert(json::helper::Value::IsObject(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsObject with json::value::LongLong() is false
+			assert(json::helper::Value::IsObject(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsObject with json::value::Short() is false
+			assert(json::helper::Value::IsObject(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsObject with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsObject(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsObject with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsObject(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsObject with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsObject(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsObject with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsObject(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsObject with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsObject(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsString with /json/value
+		{
+			//check function json::helper::Value::IsString with json::value::Array() is false
+			assert(json::helper::Value::IsString(json::value::Array()) == false);
+			//check function json::helper::Value::IsString with json::value::False() is false
+			assert(json::helper::Value::IsString(json::value::False()) == false);
+			//check function json::helper::Value::IsString with json::value::Null() is false
+			assert(json::helper::Value::IsString(json::value::Null()) == false);
+			//check function json::helper::Value::IsString with json::value::Object() is false
+			assert(json::helper::Value::IsString(json::value::Object()) == false);
+			//check function json::helper::Value::IsString with json::value::String() is true
+			assert(json::helper::Value::IsString(json::value::String()) == true);
+			//check function json::helper::Value::IsString with json::value::True() is false
+			assert(json::helper::Value::IsString(json::value::True()) == false);
+
+			//check function json::helper::Value::IsString with json::value::Char() is false
+			assert(json::helper::Value::IsString(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsString with json::value::Double() is false
+			assert(json::helper::Value::IsString(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsString with json::value::Float() is false
+			assert(json::helper::Value::IsString(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsString with json::value::Int() is false
+			assert(json::helper::Value::IsString(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsString with json::value::Long() is false
+			assert(json::helper::Value::IsString(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsString with json::value::LongDouble() is false
+			assert(json::helper::Value::IsString(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsString with json::value::LongLong() is false
+			assert(json::helper::Value::IsString(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsString with json::value::Short() is false
+			assert(json::helper::Value::IsString(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsString with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsString(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsString with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsString(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsString with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsString(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsString with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsString(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsString with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsString(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsTrue with /json/value
+		{
+			//check function json::helper::Value::IsTrue with json::value::Array() is false
+			assert(json::helper::Value::IsTrue(json::value::Array()) == false);
+			//check function json::helper::Value::IsTrue with json::value::False() is false
+			assert(json::helper::Value::IsTrue(json::value::False()) == false);
+			//check function json::helper::Value::IsTrue with json::value::Null() is false
+			assert(json::helper::Value::IsTrue(json::value::Null()) == false);
+			//check function json::helper::Value::IsTrue with json::value::Object() is false
+			assert(json::helper::Value::IsTrue(json::value::Object()) == false);
+			//check function json::helper::Value::IsTrue with json::value::String() is false
+			assert(json::helper::Value::IsTrue(json::value::String()) == false);
+			//check function json::helper::Value::IsTrue with json::value::True() is true
+			assert(json::helper::Value::IsTrue(json::value::True()) == true);
+
+			//check function json::helper::Value::IsTrue with json::value::Char() is false
+			assert(json::helper::Value::IsTrue(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsTrue with json::value::Double() is false
+			assert(json::helper::Value::IsTrue(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsTrue with json::value::Float() is false
+			assert(json::helper::Value::IsTrue(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsTrue with json::value::Int() is false
+			assert(json::helper::Value::IsTrue(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsTrue with json::value::Long() is false
+			assert(json::helper::Value::IsTrue(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsTrue with json::value::LongDouble() is false
+			assert(json::helper::Value::IsTrue(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsTrue with json::value::LongLong() is false
+			assert(json::helper::Value::IsTrue(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsTrue with json::value::Short() is false
+			assert(json::helper::Value::IsTrue(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsTrue with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsTrue(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsTrue with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsTrue(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsTrue with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsTrue(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsTrue with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsTrue(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsTrue with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsTrue(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberChar with /json/value
+		{
+			//check function json::helper::Value::IsNumberChar with json::value::Array() is false
+			assert(json::helper::Value::IsNumberChar(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::False() is false
+			assert(json::helper::Value::IsNumberChar(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::Null() is false
+			assert(json::helper::Value::IsNumberChar(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::Object() is false
+			assert(json::helper::Value::IsNumberChar(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::String() is false
+			assert(json::helper::Value::IsNumberChar(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::True() is false
+			assert(json::helper::Value::IsNumberChar(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberChar with json::value::Char() is true
+			assert(json::helper::Value::IsNumberChar(json::value::number::Char()) == true);
+			//check function json::helper::Value::IsNumberChar with json::value::Double() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::Float() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::Int() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::Long() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::Short() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberChar with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberChar(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberDouble with /json/value
+		{
+			//check function json::helper::Value::IsNumberDouble with json::value::Array() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::False() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::Null() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::Object() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::String() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::True() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberDouble with json::value::Char() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::Double() is true
+			assert(json::helper::Value::IsNumberDouble(json::value::number::Double()) == true);
+			//check function json::helper::Value::IsNumberDouble with json::value::Float() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::Int() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::Long() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::Short() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberDouble with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberDouble(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberFloat with /json/value
+		{
+			//check function json::helper::Value::IsNumberFloat with json::value::Array() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::False() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::Null() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::Object() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::String() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::True() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberFloat with json::value::Char() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::Double() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::Float() is true
+			assert(json::helper::Value::IsNumberFloat(json::value::number::Float()) == true);
+			//check function json::helper::Value::IsNumberFloat with json::value::Int() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::Long() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::Short() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberFloat with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberFloat(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberInt with /json/value
+		{
+			//check function json::helper::Value::IsNumberInt with json::value::Array() is false
+			assert(json::helper::Value::IsNumberInt(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::False() is false
+			assert(json::helper::Value::IsNumberInt(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::Null() is false
+			assert(json::helper::Value::IsNumberInt(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::Object() is false
+			assert(json::helper::Value::IsNumberInt(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::String() is false
+			assert(json::helper::Value::IsNumberInt(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::True() is false
+			assert(json::helper::Value::IsNumberInt(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberInt with json::value::Char() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::Double() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::Float() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::Int() is true
+			assert(json::helper::Value::IsNumberInt(json::value::number::Int()) == true);
+			//check function json::helper::Value::IsNumberInt with json::value::Long() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::Short() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberInt with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberInt(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberLong with /json/value
+		{
+			//check function json::helper::Value::IsNumberLong with json::value::Array() is false
+			assert(json::helper::Value::IsNumberLong(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::False() is false
+			assert(json::helper::Value::IsNumberLong(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::Null() is false
+			assert(json::helper::Value::IsNumberLong(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::Object() is false
+			assert(json::helper::Value::IsNumberLong(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::String() is false
+			assert(json::helper::Value::IsNumberLong(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::True() is false
+			assert(json::helper::Value::IsNumberLong(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberLong with json::value::Char() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::Double() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::Float() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::Int() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::Long() is true
+			assert(json::helper::Value::IsNumberLong(json::value::number::Long()) == true);
+			//check function json::helper::Value::IsNumberLong with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::Short() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberLong with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberLong(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberLongDouble with /json/value
+		{
+			//check function json::helper::Value::IsNumberLongDouble with json::value::Array() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::False() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::Null() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::Object() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::String() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::True() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberLongDouble with json::value::Char() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::Double() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::Float() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::Int() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::Long() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::LongDouble() is true
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::LongDouble()) == true);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::Short() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberLongDouble with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberLongDouble(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberLongLong with /json/value
+		{
+			//check function json::helper::Value::IsNumberLongLong with json::value::Array() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::False() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::Null() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::Object() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::String() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::True() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberLongLong with json::value::Char() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::Double() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::Float() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::Int() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::Long() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::LongLong() is true
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::LongLong()) == true);
+			//check function json::helper::Value::IsNumberLongLong with json::value::Short() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberLongLong with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberLongLong(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberShort with /json/value
+		{
+			//check function json::helper::Value::IsNumberShort with json::value::Array() is false
+			assert(json::helper::Value::IsNumberShort(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::False() is false
+			assert(json::helper::Value::IsNumberShort(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::Null() is false
+			assert(json::helper::Value::IsNumberShort(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::Object() is false
+			assert(json::helper::Value::IsNumberShort(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::String() is false
+			assert(json::helper::Value::IsNumberShort(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::True() is false
+			assert(json::helper::Value::IsNumberShort(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberShort with json::value::Char() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::Double() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::Float() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::Int() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::Long() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::Short() is true
+			assert(json::helper::Value::IsNumberShort(json::value::number::Short()) == true);
+			//check function json::helper::Value::IsNumberShort with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberShort with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberShort(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberUnsignedChar with /json/value
+		{
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::Array() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::False() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::Null() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::Object() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::String() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::True() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::Char() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::Double() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::Float() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::Int() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::Long() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::Short() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::UnsignedChar() is true
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::UnsignedChar()) == true);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedChar with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberUnsignedChar(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberUnsignedInt with /json/value
+		{
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::Array() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::False() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::Null() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::Object() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::String() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::True() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::Char() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::Double() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::Float() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::Int() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::Long() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::Short() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::UnsignedInt() is true
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::UnsignedInt()) == true);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedInt with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberUnsignedInt(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberUnsignedLong with /json/value
+		{
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::Array() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::False() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::Null() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::Object() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::String() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::True() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::Char() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::Double() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::Float() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::Int() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::Long() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::Short() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::UnsignedLong() is true
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::UnsignedLong()) == true);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLong with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberUnsignedLong(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberUnsignedLongLong with /json/value
+		{
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::Array() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::False() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::Null() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::Object() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::String() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::True() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::Char() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::Double() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::Float() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::Int() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::Long() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::Short() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::UnsignedLongLong() is true
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::UnsignedLongLong()) == true);
+			//check function json::helper::Value::IsNumberUnsignedLongLong with json::value::UnsignedShort() is false
+			assert(json::helper::Value::IsNumberUnsignedLongLong(json::value::number::UnsignedShort()) == false);
+		}
+
+		//check function json::helper::Value::IsNumberUnsignedShort with /json/value
+		{
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::Array() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::Array()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::False() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::False()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::Null() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::Null()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::Object() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::Object()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::String() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::String()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::True() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::True()) == false);
+
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::Char() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::Char()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::Double() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::Double()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::Float() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::Float()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::Int() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::Int()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::Long() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::Long()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::LongDouble() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::LongDouble()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::LongLong() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::LongLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::Short() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::Short()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::UnsignedChar() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::UnsignedChar()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::UnsignedInt() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::UnsignedInt()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::UnsignedLong() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::UnsignedLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::UnsignedLongLong() is false
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::UnsignedLongLong()) == false);
+			//check function json::helper::Value::IsNumberUnsignedShort with json::value::UnsignedShort() is true
+			assert(json::helper::Value::IsNumberUnsignedShort(json::value::number::UnsignedShort()) == true);
+		}
+	}
+
+	//experiment with /json/helper/Tag.h
+	{
+		//check static function json::helper::Tag::IsValue with json::helper::Enum
+		{
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsValue(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_array is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_array) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_false is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_false) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_null is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_null) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_object is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_object) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_string is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_string) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_true is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_true) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_char is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_char) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_double is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_double) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_float is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_float) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_int is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_int) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_long is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_long) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_longdouble is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_longdouble) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_longlong is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_longlong) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_short is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_short) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_unsignedchar is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_unsignedchar) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_unsignedint is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_unsignedint) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_unsignedlong is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_unsignedlong) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_unsignedlonglong is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_unsignedlonglong) == true);
+			//check static function json::helper::Tag::IsValue with json::helper::Enum::value_number_unsignedshort is true
+			assert(json::helper::Tag::IsValue(json::helper::Enum::value_number_unsignedshort) == true);
+		}
+
+		//check static function json::helper::Tag::IsValueNumber with json::helper::Enum
+		{
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_array is false
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_array) == false);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_false is false
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_false) == false);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_null is false
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_null) == false);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_object is false
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_object) == false);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_string is false
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_string) == false);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_true is false
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_true) == false);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_char is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_char) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_double is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_double) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_float is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_float) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_int is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_int) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_long is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_long) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_longdouble is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_longdouble) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_longlong is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_longlong) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_short is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_short) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_unsignedchar is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_unsignedchar) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_unsignedint is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_unsignedint) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_unsignedlong is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_unsignedlong) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_unsignedlonglong is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_unsignedlonglong) == true);
+			//check static function json::helper::Tag::IsValueNumber with json::helper::Enum::value_number_unsignedshort is true
+			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_unsignedshort) == true);
+		}
+
+		//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum
+		{
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_array is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_array) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_false is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_false) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_null is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_null) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_object is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_object) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_string is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_string) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_true is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_true) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_char is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_char) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_double is true
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_double) == true);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_float is true
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_float) == true);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_int is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_int) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_long is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_long) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_longdouble is true
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_longdouble) == true);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_longlong is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_longlong) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_short is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_short) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedchar is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedchar) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedint is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedint) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedlong is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedlong) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedlonglong is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedlonglong) == false);
+			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedshort is false
+			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedshort) == false);
+		}
+
+		//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum
+		{
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_array is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_array) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_false is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_false) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_null is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_null) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_object is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_object) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_string is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_string) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_true is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_true) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_char is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_char) == true);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_double is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_double) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_float is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_float) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_int is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_int) == true);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_long is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_long) == true);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_longdouble is false
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_longdouble) == false);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_longlong is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_longlong) == true);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_short is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_short) == true);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedchar is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedchar) == true);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedint is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedint) == true);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedlong is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedlong) == true);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedlonglong is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedlonglong) == true);
+			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedshort is true
+			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedshort) == true);
+		}
+
+		//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum
+		{
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_array is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_array) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_false is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_false) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_null is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_null) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_object is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_object) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_string is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_string) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_true is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_true) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_char is true
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_char) == true);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_double is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_double) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_float is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_float) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_int is true
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_int) == true);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_long is true
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_long) == true);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_longdouble is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_longdouble) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_longlong is true
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_longlong) == true);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_short is true
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_short) == true);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedchar is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedchar) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedint is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedint) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedlong is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedlong) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedlonglong is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedlonglong) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedshort is false
+			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedshort) == false);
+		}
+
+		//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum
+		{
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_array is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_array) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_false is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_false) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_null is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_null) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_object is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_object) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_string is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_string) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_true is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_true) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_char is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_char) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_double is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_double) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_float is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_float) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_int is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_int) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_long is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_long) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_longdouble is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_longdouble) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_longlong is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_longlong) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_short is false
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_short) == false);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedchar is true
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedchar) == true);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedint is true
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedint) == true);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedlong is true
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedlong) == true);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedlonglong is true
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedlonglong) == true);
+			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedshort is true
+			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedshort) == true);
+		}
+
+		//check between default constructor of json/helper/tag and json::helper::Enum is same
+		{
+			//check between json::helper::tag::Array and json::helper::Enum::value_array is same
+			assert(json::helper::tag::Array() == json::helper::Enum::value_array);
+			//check between json::helper::tag::False and json::helper::Enum::value_false is same
+			assert(json::helper::tag::False() == json::helper::Enum::value_false);
+			//check between json::helper::tag::Null and json::helper::Enum::value_null is same
+			assert(json::helper::tag::Null() == json::helper::Enum::value_null);
+			//check between json::helper::tag::Number and json::helper::Enum::value_number is same
+			assert(json::helper::tag::Number() == json::helper::Enum::value_number);
+			//check between json::helper::tag::Object and json::helper::Enum::value_object is same
+			assert(json::helper::tag::Object() == json::helper::Enum::value_object);
+			//check between json::helper::tag::String and json::helper::Enum::value_string is same
+			assert(json::helper::tag::String() == json::helper::Enum::value_string);
+			//check between json::helper::tag::True and json::helper::Enum::value_true is same
+			assert(json::helper::tag::True() == json::helper::Enum::value_true);
+
+			//check between json::helper::tag::number::Char and json::helper::Enum::value_number_char is same
+			assert(json::helper::tag::number::Char() == json::helper::Enum::value_number_char);
+			//check between json::helper::tag::number::Double and json::helper::Enum::value_number_double is same
+			assert(json::helper::tag::number::Double() == json::helper::Enum::value_number_double);
+			//check between json::helper::tag::number::Float and json::helper::Enum::value_number_float is same
+			assert(json::helper::tag::number::Float() == json::helper::Enum::value_number_float);
+			//check between json::helper::tag::number::Int and json::helper::Enum::value_number_int is same
+			assert(json::helper::tag::number::Int() == json::helper::Enum::value_number_int);
+			//check between json::helper::tag::number::Long and json::helper::Enum::value_number_long is same
+			assert(json::helper::tag::number::Long() == json::helper::Enum::value_number_long);
+			//check between json::helper::tag::number::LongDouble and json::helper::Enum::value_number_longdouble is same
+			assert(json::helper::tag::number::LongDouble() == json::helper::Enum::value_number_longdouble);
+			//check between json::helper::tag::number::LongLong and json::helper::Enum::value_number_longlong is same
+			assert(json::helper::tag::number::LongLong() == json::helper::Enum::value_number_longlong);
+			//check between json::helper::tag::number::Short and json::helper::Enum::value_number_short is same
+			assert(json::helper::tag::number::Short() == json::helper::Enum::value_number_short);
+			//check between json::helper::tag::number::UnsignedChar and json::helper::Enum::value_number_unsignedchar is same
+			assert(json::helper::tag::number::UnsignedChar() == json::helper::Enum::value_number_unsignedchar);
+			//check between json::helper::tag::number::UnsignedInt and json::helper::Enum::value_number_unsignedint is same
+			assert(json::helper::tag::number::UnsignedInt() == json::helper::Enum::value_number_unsignedint);
+			//check between json::helper::tag::number::UnsignedLong and json::helper::Enum::value_number_unsignedlong is same
+			assert(json::helper::tag::number::UnsignedLong() == json::helper::Enum::value_number_unsignedlong);
+			//check between json::helper::tag::number::UnsignedLongLong and json::helper::Enum::value_number_unsignedlonglong is same
+			assert(json::helper::tag::number::UnsignedLongLong() == json::helper::Enum::value_number_unsignedlonglong);
+			//check between json::helper::tag::number::UnsignedShort and json::helper::Enum::value_number_unsignedshort is same
+			assert(json::helper::tag::number::UnsignedShort() == json::helper::Enum::value_number_unsignedshort);
+		}
+
+		//declare json::helper::Tag with assignment json::helper::Enum
+		{
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_array
+			json::helper::Tag tag_array1 = json::helper::Enum::value_array;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_array1 = tag_array1;
+			//check between tag_array1 and json::helper::Enum::value_array is same
+			assert(tag_array1 == json::helper::Enum::value_array);
+			//check between enum_array1 and json::helper::Enum::value_array is same
+			assert(enum_array1 == json::helper::Enum::value_array);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_false
+			json::helper::Tag tag_false1 = json::helper::Enum::value_false;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_false1 = tag_false1;
+			//check between tag_false1 and json::helper::Enum::value_false is same
+			assert(tag_false1 == json::helper::Enum::value_false);
+			//check between enum_false1 and json::helper::Enum::value_false is same
+			assert(enum_false1 == json::helper::Enum::value_false);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_null
+			json::helper::Tag tag_null1 = json::helper::Enum::value_null;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_null1 = tag_null1;
+			//check between tag_null1 and json::helper::Enum::value_null is same
+			assert(tag_null1 == json::helper::Enum::value_null);
+			//check between enum_null1 and json::helper::Enum::value_null is same
+			assert(enum_null1 == json::helper::Enum::value_null);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number
+			json::helper::Tag tag_number1 = json::helper::Enum::value_number;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number1 = tag_number1;
+			//check between  and json::helper::Enum::value_number is same
+			assert(tag_number1  == json::helper::Enum::value_number);
+			//check between enum_number1 and json::helper::Enum::value_number is same
+			assert(enum_number1 == json::helper::Enum::value_number);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_object
+			json::helper::Tag tag_object1 = json::helper::Enum::value_object;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_object1 = tag_object1;
+			//check between tag_object1 and json::helper::Enum::value_object is same
+			assert(tag_object1 == json::helper::Enum::value_object);
+			//check between enum_object1 and json::helper::Enum::value_object is same
+			assert(enum_object1 == json::helper::Enum::value_object);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_string
+			json::helper::Tag tag_string1 = json::helper::Enum::value_string;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_string1 = tag_string1;
+			//check between tag_string1 and json::helper::Enum::value_string is same
+			assert(tag_string1 == json::helper::Enum::value_string);
+			//check between enum_string1 and json::helper::Enum::value_string is same
+			assert(enum_string1 == json::helper::Enum::value_string);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_true
+			json::helper::Tag tag_true1 = json::helper::Enum::value_true;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_true1 = tag_true1;
+			//check between tag_true1 and json::helper::Enum::value_true is same
+			assert(tag_true1 == json::helper::Enum::value_true);
+			//check between enum_true1 and json::helper::Enum::value_true is same
+			assert(enum_true1 == json::helper::Enum::value_true);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_char
+			json::helper::Tag tag_number_char1 = json::helper::Enum::value_number_char;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_char1 = tag_number_char1;
+			//check between tag_number_char1 and json::helper::Enum::value_number_char is same
+			assert(tag_number_char1 == json::helper::Enum::value_number_char);
+			//check between enum_number_char1 and json::helper::Enum::value_number_char is same
+			assert(enum_number_char1 == json::helper::Enum::value_number_char);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_double
+			json::helper::Tag tag_number_double1 = json::helper::Enum::value_number_double;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_double1 = tag_number_double1;
+			//check between tag_number_double1 and json::helper::Enum::value_number_double is same
+			assert(tag_number_double1 == json::helper::Enum::value_number_double);
+			//check between enum_number_double1 and json::helper::Enum::value_number_double is same
+			assert(enum_number_double1 == json::helper::Enum::value_number_double);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_float
+			json::helper::Tag tag_number_float1 = json::helper::Enum::value_number_float;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_float1 = tag_number_float1;
+			//check between tag_number_float1 and json::helper::Enum::value_number_float is same
+			assert(tag_number_float1 == json::helper::Enum::value_number_float);
+			//check between enum_number_float1 and json::helper::Enum::value_number_float is same
+			assert(enum_number_float1 == json::helper::Enum::value_number_float);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_int
+			json::helper::Tag tag_number_int1 = json::helper::Enum::value_number_int;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_int1 = tag_number_int1;
+			//check between tag_number_int1 and json::helper::Enum::value_number_int is same
+			assert(tag_number_int1 == json::helper::Enum::value_number_int);
+			//check between enum_number_int1 and json::helper::Enum::value_number_int is same
+			assert(enum_number_int1 == json::helper::Enum::value_number_int);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_long
+			json::helper::Tag tag_number_long1 = json::helper::Enum::value_number_long;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_long1 = tag_number_long1;
+			//check between tag_number_long1 and json::helper::Enum::value_number_long is same
+			assert(tag_number_long1 == json::helper::Enum::value_number_long);
+			//check between enum_number_long1 and json::helper::Enum::value_number_long is same
+			assert(enum_number_long1 == json::helper::Enum::value_number_long);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_longdouble
+			json::helper::Tag tag_number_longdouble1 = json::helper::Enum::value_number_longdouble;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_longdouble1 = tag_number_longdouble1;
+			//check between tag_number_longdouble1 and json::helper::Enum::value_number_longdouble is same
+			assert(tag_number_longdouble1 == json::helper::Enum::value_number_longdouble);
+			//check betweenenum_number_longdouble1  and json::helper::Enum::value_number_longdouble is same
+			assert(enum_number_longdouble1 == json::helper::Enum::value_number_longdouble);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_longlong
+			json::helper::Tag tag_number_longlong1 = json::helper::Enum::value_number_longlong;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_longlong1 = tag_number_longlong1;
+			//check between tag_number_longlong1 and json::helper::Enum::value_number_longlong is same
+			assert(tag_number_longlong1 == json::helper::Enum::value_number_longlong);
+			//check between enum_number_longlong1 and json::helper::Enum::value_number_longlong is same
+			assert(enum_number_longlong1 == json::helper::Enum::value_number_longlong);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_short
+			json::helper::Tag tag_number_short1 = json::helper::Enum::value_number_short;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_short1 = tag_number_short1;
+			//check between tag_number_short1 and json::helper::Enum::value_number_short is same
+			assert(tag_number_short1 == json::helper::Enum::value_number_short);
+			//check between enum_number_short1 and json::helper::Enum::value_number_short is same
+			assert(enum_number_short1 == json::helper::Enum::value_number_short);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_unsignedchar
+			json::helper::Tag tag_number_unsignedchar1 = json::helper::Enum::value_number_unsignedchar;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_unsignedchar1 = tag_number_unsignedchar1;
+			//check between tag_number_unsignedchar1 and json::helper::Enum::value_number_unsignedchar is same
+			assert(tag_number_unsignedchar1 == json::helper::Enum::value_number_unsignedchar);
+			//check between enum_number_unsignedchar1 and json::helper::Enum:value_number_unsignedchar: is same
+			assert(enum_number_unsignedchar1 == json::helper::Enum::value_number_unsignedchar);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_unsignedint
+			json::helper::Tag tag_number_unsignedint1 = json::helper::Enum::value_number_unsignedint;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_unsignedint1 = tag_number_unsignedint1;
+			//check between tag_number_unsignedint1 and json::helper::Enum::value_number_unsignedint is same
+			assert(tag_number_unsignedint1 == json::helper::Enum::value_number_unsignedint);
+			//check between enum_number_unsignedint1 and json::helper::Enum::value_number_unsignedint is same
+			assert(enum_number_unsignedint1 == json::helper::Enum::value_number_unsignedint);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_unsignedlong
+			json::helper::Tag tag_number_unsignedlong1 = json::helper::Enum::value_number_unsignedlong;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_unsignedlong1 = tag_number_unsignedlong1;
+			//check between tag_number_unsignedlong1 and json::helper::Enum::value_number_unsignedlong is same
+			assert(tag_number_unsignedlong1 == json::helper::Enum::value_number_unsignedlong);
+			//check between enum_number_unsignedlong1 and json::helper::Enum::value_number_unsignedlong is same
+			assert(enum_number_unsignedlong1 == json::helper::Enum::value_number_unsignedlong);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_unsignedlonglong
+			json::helper::Tag tag_number_unsignedlonglong1 = json::helper::Enum::value_number_unsignedlonglong;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_unsignedlonglong1 = tag_number_unsignedlonglong1;
+			//check between tag_number_unsignedlonglong1 and json::helper::Enum::value_number_unsignedlonglong is same
+			assert(tag_number_unsignedlonglong1 == json::helper::Enum::value_number_unsignedlonglong);
+			//check between enum_number_unsignedlonglong1 and json::helper::Enum::value_number_unsignedlonglong is same
+			assert(enum_number_unsignedlonglong1 == json::helper::Enum::value_number_unsignedlonglong);
+
+			//declare json::helper::Tag with assignment from json::helper::Enum::value_number_unsignedshort
+			json::helper::Tag tag_number_unsignedshort1 = json::helper::Enum::value_number_unsignedshort;
+			//declare json::helper::Enum with assignment from json::helper::Tag
+			json::helper::Enum enum_number_unsignedshort1 = tag_number_unsignedshort1;
+			//check between tag_number_unsignedshort1 and json::helper::Enum::tag_number_unsignedshort1 is same
+			assert(tag_number_unsignedshort1 == json::helper::Enum::value_number_unsignedshort);
+			//check between enum_number_unsignedshort1 and json::helper::Enum::tag_number_unsignedshort1 is same
+			assert(enum_number_unsignedshort1 == json::helper::Enum::value_number_unsignedshort);
+		}
+
+		//check between json::helper::tag::Number and json::helper::Enum is same
+		{
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Char()
+			json::helper::tag::Number& tag_number_char1 = json::helper::tag::number::Char();
+			//check between value of tag_number_char1 and json::helper::Enum::value_number_char is same
+			assert(tag_number_char1 == json::helper::Enum::value_number_char);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Double()
+			json::helper::tag::Number& tag_number_double1 = json::helper::tag::number::Double();
+			//check between value of tag_number_double1 and json::helper::Enum::value_number_double is same
+			assert(tag_number_double1 == json::helper::Enum::value_number_double);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Float()
+			json::helper::tag::Number& tag_number_float1 = json::helper::tag::number::Float();
+			//check between value of tag_number_float1 and json::helper::Enum::value_number_float is same
+			assert(tag_number_float1 == json::helper::Enum::value_number_float);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Int()
+			json::helper::tag::Number& tag_number_int1 = json::helper::tag::number::Int();
+			//check between value of tag_number_int1 and json::helper::Enum::value_number_int is same
+			assert(tag_number_int1 == json::helper::Enum::value_number_int);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Long()
+			json::helper::tag::Number& tag_number_long1 = json::helper::tag::number::Long();
+			//check between value of tag_number_long1 and json::helper::Enum::value_number_long is same
+			assert(tag_number_long1 == json::helper::Enum::value_number_long);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::LongDouble()
+			json::helper::tag::Number& tag_number_longdouble1 = json::helper::tag::number::LongDouble();
+			//check between value of tag_number_longdouble1 and json::helper::Enum::value_number_longdouble is same
+			assert(tag_number_longdouble1 == json::helper::Enum::value_number_longdouble);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::LongLong()
+			json::helper::tag::Number& tag_number_longlong1 = json::helper::tag::number::LongLong();
+			//check between value of tag_number_longlong1 and json::helper::Enum::value_number_longlong is same
+			assert(tag_number_longlong1 == json::helper::Enum::value_number_longlong);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Short()
+			json::helper::tag::Number& tag_number_short1 = json::helper::tag::number::Short();
+			//check between value of tag_number_short1 and json::helper::Enum::value_number_short is same
+			assert(tag_number_short1 == json::helper::Enum::value_number_short);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedChar()
+			json::helper::tag::Number& tag_number_unsignedchar1 = json::helper::tag::number::UnsignedChar();
+			//check between value of tag_number_unsignedchar1 and json::helper::Enum::value_number_unsignedchar is same
+			assert(tag_number_unsignedchar1 == json::helper::Enum::value_number_unsignedchar);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedInt()
+			json::helper::tag::Number& tag_number_unsignedint1 = json::helper::tag::number::UnsignedInt();
+			//check between value of tag_number_unsignedint1 and json::helper::Enum::value_number_unsignedint is same
+			assert(tag_number_unsignedint1 == json::helper::Enum::value_number_unsignedint);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedLong()
+			json::helper::tag::Number& tag_number_unsignedlong1 = json::helper::tag::number::UnsignedLong();
+			//check between value of tag_number_unsignedlong1 and json::helper::Enum::value_number_unsignedlong is same
+			assert(tag_number_unsignedlong1 == json::helper::Enum::value_number_unsignedlong);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedLongLong()
+			json::helper::tag::Number& tag_number_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
+			//check between value of tag_number_unsignedlonglong1 and json::helper::Enum::value_number_unsignedlonglong is same
+			assert(tag_number_unsignedlonglong1 == json::helper::Enum::value_number_unsignedlonglong);
+
+			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedShort()
+			json::helper::tag::Number& tag_number_unsignedshort1 = json::helper::tag::number::UnsignedShort();
+			//check between value of tag_number_unsignedshort1 and json::helper::Enum::value_number_unsignedshort is same
+			assert(tag_number_unsignedshort1 == json::helper::Enum::value_number_unsignedshort);
+		}
+
+		//check between json::helper::tag::number::FloatingPoint and json::helper::Enum is same
+		{
+			//declare json::helper::tag::number::FloatingPoint& with assignment json::helper::tag::number::Double()
+			json::helper::tag::number::FloatingPoint&  tag_number_floatingpoint_double1 = json::helper::tag::number::Double();
+			//check between value of tag_number_floatingpoint_double1 and json::helper::Enum::value_number_double is same
+			assert(tag_number_floatingpoint_double1 == json::helper::Enum::value_number_double);
+
+			//declare json::helper::tag::number::FloatingPoint& with assignment json::helper::tag::number::Float()
+			json::helper::tag::number::FloatingPoint& tag_number_floatingpoint_float1 = json::helper::tag::number::Float();
+			//check between value of tag_number_floatingpoint_float1 and json::helper::Enum::value_number_float is same
+			assert(tag_number_floatingpoint_float1 == json::helper::Enum::value_number_float);
+
+			//declare json::helper::tag::number::FloatingPoint& with assignment json::helper::tag::number::LongDouble()
+			json::helper::tag::number::FloatingPoint& tag_number_floatingpoint_longdouble1 = json::helper::tag::number::LongDouble();
+			//check between value of tag_number_floatingpoint_longdouble1 and json::helper::Enum::value_number_longdouble is same
+			assert(tag_number_floatingpoint_longdouble1 == json::helper::Enum::value_number_longdouble);
+		}
+
+		//check between json::helper::tag::number::Integer and json::helper::Enum is same
+		{
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::Char()
+			json::helper::tag::number::Integer& tag_number_integer_char1 = json::helper::tag::number::Char();
+			//check between value of tag_number_integer_char1 and json::helper::Enum::value_number_char is same
+			assert(tag_number_integer_char1 == json::helper::Enum::value_number_char);
+
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::Int()
+			json::helper::tag::number::Integer& tag_number_integer_int1 = json::helper::tag::number::Int();
+			//check between value of tag_number_integer_int1 and json::helper::Enum::value_number_int is same
+			assert(tag_number_integer_int1 == json::helper::Enum::value_number_int);
+
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::Long()
+			json::helper::tag::number::Integer& tag_number_integer_long1 = json::helper::tag::number::Long();
+			//check between value of tag_number_integer_long1 and json::helper::Enum::value_number_long is same
+			assert(tag_number_integer_long1 == json::helper::Enum::value_number_long);
+
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::LongLong()
+			json::helper::tag::number::Integer& tag_number_integer_longlong1 = json::helper::tag::number::LongLong();
+			//check between value of tag_number_integer_longlong1 and json::helper::Enum::value_number_longlong is same
+			assert(tag_number_integer_longlong1 == json::helper::Enum::value_number_longlong);
+
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::Short()
+			json::helper::tag::number::Integer& tag_number_integer_short1 = json::helper::tag::number::Short();
+			//check between value of tag_number_integer_short1 and json::helper::Enum::value_number_short is same
+			assert(tag_number_integer_short1 == json::helper::Enum::value_number_short);
+
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedChar()
+			json::helper::tag::number::Integer& tag_number_integer_unsignedchar1 = json::helper::tag::number::UnsignedChar();
+			//check between value of tag_number_integer_unsignedchar1 and json::helper::Enum::value_number_unsignedchar is same
+			assert(tag_number_integer_unsignedchar1 == json::helper::Enum::value_number_unsignedchar);
+
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedInt()
+			json::helper::tag::number::Integer& tag_number_integer_unsignedint1 = json::helper::tag::number::UnsignedInt();
+			//check between value of tag_number_integer_unsignedint1 and json::helper::Enum::value_number_unsignedint is same
+			assert(tag_number_integer_unsignedint1 == json::helper::Enum::value_number_unsignedint);
+
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedLong()
+			json::helper::tag::number::Integer& tag_number_integer_unsignedlong1 = json::helper::tag::number::UnsignedLong();
+			//check between value of tag_number_integer_unsignedlong1 and json::helper::Enum::value_number_unsignedlong is same
+			assert(tag_number_integer_unsignedlong1 == json::helper::Enum::value_number_unsignedlong);
+
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedLongLong()
+			json::helper::tag::number::Integer& tag_number_integer_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
+			//check between value of tag_number_integer_unsignedlonglong1 and json::helper::Enum::value_number_unsignedlonglong is same
+			assert(tag_number_integer_unsignedlonglong1 == json::helper::Enum::value_number_unsignedlonglong);
+
+			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedShort()
+			json::helper::tag::number::Integer& tag_number_integer_unsignedshort1 = json::helper::tag::number::UnsignedShort();
+			//check between value of tag_number_integer_unsignedshort1 and json::helper::Enum::value_number_unsignedshort is same
+			assert(tag_number_integer_unsignedshort1 == json::helper::Enum::value_number_unsignedshort);
+		}
+
+		//check between json::helper::tag::number::Signed and json::helper::Enum is same
+		{
+			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::Char()
+			json::helper::tag::number::Signed& tag_number_signed_char1 = json::helper::tag::number::Char();
+			//check between value of tag_number_signed_char1 and json::helper::Enum::value_number_char is same
+			assert(tag_number_signed_char1 == json::helper::Enum::value_number_char);
+
+			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::Int()
+			json::helper::tag::number::Signed& tag_number_signed_int1 = json::helper::tag::number::Int();
+			//check between value of tag_number_signed_int1 and json::helper::Enum::value_number_int is same
+			assert(tag_number_signed_int1 == json::helper::Enum::value_number_int);
+
+			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::Long()
+			json::helper::tag::number::Signed& tag_number_signed_long1 = json::helper::tag::number::Long();
+			//check between value of tag_number_signed_long1 and json::helper::Enum::value_number_long is same
+			assert(tag_number_signed_long1 == json::helper::Enum::value_number_long);
+
+			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::LongLong()
+			json::helper::tag::number::Signed& tag_number_signed_longlong1 = json::helper::tag::number::LongLong();
+			//check between value of tag_number_signed_longlong1 and json::helper::Enum::value_number_longlong is same
+			assert(tag_number_signed_longlong1 == json::helper::Enum::value_number_longlong);
+
+			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::Short()
+			json::helper::tag::number::Signed& tag_number_signed_short1 = json::helper::tag::number::Short();
+			//check between value of tag_number_signed_short1 and json::helper::Enum::value_number_short is same
+			assert(tag_number_signed_short1 == json::helper::Enum::value_number_short);
+		}
+
+		//check between json::helper::tag::number::Unsigned and json::helper::Enum is same
+		{
+			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedChar()
+			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedchar1 = json::helper::tag::number::UnsignedChar();
+			//check between value of tag_number_unsigned_unsignedchar1 and json::helper::Enum::value_number_unsignedchar is same
+			assert(tag_number_unsigned_unsignedchar1 == json::helper::Enum::value_number_unsignedchar);
+
+			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedInt()
+			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedint1 = json::helper::tag::number::UnsignedInt();
+			//check between value of tag_number_unsigned_unsignedint1 and json::helper::Enum::value_number_unsignedint is same
+			assert(tag_number_unsigned_unsignedint1 == json::helper::Enum::value_number_unsignedint);
+
+			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedLong()
+			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedlong1 = json::helper::tag::number::UnsignedLong();
+			//check between value of tag_number_unsigned_unsignedlong1 and json::helper::Enum::value_number_unsignedlong is same
+			assert(tag_number_unsigned_unsignedlong1 == json::helper::Enum::value_number_unsignedlong);
+
+			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedLongLong()
+			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
+			//check between value of tag_number_unsigned_unsignedlonglong1 and json::helper::Enum::value_number_unsignedlonglong is same
+			assert(tag_number_unsigned_unsignedlonglong1 == json::helper::Enum::value_number_unsignedlonglong);
+
+			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedShort()
+			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedshort1 = json::helper::tag::number::UnsignedShort();
+			//check between value of tag_number_unsigned_unsignedshort1 and json::helper::Enum::value_number_unsignedshort is same
+			assert(tag_number_unsigned_unsignedshort1 == json::helper::Enum::value_number_unsignedshort);
+		}
+
+		//check function json::helper::Tag::Identification with HELPER_VALUE_TYPE is json::helper::Value 
+		// and INPUT_VALUE_TYPE = const json::value&
+		{
+			//declare pointer function with json::helper::Tag::Identification<json::helper::Value, const json::Value&>
+			auto TagIdentification = json::helper::Tag::Identification<json::helper::Value, const json::Value&>;
+
+			//declare json::Value& with assignment from json::value::Array()
+			json::Value& value_array1 = json::value::Array();
+			//check return function of TagIdentification with value_array1 is json::helper::value_array
+			assert(TagIdentification(value_array1) == json::helper::value_array);
+
+			//declare json::Value& with assignment from json::value::False()
+			json::Value& value_false1 = json::value::False();
+			//check return function of TagIdentification with value_false1 is json::helper::value_false
+			assert(TagIdentification(value_false1) == json::helper::value_false);
+
+			//declare json::Value& with assignment from json::value::Null()
+			json::Value& value_null1 = json::value::Null();
+			//check return function of TagIdentification with value_null1 is json::helper::value_null
+			assert(TagIdentification(value_null1) == json::helper::value_null);
+
+			//declare json::Value& with assignment from json::value::Object()
+			json::Value& value_object1 = json::value::Object();
+			//check return function of TagIdentification with value_object1 is json::helper::value_object
+			assert(TagIdentification(value_object1) == json::helper::value_object);
+
+			//declare json::Value& with assignment from json::value::String()
+			json::Value& value_string1 = json::value::String();
+			//check return function of TagIdentification with value_string1 is json::helper::value_string
+			assert(TagIdentification(value_string1) == json::helper::value_string);
+
+			//declare json::Value& with assignment from json::value::True()
+			json::Value& value_true1 = json::value::True();
+			//check return function of TagIdentification with value_true1 is json::helper::value_true
+			assert(TagIdentification(value_true1) == json::helper::value_true);
+
+			//declare json::Value& with assignment from json::value::number::Char()
+			json::Value& value_number_char1 = json::value::number::Char();
+			//check return function of TagIdentification with value_number_char1 is json::helper::value_number_char
+			assert(TagIdentification(value_number_char1) == json::helper::value_number_char);
+
+			//declare json::Value& with assignment from json::value::number::Double()
+			json::Value& value_number_double1 = json::value::number::Double();
+			//check return function of TagIdentification with value_number_double1 is json::helper::value_number_double
+			assert(TagIdentification(value_number_double1) == json::helper::value_number_double);
+
+			//declare json::Value& with assignment from json::value::number::Float()
+			json::Value& value_number_float1 = json::value::number::Float();
+			//check return function of TagIdentification with value_number_float1 is json::helper::value_number_float
+			assert(TagIdentification(value_number_float1) == json::helper::value_number_float);
+
+			//declare json::Value& with assignment from json::value::number::Int()
+			json::Value& value_number_int1 = json::value::number::Int();
+			//check return function of TagIdentification with value_number_int1 is json::helper::value_number_int
+			assert(TagIdentification(value_number_int1) == json::helper::value_number_int);
+
+			//declare json::Value& with assignment from json::value::number::Long()
+			json::Value& value_number_long1 = json::value::number::Long();
+			//check return function of TagIdentification with value_number_long1 is json::helper::value_number_long
+			assert(TagIdentification(value_number_long1) == json::helper::value_number_long);
+
+			//declare json::Value& with assignment from json::value::number::LongDouble()
+			json::Value& value_number_longdouble1 = json::value::number::LongDouble();
+			//check return function of TagIdentification with value_number_longdouble1 is json::helper::value_number_longdouble
+			assert(TagIdentification(value_number_longdouble1) == json::helper::value_number_longdouble);
+
+			//declare json::Value& with assignment from json::value::number::LongLong()
+			json::Value& value_number_longlong1 = json::value::number::LongLong();
+			//check return function of TagIdentification with value_number_longlong1 is json::helper::value_number_longlong
+			assert(TagIdentification(value_number_longlong1) == json::helper::value_number_longlong);
+
+			//declare json::Value& with assignment from json::value::number::UnsignedChar()
+			json::Value& value_number_unsignedchar1 = json::value::number::UnsignedChar();
+			//check return function of TagIdentification with value_number_unsignedchar1 is json::helper::value_number_unsignedchar
+			assert(TagIdentification(value_number_unsignedchar1) == json::helper::value_number_unsignedchar);
+
+			//declare json::Value& with assignment from json::value::number::UnsignedInt()
+			json::Value& value_number_unsignedint1 = json::value::number::UnsignedInt();
+			//check return function of TagIdentification with value_number_unsignedint1 is json::helper::value_number_unsignedint
+			assert(TagIdentification(value_number_unsignedint1) == json::helper::value_number_unsignedint);
+
+			//declare json::Value& with assignment from json::value::number::UnsignedLong()
+			json::Value& value_number_unsignedlong1 = json::value::number::UnsignedLong();
+			//check return function of TagIdentification with value_number_unsignedlong1 is json::helper::value_number_unsignedlong
+			assert(TagIdentification(value_number_unsignedlong1) == json::helper::value_number_unsignedlong);
+
+			//declare json::Value& with assignment from json::value::number::UnsignedLongLong()
+			json::Value& value_number_unsignedlonglong1 = json::value::number::UnsignedLongLong();
+			//check return function of TagIdentification with value_number_unsignedlonglong is json::helper::value_number_unsignedlonglong
+			assert(TagIdentification(value_number_unsignedlonglong1) == json::helper::value_number_unsignedlonglong);
+
+			//declare json::Value& with assignment from json::value::number::UnsignedShort()
+			json::Value& value_number_unsignedshort1 = json::value::number::UnsignedShort();
+			//check return function of TagIdentification with value_number_unsignedshort is json::helper::value_number_unsignedshort
+			assert(TagIdentification(value_number_unsignedshort1) == json::helper::value_number_unsignedshort);
+		}
+	}
+
+	//experiment with /json/helper/value/Case.h
+	{
+		//check helper before use
+		{
+			//declare json::Value& for argument for function Case
+			json::Value& value_string = json::value::String();
+
+			//check struct FullImplementHelperValueCase
+			{
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::Array(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_array);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::False(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_false);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::Null(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_null);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::Object(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_object);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::String(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_string);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::True(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_true);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::Char(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_char);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::Double(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_double);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::Float(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_float);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::Int(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_int);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::Long(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_long);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::LongDouble(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_longdouble);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::LongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_longlong);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::Short(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_short);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::UnsignedChar(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsignedchar);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::UnsignedInt(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsignedint);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsignedlong);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsignedlonglong);
+
+				assert(FullImplementHelperValueCase::Case(json::helper::tag::number::UnsignedShort(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsignedshort);
+			}
+
+			//check struct DefaultImplementHelperValueCase
+			{
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::Array(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::False(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::Null(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::Object(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::String(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::True(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Char(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Double(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Float(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Int(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Long(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::LongDouble(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::LongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Short(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedChar(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedInt(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedShort(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+			}
+
+			//check struct DefaultImplementHelperValueCase
+			{
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::Array(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::False(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::Null(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::Object(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::String(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::True(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Char(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Double(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Float(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Int(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Long(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::LongDouble(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::LongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::Short(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedChar(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedInt(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(DefaultImplementHelperValueCase::Case(json::helper::tag::number::UnsignedShort(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+			}
+
+			//check struct TypeNumber1ImplementHelperValueCase
+			{
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::Array(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::False(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::Null(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::Object(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::String(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::True(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::Char(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::Double(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::Float(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::Int(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::Long(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::LongDouble(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::LongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::Short(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedChar(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedInt(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+				assert(TypeNumber1ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedShort(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+			}
+
+			//check struct TypeNumber2ImplementHelperValueCase
+			{
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::Array(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::False(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::Null(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::Object(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::String(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::True(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::Char(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::Double(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::Float(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::Int(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::Long(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::LongDouble(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::LongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::Short(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedChar(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedInt(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedLongLong(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+				assert(TypeNumber2ImplementHelperValueCase::Case(json::helper::tag::number::UnsignedShort(), value_string)
+					== ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+			}
+
+		}
+
+		/*
+		//check return value of function json::helper::value::Case with 
+		//	parameter template {
+		//		RETURN_TYPE = ReturnHelperValueCase, 
+		//		IMPLEMENT_TYPE = {FullImplementHelperValueCase, DefaultImplementHelperValueCase, TypeNumber1ImplementHelperValueCase or TypeNumber2ImplementHelperValueCase},
+		//		ARGS... = {}}
+		*/
+		{
+			//check json::helper::value::Case without parameter const BrainMuscles::test::simple::json::helper::Tag&
+			{
+				//declare pointer function json::value::Case with IMPLEMENT_TYPE = FullImplementHelperValueCase and const json::Value& for argument
+				ReturnHelperValueCase(*CaseFullImplementConstValue)(const json::Value&)
+					= json::helper::value::Case<ReturnHelperValueCase, FullImplementHelperValueCase>;
+
+				//declare pointer function json::value::Case with IMPLEMENT_TYPE = DefaultImplementHelperValueCase and const json::Value& for argument
+				ReturnHelperValueCase(*CaseDefaultImplementConstValue)(const json::Value&)
+					= json::helper::value::Case<ReturnHelperValueCase, DefaultImplementHelperValueCase>;
+
+				//declare pointer function json::value::Case with IMPLEMENT_TYPE = TypeNumber1ImplementHelperValueCase and const json::Value& for argument
+				ReturnHelperValueCase(*CaseTypeNumber1ImplementConstValue)(const json::Value&)
+					= json::helper::value::Case<ReturnHelperValueCase, TypeNumber1ImplementHelperValueCase>;
+
+				//declare pointer function json::value::Case with IMPLEMENT_TYPE = TypeNumber2ImplementHelperValueCase and const json::Value& for argument
+				ReturnHelperValueCase(*CaseTypeNumber2ImplementConstValue)(const json::Value&)
+					= json::helper::value::Case<ReturnHelperValueCase, TypeNumber2ImplementHelperValueCase>;
+				
+				//check argument const json::Value& with json::value::Array
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_array
+					assert(CaseFullImplementConstValue(json::value::Array()) == ReturnHelperValueCase::call_with_parameter_tag_array);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::Array()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementConstValue(json::value::Array()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementConstValue(json::value::Array()) == ReturnHelperValueCase::call_with_parameter_tag);
+				}
+
+				//check argument const json::Value& with json::value::False
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_false
+					assert(CaseFullImplementConstValue(json::value::False()) == ReturnHelperValueCase::call_with_parameter_tag_false);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::False()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementConstValue(json::value::False()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementConstValue(json::value::False()) == ReturnHelperValueCase::call_with_parameter_tag);
+				}
+
+				//check argument const json::Value& with json::value::Null
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_null
+					assert(CaseFullImplementConstValue(json::value::Null()) == ReturnHelperValueCase::call_with_parameter_tag_null);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::Null()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementConstValue(json::value::Null()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementConstValue(json::value::Null()) == ReturnHelperValueCase::call_with_parameter_tag);
+				}
+
+				//check argument const json::Value& with json::value::Object
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_object
+					assert(CaseFullImplementConstValue(json::value::Object()) == ReturnHelperValueCase::call_with_parameter_tag_object);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::Object()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementConstValue(json::value::Object()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementConstValue(json::value::Object()) == ReturnHelperValueCase::call_with_parameter_tag);
+				}
+
+				//check argument const json::Value& with json::value::String
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_string
+					assert(CaseFullImplementConstValue(json::value::String()) == ReturnHelperValueCase::call_with_parameter_tag_string);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::String()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementConstValue(json::value::String()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementConstValue(json::value::String()) == ReturnHelperValueCase::call_with_parameter_tag);
+				}
+
+				//check argument const json::Value& with json::value::True
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_true
+					assert(CaseFullImplementConstValue(json::value::True()) == ReturnHelperValueCase::call_with_parameter_tag_true);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::True()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementConstValue(json::value::True()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementConstValue(json::value::True()) == ReturnHelperValueCase::call_with_parameter_tag);
+				}
+
+				//check argument const json::Value& with json::value::number::Char
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_char
+					assert(CaseFullImplementConstValue(json::value::number::Char()) == ReturnHelperValueCase::call_with_parameter_tag_number_char);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::Char()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::Char()) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::Char()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+
+				//check argument const json::Value& with json::value::number::Double
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_double
+					assert(CaseFullImplementConstValue(json::value::number::Double()) == ReturnHelperValueCase::call_with_parameter_tag_number_double);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::Double()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_floatingpoint
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::Double()) == ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::Double()) == ReturnHelperValueCase::call_with_parameter_tag_number);
+				}
+
+				//check argument const json::Value& with json::value::number::Double
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_double
+					assert(CaseFullImplementConstValue(json::value::number::Double()) == ReturnHelperValueCase::call_with_parameter_tag_number_double);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::Double()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_floatingpoint
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::Double()) == ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::Double()) == ReturnHelperValueCase::call_with_parameter_tag_number);
+				}
+
+				//check argument const json::Value& with json::value::number::Float
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_float
+					assert(CaseFullImplementConstValue(json::value::number::Float()) == ReturnHelperValueCase::call_with_parameter_tag_number_float);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::Float()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_floatingpoint
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::Float()) == ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::Float()) == ReturnHelperValueCase::call_with_parameter_tag_number);
+				}
+
+				//check argument const json::Value& with json::value::number::Int
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_int
+					assert(CaseFullImplementConstValue(json::value::number::Int()) == ReturnHelperValueCase::call_with_parameter_tag_number_int);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::Int()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::Int()) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::Int()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+
+				//check argument const json::Value& with json::value::number::Long
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_long
+					assert(CaseFullImplementConstValue(json::value::number::Long()) == ReturnHelperValueCase::call_with_parameter_tag_number_long);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::Long()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::Long()) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::Long()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+
+				//check argument const json::Value& with json::value::number::LongDouble
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_longdouble
+					assert(CaseFullImplementConstValue(json::value::number::LongDouble()) == ReturnHelperValueCase::call_with_parameter_tag_number_longdouble);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::LongDouble()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_floatingpoint
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::LongDouble()) == ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::LongDouble()) == ReturnHelperValueCase::call_with_parameter_tag_number);
+				}
+
+				//check argument const json::Value& with json::value::number::LongLong
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_longlong
+					assert(CaseFullImplementConstValue(json::value::number::LongLong()) == ReturnHelperValueCase::call_with_parameter_tag_number_longlong);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::LongLong()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::LongLong()) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::LongLong()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+
+				//check argument const json::Value& with json::value::number::Short
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_short
+					assert(CaseFullImplementConstValue(json::value::number::Short()) == ReturnHelperValueCase::call_with_parameter_tag_number_short);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::Short()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::Short()) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::Short()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+
+				//check argument const json::Value& with json::value::number::UnsignedChar
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_unsignedchar
+					assert(CaseFullImplementConstValue(json::value::number::UnsignedChar()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedchar);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::UnsignedChar()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::UnsignedChar()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::UnsignedChar()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+
+				//check argument const json::Value& with json::value::number::UnsignedInt
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_unsignedint
+					assert(CaseFullImplementConstValue(json::value::number::UnsignedInt()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedint);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::UnsignedInt()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::UnsignedInt()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::UnsignedInt()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+
+				//check argument const json::Value& with json::value::number::UnsignedLong
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_unsignedlong
+					assert(CaseFullImplementConstValue(json::value::number::UnsignedLong()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedlong);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::UnsignedLong()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::UnsignedLong()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::UnsignedLong()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+
+				//check argument const json::Value& with json::value::number::UnsignedLongLong
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_unsignedlonglong
+					assert(CaseFullImplementConstValue(json::value::number::UnsignedLongLong()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedlonglong);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::UnsignedLongLong()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::UnsignedLongLong()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::UnsignedLongLong()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+
+				//check argument const json::Value& with json::value::number::UnsignedShort
+				{
+					//check return value function CaseFullImplementConstValue is call_with_parameter_tag_number_unsignedShort
+					assert(CaseFullImplementConstValue(json::value::number::UnsignedShort()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedshort);
+
+					//check return value function CaseDefaultImplementConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementConstValue(json::value::number::UnsignedShort()) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementConstValue(json::value::number::UnsignedShort()) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+					//check return value function CaseTypeNumber2ImplementConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementConstValue(json::value::number::UnsignedShort()) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+			}
+
+			//check json::helper::value::Case with parameter const BrainMuscles::test::simple::json::helper::Tag&
+			{
+				//declare pointer function json::value::Case with IMPLEMENT_TYPE = FullImplementHelperValueCase and const json::Value& for argument
+				ReturnHelperValueCase(*CaseFullImplementTagConstValue)(const json::helper::Tag&, const json::Value&)
+					= json::helper::value::Case<ReturnHelperValueCase, FullImplementHelperValueCase>;
+
+				//declare pointer function json::value::Case with IMPLEMENT_TYPE = DefaultImplementHelperValueCase and {const json::helper::Tag& and const json::Value&} for arguments
+				ReturnHelperValueCase(*CaseDefaultImplementTagConstValue)(const json::helper::Tag&, const json::Value&)
+					= json::helper::value::Case<ReturnHelperValueCase, DefaultImplementHelperValueCase>;
+
+				//declare pointer function json::value::Case with IMPLEMENT_TYPE = TypeNumber1ImplementHelperValueCase and {const json::helper::Tag& and const json::Value&} for arguments
+				ReturnHelperValueCase(*CaseTypeNumber1ImplementTagConstValue)(const json::helper::Tag&, const json::Value&)
+					= json::helper::value::Case<ReturnHelperValueCase, TypeNumber1ImplementHelperValueCase>;
+
+				//declare pointer function json::value::Case with IMPLEMENT_TYPE = TypeNumber2ImplementHelperValueCase and {const json::helper::Tag& and const json::Value&} for arguments
+				ReturnHelperValueCase(*CaseTypeNumber2ImplementTagConstValue)(const json::helper::Tag&, const json::Value&)
+					= json::helper::value::Case<ReturnHelperValueCase, TypeNumber2ImplementHelperValueCase>;
+
+				//declare json::Value& for argument for function Case
+				json::Value& value_string1 = json::value::String();
+
+				//declare json::Tag& from assignment with /json/helper/tag
+				json::helper::Tag& tag_array1 = json::helper::tag::Array();
+				json::helper::Tag& tag_false1 = json::helper::tag::False();
+				json::helper::Tag& tag_null1 = json::helper::tag::Null();
+				json::helper::Tag& tag_number1 = json::helper::tag::Number();
+				json::helper::Tag& tag_object1 = json::helper::tag::Object();
+				json::helper::Tag& tag_string1 = json::helper::tag::String();
+				json::helper::Tag& tag_true1 = json::helper::tag::True();
+
+				//declare json::Tag& from assignment with /json/helper/tag/number
+				json::helper::Tag& tag_number_char1 = json::helper::tag::number::Char();
+				json::helper::Tag& tag_number_double1 = json::helper::tag::number::Double();
+				json::helper::Tag& tag_number_float1 = json::helper::tag::number::Float();
+				json::helper::Tag& tag_number_int1 = json::helper::tag::number::Int();
+				json::helper::Tag& tag_number_long1 = json::helper::tag::number::Long();
+				json::helper::Tag& tag_number_longdouble1 = json::helper::tag::number::LongDouble();
+				json::helper::Tag& tag_number_longlong1 = json::helper::tag::number::LongLong();
+				json::helper::Tag& tag_number_short1 = json::helper::tag::number::Short();
+				json::helper::Tag& tag_number_unsignedchar1 = json::helper::tag::number::UnsignedChar();
+				json::helper::Tag& tag_number_unsignedint1 = json::helper::tag::number::UnsignedInt();
+				json::helper::Tag& tag_number_unsignedlong1 = json::helper::tag::number::UnsignedLong();
+				json::helper::Tag& tag_number_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
+				json::helper::Tag& tag_number_unsignedshort1 = json::helper::tag::number::UnsignedShort();
+
+				//check CaseFullImplementTagConstValue with parameters json::Tag and json::Value&
+				{
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_array
+					assert(CaseFullImplementTagConstValue(tag_array1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_array);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_false
+					assert(CaseFullImplementTagConstValue(tag_false1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_false);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_null
+					assert(CaseFullImplementTagConstValue(tag_null1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_null);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number
+					assert(CaseFullImplementTagConstValue(tag_number1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_object
+					assert(CaseFullImplementTagConstValue(tag_object1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_object);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_string
+					assert(CaseFullImplementTagConstValue(tag_string1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_string);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_true
+					assert(CaseFullImplementTagConstValue(tag_true1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_true);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_char
+					assert(CaseFullImplementTagConstValue(tag_number_char1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_char);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_double
+					assert(CaseFullImplementTagConstValue(tag_number_double1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_double);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_float
+					assert(CaseFullImplementTagConstValue(tag_number_float1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_float);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_int
+					assert(CaseFullImplementTagConstValue(tag_number_int1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_int);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_long
+					assert(CaseFullImplementTagConstValue(tag_number_long1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_long);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_longdouble
+					assert(CaseFullImplementTagConstValue(tag_number_longdouble1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_longdouble);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_longlong
+					assert(CaseFullImplementTagConstValue(tag_number_longlong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_longlong);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_short
+					assert(CaseFullImplementTagConstValue(tag_number_short1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_short);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_unsignedchar
+					assert(CaseFullImplementTagConstValue(tag_number_unsignedchar1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedchar);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_unsignedint
+					assert(CaseFullImplementTagConstValue(tag_number_unsignedint1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedint);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_unsignedlong
+					assert(CaseFullImplementTagConstValue(tag_number_unsignedlong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedlong);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_unsignedlonglong
+					assert(CaseFullImplementTagConstValue(tag_number_unsignedlonglong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedlonglong);
+
+					//check return value function CaseFullImplementTagConstValue is call_with_parameter_tag_number_unsignedshort
+					assert(CaseFullImplementTagConstValue(tag_number_unsignedshort1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsignedshort);
+				}
+
+				//check CaseDefaultImplementTagConstValue with parameters json::Tag and json::Value&
+				{
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_array1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_false1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_null1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_object1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_string1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_true1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_char1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_double1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_float1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_int1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_long1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_longdouble1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_longlong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_short1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_unsignedchar1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_unsignedint1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_unsignedlong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_unsignedlonglong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseDefaultImplementTagConstValue is call_with_parameter_tag
+					assert(CaseDefaultImplementTagConstValue(tag_number_unsignedshort1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+				}
+
+				//check CaseTypeNumber1ImplementTagConstValue with parameters json::Tag and json::Value&
+				{
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_array1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_false1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_null1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_object1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_string1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_true1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_char1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_floatingpoint
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_double1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_floatingpoint
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_float1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_int1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_long1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_floatingpoint
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_longdouble1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_floatingpoint);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_longlong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_signed
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_short1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_signed);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_unsignedchar1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_unsignedint1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_unsignedlong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_unsignedlonglong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+
+					//check return value function CaseTypeNumber1ImplementTagConstValue is call_with_parameter_tag_number_unsigned
+					assert(CaseTypeNumber1ImplementTagConstValue(tag_number_unsignedshort1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_unsigned);
+				}
+
+				//check CaseTypeNumber2ImplementTagConstValue with parameters json::Tag and json::Value&
+				{
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_array1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_false1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_null1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_object1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_string1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_true1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_char1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_double1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_float1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_int1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_long1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_longdouble1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_longlong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_short1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_unsignedchar1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_unsignedint1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_unsignedlong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_unsignedlonglong1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+
+					//check return value function CaseTypeNumber2ImplementTagConstValue is call_with_parameter_tag_number_integer
+					assert(CaseTypeNumber2ImplementTagConstValue(tag_number_unsignedshort1, value_string1) == ReturnHelperValueCase::call_with_parameter_tag_number_integer);
+				}
+			}
+		}
+	}
+
 	return 1;
 }
