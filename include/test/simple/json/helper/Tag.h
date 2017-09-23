@@ -5,6 +5,8 @@
 #ifndef TEST_SIMPLE_JSON_HELPER_TAG_H___DEFINITION__
 #define TEST_SIMPLE_JSON_HELPER_TAG_H___DEFINITION__
 
+#include "test\simple\json\exception\UndefinedType.h"
+
 #include "test\simple\json\helper\Enum.h"
 
 namespace BrainMuscles
@@ -33,12 +35,14 @@ namespace BrainMuscles
 					public:
 						static constexpr bool IsValue(const EnumType& value);
 						static constexpr bool IsValueNumber(const EnumType& value);
-						static constexpr bool IsValueNumberFloatingPoint(const EnumType& value);
-						static constexpr bool IsValueNumberInteger(const EnumType& value);
-						static constexpr bool IsValueNumberIntegerSigned(const EnumType& value);
-						static constexpr bool IsValueNumberIntegerUnsigned(const EnumType& value);
+						static constexpr bool IsFloatingPoint(const EnumType& value);
+						static constexpr bool IsInteger(const EnumType& value);
+						static constexpr bool IsSigned(const EnumType& value);
+						static constexpr bool IsUnsigned(const EnumType& value);
 						template<typename HELPER_VALUE_TYPE, typename INPUT_VALUE_TYPE>
 						static Tag Identification(const INPUT_VALUE_TYPE& input_value);
+						template<typename RETURN_TYPE, typename IMPLEMENT_TYPE, typename... ARGS>
+						static RETURN_TYPE Case(const Tag& tag, ARGS... args);
 					};
 				}
 			}
@@ -125,23 +129,23 @@ namespace BrainMuscles
 					constexpr bool Tag::IsValueNumber(const EnumType& value)
 					{
 						return value == EnumType::value_number ||
-							IsValueNumberFloatingPoint(value) ||
-							IsValueNumberInteger(value);
+							IsFloatingPoint(value) ||
+							IsInteger(value);
 					}
 
-					constexpr bool Tag::IsValueNumberFloatingPoint(const EnumType& value)
+					constexpr bool Tag::IsFloatingPoint(const EnumType& value)
 					{
 						return value == EnumType::value_number_double ||
 							value == EnumType::value_number_float ||
 							value == EnumType::value_number_longdouble;
 					}
 
-					constexpr bool Tag::IsValueNumberInteger(const EnumType& value)
+					constexpr bool Tag::IsInteger(const EnumType& value)
 					{
-						return IsValueNumberIntegerSigned(value) || IsValueNumberIntegerUnsigned(value);
+						return IsSigned(value) || IsUnsigned(value);
 					}
 
-					constexpr bool Tag::IsValueNumberIntegerSigned(const EnumType& value)
+					constexpr bool Tag::IsSigned(const EnumType& value)
 					{
 						return value == EnumType::value_number_char ||
 							value == EnumType::value_number_int ||
@@ -149,7 +153,7 @@ namespace BrainMuscles
 							value == EnumType::value_number_longlong ||
 							value == EnumType::value_number_short;
 					}
-					constexpr bool Tag::IsValueNumberIntegerUnsigned(const EnumType& value)
+					constexpr bool Tag::IsUnsigned(const EnumType& value)
 					{
 						return value == EnumType::value_number_unsignedchar ||
 							value == EnumType::value_number_unsignedint ||
@@ -303,6 +307,92 @@ namespace BrainMuscles
 						}
 
 						return EnumType::undefined;
+					}
+
+					template<typename RETURN_TYPE, typename IMPLEMENT_TYPE, typename... ARGS>
+					RETURN_TYPE Tag::Case(const Tag& tag, ARGS... args)
+					{
+						if (tag == EnumType::value_array)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::Array(), args...);
+						}
+						else if (tag == EnumType::value_false)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::False(), args...);
+						}
+						else if (tag == EnumType::value_null)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::Null(), args...);
+						}
+						else if (tag == EnumType::value_number)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::Number(), args...);
+						}
+						else if (tag == EnumType::value_object)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::Object(), args...);
+						}
+						else if (tag == EnumType::value_string)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::String(), args...);
+						}
+						else if (tag == EnumType::value_true)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::True(), args...);
+						}
+						else if (tag == EnumType::value_number_char)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::Char(), args...);
+						}
+						else if (tag == EnumType::value_number_double)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::Double(), args...);
+						}
+						else if (tag == EnumType::value_number_float)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::Float(), args...);
+						}
+						else if (tag == EnumType::value_number_int)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::Int(), args...);
+						}
+						else if (tag == EnumType::value_number_long)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::Long(), args...);
+						}
+						else if (tag == EnumType::value_number_longdouble)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::LongDouble(), args...);
+						}
+						else if (tag == EnumType::value_number_longlong)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::LongLong(), args...);
+						}
+						else if (tag == EnumType::value_number_short)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::Short(), args...);
+						}
+						else if (tag == EnumType::value_number_unsignedchar)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::UnsignedChar(), args...);
+						}
+						else if (tag == EnumType::value_number_unsignedint)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::UnsignedInt(), args...);
+						}
+						else if (tag == EnumType::value_number_unsignedlong)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::UnsignedLong(), args...);
+						}
+						else if (tag == EnumType::value_number_unsignedlonglong)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::UnsignedLongLong(), args...);
+						}
+						else if (tag == EnumType::value_number_unsignedshort)
+						{
+							return IMPLEMENT_TYPE::Case(BrainMuscles::test::simple::json::helper::tag::number::UnsignedShort(), args...);
+						}
+						throw(BrainMuscles::test::simple::json::exception::UndefinedType<const BrainMuscles::test::simple::json::helper::Tag&, BrainMuscles::test::simple::json::helper::Tag>(tag));
 					}
 				}
 			}
