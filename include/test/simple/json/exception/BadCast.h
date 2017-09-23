@@ -25,8 +25,8 @@ namespace BrainMuscles
 					class BadCast :
 						public std::exception
 					{
-					public:
-						static const std::string Message;
+					private:
+						static std::string ms_message;
 					public:
 						BadCast() = default;
 						~BadCast() = default;
@@ -34,16 +34,12 @@ namespace BrainMuscles
 						static const std::string InstanceMessage();
 					public:
 						const char* what() const;
+					public:
+						static const std::string Message();
 					};
 
 					template<typename FROM_TYPE, typename TO_TYPE>
-					const char* BadCast<FROM_TYPE, TO_TYPE>::what() const
-					{
-						return Message.c_str();
-					}
-
-					template<typename FROM_TYPE, typename TO_TYPE>
-					const std::string BadCast<FROM_TYPE, TO_TYPE>::Message = InstanceMessage();
+					std::string BadCast<FROM_TYPE, TO_TYPE>::ms_message;
 			
 					template<typename FROM_TYPE, typename TO_TYPE>
 					const std::string BadCast<FROM_TYPE, TO_TYPE>::InstanceMessage()
@@ -53,6 +49,22 @@ namespace BrainMuscles
 						message += " to ";
 						message += BrainMuscles::test::simple::type::Name<TO_TYPE>::Value();
 						return message;
+					}
+
+					template<typename FROM_TYPE, typename TO_TYPE>
+					const char* BadCast<FROM_TYPE, TO_TYPE>::what() const
+					{
+						return ms_message.c_str();
+					}
+
+					template<typename FROM_TYPE, typename TO_TYPE>
+					const std::string BadCast<FROM_TYPE, TO_TYPE>::Message()
+					{
+						if (ms_message.empty())
+						{
+							ms_message = InstanceMessage();
+						}
+						return ms_message;
 					}
 				}
 			}
