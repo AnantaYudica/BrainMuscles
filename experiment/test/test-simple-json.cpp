@@ -92,7 +92,6 @@ using namespace BrainMuscles::test::simple;
 
 using namespace std;
 
-
 //helper enum for Identify for return static function 'Case' in experiment /json/helper/value/Case.h
 enum ReturnHelperValueCase
 {
@@ -4142,188 +4141,188 @@ int main(int argc, char *argv[])
 			assert(json::helper::Tag::IsValueNumber(json::helper::Enum::value_number_unsignedshort) == true);
 		}
 
-		//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum
+		//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum
 		{
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::undefined is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::undefined) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_array is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_array) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_false is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_false) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_null is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_null) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_object is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_object) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_string is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_string) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_true is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_true) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_char is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_char) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_double is true
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_double) == true);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_float is true
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_float) == true);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_int is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_int) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_long is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_long) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_longdouble is true
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_longdouble) == true);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_longlong is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_longlong) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_short is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_short) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedchar is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedchar) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedint is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedint) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedlong is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedlong) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedlonglong is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedlonglong) == false);
-			//check static function json::helper::Tag::IsValueNumberFloatingPoint with json::helper::Enum::value_number_unsignedshort is false
-			assert(json::helper::Tag::IsValueNumberFloatingPoint(json::helper::Enum::value_number_unsignedshort) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_array is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_array) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_false is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_false) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_null is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_null) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_object is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_object) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_string is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_string) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_true is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_true) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_char is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_char) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_double is true
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_double) == true);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_float is true
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_float) == true);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_int is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_int) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_long is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_long) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_longdouble is true
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_longdouble) == true);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_longlong is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_longlong) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_short is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_short) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_unsignedchar is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_unsignedchar) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_unsignedint is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_unsignedint) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_unsignedlong is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_unsignedlong) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_unsignedlonglong is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_unsignedlonglong) == false);
+			//check static function json::helper::Tag::IsFloatingPoint with json::helper::Enum::value_number_unsignedshort is false
+			assert(json::helper::Tag::IsFloatingPoint(json::helper::Enum::value_number_unsignedshort) == false);
 		}
 
-		//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum
+		//check static function json::helper::Tag::IsInteger with json::helper::Enum
 		{
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::undefined is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::undefined) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_array is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_array) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_false is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_false) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_null is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_null) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_object is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_object) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_string is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_string) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_true is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_true) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_char is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_char) == true);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_double is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_double) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_float is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_float) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_int is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_int) == true);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_long is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_long) == true);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_longdouble is false
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_longdouble) == false);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_longlong is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_longlong) == true);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_short is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_short) == true);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedchar is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedchar) == true);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedint is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedint) == true);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedlong is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedlong) == true);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedlonglong is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedlonglong) == true);
-			//check static function json::helper::Tag::IsValueNumberInteger with json::helper::Enum::value_number_unsignedshort is true
-			assert(json::helper::Tag::IsValueNumberInteger(json::helper::Enum::value_number_unsignedshort) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_array is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_array) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_false is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_false) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_null is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_null) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_object is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_object) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_string is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_string) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_true is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_true) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_char is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_char) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_double is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_double) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_float is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_float) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_int is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_int) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_long is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_long) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_longdouble is false
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_longdouble) == false);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_longlong is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_longlong) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_short is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_short) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_unsignedchar is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_unsignedchar) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_unsignedint is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_unsignedint) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_unsignedlong is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_unsignedlong) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_unsignedlonglong is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_unsignedlonglong) == true);
+			//check static function json::helper::Tag::IsInteger with json::helper::Enum::value_number_unsignedshort is true
+			assert(json::helper::Tag::IsInteger(json::helper::Enum::value_number_unsignedshort) == true);
 		}
 
-		//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum
+		//check static function json::helper::Tag::IsSigned with json::helper::Enum
 		{
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::undefined is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::undefined) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_array is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_array) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_false is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_false) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_null is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_null) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_object is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_object) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_string is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_string) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_true is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_true) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_char is true
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_char) == true);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_double is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_double) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_float is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_float) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_int is true
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_int) == true);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_long is true
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_long) == true);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_longdouble is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_longdouble) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_longlong is true
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_longlong) == true);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_short is true
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_short) == true);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedchar is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedchar) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedint is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedint) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedlong is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedlong) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedlonglong is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedlonglong) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerSigned with json::helper::Enum::value_number_unsignedshort is false
-			assert(json::helper::Tag::IsValueNumberIntegerSigned(json::helper::Enum::value_number_unsignedshort) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_array is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_array) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_false is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_false) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_null is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_null) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_object is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_object) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_string is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_string) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_true is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_true) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_char is true
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_char) == true);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_double is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_double) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_float is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_float) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_int is true
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_int) == true);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_long is true
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_long) == true);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_longdouble is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_longdouble) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_longlong is true
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_longlong) == true);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_short is true
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_short) == true);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_unsignedchar is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_unsignedchar) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_unsignedint is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_unsignedint) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_unsignedlong is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_unsignedlong) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_unsignedlonglong is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_unsignedlonglong) == false);
+			//check static function json::helper::Tag::IsSigned with json::helper::Enum::value_number_unsignedshort is false
+			assert(json::helper::Tag::IsSigned(json::helper::Enum::value_number_unsignedshort) == false);
 		}
 
-		//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum
+		//check static function json::helper::Tag::IsUnsigned with json::helper::Enum
 		{
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::undefined is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::undefined) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_array is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_array) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_false is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_false) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_null is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_null) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_object is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_object) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_string is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_string) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_true is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_true) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_char is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_char) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_double is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_double) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_float is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_float) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_int is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_int) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_long is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_long) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_longdouble is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_longdouble) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_longlong is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_longlong) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_short is false
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_short) == false);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedchar is true
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedchar) == true);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedint is true
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedint) == true);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedlong is true
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedlong) == true);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedlonglong is true
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedlonglong) == true);
-			//check static function json::helper::Tag::IsValueNumberIntegerUnsigned with json::helper::Enum::value_number_unsignedshort is true
-			assert(json::helper::Tag::IsValueNumberIntegerUnsigned(json::helper::Enum::value_number_unsignedshort) == true);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::undefined is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::undefined) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_array is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_array) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_false is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_false) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_null is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_null) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_object is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_object) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_string is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_string) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_true is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_true) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_char is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_char) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_double is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_double) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_float is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_float) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_int is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_int) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_long is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_long) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_longdouble is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_longdouble) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_longlong is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_longlong) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_short is false
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_short) == false);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_unsignedchar is true
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_unsignedchar) == true);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_unsignedint is true
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_unsignedint) == true);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_unsignedlong is true
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_unsignedlong) == true);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_unsignedlonglong is true
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_unsignedlonglong) == true);
+			//check static function json::helper::Tag::IsUnsigned with json::helper::Enum::value_number_unsignedshort is true
+			assert(json::helper::Tag::IsUnsigned(json::helper::Enum::value_number_unsignedshort) == true);
 		}
 
 		//check between default constructor of json/helper/tag and json::helper::Enum is same
@@ -5160,7 +5159,7 @@ int main(int argc, char *argv[])
 		//check return value of function json::helper::value::Case with 
 		//	parameter template {
 		//		RETURN_TYPE = ReturnHelperValueCase, 
-		//		IMPLEMENT_TYPE = {FullImplementHelperValueCase, DefaultImplementHelperValueCase, TypeNumber1ImplementHelperValueCase or TypeNumber2ImplementHelperValueCase},
+		//		CALLBACK_TYPE = {FullImplementHelperValueCase::Case, DefaultImplementHelperValueCase, TypeNumber1ImplementHelperValueCase or TypeNumber2ImplementHelperValueCase},
 		//		ARGS... = {}}
 		*/
 		{
@@ -5781,7 +5780,15 @@ int main(int argc, char *argv[])
 				}
 			}
 		}
+
+		constexpr int base = sizeof(json::Value);
+		constexpr int x = sizeof(json::value::False);
+
 	}
+
+	int&& rint = 3;
+
+	json::helper::Tag&& rtag = json::helper::tag::Array();
 
 	return 1;
 }
