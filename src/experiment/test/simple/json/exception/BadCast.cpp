@@ -16,7 +16,6 @@ namespace experiment
 			{
 				namespace exception
 				{
-
 					void BadCast::Test()
 					{
 						//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
@@ -52,6 +51,11 @@ namespace experiment
 							SourceAssert(strcmp(e.what(), BMTestSimple::json::exception::BadCast<int, float>::Message().c_str()) == 0,
 								"function member 'what()' from class std::exception and static function 'Message()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not same");
 						}
+					}
+
+					void BadCast::StaticTest()
+					{
+						Test();
 					}
 				}
 			}
