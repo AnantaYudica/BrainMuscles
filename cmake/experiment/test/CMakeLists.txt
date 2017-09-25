@@ -1,4 +1,4 @@
-include_directories (${PROJECT_SOURCE_DIR}/../include)
+add_subdirectory(simple)
 
 #PROJECT_TEST_DEBUG
 add_executable (Test-Debug ${PROJECT_SOURCE_DIR}/../experiment/test/test-debug.cpp)
