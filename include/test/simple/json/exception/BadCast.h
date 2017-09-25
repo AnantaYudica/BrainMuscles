@@ -35,7 +35,7 @@ namespace BrainMuscles
 					public:
 						const char* what() const;
 					public:
-						static const std::string Message();
+						static const std::string& Message();
 					};
 
 					template<typename FROM_TYPE, typename TO_TYPE>
@@ -54,11 +54,11 @@ namespace BrainMuscles
 					template<typename FROM_TYPE, typename TO_TYPE>
 					const char* BadCast<FROM_TYPE, TO_TYPE>::what() const
 					{
-						return ms_message.c_str();
+						return Message().c_str();
 					}
 
 					template<typename FROM_TYPE, typename TO_TYPE>
-					const std::string BadCast<FROM_TYPE, TO_TYPE>::Message()
+					const std::string& BadCast<FROM_TYPE, TO_TYPE>::Message()
 					{
 						if (ms_message.empty())
 						{
