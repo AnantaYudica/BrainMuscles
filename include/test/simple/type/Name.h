@@ -9,6 +9,8 @@
 #include <type_traits>
 #include <typeindex>
 
+#include "test\Variable.h"
+
 namespace BrainMuscles
 {
 	namespace test
@@ -17,14 +19,7 @@ namespace BrainMuscles
 		{
 			namespace type
 			{
-				namespace name
-				{
-					char DefaultAliasName[] = "TYPE";
-					char DefaultBeginAliasName[] = "[";
-					char DefaultEndAliasName[] = "]";
-				}
-
-				template<typename TYPE, const char* ALIAS_NAME = BrainMuscles::test::simple::type::name::DefaultAliasName>
+				template<typename TYPE, const char* ALIAS_NAME = BrainMuscles::test::variable::simple::type::name::DefaultAliasName>
 				class Name
 				{
 				protected:
@@ -180,11 +175,11 @@ namespace BrainMuscles
 				void Name<TYPE, ALIAS_NAME>::AliasNameInstance(std::string& out)
 				{
 					out += " ";
-					out += BrainMuscles::test::simple::type::name::DefaultBeginAliasName;
+					out += BrainMuscles::test::variable::simple::type::name::DefaultBeginAliasName;
 					out += ALIAS_NAME;
 					out += " = ";
 					out += typeid(TYPE).name();
-					out += BrainMuscles::test::simple::type::name::DefaultEndAliasName;
+					out += BrainMuscles::test::variable::simple::type::name::DefaultEndAliasName;
 				}
 
 				template<typename TYPE, const char* ALIAS_NAME>
