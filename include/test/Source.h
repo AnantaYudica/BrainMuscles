@@ -19,6 +19,8 @@ namespace BrainMuscles
 			static DERIVED_TYPE ms_instance;
 		private:
 			ResultType m_status;
+		public:
+			static const ResultType ResultStaticTest;
 		protected:
 			Source();
 		public:
@@ -29,7 +31,13 @@ namespace BrainMuscles
 			static const ResultType& Status();
 			static ResultType RunTest();
 			static const DERIVED_TYPE& GetInstance();
+			static void Test();
+			static ResultType RunStaticTest();
+			static void StaticTest();
 		};
+
+		template<typename DERIVED_TYPE>
+		const typename Source<DERIVED_TYPE>::ResultType Source<DERIVED_TYPE>::ResultStaticTest = RunStaticTest();
 
 		template<typename DERIVED_TYPE>
 		DERIVED_TYPE Source<DERIVED_TYPE>::ms_instance = DERIVED_TYPE();
@@ -64,7 +72,9 @@ namespace BrainMuscles
 		template<typename DERIVED_TYPE>
 		typename Source<DERIVED_TYPE>::ResultType Source<DERIVED_TYPE>::RunTest()
 		{
-			if (BrainMuscles::test::source::Environment::Result() == ResultType::pass && ms_instance.m_status == ResultType::not_test)
+			if (BrainMuscles::test::source::Environment::Result() == ResultType::pass 
+				&& ms_instance.m_status == ResultType::not_test
+				&& &DERIVED_TYPE::Test != &Source<DERIVED_TYPE>::Test)
 			{
 				DERIVED_TYPE::Test();
 				ms_instance.m_status = BrainMuscles::test::source::Environment::Result();
@@ -78,6 +88,27 @@ namespace BrainMuscles
 		{
 			return ms_instance;
 		}
+
+		template<typename DERIVED_TYPE>
+		void Source<DERIVED_TYPE>::Test()
+		{}
+
+		template<typename DERIVED_TYPE>
+		typename Source<DERIVED_TYPE>::ResultType Source<DERIVED_TYPE>::RunStaticTest()
+		{
+			if (BrainMuscles::test::source::Environment::Result() == ResultType::pass
+				&& &DERIVED_TYPE::StaticTest != &Source<DERIVED_TYPE>::StaticTest)
+			{
+				DERIVED_TYPE::StaticTest();
+				ms_instance.m_status = BrainMuscles::test::source::Environment::Result();
+				return ms_instance.m_status;
+			}
+			return ResultType::not_test;
+		}
+
+		template<typename DERIVED_TYPE>
+		void Source<DERIVED_TYPE>::StaticTest()
+		{}
 	}
 }
 
