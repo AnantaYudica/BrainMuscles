@@ -1,5 +1,5 @@
 #include "io\Stream.h"
-#include "test\Test.h"
+#include "Test.h"
 
 namespace BrainMuscles
 {
