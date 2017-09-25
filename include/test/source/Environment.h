@@ -5,7 +5,7 @@
 
 #include <cstdio>
 
-#include "test\soruce\Result.h"
+#include "test\source\Result.h"
 
 namespace BrainMuscles
 {
