@@ -21,6 +21,7 @@ namespace experiment
 						BadCast() = default;
 					public:
 						static void Test();
+						static void StaticTest();
 					};
 				}
 			}
