@@ -21,9 +21,9 @@ namespace experiment
 						//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
 						namespace BMTestSimple = BrainMuscles::test::simple;
 
-						//check static function 'Message()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not empty
+						//check static variable member 'Message' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not empty
 						SourceAssert(strcmp(BMTestSimple::json::exception::BadCast<int, float>::Message.c_str(), "") != 0,
-							"static function member 'Message()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is empty");
+							"static variable member 'Message' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is empty");
 
 						//declare BrainMuscles::test::simple::json::exception::BadCast<int, float> with default initialization
 						BMTestSimple::json::exception::BadCast<int, float> exception_badcast;
@@ -32,10 +32,10 @@ namespace experiment
 						SourceAssert(strcmp(exception_badcast.what(), "") != 0, 
 							"function member 'what()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is empty");
 
-						//check return value between function member 'what()' and static function member 'Message()' 
+						//check return value between function member 'what()' and static variable member 'Message' 
 						// from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is same
 						SourceAssert(strcmp(exception_badcast.what(), BMTestSimple::json::exception::BadCast<int, float>::Message.c_str()) == 0,
-							"function member 'what()' and static function 'Message()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not same");
+							"function member 'what()' and static variable member 'Message' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not same");
 
 						//check trigger exception with class BrainMuscles::test::simple::json::exception::BadCast<int, float>
 						try
@@ -47,9 +47,9 @@ namespace experiment
 						catch (const std::exception& e)
 						{
 							//check return value between function member 'what()' from class std::exception 
-							// and static function member 'Message()' from BrainMuscles::test::simple::json::exception::BadCast<int, float> is same
+							// and static variable member 'Message' from BrainMuscles::test::simple::json::exception::BadCast<int, float> is same
 							SourceAssert(strcmp(e.what(), BMTestSimple::json::exception::BadCast<int, float>::Message.c_str()) == 0,
-								"function member 'what()' from class std::exception and static function 'Message()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not same");
+								"function member 'what()' from class std::exception and static variable member 'Message' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not same");
 						}
 					}
 
