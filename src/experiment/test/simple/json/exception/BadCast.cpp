@@ -22,7 +22,7 @@ namespace experiment
 						namespace BMTestSimple = BrainMuscles::test::simple;
 
 						//check static function 'Message()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not empty
-						SourceAssert(strcmp(BMTestSimple::json::exception::BadCast<int, float>::Message().c_str(), "") != 0,
+						SourceAssert(strcmp(BMTestSimple::json::exception::BadCast<int, float>::Message.c_str(), "") != 0,
 							"static function member 'Message()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is empty");
 
 						//declare BrainMuscles::test::simple::json::exception::BadCast<int, float> with default initialization
@@ -34,7 +34,7 @@ namespace experiment
 
 						//check return value between function member 'what()' and static function member 'Message()' 
 						// from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is same
-						SourceAssert(strcmp(exception_badcast.what(), BMTestSimple::json::exception::BadCast<int, float>::Message().c_str()) == 0,
+						SourceAssert(strcmp(exception_badcast.what(), BMTestSimple::json::exception::BadCast<int, float>::Message.c_str()) == 0,
 							"function member 'what()' and static function 'Message()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not same");
 
 						//check trigger exception with class BrainMuscles::test::simple::json::exception::BadCast<int, float>
@@ -48,7 +48,7 @@ namespace experiment
 						{
 							//check return value between function member 'what()' from class std::exception 
 							// and static function member 'Message()' from BrainMuscles::test::simple::json::exception::BadCast<int, float> is same
-							SourceAssert(strcmp(e.what(), BMTestSimple::json::exception::BadCast<int, float>::Message().c_str()) == 0,
+							SourceAssert(strcmp(e.what(), BMTestSimple::json::exception::BadCast<int, float>::Message.c_str()) == 0,
 								"function member 'what()' from class std::exception and static function 'Message()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not same");
 						}
 					}
