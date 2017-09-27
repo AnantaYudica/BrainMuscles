@@ -36,10 +36,10 @@ namespace BrainMuscles
 					static constexpr const char * const TrueCString = "true";
 					static constexpr const char * const NullCString = "null";
 				public:
-					static const char * StringToConstCString(const StringType& string);
+					static inline const char * StringToConstCString(const StringType& string);
 				};
 
-				const char * Constant::StringToConstCString(const StringType& string)
+				inline const char * Constant::StringToConstCString(const StringType& string)
 				{
 					return string.c_str();
 				}

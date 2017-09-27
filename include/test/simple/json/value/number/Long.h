@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							long m_value;
 						public:
-							Long();
-							Long(const long& value);
-							Long(const Long& copy);
-							Long(Long&& move);
+							inline Long();
+							inline Long(const long& value);
+							inline Long(const Long& copy);
+							inline Long(Long&& move);
 						public:
-							Long& operator= (const long& value);
-							operator long&();
-							operator const long&() const;
+							inline Long& operator= (const long& value);
+							inline operator long&();
+							inline operator const long&() const;
 						};
 
-						Long::Long() :
+						inline Long::Long() :
 							m_value(0)
 						{}
 
-						Long::Long(const long& value) :
+						inline Long::Long(const long& value) :
 							m_value(value)
 						{}
 
-						Long::Long(const Long& copy) :
+						inline Long::Long(const Long& copy) :
 							m_value(copy.m_value)
 						{}
 
-						Long::Long(Long&& move) :
+						inline Long::Long(Long&& move) :
 							m_value(move.m_value)
 						{}
 
-						Long& Long::operator= (const long& value)
+						inline Long& Long::operator= (const long& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						Long::operator long&()
+						inline Long::operator long&()
 						{
 							return m_value;
 						}
 
-						Long::operator const long&() const
+						inline Long::operator const long&() const
 						{
 							return m_value;
 						}

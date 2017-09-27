@@ -34,15 +34,15 @@ namespace BrainMuscles
 									ValueNumberFloatType>								BaseType;
 							public:
 								Float() = default;
-								Float(const ValueNumberFloatType& value);
-								Float(const Float& copy);
+								inline Float(const ValueNumberFloatType& value);
+								inline Float(const Float& copy);
 							};
 
-							Float::Float(const ValueNumberFloatType& value) :
+							inline Float::Float(const ValueNumberFloatType& value) :
 								BaseType(new ValueNumberFloatType(value))
 							{}
 
-							Float::Float(const Float& copy) :
+							inline Float::Float(const Float& copy) :
 								BaseType(copy)
 							{}
 						}

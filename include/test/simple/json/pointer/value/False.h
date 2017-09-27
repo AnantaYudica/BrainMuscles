@@ -30,15 +30,15 @@ namespace BrainMuscles
 							typedef typename MemoryType::SharedPointerType<ValueFalseType>		BaseType;
 						public:
 							False() = default;
-							False(const ValueFalseType& value);
-							False(const False& copy);
+							inline False(const ValueFalseType& value);
+							inline False(const False& copy);
 						};
 
-						False::False(const ValueFalseType& value) :
+						inline False::False(const ValueFalseType& value) :
 							BaseType(new ValueFalseType(value))
 						{}
 
-						False::False(const False& copy) :
+						inline False::False(const False& copy) :
 							BaseType(copy)
 						{}
 					}

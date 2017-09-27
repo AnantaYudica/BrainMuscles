@@ -34,15 +34,15 @@ namespace BrainMuscles
 									ValueNumberLongType>								BaseType;
 							public:
 								Long() = default;
-								Long(const ValueNumberLongType& value);
-								Long(const Long& copy);
+								inline Long(const ValueNumberLongType& value);
+								inline Long(const Long& copy);
 							};
 
-							Long::Long(const ValueNumberLongType& value) :
+							inline Long::Long(const ValueNumberLongType& value) :
 								BaseType(new ValueNumberLongType(value))
 							{}
 
-							Long::Long(const Long& copy) :
+							inline Long::Long(const Long& copy) :
 								BaseType(copy)
 							{}
 						}

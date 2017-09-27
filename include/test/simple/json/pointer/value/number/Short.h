@@ -34,15 +34,15 @@ namespace BrainMuscles
 									ValueNumberShortType>								BaseType;
 							public:
 								Short() = default;
-								Short(const ValueNumberShortType& value);
-								Short(const Short& copy);
+								inline Short(const ValueNumberShortType& value);
+								inline Short(const Short& copy);
 							};
 
-							Short::Short(const ValueNumberShortType& value) :
+							inline Short::Short(const ValueNumberShortType& value) :
 								BaseType(new ValueNumberShortType(value))
 							{}
 
-							Short::Short(const Short& copy) :
+							inline Short::Short(const Short& copy) :
 								BaseType(copy)
 							{}
 						}

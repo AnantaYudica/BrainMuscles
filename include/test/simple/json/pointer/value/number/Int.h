@@ -34,15 +34,15 @@ namespace BrainMuscles
 									ValueNumberIntType>									BaseType;
 							public:
 								Int() = default;
-								Int(const ValueNumberIntType& value);
-								Int(const Int& copy);
+								inline Int(const ValueNumberIntType& value);
+								inline Int(const Int& copy);
 							};
 
-							Int::Int(const ValueNumberIntType& value) :
+							inline Int::Int(const ValueNumberIntType& value) :
 								BaseType(new ValueNumberIntType(value))
 							{}
 
-							Int::Int(const Int& copy) :
+							inline Int::Int(const Int& copy) :
 								BaseType(copy)
 							{}
 						}

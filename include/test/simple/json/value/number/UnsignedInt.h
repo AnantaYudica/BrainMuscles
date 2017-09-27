@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							unsigned int m_value;
 						public:
-							UnsignedInt();
-							UnsignedInt(const unsigned int& value);
-							UnsignedInt(const UnsignedInt& copy);
-							UnsignedInt(UnsignedInt&& move);
+							inline UnsignedInt();
+							inline UnsignedInt(const unsigned int& value);
+							inline UnsignedInt(const UnsignedInt& copy);
+							inline UnsignedInt(UnsignedInt&& move);
 						public:
-							UnsignedInt& operator= (const unsigned int& value);
-							operator unsigned int&();
-							operator const unsigned int&() const;
+							inline UnsignedInt& operator= (const unsigned int& value);
+							inline operator unsigned int&();
+							inline operator const unsigned int&() const;
 						};
 
-						UnsignedInt::UnsignedInt() :
+						inline UnsignedInt::UnsignedInt() :
 							m_value(0)
 						{}
 
-						UnsignedInt::UnsignedInt(const unsigned int& value) :
+						inline UnsignedInt::UnsignedInt(const unsigned int& value) :
 							m_value(value)
 						{}
 
-						UnsignedInt::UnsignedInt(const UnsignedInt& copy) :
+						inline UnsignedInt::UnsignedInt(const UnsignedInt& copy) :
 							m_value(copy.m_value)
 						{}
 
-						UnsignedInt::UnsignedInt(UnsignedInt&& move) :
+						inline UnsignedInt::UnsignedInt(UnsignedInt&& move) :
 							m_value(move.m_value)
 						{}
 
-						UnsignedInt& UnsignedInt::operator= (const unsigned int& value)
+						inline UnsignedInt& UnsignedInt::operator= (const unsigned int& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						UnsignedInt::operator unsigned int&()
+						inline UnsignedInt::operator unsigned int&()
 						{
 							return m_value;
 						}
 
-						UnsignedInt::operator const unsigned int&() const
+						inline UnsignedInt::operator const unsigned int&() const
 						{
 							return m_value;
 						}

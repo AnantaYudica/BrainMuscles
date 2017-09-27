@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							int m_value;
 						public:
-							Int();
-							Int(const int& value);
-							Int(const Int& copy);
-							Int(Int&& move);
+							inline Int();
+							inline Int(const int& value);
+							inline Int(const Int& copy);
+							inline Int(Int&& move);
 						public:
-							Int& operator= (const int& value);
-							operator int&();
-							operator const int&() const;
+							inline Int& operator= (const int& value);
+							inline operator int&();
+							inline operator const int&() const;
 						};
 
-						Int::Int() :
+						inline Int::Int() :
 							m_value(0)
 						{}
 
-						Int::Int(const int& value) :
+						inline Int::Int(const int& value) :
 							m_value(value)
 						{}
 
-						Int::Int(const Int& copy) :
+						inline Int::Int(const Int& copy) :
 							m_value(copy.m_value)
 						{}
 
-						Int::Int(Int&& move) :
+						inline Int::Int(Int&& move) :
 							m_value(move.m_value)
 						{}
 
-						Int& Int::operator= (const int& value)
+						inline Int& Int::operator= (const int& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						Int::operator int&()
+						inline Int::operator int&()
 						{
 							return m_value;
 						}
 
-						Int::operator const int&() const
+						inline Int::operator const int&() const
 						{
 							return m_value;
 						}

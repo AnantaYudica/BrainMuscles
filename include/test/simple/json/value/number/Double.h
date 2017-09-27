@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							double m_value;
 						public:
-							Double();
-							Double(const double& value);
-							Double(const Double& copy);
-							Double(Double&& move);
+							inline Double();
+							inline Double(const double& value);
+							inline Double(const Double& copy);
+							inline Double(Double&& move);
 						public:
-							Double& operator= (const double& value);
-							operator double&();
-							operator const double&() const;
+							inline Double& operator= (const double& value);
+							inline operator double&();
+							inline operator const double&() const;
 						};
 
-						Double::Double() :
+						inline Double::Double() :
 							m_value(0)
 						{}
 
-						Double::Double(const double& value) :
+						inline Double::Double(const double& value) :
 							m_value(value)
 						{}
 
-						Double::Double(const Double& copy) :
+						inline Double::Double(const Double& copy) :
 							m_value(copy.m_value)
 						{}
 
-						Double::Double(Double&& move) :
+						inline Double::Double(Double&& move) :
 							m_value(move.m_value)
 						{}
 
-						Double& Double::operator= (const double& value)
+						inline Double& Double::operator= (const double& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						Double::operator double&()
+						inline Double::operator double&()
 						{
 							return m_value;
 						}
 
-						Double::operator const double&() const
+						inline Double::operator const double&() const
 						{
 							return m_value;
 						}

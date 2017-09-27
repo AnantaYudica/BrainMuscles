@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							unsigned long long m_value;
 						public:
-							UnsignedLongLong();
-							UnsignedLongLong(const unsigned long long& value);
-							UnsignedLongLong(const UnsignedLongLong& copy);
-							UnsignedLongLong(UnsignedLongLong&& move);
+							inline UnsignedLongLong();
+							inline UnsignedLongLong(const unsigned long long& value);
+							inline UnsignedLongLong(const UnsignedLongLong& copy);
+							inline UnsignedLongLong(UnsignedLongLong&& move);
 						public:
-							UnsignedLongLong& operator= (const unsigned long long& value);
-							operator unsigned long long&();
-							operator const unsigned long long&() const;
+							inline UnsignedLongLong& operator= (const unsigned long long& value);
+							inline operator unsigned long long&();
+							inline operator const unsigned long long&() const;
 						};
 
-						UnsignedLongLong::UnsignedLongLong() :
+						inline UnsignedLongLong::UnsignedLongLong() :
 							m_value(0)
 						{}
 
-						UnsignedLongLong::UnsignedLongLong(const unsigned long long& value) :
+						inline UnsignedLongLong::UnsignedLongLong(const unsigned long long& value) :
 							m_value(value)
 						{}
 
-						UnsignedLongLong::UnsignedLongLong(const UnsignedLongLong& copy) :
+						inline UnsignedLongLong::UnsignedLongLong(const UnsignedLongLong& copy) :
 							m_value(copy.m_value)
 						{}
 
-						UnsignedLongLong::UnsignedLongLong(UnsignedLongLong&& move) :
+						inline UnsignedLongLong::UnsignedLongLong(UnsignedLongLong&& move) :
 							m_value(move.m_value)
 						{}
 
-						UnsignedLongLong& UnsignedLongLong::operator= (const unsigned long long& value)
+						inline UnsignedLongLong& UnsignedLongLong::operator= (const unsigned long long& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						UnsignedLongLong::operator unsigned long long&()
+						inline UnsignedLongLong::operator unsigned long long&()
 						{
 							return m_value;
 						}
 
-						UnsignedLongLong::operator const unsigned long long&() const
+						inline UnsignedLongLong::operator const unsigned long long&() const
 						{
 							return m_value;
 						}

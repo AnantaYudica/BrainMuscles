@@ -30,15 +30,15 @@ namespace BrainMuscles
 							typedef typename MemoryType::SharedPointerType<ValueTrueType>		BaseType;
 						public:
 							True() = default;
-							True(const ValueTrueType& value);
-							True(const True& copy);
+							inline True(const ValueTrueType& value);
+							inline True(const True& copy);
 						};
 
-						True::True(const ValueTrueType& value) :
+						inline True::True(const ValueTrueType& value) :
 							BaseType(new ValueTrueType(value))
 						{}
 
-						True::True(const True& copy) :
+						inline True::True(const True& copy) :
 							BaseType(copy)
 						{}
 					}

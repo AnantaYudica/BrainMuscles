@@ -30,15 +30,15 @@ namespace BrainMuscles
 							typedef typename MemoryType::SharedPointerType<ValueNullType>		BaseType;
 						public:
 							Null() = default;
-							Null(const ValueNullType& value);
-							Null(const Null& copy);
+							inline Null(const ValueNullType& value);
+							inline Null(const Null& copy);
 						};
 
-						Null::Null(const ValueNullType& value) :
+						inline Null::Null(const ValueNullType& value) :
 							BaseType(new ValueNullType(value))
 						{}
 
-						Null::Null(const Null& copy) :
+						inline Null::Null(const Null& copy) :
 							BaseType(copy)
 						{}
 					}

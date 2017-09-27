@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							unsigned short m_value;
 						public:
-							UnsignedShort();
-							UnsignedShort(const unsigned short& value);
-							UnsignedShort(const UnsignedShort& copy);
-							UnsignedShort(UnsignedShort&& move);
+							inline UnsignedShort();
+							inline UnsignedShort(const unsigned short& value);
+							inline UnsignedShort(const UnsignedShort& copy);
+							inline UnsignedShort(UnsignedShort&& move);
 						public:
-							UnsignedShort& operator= (const unsigned short& value);
-							operator unsigned short&();
-							operator const unsigned short&() const;
+							inline UnsignedShort& operator= (const unsigned short& value);
+							inline operator unsigned short&();
+							inline operator const unsigned short&() const;
 						};
 
-						UnsignedShort::UnsignedShort() :
+						inline UnsignedShort::UnsignedShort() :
 							m_value(0)
 						{}
 
-						UnsignedShort::UnsignedShort(const unsigned short& value) :
+						inline UnsignedShort::UnsignedShort(const unsigned short& value) :
 							m_value(value)
 						{}
 
-						UnsignedShort::UnsignedShort(const UnsignedShort& copy) :
+						inline UnsignedShort::UnsignedShort(const UnsignedShort& copy) :
 							m_value(copy.m_value)
 						{}
 
-						UnsignedShort::UnsignedShort(UnsignedShort&& move) :
+						inline UnsignedShort::UnsignedShort(UnsignedShort&& move) :
 							m_value(move.m_value)
 						{}
 
-						UnsignedShort& UnsignedShort::operator= (const unsigned short& value)
+						inline UnsignedShort& UnsignedShort::operator= (const unsigned short& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						UnsignedShort::operator unsigned short&()
+						inline UnsignedShort::operator unsigned short&()
 						{
 							return m_value;
 						}
 
-						UnsignedShort::operator const unsigned short&() const
+						inline UnsignedShort::operator const unsigned short&() const
 						{
 							return m_value;
 						}

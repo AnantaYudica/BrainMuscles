@@ -34,15 +34,15 @@ namespace BrainMuscles
 									ValueNumberDoubleType>								BaseType;
 							public:
 								Double() = default;
-								Double(const ValueNumberDoubleType& value);
-								Double(const Double& copy);
+								inline Double(const ValueNumberDoubleType& value);
+								inline Double(const Double& copy);
 							};
 
-							Double::Double(const ValueNumberDoubleType& value) :
+							inline Double::Double(const ValueNumberDoubleType& value) :
 								BaseType(new ValueNumberDoubleType(value))
 							{}
 
-							Double::Double(const Double& copy) :
+							inline Double::Double(const Double& copy) :
 								BaseType(copy)
 							{}
 						}

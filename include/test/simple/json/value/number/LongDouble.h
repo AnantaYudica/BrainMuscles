@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							long double m_value;
 						public:
-							LongDouble();
-							LongDouble(const long double& value);
-							LongDouble(const LongDouble& copy);
-							LongDouble(LongDouble&& move);
+							inline LongDouble();
+							inline LongDouble(const long double& value);
+							inline LongDouble(const LongDouble& copy);
+							inline LongDouble(LongDouble&& move);
 						public:
-							LongDouble& operator= (const long double& value);
-							operator long double&();
-							operator const long double&() const;
+							inline LongDouble& operator= (const long double& value);
+							inline operator long double&();
+							inline operator const long double&() const;
 						};
 
-						LongDouble::LongDouble() :
+						inline LongDouble::LongDouble() :
 							m_value(0)
 						{}
 
-						LongDouble::LongDouble(const long double& value) :
+						inline LongDouble::LongDouble(const long double& value) :
 							m_value(value)
 						{}
 
-						LongDouble::LongDouble(const LongDouble& copy) :
+						inline LongDouble::LongDouble(const LongDouble& copy) :
 							m_value(copy.m_value)
 						{}
 
-						LongDouble::LongDouble(LongDouble&& move) :
+						inline LongDouble::LongDouble(LongDouble&& move) :
 							m_value(move.m_value)
 						{}
 
-						LongDouble& LongDouble::operator= (const long double& value)
+						inline LongDouble& LongDouble::operator= (const long double& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						LongDouble::operator long double&()
+						inline LongDouble::operator long double&()
 						{
 							return m_value;
 						}
 
-						LongDouble::operator const long double&() const
+						inline LongDouble::operator const long double&() const
 						{
 							return m_value;
 						}

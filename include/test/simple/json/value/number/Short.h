@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							short m_value;
 						public:
-							Short();
-							Short(const short& value);
-							Short(const Short& copy);
-							Short(Short&& move);
+							inline Short();
+							inline Short(const short& value);
+							inline Short(const Short& copy);
+							inline Short(Short&& move);
 						public:
-							Short& operator= (const short& value);
-							operator short&();
-							operator const short&() const;
+							inline Short& operator= (const short& value);
+							inline operator short&();
+							inline operator const short&() const;
 						};
 
-						Short::Short() :
+						inline Short::Short() :
 							m_value(0)
 						{}
 
-						Short::Short(const short& value) :
+						inline Short::Short(const short& value) :
 							m_value(value)
 						{}
 
-						Short::Short(const Short& copy) :
+						inline Short::Short(const Short& copy) :
 							m_value(copy.m_value)
 						{}
 
-						Short::Short(Short&& move) :
+						inline Short::Short(Short&& move) :
 							m_value(move.m_value)
 						{}
 
-						Short& Short::operator= (const short& value)
+						inline Short& Short::operator= (const short& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						Short::operator short&()
+						inline Short::operator short&()
 						{
 							return m_value;
 						}
 
-						Short::operator const short&() const
+						inline Short::operator const short&() const
 						{
 							return m_value;
 						}

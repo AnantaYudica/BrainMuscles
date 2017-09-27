@@ -34,15 +34,15 @@ namespace BrainMuscles
 									ValueNumberUnsignedLongType>						BaseType;
 							public:
 								UnsignedLong() = default;
-								UnsignedLong(const ValueNumberUnsignedLongType& value);
-								UnsignedLong(const UnsignedLong& copy);
+								inline UnsignedLong(const ValueNumberUnsignedLongType& value);
+								inline UnsignedLong(const UnsignedLong& copy);
 							};
 
-							UnsignedLong::UnsignedLong(const ValueNumberUnsignedLongType& value) :
+							inline UnsignedLong::UnsignedLong(const ValueNumberUnsignedLongType& value) :
 								BaseType(new ValueNumberUnsignedLongType(value))
 							{}
 
-							UnsignedLong::UnsignedLong(const UnsignedLong& copy) :
+							inline UnsignedLong::UnsignedLong(const UnsignedLong& copy) :
 								BaseType(copy)
 							{}
 						}

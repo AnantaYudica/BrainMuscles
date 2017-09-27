@@ -26,45 +26,45 @@ namespace BrainMuscles
 						typedef typename ConstantType::ValueType						ValueType;
 						typedef typename ConstantType::StringType						StringType;
 					public:
-						String();
-						String(const StringType& string);
-						String(StringType&& string);
-						String(const String& copy);
-						String(String&& move);
-						~String();
+						inline String();
+						inline String(const StringType& string);
+						inline String(StringType&& string);
+						inline String(const String& copy);
+						inline String(String&& move);
+						inline ~String();
 					public:
-						operator const char*() const;
-						String& operator=(const StringType& string);
+						inline operator const char*() const;
+						inline String& operator=(const StringType& string);
 					};
 
-					String::String()
+					inline String::String()
 					{}
 
-					String::String(const StringType& string) :
+					inline String::String(const StringType& string) :
 						StringType(string)
 					{}
 
-					String::String(StringType&& string) :
+					inline String::String(StringType&& string) :
 						StringType(string)
 					{}
 
-					String::String(const String& copy) :
+					inline String::String(const String& copy) :
 						StringType(copy)
 					{}
 
-					String::String(String&& move) :
+					inline String::String(String&& move) :
 						StringType(move)
 					{}
 
-					String::~String()
+					inline String::~String()
 					{}
 
-					String::operator const char*() const
+					inline String::operator const char*() const
 					{
 						return ConstantType::StringToConstCString(*this);
 					}
 
-					String& String::operator=(const StringType& string)
+					inline String& String::operator=(const StringType& string)
 					{
 						StringType::operator=(string);
 						return *this;

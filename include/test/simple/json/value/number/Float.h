@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							float m_value;
 						public:
-							Float();
-							Float(const float& value);
-							Float(const Float& copy);
-							Float(Float&& move);
+							inline Float();
+							inline Float(const float& value);
+							inline Float(const Float& copy);
+							inline Float(Float&& move);
 						public:
-							Float& operator= (const float& value);
-							operator float&();
-							operator const float&() const;
+							inline Float& operator= (const float& value);
+							inline operator float&();
+							inline operator const float&() const;
 						};
 
-						Float::Float() :
+						inline Float::Float() :
 							m_value(0)
 						{}
 
-						Float::Float(const float& value) :
+						inline Float::Float(const float& value) :
 							m_value(value)
 						{}
 
-						Float::Float(const Float& copy) :
+						inline Float::Float(const Float& copy) :
 							m_value(copy.m_value)
 						{}
 
-						Float::Float(Float&& move) :
+						inline Float::Float(Float&& move) :
 							m_value(move.m_value)
 						{}
 
-						Float& Float::operator= (const float& value)
+						inline Float& Float::operator= (const float& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						Float::operator float&()
+						inline Float::operator float&()
 						{
 							return m_value;
 						}
 
-						Float::operator const float&() const
+						inline Float::operator const float&() const
 						{
 							return m_value;
 						}

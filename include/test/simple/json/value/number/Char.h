@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							char m_value;
 						public:
-							Char();
-							Char(const char& value);
-							Char(const Char& copy);
-							Char(Char&& move);
+							inline Char();
+							inline Char(const char& value);
+							inline Char(const Char& copy);
+							inline Char(Char&& move);
 						public:
-							Char& operator= (const char& value);
-							operator char&();
-							operator const char&() const;
+							inline Char& operator= (const char& value);
+							inline operator char&();
+							inline operator const char&() const;
 						};
 
-						Char::Char() :
+						inline Char::Char() :
 							m_value(0)
 						{}
 
-						Char::Char(const char& value) :
+						inline Char::Char(const char& value) :
 							m_value(value)
 						{}
 
-						Char::Char(const Char& copy) :
+						inline Char::Char(const Char& copy) :
 							m_value(copy.m_value)
 						{}
 
-						Char::Char(Char&& move) :
+						inline Char::Char(Char&& move) :
 							m_value(move.m_value)
 						{}
 
-						Char& Char::operator= (const char& value)
+						inline Char& Char::operator= (const char& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						Char::operator char&()
+						inline Char::operator char&()
 						{
 							return m_value;
 						}
 
-						Char::operator const char&() const
+						inline Char::operator const char&() const
 						{
 							return m_value;
 						}

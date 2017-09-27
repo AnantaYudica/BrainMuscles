@@ -34,15 +34,15 @@ namespace BrainMuscles
 									ValueNumberUnsignedShortType>						BaseType;
 							public:
 								UnsignedShort() = default;
-								UnsignedShort(const ValueNumberUnsignedShortType& value);
-								UnsignedShort(const UnsignedShort& copy);
+								inline UnsignedShort(const ValueNumberUnsignedShortType& value);
+								inline UnsignedShort(const UnsignedShort& copy);
 							};
 
-							UnsignedShort::UnsignedShort(const ValueNumberUnsignedShortType& value) :
+							inline UnsignedShort::UnsignedShort(const ValueNumberUnsignedShortType& value) :
 								BaseType(new ValueNumberUnsignedShortType(value))
 							{}
 
-							UnsignedShort::UnsignedShort(const UnsignedShort& copy) :
+							inline UnsignedShort::UnsignedShort(const UnsignedShort& copy) :
 								BaseType(copy)
 							{}
 						}

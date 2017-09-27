@@ -30,16 +30,16 @@ namespace BrainMuscles
 					public:
 						~False() = default;
 					public:
-						operator const bool const();
-						operator const char* const();
+						inline operator const bool const();
+						inline operator const char* const();
 					};
 
-					False::operator const bool const()
+					inline False::operator const bool const()
 					{
 						return false;
 					}
 
-					False::operator const char* const()
+					inline False::operator const char* const()
 					{
 						return ConstantType::FalseCString;
 					}

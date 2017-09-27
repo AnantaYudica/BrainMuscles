@@ -34,15 +34,15 @@ namespace BrainMuscles
 									ValueNumberLongDoubleType>							BaseType;
 							public:
 								LongDouble() = default;
-								LongDouble(const ValueNumberLongDoubleType& value);
-								LongDouble(const LongDouble& copy);
+								inline LongDouble(const ValueNumberLongDoubleType& value);
+								inline LongDouble(const LongDouble& copy);
 							};
 
-							LongDouble::LongDouble(const ValueNumberLongDoubleType& value) :
+							inline LongDouble::LongDouble(const ValueNumberLongDoubleType& value) :
 								BaseType(new ValueNumberLongDoubleType(value))
 							{}
 
-							LongDouble::LongDouble(const LongDouble& copy) :
+							inline LongDouble::LongDouble(const LongDouble& copy) :
 								BaseType(copy)
 							{}
 						}

@@ -30,15 +30,15 @@ namespace BrainMuscles
 							typedef typename MemoryType::SharedPointerType<ValueStringType>		BaseType;
 						public:
 							String() = default;
-							String(const ValueStringType& value);
-							String(const String& copy);
+							inline String(const ValueStringType& value);
+							inline String(const String& copy);
 						};
 
-						String::String(const ValueStringType& value) :
+						inline String::String(const ValueStringType& value) :
 							BaseType(new ValueStringType(value))
 						{}
 
-						String::String(const String& copy) :
+						inline String::String(const String& copy) :
 							BaseType(copy)
 						{}
 					}

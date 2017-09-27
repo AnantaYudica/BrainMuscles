@@ -29,44 +29,44 @@ namespace BrainMuscles
 						private:
 							unsigned char m_value;
 						public:
-							UnsignedChar();
-							UnsignedChar(const unsigned char& value);
-							UnsignedChar(const UnsignedChar& copy);
-							UnsignedChar(UnsignedChar&& move);
+							inline UnsignedChar();
+							inline UnsignedChar(const unsigned char& value);
+							inline UnsignedChar(const UnsignedChar& copy);
+							inline UnsignedChar(UnsignedChar&& move);
 						public:
-							UnsignedChar& operator= (const unsigned char& value);
-							operator unsigned char&();
-							operator const unsigned char&() const;
+							inline UnsignedChar& operator= (const unsigned char& value);
+							inline operator unsigned char&();
+							inline operator const unsigned char&() const;
 						};
 
-						UnsignedChar::UnsignedChar() :
+						inline UnsignedChar::UnsignedChar() :
 							m_value(0)
 						{}
 
-						UnsignedChar::UnsignedChar(const unsigned char& value) :
+						inline UnsignedChar::UnsignedChar(const unsigned char& value) :
 							m_value(value)
 						{}
 
-						UnsignedChar::UnsignedChar(const UnsignedChar& copy) :
+						inline UnsignedChar::UnsignedChar(const UnsignedChar& copy) :
 							m_value(copy.m_value)
 						{}
 
-						UnsignedChar::UnsignedChar(UnsignedChar&& move) :
+						inline UnsignedChar::UnsignedChar(UnsignedChar&& move) :
 							m_value(move.m_value)
 						{}
 
-						UnsignedChar& UnsignedChar::operator= (const unsigned char& value)
+						inline UnsignedChar& UnsignedChar::operator= (const unsigned char& value)
 						{
 							m_value = value;
 							return *this;
 						}
 
-						UnsignedChar::operator unsigned char&()
+						inline UnsignedChar::operator unsigned char&()
 						{
 							return m_value;
 						}
 
-						UnsignedChar::operator const unsigned char&() const
+						inline UnsignedChar::operator const unsigned char&() const
 						{
 							return m_value;
 						}

@@ -34,15 +34,15 @@ namespace BrainMuscles
 									ValueNumberCharType>								BaseType;
 							public:
 								Char() = default;
-								Char(const ValueNumberCharType& value);
-								Char(const Char& copy);
+								inline Char(const ValueNumberCharType& value);
+								inline Char(const Char& copy);
 							};
 
-							Char::Char(const ValueNumberCharType& value) :
+							inline Char::Char(const ValueNumberCharType& value) :
 								BaseType(new ValueNumberCharType(value))
 							{}
 
-							Char::Char(const Char& copy) :
+							inline Char::Char(const Char& copy) :
 								BaseType(copy)
 							{}
 						}

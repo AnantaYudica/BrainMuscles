@@ -30,15 +30,15 @@ namespace BrainMuscles
 							typedef typename MemoryType::SharedPointerType<ValueArrayType>		BaseType;
 						public:
 							Array() = default;
-							Array(const ValueArrayType& value);
-							Array(const Array& copy);
+							inline Array(const ValueArrayType& value);
+							inline Array(const Array& copy);
 						};
 
-						Array::Array(const ValueArrayType& value) :
+						inline Array::Array(const ValueArrayType& value) :
 							BaseType(new ValueArrayType(value))
 						{}
 
-						Array::Array(const Array& copy) :
+						inline Array::Array(const Array& copy) :
 							BaseType(copy)
 						{}
 					}

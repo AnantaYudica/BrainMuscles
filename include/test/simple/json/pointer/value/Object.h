@@ -30,15 +30,15 @@ namespace BrainMuscles
 							typedef typename MemoryType::SharedPointerType<ValueObjectType>		BaseType;
 						public:
 							Object() = default;
-							Object(const ValueObjectType& value);
-							Object(const Object& copy);
+							inline Object(const ValueObjectType& value);
+							inline Object(const Object& copy);
 						};
 
-						Object::Object(const ValueObjectType& value) :
+						inline Object::Object(const ValueObjectType& value) :
 							BaseType(new ValueObjectType(value))
 						{}
 
-						Object::Object(const Object& copy) :
+						inline Object::Object(const Object& copy) :
 							BaseType(copy)
 						{}
 					}

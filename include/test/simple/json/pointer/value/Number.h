@@ -32,24 +32,24 @@ namespace BrainMuscles
 						public:
 							Number() = default;
 							template<typename VALUE_NUMBER_TYPE>
-							Number(const VALUE_NUMBER_TYPE& value);
-							Number(const Number& copy);
+							inline Number(const VALUE_NUMBER_TYPE& value);
+							inline Number(const Number& copy);
 						private:
 							template<typename VALUE_NUMBER_TYPE>
-							static BaseType MakeShared(const VALUE_NUMBER_TYPE& value);
+							static inline BaseType MakeShared(const VALUE_NUMBER_TYPE& value);
 						};
 
 						template<typename VALUE_NUMBER_TYPE>
-						Number::Number(const VALUE_NUMBER_TYPE& value) :
+						inline Number::Number(const VALUE_NUMBER_TYPE& value) :
 							BaseType(MakeShared(value))
 						{}
 
-						Number::Number(const Number& copy) :
+						inline Number::Number(const Number& copy) :
 							BaseType(copy)
 						{}
 
 						template<typename VALUE_NUMBER_TYPE>
-						typename Number::BaseType Number::MakeShared(const VALUE_NUMBER_TYPE& value)
+						inline typename Number::BaseType Number::MakeShared(const VALUE_NUMBER_TYPE& value)
 						{
 							static_assert(std::is_base_of<ValueNumberType, VALUE_NUMBER_TYPE>::value, "VALUE_NUMBER_TYPE is not base of BrainMuscles::test::simple::json::value::Number");
 							static_assert(!std::is_abstract<VALUE_NUMBER_TYPE>::value, "VALUE_NUMBER_TYPE is abstract");
