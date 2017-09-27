@@ -25,7 +25,7 @@ namespace experiment
 						SourceAssert(strcmp(BMTestSimple::json::exception::BadCast<int, float>::Message.c_str(), "") != 0,
 							"static variable member 'Message' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is empty");
 
-						//declare BrainMuscles::test::simple::json::exception::BadCast<int, float> with default initialization
+						//declare variable of BrainMuscles::test::simple::json::exception::BadCast<int, float> with default initialization
 						BMTestSimple::json::exception::BadCast<int, float> exception_badcast;
 
 						//check function member 'what() from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not empty'

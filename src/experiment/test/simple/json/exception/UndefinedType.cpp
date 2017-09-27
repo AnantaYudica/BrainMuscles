@@ -34,7 +34,7 @@ namespace experiment
 						SourceAssert(std::strcmp(BMTestSimple::json::exception::UndefinedType<int>::Message.c_str(), "") != 0, 
 							"static variable 'Message' from class BrainMuscles::test::simple::json::exception::UndefinedType<int> is empty");
 
-						//declare BrainMuscles::test::simple::json::exception:::UndefinedType<int> with default initialization
+						//declare variable of class BrainMuscles::test::simple::json::exception:::UndefinedType<int> with default initialization
 						BMTestSimple::json::exception::UndefinedType<int> exception_undefinedtype1;
 
 						//check function member 'what() from class BrainMuscles::test::simple::json::exception::UndefinedType<int> is not empty'
@@ -61,7 +61,7 @@ namespace experiment
 								"function member 'what()' from class std::exception and static variable member 'Message' from class BrainMuscles::test::simple::json::exception::UndefinedType<int> is not same");
 						}
 
-						//declare BrainMuscles::test::simple::json::exception:::UndefinedType<int, int> with direct initialization
+						//declare variable of class BrainMuscles::test::simple::json::exception:::UndefinedType<int, int> with direct initialization
 						BMTestSimple::json::exception::UndefinedType<int, int> exception_undefinedtype2(2);
 
 						//check type of variable member 'Value' from class BrainMuscles::test::simple::json::exception:::UndefinedType<int, int> is type of int 
@@ -80,7 +80,7 @@ namespace experiment
 						SourceAssert(std::strcmp(exception_undefinedtype2.what(), exception_undefinedtype2.Message.c_str()) == 0,
 							"function member 'what()' and variable member 'Message' from class BrainMuscles::test::simple::json::exception::UndefinedType<int, int> is not same");
 
-						//declare BrainMuscles::test::simple::json::exception::UndefinedType<int, const int> with direct initialization
+						//declare variable of class BrainMuscles::test::simple::json::exception::UndefinedType<int, const int> with direct initialization
 						BMTestSimple::json::exception::UndefinedType<int, const int> exception_undefinedtype3(4);
 
 						//check type of variable member 'Value' from class BrainMuscles::test::simple::json::exception:::UndefinedType<int, const int> is type of int 
@@ -99,7 +99,7 @@ namespace experiment
 						SourceAssert(std::strcmp(exception_undefinedtype3.what(), exception_undefinedtype3.Message.c_str()) == 0,
 							"function member 'what()' and variable member 'Message' from class BrainMuscles::test::simple::json::exception::UndefinedType<int, const int> is not same");
 
-						//declare BrainMuscles::test::simple::json::exception:::UndefinedType<int, volatile int> with direct initialization
+						//declare variable of class BrainMuscles::test::simple::json::exception:::UndefinedType<int, volatile int> with direct initialization
 						BMTestSimple::json::exception::UndefinedType<int, volatile int> exception_undefinedtype4(8);
 
 						//check type of variable member 'Value' from class BrainMuscles::test::simple::json::exception:::UndefinedType<int, volatile int> is type of int 
@@ -118,7 +118,7 @@ namespace experiment
 						SourceAssert(std::strcmp(exception_undefinedtype4.what(), exception_undefinedtype4.Message.c_str()) == 0,
 							"function member 'what()' and variable member 'Message' from class BrainMuscles::test::simple::json::exception::UndefinedType<int, volatile int> is not same");
 
-						//declare BrainMuscles::test::simple::json::exception::UndefinedType<int, const volatile int> with direct initialization
+						//declare variable of class BrainMuscles::test::simple::json::exception::UndefinedType<int, const volatile int> with direct initialization
 						BMTestSimple::json::exception::UndefinedType<int, const volatile int> exception_undefinedtype5(16);
 
 						//check type of variable member 'Value' from class BrainMuscles::test::simple::json::exception:::UndefinedType<int, const volatile int> is type of int 
@@ -141,10 +141,10 @@ namespace experiment
 						SourceAssert(std::strcmp(exception_undefinedtype5.what(), exception_undefinedtype5.Message.c_str()) == 0,
 							"function member 'what()' and variable member 'Message' from class BrainMuscles::test::simple::json::exception::UndefinedType<int, const volatile int> is not same");
 
-						//declare int with copy initialization
+						//declare variable of int with copy initialization
 						int int1 = 32;
 
-						//declare BrainMuscles::test::simple::json::exception::UndefinedType<int, int&> with direct initialization
+						//declare variable of class BrainMuscles::test::simple::json::exception::UndefinedType<int, int&> with direct initialization
 						BMTestSimple::json::exception::UndefinedType<int, int&> exception_undefinedtype6(int1);
 
 						//check type of variable member 'Value' from class BrainMuscles::test::simple::json::exception:::UndefinedType<int, int&> is type of int 
@@ -167,13 +167,13 @@ namespace experiment
 						SourceAssert(std::strcmp(exception_undefinedtype6.what(), exception_undefinedtype6.Message.c_str()) == 0,
 							"function member 'what()' and variable member 'Message' from class BrainMuscles::test::simple::json::exception::UndefinedType<int, int&> is not same");
 
-						//declare experiment::test::simple::json::exception::UndefinedType::Int with default initialization
+						//declare variable of class experiment::test::simple::json::exception::UndefinedType::Int with default initialization
 						experiment::test::simple::json::exception::UndefinedType::Int undefinedtype_int;
 
 						//Assignment copy variable member 'Value' from class experiment::test::simple::json::exception::UndefinedType::Int
 						undefinedtype_int.Value = 64;
 
-						//declare BrainMuscles::test::simple::json::exception::UndefinedType<experiment::test::simple::json::exception::UndefinedType::Int, experiment::test::simple::json::exception::UndefinedType::Int&>
+						//declare variable of class BrainMuscles::test::simple::json::exception::UndefinedType<experiment::test::simple::json::exception::UndefinedType::Int, experiment::test::simple::json::exception::UndefinedType::Int&>
 						// with direct initialization
 						BrainMuscles::test::simple::json::exception::UndefinedType<
 							experiment::test::simple::json::exception::UndefinedType::Int,
