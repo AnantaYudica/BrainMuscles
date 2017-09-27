@@ -25,10 +25,17 @@ namespace BrainMuscles
 			private:
 				static inline Environment& Instance();
 			public:
+				static inline bool IsPass();
+			public:
 				static inline const Environment& GetInstance();
 				static inline const ResultType& Result();
 				static inline void SetError(const char* message, const char* file, const std::size_t& line);
 			};
+
+			inline Environment::Environment() :
+				m_result(ResultType::pass),
+				m_file(stderr)
+			{}
 
 			inline Environment& Environment::Instance()
 			{
@@ -36,10 +43,10 @@ namespace BrainMuscles
 				return instance;
 			}
 
-			inline Environment::Environment() :
-				m_result(ResultType::pass),
-				m_file(stderr)
-			{}
+			inline bool Environment::IsPass()
+			{
+				return Result() == ResultType::pass;
+			}
 
 			inline const Environment& Environment::GetInstance()
 			{
