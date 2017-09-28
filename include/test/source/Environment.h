@@ -31,7 +31,7 @@ namespace BrainMuscles
 				static inline const Environment& GetInstance();
 				static inline const ResultType& Result();
 				template<typename... ARGS>
-				static inline void SetError(const char* message, const char* file, const std::size_t& line, ARGS... args);
+				static inline void SetError(const char* file, const std::size_t& line, const char* message, ARGS... args);
 			};
 
 			inline Environment::Environment() :
@@ -61,7 +61,7 @@ namespace BrainMuscles
 			}
 
 			template<typename... ARGS>
-			inline void Environment::SetError(const char* message, const char* file, const std::size_t& line, ARGS... args)
+			inline void Environment::SetError(const char* file, const std::size_t& line, const char* message, ARGS... args)
 			{
 				if (Result() != ResultType::error)
 				{
