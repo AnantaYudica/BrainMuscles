@@ -38,8 +38,9 @@ namespace BrainMuscles
 			static void RunPreTest();
 			static const ResultType& SetStatus(const ResultType& status);
 		protected:
+			static void Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str);
 			template<typename... ARGS>
-			static void Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str, const char* message, ARGS... args);
+			static void Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str, ARGS... args);
 			template<typename OTHER_SOURCE>
 			static typename std::enable_if<!std::is_same<DERIVED_TYPE, OTHER_SOURCE>::value, void>::type 
 				Requirement(const char* file, const std::size_t& line);
@@ -105,21 +106,26 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		template<typename... ARGS>
-		void Source<DERIVED_TYPE>::Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str, const char* message, ARGS... args)
+		void Source<DERIVED_TYPE>::Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str)
 		{
 			if (BrainMuscles::test::source::Environment::Result() == ResultType::pass)
 			{
 				if (!condition)
 				{
-					if (message == NULL)
-					{
-						BrainMuscles::test::source::Environment::SetError(condition_str, file, line);
-					}
-					else
-					{
-						BrainMuscles::test::source::Environment::SetError(message, file, line, args...);
-					}
+					BrainMuscles::test::source::Environment::SetError(file, line, condition_str);
+				}
+			}
+		}
+
+		template<typename DERIVED_TYPE>
+		template<typename... ARGS>
+		void Source<DERIVED_TYPE>::Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str, ARGS... args)
+		{
+			if (BrainMuscles::test::source::Environment::Result() == ResultType::pass)
+			{
+				if (!condition)
+				{
+					BrainMuscles::test::source::Environment::SetError(file, line, args...);
 				}
 			}
 		}
@@ -137,7 +143,7 @@ namespace BrainMuscles
 				{
 					std::string msg = typeid(OTHER_SOURCE).name();
 					msg += " not has static function member 'Test'";
-					Assert(false, file, line, msg.c_str(), NULL);
+					Assert(false, file, line, msg.c_str());
 					return;
 				}
 				if (OTHER_SOURCE::IsNotTest())
