@@ -3,6 +3,7 @@
 
 #ifdef _USING_TEST_SOURCE_
 
+#include <string>
 #include <cstdio>
 
 #include "test\source\Result.h"
@@ -29,7 +30,8 @@ namespace BrainMuscles
 			public:
 				static inline const Environment& GetInstance();
 				static inline const ResultType& Result();
-				static inline void SetError(const char* message, const char* file, const std::size_t& line);
+				template<typename... ARGS>
+				static inline void SetError(const char* message, const char* file, const std::size_t& line, ARGS... args);
 			};
 
 			inline Environment::Environment() :
@@ -58,12 +60,16 @@ namespace BrainMuscles
 				return GetInstance().m_result;
 			}
 
-			inline void Environment::SetError(const char* message, const char* file, const std::size_t& line)
+			template<typename... ARGS>
+			inline void Environment::SetError(const char* message, const char* file, const std::size_t& line, ARGS... args)
 			{
 				if (Result() != ResultType::error)
 				{
 					Instance().m_result = ResultType::error;
-					std::fprintf(Instance().m_file, "Assertion failed: %s, file %s, line %zu\n", message, file, line);
+					std::string format = "Assertion failed: ";
+					format += message;
+					format += ", file %s, line %zu\n";
+					std::fprintf(Instance().m_file, format.c_str(), args..., file, line);
 				}
 			}
 		}
