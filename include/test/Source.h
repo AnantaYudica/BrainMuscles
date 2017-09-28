@@ -38,7 +38,8 @@ namespace BrainMuscles
 			static void RunPreTest();
 			static const ResultType& SetStatus(const ResultType& status);
 		protected:
-			static void Assert(const bool& condition, const char* file, const std::size_t& line, const char* message, const char* condition_str = NULL);
+			template<typename... ARGS>
+			static void Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str, const char* message, ARGS... args);
 			template<typename OTHER_SOURCE>
 			static typename std::enable_if<!std::is_same<DERIVED_TYPE, OTHER_SOURCE>::value, void>::type 
 				Requirement(const char* file, const std::size_t& line);
@@ -104,13 +105,21 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		void Source<DERIVED_TYPE>::Assert(const bool& condition, const char* file, const std::size_t& line, const char* message, const char* condition_str)
+		template<typename... ARGS>
+		void Source<DERIVED_TYPE>::Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str, const char* message, ARGS... args)
 		{
 			if (BrainMuscles::test::source::Environment::Result() == ResultType::pass)
 			{
 				if (!condition)
 				{
-					BrainMuscles::test::source::Environment::SetError(message, file, line);
+					if (message == NULL)
+					{
+						BrainMuscles::test::source::Environment::SetError(condition_str, file, line);
+					}
+					else
+					{
+						BrainMuscles::test::source::Environment::SetError(message, file, line, args...);
+					}
 				}
 			}
 		}
@@ -128,7 +137,7 @@ namespace BrainMuscles
 				{
 					std::string msg = typeid(OTHER_SOURCE).name();
 					msg += " not has static function member 'Test'";
-					Assert(false, file, line, msg.c_str());
+					Assert(false, file, line, msg.c_str(), NULL);
 					return;
 				}
 				if (OTHER_SOURCE::IsNotTest())
@@ -217,10 +226,10 @@ namespace BrainMuscles
 
 #ifndef SourceAssert
 
-//SourceAssert(CONDITION [, MESSAGE])
+//SourceAssert(CONDITION [, [MESSAGE | [FORMAT, ...]]])
 #define SourceAssert(CONDITION, ...)\
 do{\
-	Assert(CONDITION, __FILE__, __LINE__, __VA_ARGS__, #CONDITION);\
+	Assert(CONDITION, __FILE__, __LINE__, #CONDITION, __VA_ARGS__);\
 }while(false)
 
 #endif //!SourceAssert
