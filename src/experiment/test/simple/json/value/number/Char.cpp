@@ -28,7 +28,7 @@ namespace experiment
 
 							//check value between variable 'value_number_char1' and 0 from int is same
 							SourceAssert(value_number_char1 == 0, 
-								"value variable of 'value_number_char1' is not equal 0");
+								"value variable of 'value_number_char1' is not equal with 0 from int");
 
 							//declare variable of class BrainMuscles::test::simple::json::value::number::Char
 							// with direct initialization from copy initialization of int  
@@ -36,7 +36,7 @@ namespace experiment
 
 							//check value between variable of 'value_number_char2' and 15 from int is same
 							SourceAssert(value_number_char2 == 15,
-								"value variable of 'value_number_char2' is not equal 15");
+								"value variable of 'value_number_char2' is not equal with 15 from int");
 
 							//declare variable of class BrainMuscles::test::simple::json::value::number::Char
 							// with copy initialization from variable of class BrainMuscles::test::simple::json::value::number::Char
@@ -51,7 +51,7 @@ namespace experiment
 
 							//check value between variable 'value_number_char1' and 12 from int is same
 							SourceAssert(value_number_char1 == 12,
-								"value variable 'value_number_char1' is not equal 12");
+								"value variable 'value_number_char1' is not equal with 12 from int");
 
 							//declare reference variable of char 
 							// with copy initialization from class BrainMuscles::test::simple::json::value::number::Char
@@ -62,7 +62,7 @@ namespace experiment
 
 							//check value between variable 'value_number_char1' and 16 from int is same
 							SourceAssert(reference_char1 == 16,
-								"value variable 'reference_char1' is not equal 16");
+								"value variable 'reference_char1' is not equal with 16 from int");
 
 							//check value between variable 'value_number_char1' 
 							// and reference variable 'reference_char1' is same
