@@ -53,21 +53,21 @@ namespace experiment
 							SourceAssert(value_number_char1 == 12,
 								"value variable 'value_number_char1' is not equal with 12 from int");
 
-							//declare reference variable of char 
-							// with reference initialization from class BrainMuscles::test::simple::json::value::number::Char
+							//declare reference variable of char with reference initialization 
+							// from class BrainMuscles::test::simple::json::value::number::Char
 							char &reference_char1 = value_number_char1;
 
-							//assignment variable 'value_number_char1' with int
+							//assignment reference variable 'reference_char1' with int
 							reference_char1 = 16;
 
 							//check value between reference variable 'value_number_char1' and 16 from int is same
 							SourceAssert(reference_char1 == 16,
-								"value variable 'reference_char1' is not equal with 16 from int");
+								"value of reference variable 'reference_char1' is not equal with 16 from int");
 
 							//check value between variable 'value_number_char1' 
 							// and reference variable 'reference_char1' is same
 							SourceAssert(reference_char1 == value_number_char1,
-								"value variable 'reference_char1' and reference variable 'reference_char1' is not same");
+								"value of reference variable 'reference_char1' and variable 'value_number_char1' is not same");
 						}
 					}
 				}
