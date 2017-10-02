@@ -57,7 +57,7 @@ namespace experiment
 							// from class BrainMuscles::test::simple::json::value::number::Double
 							double &reference_double1 = value_number_double1;
 
-							//assignment reference variable 'value_number_double1' with double
+							//assignment reference variable 'reference_double1' with double
 							reference_double1 = 16.16;
 
 							//check value between reference variable 'reference_double1' and 16.16 from double is same
