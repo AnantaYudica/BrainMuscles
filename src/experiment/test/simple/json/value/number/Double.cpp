@@ -62,7 +62,7 @@ namespace experiment
 
 							//check value between reference variable 'reference_double1' and 16.16 from double is same
 							SourceAssert(reference_double1 == 16.16,
-								"value of variable 'reference_double1' is not equal with 16.16 from double");
+								"value of reference variable 'reference_double1' is not equal with 16.16 from double");
 
 							//check value between reference variable 'reference_double1' and variable 'value_number_double1' is same
 							SourceAssert(reference_double1 == value_number_double1,
