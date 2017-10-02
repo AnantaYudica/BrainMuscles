@@ -26,7 +26,7 @@ namespace experiment
 							// with default initialization 
 							BMTestSimple::json::value::number::Int value_number_int1;
 
-							//check value between variable 'value_number_int1 ==' and 0 from int is same
+							//check value between variable 'value_number_int1' and 0 from int is same
 							SourceAssert(value_number_int1 == 0,
 								"value variable 'value_number_int1 ==' is not equal with 0 from int");
 
