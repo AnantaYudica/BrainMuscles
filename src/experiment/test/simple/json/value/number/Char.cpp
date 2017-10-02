@@ -60,7 +60,7 @@ namespace experiment
 							//assignment variable 'value_number_char1' with int
 							reference_char1 = 16;
 
-							//check value between variable 'value_number_char1' and 16 from int is same
+							//check value between reference variable 'value_number_char1' and 16 from int is same
 							SourceAssert(reference_char1 == 16,
 								"value variable 'reference_char1' is not equal with 16 from int");
 
