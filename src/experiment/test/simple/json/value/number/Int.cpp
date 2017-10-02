@@ -28,7 +28,7 @@ namespace experiment
 
 							//check value between variable 'value_number_int1' and 0 from int is same
 							SourceAssert(value_number_int1 == 0,
-								"value variable 'value_number_int1 ==' is not equal with 0 from int");
+								"value variable 'value_number_int1' is not equal with 0 from int");
 
 							//declare variable of class BrainMuscles::test::simple::json::value::number::Int
 							// with direct initialization from 15 from int
