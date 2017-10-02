@@ -54,7 +54,7 @@ namespace experiment
 								"value variable 'value_number_char1' is not equal with 12 from int");
 
 							//declare reference variable of char 
-							// with copy initialization from class BrainMuscles::test::simple::json::value::number::Char
+							// with reference initialization from class BrainMuscles::test::simple::json::value::number::Char
 							char &reference_char1 = value_number_char1;
 
 							//assignment variable 'value_number_char1' with int
