@@ -13,7 +13,8 @@ namespace BrainMuscles
 			{
 				pass,
 				error,
-				not_test
+				not_test,
+				test,
 			};
 		}
 	}
