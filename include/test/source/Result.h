@@ -14,7 +14,7 @@ namespace BrainMuscles
 				pass,
 				error,
 				not_test,
-				test,
+				not_completed
 			};
 		}
 	}
