@@ -34,8 +34,11 @@ namespace std
 	inline std::string to_string(const BrainMuscles::test::source::Error& error)
 	{
 		std::string out = error.Cause;
-		out += ", ";
-		out += error.Information;
+		if (error.Trace.size() == 0)
+		{
+			out += ", ";
+			out += error.Information;
+		}
 		return out;
 	}
 }
