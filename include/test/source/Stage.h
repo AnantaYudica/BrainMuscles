@@ -22,10 +22,10 @@ namespace BrainMuscles
 				inline bool IsHasTest();
 				inline bool IsHasPostTest();
 			public:
-				inline bool IsNotTest();
-				inline bool IsPreTest();
-				inline bool IsTest();
-				inline bool IsPostTest();
+				inline bool IsNotTest() const;
+				inline bool IsPreTest() const;
+				inline bool IsTest() const;
+				inline bool IsPostTest() const;
 				inline void SetPreTest();
 				inline void SetTest();
 				inline void SetPostTest();
@@ -50,22 +50,22 @@ namespace BrainMuscles
 				return m_value & 4;
 			}
 
-			inline bool Stage::IsNotTest()
+			inline bool Stage::IsNotTest() const
 			{
 				return m_value == 0;
 			}
 
-			inline bool Stage::IsPreTest()
+			inline bool Stage::IsPreTest() const
 			{
 				return m_value == 1;
 			}
 
-			inline bool Stage::IsTest()
+			inline bool Stage::IsTest() const
 			{
 				return m_value >= 2 && m_value < 4;
 			}
 
-			inline bool Stage::IsPostTest()
+			inline bool Stage::IsPostTest() const
 			{
 				return m_value >= 4 && m_value < 8;
 			}
