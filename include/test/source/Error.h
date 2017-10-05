@@ -4,6 +4,7 @@
 #ifdef _USING_TEST_SOURCE_
 
 #include <string>
+#include <stack>
 
 namespace BrainMuscles
 {
@@ -15,12 +16,14 @@ namespace BrainMuscles
 			{
 				const std::string Cause;
 				const std::string Information;
-				inline Error(const std::string& cause, const std::string& information);
+				const std::stack<std::string> Trace;
+				inline Error(const std::string& cause, const std::string& information, const std::stack<std::string>& trace);
 			};
 
-			inline Error::Error(const std::string& cause, const std::string& information) :
+			inline Error::Error(const std::string& cause, const std::string& information, const std::stack<std::string>& trace) :
 				Cause(cause),
-				Information(information)
+				Information(information),
+				Trace(trace)
 			{}
 		}
 	}
