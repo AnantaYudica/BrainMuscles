@@ -22,6 +22,7 @@ namespace experiment
 						private:
 							UnsignedLongLong() = default;
 						public:
+							static void PreTest();
 							static void Test();
 						};
 					}

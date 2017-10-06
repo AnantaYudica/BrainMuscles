@@ -22,6 +22,7 @@ namespace experiment
 						private:
 							UnsignedShort() = default;
 						public:
+							static void PreTest();
 							static void Test();
 						};
 					}
