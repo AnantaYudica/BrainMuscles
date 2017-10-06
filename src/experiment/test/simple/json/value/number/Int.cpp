@@ -3,6 +3,8 @@
 
 #include "test\simple\json\value\number\Int.h"
 
+#include "experiment\test\simple\json\value\Number.h"
+
 #include "experiment\test\simple\json\value\number\Int.h"
 
 namespace experiment
@@ -17,6 +19,11 @@ namespace experiment
 				{
 					namespace number
 					{
+						void Int::PreTest()
+						{
+							SourceRequirement(experiment::test::simple::json::value::Number);
+						}
+
 						void Int::Test()
 						{
 							//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify

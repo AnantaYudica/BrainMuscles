@@ -3,6 +3,8 @@
 
 #include "test\simple\json\value\number\LongDouble.h"
 
+#include "experiment\test\simple\json\value\Number.h"
+
 #include "experiment\test\simple\json\value\number\LongDouble.h"
 
 namespace experiment
@@ -17,6 +19,11 @@ namespace experiment
 				{
 					namespace number
 					{
+						void LongDouble::PreTest()
+						{
+							SourceRequirement(experiment::test::simple::json::value::Number);
+						}
+
 						void LongDouble::Test()
 						{
 							//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify

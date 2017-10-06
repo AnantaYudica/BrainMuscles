@@ -3,6 +3,8 @@
 
 #include "test\simple\json\value\number\UnsignedChar.h"
 
+#include "experiment\test\simple\json\value\Number.h"
+
 #include "experiment\test\simple\json\value\number\UnsignedChar.h"
 
 namespace experiment
@@ -17,6 +19,11 @@ namespace experiment
 				{
 					namespace number
 					{
+						void UnsignedChar::PreTest()
+						{
+							SourceRequirement(experiment::test::simple::json::value::Number);
+						}
+
 						void UnsignedChar::Test()
 						{
 							//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
