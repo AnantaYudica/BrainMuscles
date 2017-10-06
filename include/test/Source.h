@@ -11,6 +11,7 @@
 #include "test\source\Error.h"
 #include "test\source\Stage.h"
 #include "test\source\Environment.h"
+#include "test\source\Constant.h"
 
 namespace BrainMuscles
 {
@@ -25,6 +26,7 @@ namespace BrainMuscles
 			typedef BrainMuscles::test::source::Result			ResultType;
 			typedef BrainMuscles::test::source::Stage			StageType;
 			typedef BrainMuscles::test::source::Error			ErrorType;
+			typedef BrainMuscles::test::source::Constant		ConstantType;
 		private:
 			static DERIVED_TYPE ms_instance;
 		private:
@@ -42,27 +44,41 @@ namespace BrainMuscles
 		public:
 			~Source();
 		private:
+			static bool IsBeginStage();
+			static bool IsNotTestStage();
+			static bool IsPreTestStage();
+			static bool IsTestStage();
+			static bool IsPostTestStage();
+			static bool IsEndStage();
+		private:
+			static bool CanBeginStage();
+			static bool CanPreTestStage();
+			static bool CanTestStage();
+			static bool CanPostTestStage();
+			static bool CanEndStage();
+		private:
+			static void StageBegin();
+			static void StagePreTest();
+			static void StageTest();
+			static void StagePostTest();
+			static void StageEnd();
+		private:
 			static ResultType RunStaticTest();
 			static void RunPreTest();
 			static void RunPostTest();
 			static const ResultType& SetStatus(const ResultType& status);
-			static void StagePreTest();
-			static void StageTest();
-			static void StagePostTest();
 			static void SetError(const char* file, const std::size_t& line, std::string title, std::string message);
 			template<typename... ARGS>
 			static void SetError(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args);
-			static std::string CallerFunction(const char* caller);
-			static std::string TitleFailed(const char* caller);
 		private:
 			template<typename OTHER_SOURCE>
-			static void BaseOfSource(const char* caller, const char* file, const std::size_t& line);
+			static void BaseOfSource(std::string title, const char* file, const std::size_t& line);
 			template<typename OTHER_SOURCE>
-			static void SourceHasTest(const char* caller, const char* file, const std::size_t& line);
+			static void SourceHasTest(std::string title, const char* file, const std::size_t& line);
 			template<typename OTHER_SOURCE>
-			static void SourceIsError(const char* caller, const char* file, const std::size_t& line);
+			static void SourceIsError(std::string title, const char* file, const std::size_t& line);
 			template<typename OTHER_SOURCE>
-			static void SourceIsNotCompleted(const char* caller, const char* file, const std::size_t& line);
+			static void SourceIsNotCompleted(std::string title, const char* file, const std::size_t& line);
 		protected:
 			static void Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str);
 			template<typename... ARGS>
@@ -81,6 +97,7 @@ namespace BrainMuscles
 			static bool IsError();
 			static bool IsNotTest();
 			static bool IsNotCompleted();
+			static bool IsPassStaticTest();
 		public:
 			static const ResultType& Status();
 			static ResultType RunTest();
@@ -116,14 +133,129 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::IsBeginStage()
+		{
+			return ms_instance.m_stage.IsBeginStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::IsNotTestStage()
+		{
+			return ms_instance.m_stage.IsNotTestStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::IsPreTestStage()
+		{
+			return ms_instance.m_stage.IsPreTestStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::IsTestStage()
+		{
+			return ms_instance.m_stage.IsTestStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::IsPostTestStage()
+		{
+			return ms_instance.m_stage.IsPostTestStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::IsEndStage()
+		{
+			return ms_instance.m_stage.IsEndStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::CanBeginStage()
+		{
+			return ms_instance.m_stage.CanBeginStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::CanPreTestStage()
+		{
+			return ms_instance.m_stage.CanPreTestStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::CanTestStage()
+		{
+			return ms_instance.m_stage.CanTestStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::CanPostTestStage()
+		{
+			return ms_instance.m_stage.CanPostTestStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::CanEndStage()
+		{
+			return ms_instance.m_stage.CanEndStage();
+		}
+
+		template<typename DERIVED_TYPE>
+		void Source<DERIVED_TYPE>::StageBegin()
+		{
+			if (CanBeginStage())
+			{
+				SetStatus(ResultType::not_completed);
+			}
+		}
+
+		template<typename DERIVED_TYPE>
+		void Source<DERIVED_TYPE>::StagePreTest()
+		{
+			if (CanPreTestStage())
+			{
+				RunPreTest();
+			}
+		}
+
+		template<typename DERIVED_TYPE>
+		void Source<DERIVED_TYPE>::StageTest()
+		{
+			if (CanTestStage())
+			{
+				EnvironmentType::CallerFunction(ConstantType::CallerTest<DERIVED_TYPE>());
+				DERIVED_TYPE::Test();
+				EnvironmentType::PopCallerFunction();
+				SetStatus(ResultType::pass);
+			}
+		}
+
+		template<typename DERIVED_TYPE>
+		void Source<DERIVED_TYPE>::StagePostTest()
+		{
+			if (CanPostTestStage())
+			{
+				RunPostTest();
+			}
+		}
+
+		template<typename DERIVED_TYPE>
+		void Source<DERIVED_TYPE>::StageEnd()
+		{
+			if (CanEndStage())
+			{
+			}
+		}
+
+		template<typename DERIVED_TYPE>
 		typename Source<DERIVED_TYPE>::ResultType Source<DERIVED_TYPE>::RunStaticTest()
 		{
 			if (EnvironmentType::IsPass() && HasStaticTest())
 			{
-				EnvironmentType::Trace(CallerFunction("StaticTest"));
+				EnvironmentType::CallerFunction(ConstantType::CallerStaticTest<DERIVED_TYPE>());
 				DERIVED_TYPE::StaticTest();
-				EnvironmentType::PopTrace();
-				return SetStatus(EnvironmentType::Result())
+				TriggerError();
+				EnvironmentType::PopCallerFunction();
+				SetStatus(EnvironmentType::Result());
+				return EnvironmentType::Result();
 			}
 			return ResultType::not_test;
 		}
@@ -133,8 +265,9 @@ namespace BrainMuscles
 		{
 			if (EnvironmentType::IsPass() && HasPreTest())
 			{
-				StagePreTest();
+				EnvironmentType::CallerFunction(ConstantType::CallerPreTest<DERIVED_TYPE>());
 				DERIVED_TYPE::PreTest();
+				EnvironmentType::PopCallerFunction();
 			}
 		}
 
@@ -143,8 +276,9 @@ namespace BrainMuscles
 		{
 			if (EnvironmentType::IsPass() && HasPostTest() && IsPass())
 			{
-				StagePostTest();
+				EnvironmentType::CallerFunction(ConstantType::CallerPostTest<DERIVED_TYPE>());
 				DERIVED_TYPE::PostTest();
+				EnvironmentType::PopCallerFunction();
 			}
 		}
 
@@ -163,27 +297,9 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		void Source<DERIVED_TYPE>::StagePreTest()
-		{
-			ms_instance.m_stage.SetPreTest();
-		}
-
-		template<typename DERIVED_TYPE>
-		void Source<DERIVED_TYPE>::StageTest()
-		{
-			ms_instance.m_stage.SetTest();
-		}
-
-		template<typename DERIVED_TYPE>
-		void Source<DERIVED_TYPE>::StagePostTest()
-		{
-			ms_instance.m_stage.SetPostTest();
-		}
-
-		template<typename DERIVED_TYPE>
 		void Source<DERIVED_TYPE>::SetError(const char* file, const std::size_t& line, std::string title, std::string message)
 		{
-			if (ms_instance.m_error == nullptr)
+			if (!IsPass() && ms_instance.m_error == nullptr)
 			{
 				ms_instance.m_error = new ErrorType(EnvironmentType::ErrorMessage(file, line, title, message));
 			}
@@ -194,7 +310,7 @@ namespace BrainMuscles
 		template<typename... ARGS>
 		void Source<DERIVED_TYPE>::SetError(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args)
 		{
-			if (ms_instance.m_error == nullptr)
+			if (!IsPass() && ms_instance.m_error == nullptr)
 			{
 				ms_instance.m_error = new ErrorType(EnvironmentType::ErrorMessage(file, line, title, format, args...));
 			}
@@ -202,88 +318,54 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		std::string Source<DERIVED_TYPE>::CallerFunction(const char* caller)
-		{
-			std::string ret = "";
-			if (GetInstance().m_stage.IsNotTest())
-			{
-				ret += "when called ";
-				ret += caller;
-				ret += " from ";
-				ret += typeid(DERIVED_TYPE).name();
-			}
-			else if (GetInstance().m_stage.IsPreTest())
-			{
-				ret += "in called static function member 'PreTest' from ";
-				ret += typeid(DERIVED_TYPE).name();
-			}
-			else if (GetInstance().m_stage.IsTest())
-			{
-				ret += "in called static function member 'Test' from ";
-				ret += typeid(DERIVED_TYPE).name();
-			}
-			else if (GetInstance().m_stage.IsPostTest())
-			{
-				ret += "in called static function member 'PostTest' from ";
-				ret += typeid(DERIVED_TYPE).name();
-			}
-			return ret;
-		}
-		
-		template<typename DERIVED_TYPE>
-		std::string Source<DERIVED_TYPE>::TitleFailed(const char* caller)
-		{
-			std::string title = caller;
-			title += " failed";
-			return title;
-		}
-
-		template<typename DERIVED_TYPE>
 		template<typename OTHER_SOURCE>
-		void Source<DERIVED_TYPE>::BaseOfSource(const char* caller, const char* file, const std::size_t& line)
+		void Source<DERIVED_TYPE>::BaseOfSource(std::string title, const char* file, const std::size_t& line)
 		{
 			if (!decltype(IsBaseOfSourceImpl(std::declval<OTHER_SOURCE>()))::value)
 			{
-				SetError(file, line, TitleFailed(caller), "%s is not base class with class BrainMuscles::test::Source", typeid(OTHER_SOURCE).name());
+				SetError(file, line, title, ConstantType::BaseOfSourceMsg, typeid(OTHER_SOURCE).name());
 			}
 		}
 
 		template<typename DERIVED_TYPE>
 		template<typename OTHER_SOURCE>
-		void Source<DERIVED_TYPE>::SourceHasTest(const char* caller, const char* file, const std::size_t& line)
+		void Source<DERIVED_TYPE>::SourceHasTest(std::string title, const char* file, const std::size_t& line)
 		{
 			if (!OTHER_SOURCE::HasTest())
 			{
-				SetError(file, line, TitleFailed(caller), "%s is not has static function member 'Test'", typeid(OTHER_SOURCE).name());
+				SetError(file, line, title, ConstantType::SourceHasTestMsg, typeid(OTHER_SOURCE).name());
 			}
 		}
 
 		template<typename DERIVED_TYPE>
 		template<typename OTHER_SOURCE>
-		void Source<DERIVED_TYPE>::SourceIsError(const char* caller, const char* file, const std::size_t& line)
+		void Source<DERIVED_TYPE>::SourceIsError(std::string title, const char* file, const std::size_t& line)
 		{
 			if (OTHER_SOURCE::IsError())
 			{
-				SetError(file, line, TitleFailed(caller), "%s has error", typeid(OTHER_SOURCE).name());
+				SetError(file, line, title, ConstantType::SourceIsErrorMsg, typeid(OTHER_SOURCE).name());
 			}
 		}
 
 		template<typename DERIVED_TYPE>
 		template<typename OTHER_SOURCE>
-		void Source<DERIVED_TYPE>::SourceIsNotCompleted(const char* caller, const char* file, const std::size_t& line)
+		void Source<DERIVED_TYPE>::SourceIsNotCompleted(std::string title, const char* file, const std::size_t& line)
 		{
-			if (DERIVED_TYPE::IsNotCompleted())
+			if (OTHER_SOURCE::IsNotCompleted())
 			{
-				SetError(file, line, TitleFailed(caller), "test in %s is not completed", typeid(DERIVED_TYPE).name());
+				SetError(file, line, title, ConstantType::SourceIsNotCompletedMsg, typeid(OTHER_SOURCE).name());
 			}
 		}
 
 		template<typename DERIVED_TYPE>
 		void Source<DERIVED_TYPE>::Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str)
 		{
+
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
-				SetError(file, line, TitleFailed("Assertion"), condition_str);
+				EnvironmentType::Trace(EnvironmentType::CallerFunction(), file, line);
+				SetError(file, line, ConstantType::AssertionFailed(), condition_str);
+				EnvironmentType::PopTrace();
 			}
 		}
 
@@ -293,7 +375,9 @@ namespace BrainMuscles
 		{
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
-				SetError(file, line, TitleFailed("Assertion"), condition_str, args...);
+				EnvironmentType::Trace(EnvironmentType::CallerFunction(), file, line);
+				SetError(file, line, ConstantType::AssertionFailed(), condition_str, args...);
+				EnvironmentType::PopTrace();
 			}
 		}
 
@@ -302,19 +386,21 @@ namespace BrainMuscles
 		typename std::enable_if<!std::is_same<DERIVED_TYPE, OTHER_SOURCE>::value, void>::type 
 			Source<DERIVED_TYPE>::Requirement(const char* file, const std::size_t& line)
 		{
-			EnvironmentType::Trace(CallerFunction("static function member 'Requirement'"), file, line);
-			BaseOfSource<OTHER_SOURCE>("Requirement", file, line);
-			SourceHasTest<OTHER_SOURCE>("Requirement", file, line);
-
-			if (EnvironmentType::IsPass() && !IsError())
+			EnvironmentType::Trace(ConstantType::CallerRequirement<DERIVED_TYPE>(), file, line);
+			if (EnvironmentType::IsPass())
 			{
 				if (OTHER_SOURCE::IsNotTest())
 				{
-					OTHER_SOURCE::RunTest();
+					BaseOfSource<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
+					SourceHasTest<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
+					if (!IsError())
+					{
+						OTHER_SOURCE::RunTest();
+						OTHER_SOURCE::TriggerError();
+					}
 				}
-				OTHER_SOURCE::TriggerError();
-				SourceIsError<OTHER_SOURCE>("Requirement", file, line);
-				SourceIsNotCompleted<OTHER_SOURCE>("Requirement", file, line);
+				SourceIsError<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
+				SourceIsNotCompleted<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
 			}
 			EnvironmentType::PopTrace();
 		}
@@ -322,10 +408,10 @@ namespace BrainMuscles
 		template<typename DERIVED_TYPE>
 		void Source<DERIVED_TYPE>::Call(const char* file, const std::size_t& line)
 		{
-			EnvironmentType::Trace(CallerFunction("static function member 'Call'"), file, line);
-			SourceHasTest<DERIVED_TYPE>("Call", file, line);
+			EnvironmentType::Trace(ConstantType::CallerCall<DERIVED_TYPE>(), file, line);
 			if (EnvironmentType::IsPass() && IsNotTest())
 			{
+				SourceHasTest<DERIVED_TYPE>(ConstantType::CallFailed(), file, line);
 				RunTest();
 				TriggerError();
 			}
@@ -381,6 +467,12 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
+		bool Source<DERIVED_TYPE>::IsPassStaticTest()
+		{
+			return ResultStaticTest == ResultType::not_test || ResultStaticTest == ResultType::pass;
+		}
+
+		template<typename DERIVED_TYPE>
 		const typename Source<DERIVED_TYPE>::ResultType& Source<DERIVED_TYPE>::Status()
 		{
 			return ms_instance.m_status;
@@ -389,17 +481,16 @@ namespace BrainMuscles
 		template<typename DERIVED_TYPE>
 		typename Source<DERIVED_TYPE>::ResultType Source<DERIVED_TYPE>::RunTest()
 		{
-			if (HasTest() && IsNotTest())
+			if (HasTest() && IsNotTest() && IsPassStaticTest() && EnvironmentType::IsPass())
 			{
-				SetStatus(ResultType::not_completed);
-				RunPreTest();
-				if (EnvironmentType::IsPass())
+				StageBegin();
+				StagePreTest();
+				if (IsNotCompleted())
 				{
 					StageTest();
-					DERIVED_TYPE::Test();
-					SetStatus(ResultType::pass);
-					RunPostTest();
+					StagePostTest();
 				}
+				StageEnd();
 			}
 			return Status();
 		}
