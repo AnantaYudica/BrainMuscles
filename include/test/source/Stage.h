@@ -14,96 +14,168 @@ namespace BrainMuscles
 			class Stage
 			{
 			private:
-				char m_value;
+				unsigned char m_value;
 			public:
 				inline Stage();
 			private:
+				inline bool IsHasNotTest();
 				inline bool IsHasPreTest();
 				inline bool IsHasTest();
 				inline bool IsHasPostTest();
+				inline bool IsHasEnd();
+			private:
+				inline void SetNotTest();
+				inline void SetPreTest();
+				inline void SetTest();
+				inline void SetPostTest();
+				inline void SetEnd();
 			public:
+				inline bool IsBegin() const;
 				inline bool IsNotTest() const;
 				inline bool IsPreTest() const;
 				inline bool IsTest() const;
 				inline bool IsPostTest() const;
-				inline void SetPreTest();
-				inline void SetTest();
-				inline void SetPostTest();
+				inline bool IsEnd() const;
+			public:
+				inline bool CanBeginStage();
+				inline bool CanPreTestStage();
+				inline bool CanTestStage();
+				inline bool CanPostTestStage();
+				inline bool CanEndStage();
 			};
 
 			inline Stage::Stage() :
 				m_value(0)
 			{}
 
-			inline bool Stage::IsHasPreTest()
+			inline bool Stage::IsHasNotTest()
 			{
 				return m_value & 1;
 			}
 
-			inline bool Stage::IsHasTest()
+			inline bool Stage::IsHasPreTest()
 			{
 				return m_value & 2;
 			}
 
-			inline bool Stage::IsHasPostTest()
+			inline bool Stage::IsHasTest()
 			{
 				return m_value & 4;
 			}
 
-			inline bool Stage::IsNotTest() const
+			inline bool Stage::IsHasPostTest()
 			{
-				return m_value == 0;
+				return m_value & 8;
 			}
 
-			inline bool Stage::IsPreTest() const
+			inline bool Stage::IsHasEnd()
 			{
-				return m_value == 1;
+				return m_value & 16;
 			}
 
-			inline bool Stage::IsTest() const
+			inline void Stage::SetNotTest()
 			{
-				return m_value >= 2 && m_value < 4;
-			}
-
-			inline bool Stage::IsPostTest() const
-			{
-				return m_value >= 4 && m_value < 8;
+				m_value |= 1;
 			}
 
 			inline void Stage::SetPreTest()
 			{
-				if (IsNotTest())
-				{
-					m_value |= 1;
-				}
-				else
-				{
-					//todo error
-				}
+				m_value |= 2;
 			}
 
 			inline void Stage::SetTest()
 			{
-				if (IsNotTest() || IsPreTest())
-				{
-					m_value |= 2;
-				}
-				else
-				{
-					//todo error	
-				}
+				m_value |= 4;
 			}
 
 			inline void Stage::SetPostTest()
 			{
+				m_value |= 8;
+			}
+
+			inline void Stage::SetEnd()
+			{
+				m_value |= 16;
+			}
+
+			inline bool Stage::IsBegin() const
+			{
+				return m_value == 0;
+			}
+
+			inline bool Stage::IsNotTest() const
+			{
+				return m_value == 1;
+			}
+
+			inline bool Stage::IsPreTest() const
+			{
+				return m_value >= 2 && m_value < 4;
+			}
+
+			inline bool Stage::IsTest() const
+			{
+				return m_value >= 4 && m_value < 8;
+			}
+
+			inline bool Stage::IsPostTest() const
+			{
+				return m_value >= 8 && m_value < 16;
+			}
+
+			inline bool Stage::IsEnd() const
+			{
+				return m_value >= 16;
+			}
+
+			inline bool Stage::CanBeginStage()
+			{
+				if (IsBegin())
+				{
+					SetNotTest();
+					return true;
+				}
+				return false;
+			}
+
+			inline bool Stage::CanPreTestStage()
+			{
+				if (IsNotTest())
+				{
+					SetPreTest();
+					return true;
+				}
+				return false;
+			}
+
+			inline bool Stage::CanTestStage()
+			{
+				if (IsNotTest() || IsPreTest())
+				{
+					SetTest();
+					return true;
+				}
+				return false;
+			}
+
+			inline bool Stage::CanPostTestStage()
+			{
 				if (IsTest())
 				{
-					m_value |= 4;
+					SetPostTest();
+					return true;
 				}
-				else
+				return false;
+			}
+
+			inline bool Stage::CanEndStage()
+			{
+				if (!IsEnd())
 				{
-					//todo error	
+					SetPostTest();
+					return true;
 				}
+				return false;
 			}
 		}
 	}
