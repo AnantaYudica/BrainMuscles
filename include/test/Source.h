@@ -212,7 +212,9 @@ namespace BrainMuscles
 		{
 			if (CanPreTestStage())
 			{
-				RunPreTest();
+				EnvironmentType::CallerFunction(ConstantType::CallerPreTest<DERIVED_TYPE>());
+				DERIVED_TYPE::PreTest();
+				EnvironmentType::PopCallerFunction();
 			}
 		}
 
@@ -233,7 +235,9 @@ namespace BrainMuscles
 		{
 			if (CanPostTestStage())
 			{
-				RunPostTest();
+				EnvironmentType::CallerFunction(ConstantType::CallerPostTest<DERIVED_TYPE>());
+				DERIVED_TYPE::PostTest();
+				EnvironmentType::PopCallerFunction();
 			}
 		}
 
@@ -265,9 +269,7 @@ namespace BrainMuscles
 		{
 			if (EnvironmentType::IsPass() && HasPreTest())
 			{
-				EnvironmentType::CallerFunction(ConstantType::CallerPreTest<DERIVED_TYPE>());
-				DERIVED_TYPE::PreTest();
-				EnvironmentType::PopCallerFunction();
+				StagePreTest();
 			}
 		}
 
@@ -276,9 +278,7 @@ namespace BrainMuscles
 		{
 			if (EnvironmentType::IsPass() && HasPostTest() && IsPass())
 			{
-				EnvironmentType::CallerFunction(ConstantType::CallerPostTest<DERIVED_TYPE>());
-				DERIVED_TYPE::PostTest();
-				EnvironmentType::PopCallerFunction();
+				StagePostTest();
 			}
 		}
 
@@ -484,11 +484,11 @@ namespace BrainMuscles
 			if (HasTest() && IsNotTest() && IsPassStaticTest() && EnvironmentType::IsPass())
 			{
 				StageBegin();
-				StagePreTest();
+				RunPreTest();
 				if (IsNotCompleted())
 				{
 					StageTest();
-					StagePostTest();
+					RunPostTest();
 				}
 				StageEnd();
 			}
