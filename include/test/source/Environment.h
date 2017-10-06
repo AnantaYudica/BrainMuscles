@@ -25,6 +25,8 @@ namespace BrainMuscles
 				ResultType m_result;
 				std::FILE* m_file;
 				std::stack<std::string> m_trace;
+				int m_skipTrace;
+				std::stack<std::string> m_callerFunction;
 			private:
 				inline Environment();
 			private:
@@ -39,6 +41,10 @@ namespace BrainMuscles
 				static inline void Trace(std::string caller, const char* file = NULL, const std::size_t& line = 0);
 				static inline void PopTrace();
 			public:
+				static inline void CallerFunction(std::string caller);
+				static inline std::string CallerFunction();
+				static inline void PopCallerFunction();
+			public:
 				static inline ErrorType ErrorMessage(const char* file, const std::size_t& line, std::string title, std::string message);
 				template<typename... ARGS>
 				static inline ErrorType ErrorMessage(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args);
@@ -46,7 +52,8 @@ namespace BrainMuscles
 
 			inline Environment::Environment() :
 				m_result(ResultType::pass),
-				m_file(stderr)
+				m_file(stderr),
+				m_skipTrace(0)
 			{}
 
 			inline Environment& Environment::Instance()
@@ -79,6 +86,7 @@ namespace BrainMuscles
 					fprintf(Instance().m_file, "%s\n", trace.top().c_str());
 					trace.pop();
 				}
+				Instance().m_result = ResultType::error;
 			}
 
 			inline void Environment::Trace(std::string caller, const char* file, const std::size_t& line)
@@ -87,24 +95,63 @@ namespace BrainMuscles
 				if (!caller.empty())
 				{
 					msg += caller;
+					if (file != NULL)
+					{
+						msg += ", file ";
+						msg += file;
+						msg += ", line ";
+						msg += std::to_string(line);
+					}
+					Instance().m_trace.push(msg);
 				}
 				else
 				{
-					msg += "call unknown function";
+					++Instance().m_skipTrace;
 				}
-				if (file != NULL)
-				{
-					msg += ", file ";
-					msg += file;
-					msg += ", line ";
-					msg += std::to_string(line);
-				}
-				Instance().m_trace.push(msg);
 			}
 
 			inline void Environment::PopTrace()
 			{
-				Instance().m_trace.pop();
+				if (Instance().m_skipTrace == 0)
+				{
+					if (!Instance().m_trace.empty())
+					{
+						Instance().m_trace.pop();
+					}
+				}
+				else
+				{
+					--Instance().m_skipTrace;
+				}
+			}
+
+			inline void Environment::CallerFunction(std::string caller)
+			{
+				if (!caller.empty())
+				{
+					Instance().m_callerFunction.push(caller);
+				}
+				else
+				{
+					Instance().m_callerFunction.push("call unknown function");
+				}
+			}
+
+			inline std::string Environment::CallerFunction()
+			{
+				if (!Instance().m_callerFunction.empty())
+				{
+					return Instance().m_callerFunction.top();
+				}
+				return "";
+			}
+
+			inline void Environment::PopCallerFunction()
+			{
+				if (!Instance().m_callerFunction.empty())
+				{
+					Instance().m_callerFunction.pop();
+				}
 			}
 
 			inline typename Environment::ErrorType
