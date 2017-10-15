@@ -50,4 +50,6 @@ public:
 	std::string operator[](std::string key);
 };
 
+#define _Arguments tool::environment::Arguments::GetInstance()
+
 #endif //!TOOL_ENVIRONMENT_ARGUMENTS_H_
