@@ -34,7 +34,7 @@ tool::environment::Arguments::KeyValueArgument(const char* argument)
 	return { str.substr(start, end - start), str.substr(end + 1) };
 }
 
-tool::environment::Arguments& 
+tool::environment::Arguments&
 tool::environment::Arguments::GetInstance()
 {
 	return ms_instance;
@@ -54,13 +54,12 @@ void tool::environment::Arguments::Initialization(int argc, char *argv[])
 			auto it_caller = m_callersKey.find(key_value.first);
 			if (it_caller != m_callersKey.end() && key_value.second.empty())
 			{
-				tool::Environment::GetInstance().Info("-%s", 
-					key_value.first.c_str());
+				__Info("-%s", key_value.first.c_str());
 				it_caller->second();
 				continue;
 			}
-			tool::Environment::GetInstance().Info("-%s = %s", 
-				key_value.first.c_str(), key_value.second.c_str());
+			__Info("-%s = %s", key_value.first.c_str(), 
+				key_value.second.c_str());
 			auto it_definition = m_definitionsKey.find(key_value.first);
 			if (it_definition != m_definitionsKey.end())
 			{
