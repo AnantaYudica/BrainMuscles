@@ -48,7 +48,7 @@ private:
 	void Newline(const SizeType& column, std::string string);
 	bool IsDebug();
 public:
-	void DebugEnable();
+	void EnableDebug();
 	void Maximum(SizeType value);
 	int Check();
 };
