@@ -85,19 +85,36 @@ void tool::source::Column::Newline(const SizeType& column,
 	if (column > m_maximum)
 	{
 		__Error("Check Column Failed: columns greater than %zu (Column = %zu) "
-			"in file %s, line %zu, string \"%s\"", m_maximum, column, 
+			", file %s, line %zu, string \"%s\"", m_maximum, column, 
 			m_read.Pathname().c_str(), m_line, string.c_str());
 	}
 	else
 	{
-		__Info("line %zu, column %zu, string \"%s\"", m_line, column, string.c_str());
+		if (IsDebug())
+		{
+			__Info("line %zu, column %zu, string \"%s\"", 
+				m_line, column, string.c_str());
+		}
 	}
 	++m_line;
 }
 
+bool tool::source::Column::IsDebug()
+{
+	return m_flag & BitDebug;
+}
+
+void tool::source::Column::EnableDebug()
+{
+	m_flag |= BitDebug;
+}
+
 void tool::source::Column::Maximum(SizeType value)
 {
-	__Info("Column Maximum = %zu", value);
+	if (IsDebug())
+	{
+		__Info("Column Maximum = %zu", value);
+	}
 	m_maximum = value;
 }
 
@@ -137,11 +154,13 @@ int tool::source::Column::Check()
 			else
 			{
 				++column;
-				if (string_line.size() < MAXIMUM_STRING_COLUMN_BUFFER_SIZE + 1)
+				if (string_line.size() < 
+					MAXIMUM_STRING_COLUMN_BUFFER_SIZE + 1)
 				{
 					string_line.push_back(character);
 				}
-				else if (string_line.size() == MAXIMUM_STRING_COLUMN_BUFFER_SIZE + 1)
+				else if (string_line.size() == 
+					MAXIMUM_STRING_COLUMN_BUFFER_SIZE + 1)
 				{
 					string_line += "...";
 				}
