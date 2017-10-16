@@ -41,7 +41,8 @@ public:
 	static Arguments& GetInstance();
 public:
 	void Initialization(int argc, char *argv[]);
-	void Definition(std::string key, FunctionDefinition function_definition);
+	void Definition(std::string key, FunctionDefinition function_definition,
+		std::string default_value = "");
 	void Caller(std::string key, FunctionCaller function_caller);
 	SizeType Size();
 	const char* ProgramName() const;
