@@ -1,4 +1,5 @@
 #include "environment\Flag.h"
+#include "Environment.h"
 
 tool::environment::Flag::Flag() :
 	m_value(0)
@@ -7,6 +8,7 @@ tool::environment::Flag::Flag() :
 void tool::environment::Flag::EnableDebug()
 {
 	m_value |= BitDebug;
+	__Info("Debug Enable");
 }
 
 void tool::environment::Flag::DisableDebug()
