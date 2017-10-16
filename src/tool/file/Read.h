@@ -32,8 +32,9 @@ public:
 	Read(std::string pathname);
 public:
 	~Read();
-private:
+public:
 	bool Open();
+private:
 	void Close();
 public:
 	bool Open(std::string pathname);
@@ -55,6 +56,8 @@ public:
 public:
 	bool IsOpen();
 	bool IsEOF();
+public:
+	const std::string Pathname();
 };
 
 #endif //!TOOL_FILE_READ_H_
