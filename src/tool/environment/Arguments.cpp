@@ -58,20 +58,26 @@ void tool::environment::Arguments::Initialization(int argc, char *argv[])
 				it_caller->second();
 				continue;
 			}
-			__Info("-%s = %s", key_value.first.c_str(), 
-				key_value.second.c_str());
+			
 			auto it_definition = m_definitionsKey.find(key_value.first);
 			if (it_definition != m_definitionsKey.end())
 			{
-				it_definition->second(key_value.second);
+				m_argumentsKey[key_value.first] = 
+					it_definition->second(key_value.second);
+				__Info("-%s = %s", key_value.first.c_str(),
+					m_argumentsKey[key_value.first].c_str());
 				continue;
 			}
 			auto it_argument = m_argumentsKey.find(key_value.first);
 			if (it_argument != m_argumentsKey.end())
 			{
 				it_argument->second = key_value.second;
+				__Info("-%s = %s", key_value.first.c_str(),
+					key_value.second.c_str());
 				continue;
 			}
+			__Info("-%s = %s", key_value.first.c_str(),
+				key_value.second.c_str());
 		}
 		else 
 		{
