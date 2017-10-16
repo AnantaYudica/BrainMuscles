@@ -21,8 +21,8 @@ class tool::environment::Arguments final
 public:
 	typedef std::size_t							SizeType;
 	typedef std::size_t							LineType;
-	typedef std::function<void(std::string)>	FunctionDefinition;
-	typedef std::function<void()>				FunctionCaller;
+	typedef std::function<std::string(std::string)>	FunctionDefinition;
+	typedef std::function<void()>					FunctionCaller;
 private:
 	static Arguments ms_instance;
 private:
