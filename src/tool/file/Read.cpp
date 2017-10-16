@@ -29,7 +29,7 @@ bool tool::file::Read::Open()
 		m_filestream.open(m_pathname.c_str());
 		if (m_filestream)
 		{
-			if (_Environment.Flag.IsDebug())
+			if (_Environment.Flag().IsDebug())
 			{
 				__Info("Open file: %s", m_pathname.c_str());
 			}
@@ -256,4 +256,9 @@ bool tool::file::Read::IsOpen()
 bool tool::file::Read::IsEOF()
 {
 	return m_filestream.eof();
+}
+
+const std::string tool::file::Read::Pathname()
+{
+	return m_pathname;
 }
