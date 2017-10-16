@@ -38,6 +38,10 @@ public:
 
 inline void tool::Environment::ErrorNumber(int error_number)
 {
+	if (error_number == 0)
+	{
+		return;
+	}
 	m_result = 1;
 	char msg[ERROR_MESSAGE_BUFFER_SIZE];
 #if ((defined(_WIN32) || defined(_WIN64)) && !defined(_CRT_SECURE_NO_WARNINGS))
@@ -56,6 +60,10 @@ inline void tool::Environment::ErrorNumber(int error_number)
 
 inline void tool::Environment::ErrorNumber(const char* title, int error_number)
 {
+	if (error_number == 0)
+	{
+		return;
+	}
 	std::printf("%s: ", title);
 	ErrorNumber(error_number);
 }
