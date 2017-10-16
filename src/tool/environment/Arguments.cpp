@@ -62,10 +62,17 @@ void tool::environment::Arguments::Initialization(int argc, char *argv[])
 			auto it_definition = m_definitionsKey.find(key_value.first);
 			if (it_definition != m_definitionsKey.end())
 			{
-				m_argumentsKey[key_value.first] = 
-					it_definition->second(key_value.second);
-				__Info("-%s = %s", key_value.first.c_str(),
-					m_argumentsKey[key_value.first].c_str());
+				std::string value = it_definition->second(key_value.second);
+				if (value.empty())
+				{
+					__Info("-%s", key_value.first.c_str());
+				}
+				else
+				{
+					m_argumentsKey[key_value.first] = value;
+					__Info("-%s = %s", key_value.first.c_str(),
+						m_argumentsKey[key_value.first].c_str());
+				}
 				continue;
 			}
 			auto it_argument = m_argumentsKey.find(key_value.first);
@@ -87,9 +94,10 @@ void tool::environment::Arguments::Initialization(int argc, char *argv[])
 }
 
 void tool::environment::Arguments::Definition(std::string key,
-	FunctionDefinition function_definition)
+	FunctionDefinition function_definition, std::string default_value)
 {
 	m_definitionsKey[key] = function_definition;
+	m_argumentsKey[key] = default_value;
 }
 
 void tool::environment::Arguments::Caller(std::string key,
