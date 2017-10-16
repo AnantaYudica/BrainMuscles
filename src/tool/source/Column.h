@@ -25,8 +25,9 @@ public:
 	typedef std::size_t SizeType;
 	typedef std::size_t LineType;
 private:
-	static constexpr FlagType BitLineFeed = 1;
-	static constexpr FlagType BitCarriageReturn = 2;
+	static constexpr FlagType BitDebug = 1;
+	static constexpr FlagType BitLineFeed = 2;
+	static constexpr FlagType BitCarriageReturn = 4;
 private:
 	FlagType m_flag;
 	SizeType m_maximum;
@@ -45,7 +46,9 @@ private:
 	bool IsNewLine(const int& character);
 	bool IsSkip(const int& character);
 	void Newline(const SizeType& column, std::string string);
+	bool IsDebug();
 public:
+	void DebugEnable();
 	void Maximum(SizeType value);
 	int Check();
 };
