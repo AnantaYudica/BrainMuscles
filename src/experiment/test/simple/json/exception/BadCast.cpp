@@ -6,59 +6,90 @@
 
 #include "experiment\test\simple\json\exception\BadCast.h"
 
-namespace experiment
+void experiment::test::simple::json::exception::BadCast::Test()
 {
-	namespace test
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple'
+	//	to 
+	//		'BMTestSimple'
+	namespace BMTestSimple = BrainMuscles::test::simple;
+
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::exception'
+	//	to 
+	//		'JsonException'
+	namespace JsonException = BMTestSimple::json::exception;
+
+	//	Check variable static member 'Message' from 
+	//		class 'BrainMuscles::test::simple::json
+	//			::exception::BadCast<int, float>'
+	//	is not empty
+	SourceAssert(
+		strcmp(JsonException::BadCast<int, float>::Message.c_str(), "") != 0,
+		"static variable static member 'Message' from "
+		"class BrainMuscles::test::simple::json"
+		"::exception::BadCast<int, float> is empty");
+
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json
+	//			::exception::BadCast<int, float>'
+	//	with default initialization
+	JsonException::BadCast<int, float> exception_badcast;
+
+	//	Check return variable of
+	//		function member 'what() from 
+	//			variable 'exception_badcast'
+	//	is not empty'
+	SourceAssert(strcmp(exception_badcast.what(), "") != 0,
+		"return variable of function member 'what()' from "
+		"variable 'exception_badcast' is empty");
+
+	//	Check compare variable between 
+	//		return variable of 
+	//			function member 'what()' from
+	//				variable 'exception_badcast'
+	//	and 
+	//		variable static  member 'Message' of 
+	//			class 'BrainMuscles::test::simple::json
+	//				::exception::BadCast<int, float>'
+	//	is same
+	SourceAssert(strcmp(exception_badcast.what(), JsonException
+		::BadCast<int, float>::Message.c_str()) == 0,
+		"compare variable between return variable function member 'what()' "
+		"from variable 'exception_badcast' and variable static member "
+		"'Message' of class BrainMuscles::test::simple::json::exception"
+		"::BadCast<int, float> is not same");
+
+	//	Check trigger exception with 
+	//		class 'BrainMuscles::test::simple::json
+	//			::exception::BadCast<int, float>'
+	try
 	{
-		namespace simple
-		{
-			namespace json
-			{
-				namespace exception
-				{
-					void BadCast::Test()
-					{
-						//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
-						namespace BMTestSimple = BrainMuscles::test::simple;
-
-						//check static variable member 'Message' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not empty
-						SourceAssert(strcmp(BMTestSimple::json::exception::BadCast<int, float>::Message.c_str(), "") != 0,
-							"static variable member 'Message' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is empty");
-
-						//declare variable of BrainMuscles::test::simple::json::exception::BadCast<int, float> with default initialization
-						BMTestSimple::json::exception::BadCast<int, float> exception_badcast;
-
-						//check function member 'what() from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not empty'
-						SourceAssert(strcmp(exception_badcast.what(), "") != 0, 
-							"function member 'what()' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is empty");
-
-						//check return value between function member 'what()' and static variable member 'Message' 
-						// from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is same
-						SourceAssert(strcmp(exception_badcast.what(), BMTestSimple::json::exception::BadCast<int, float>::Message.c_str()) == 0,
-							"function member 'what()' and static variable member 'Message' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not same");
-
-						//check trigger exception with class BrainMuscles::test::simple::json::exception::BadCast<int, float>
-						try
-						{
-							//throw class BrainMuscles::test::simple::json::exception::BadCast<int, float>
-							throw(exception_badcast);
-						}
-						//catch object with const std::exception&
-						catch (const std::exception& e)
-						{
-							//check return value between function member 'what()' from class std::exception 
-							// and static variable member 'Message' from BrainMuscles::test::simple::json::exception::BadCast<int, float> is same
-							SourceAssert(strcmp(e.what(), BMTestSimple::json::exception::BadCast<int, float>::Message.c_str()) == 0,
-								"function member 'what()' from class std::exception and static variable member 'Message' from class BrainMuscles::test::simple::json::exception::BadCast<int, float> is not same");
-						}
-					}
-
-					void BadCast::StaticTest()
-					{
-						Test();
-					}
-				}
-			}
-		}
+		//	Throw class 'BrainMuscles::test::simple::json
+		//		::exception::BadCast<int, float>'
+		throw(exception_badcast);
 	}
+	//	Catch object with const std::exception&
+	catch (const std::exception& e)
+	{
+		//	Check compare variable between 
+		//		return variable of
+		//			function member 'what()' from class 'std::exception'
+		//	and 
+		//		variable static member 'Message' from 
+		//		class 'BrainMuscles::test::simple::json
+		//			::exception::BadCast<int, float>' 
+		//	is same
+		SourceAssert(strcmp(e.what(), JsonException
+			::BadCast<int, float>::Message.c_str()) == 0,
+			"compare variable between return variable of function member "
+			"'what()' from class 'std::exception' and variable static member "
+			"'Message' from class BrainMuscles::test::simple::json::exception"
+			"::BadCast<int, float> is not same");
+	}
+}
+
+void experiment::test::simple::json::exception::BadCast::StaticTest()
+{
+	Test();
 }
