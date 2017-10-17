@@ -26,6 +26,9 @@
 
 #include "experiment\test\simple\json\Value.h"
 
+#include "experiment\test\simple\json\value\Number.h"
+
+
 namespace experiment
 {
 	namespace test
@@ -266,6 +269,11 @@ namespace experiment
 					//check variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedShort is not null pointer
 					SourceAssert(pointer_value_number_unsignedshort1 != nullptr,
 						"variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedShort is null pointer");
+				}
+
+				void Value::PostTest()
+				{
+					SourceCall(experiment::test::simple::json::value::Number);
 				}
 			}
 		}
