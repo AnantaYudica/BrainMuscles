@@ -28,254 +28,460 @@
 
 #include "experiment\test\simple\json\value\Number.h"
 
-
-namespace experiment
+void experiment::test::simple::json::Value::Test()
 {
-	namespace test
-	{
-		namespace simple
-		{
-			namespace json
-			{
-				void Value::Test()
-				{
-					//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
-					namespace BMTestSimple = BrainMuscles::test::simple;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple'
+	//	to 
+	//		'BMTestSimple'
+	namespace BMTestSimple = BrainMuscles::test::simple;
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::Array
-					BMTestSimple::json::Value& value_array1 = BMTestSimple::json::value::Array();
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value'
+	//	to 
+	//		'JsonValue'
+	namespace JsonValue = BMTestSimple::json::value;
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::Array with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_array1 = dynamic_cast<BMTestSimple::json::value::Array*>(&value_array1);
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value::number'
+	//	to
+	//		'JsonValueNumber'
+	namespace JsonValueNumber = JsonValue::number;
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::Array is not null pointer
-					SourceAssert(pointer_value_array1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::Array is null pointer");
+	//	Declare alias type 'Value' 
+	//	with prototype class
+	//		'BrainMuscles::test::simple::json::Value'
+	typedef BMTestSimple::json::Value Value;
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::False
-					BMTestSimple::json::Value& value_false1 = BMTestSimple::json::value::False();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of
+	//		class 'BrainMuscles::test::simple::json::value::Array'
+	Value& value_array1 = JsonValue::Array();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::False with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_false1 = dynamic_cast<BMTestSimple::json::value::False*>(&value_false1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::Array'
+	//	with copy initialization from 
+	//		keyword 'dynamic_cast'
+	//	where  pointer class 'BrainMuscles::test::simple::json::Array'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_array1' as 
+	//		first argument of keyword 'dynamic_cast'
+	auto pointer_value_array1 = dynamic_cast<JsonValue::Array*>(&value_array1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::False is not null pointer
-					SourceAssert(pointer_value_false1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::False is null pointer");
+	//	Check variable 'pointer_value_array1'
+	//	is not null pointer
+	SourceAssert(pointer_value_array1 != nullptr,
+		"variable 'pointer_value_array1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::Null
-					BMTestSimple::json::Value& value_null1 = BMTestSimple::json::value::Null();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::False'
+	Value& value_false1 = JsonValue::False();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::Null with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_null1 = dynamic_cast<BMTestSimple::json::value::Null*>(&value_null1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::False'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::False'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_false1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_false1 = dynamic_cast<JsonValue::False*>(&value_false1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::Null is not null pointer
-					SourceAssert(pointer_value_null1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::Null is null pointer");
+	//	Check variable 'pointer_value_false1'
+	//	is not null pointer
+	SourceAssert(pointer_value_false1 != nullptr,
+		"variable 'pointer_value_false1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::Object
-					BMTestSimple::json::Value& value_object1 = BMTestSimple::json::value::Object();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::Null'
+	Value& value_null1 = JsonValue::Null();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::Object with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_object1 = dynamic_cast<BMTestSimple::json::value::Object*>(&value_object1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::Null'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::Null'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_null1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_null1 = dynamic_cast<JsonValue::Null*>(&value_null1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::Object is not null pointer
-					SourceAssert(pointer_value_object1 != nullptr,
-						"pointer class BrainMuscles::test::simple::json::value::Object is null pointer");
+	//	Check variable 'pointer_value_null1'
+	//	is not null pointer
+	SourceAssert(pointer_value_null1 != nullptr,
+		"variable 'pointer_value_null1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::String
-					BMTestSimple::json::Value& value_string1 = BMTestSimple::json::value::String();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::Object'
+	Value& value_object1 = JsonValue::Object();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::String with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_string1 = dynamic_cast<BMTestSimple::json::value::String*>(&value_string1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::Object'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::Object'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_object1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_object1 
+		= dynamic_cast<JsonValue::Object*>(&value_object1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::String is not null pointer
-					SourceAssert(pointer_value_string1 != nullptr,
-						"pointer class BrainMuscles::test::simple::json::value::String is null pointer");
+	//	Check variable 'pointer_value_object1'
+	//	is not null pointer
+	SourceAssert(pointer_value_object1 != nullptr,
+		"variable 'pointer_value_object1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::True
-					BMTestSimple::json::Value& value_true1 = BMTestSimple::json::value::True();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::String'
+	Value& value_string1 = JsonValue::String();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::True with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_true1 = dynamic_cast<BMTestSimple::json::value::True*>(&value_true1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::String'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::String'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_string1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_string1
+		= dynamic_cast<JsonValue::String*>(&value_string1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::True is not null pointer
-					SourceAssert(pointer_value_true1 != nullptr,
-						"pointer class BrainMuscles::test::simple::json::value::True is null pointer");
+	//	Check variable 'pointer_value_string1'
+	//	is not null pointer
+	SourceAssert(pointer_value_string1 != nullptr,
+		"variable 'pointer_value_string1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::Char
-					BMTestSimple::json::Value& value_number_char1 = BMTestSimple::json::value::number::Char();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::True'
+	Value& value_true1 = JsonValue::True();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::Char with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_char1 = dynamic_cast<BMTestSimple::json::value::number::Char*>(&value_number_char1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::True'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::True'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_true1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_true1 = dynamic_cast<JsonValue::True*>(&value_true1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::Char is not null pointer
-					SourceAssert(pointer_value_number_char1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::Char is null pointer");
+	//	Check variable 'pointer_value_true1'
+	//	is not null pointer
+	SourceAssert(pointer_value_true1 != nullptr,
+		"variable 'pointer_value_true1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::Double
-					BMTestSimple::json::Value& value_number_double1 = BMTestSimple::json::value::number::Double();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Char'
+	Value& value_number_char1 = JsonValueNumber::Char();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::Double with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_double1 = dynamic_cast<BMTestSimple::json::value::number::Double*>(&value_number_double1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Char'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::number::Char'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_number_char1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_char1 
+		= dynamic_cast<JsonValueNumber::Char*>(&value_number_char1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::Double is not null pointer
-					SourceAssert(pointer_value_number_double1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::Double is null pointer");
+	//	Check variable 'pointer_value_number_char1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_char1 != nullptr,
+		"variable 'pointer_value_number_char1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::Float
-					BMTestSimple::json::Value& value_number_float1 = BMTestSimple::json::value::number::Float();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Double'
+	Value& value_number_double1 = JsonValueNumber::Double();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::Float with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_float1 = dynamic_cast<BMTestSimple::json::value::number::Float*>(&value_number_float1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Double'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::number::Double'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_number_double1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_double1 
+		= dynamic_cast<JsonValueNumber::Double*>(&value_number_double1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::Float is not null pointer
-					SourceAssert(pointer_value_number_float1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::Float is null pointer");
+	//	Check variable 'pointer_value_number_double1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_double1 != nullptr,
+		"variable 'pointer_value_number_double1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::Int
-					BMTestSimple::json::Value& value_number_int1 = BMTestSimple::json::value::number::Int();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Float'
+	Value& value_number_float1 = JsonValueNumber::Float();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::Int with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_int1 = dynamic_cast<BMTestSimple::json::value::number::Int*>(&value_number_int1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Float'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::number::Float'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_number_float1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_float1 
+		= dynamic_cast<JsonValueNumber::Float*>(&value_number_float1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::Int is not null pointer
-					SourceAssert(pointer_value_number_int1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::Int is null pointer");
+	//	Check variable 'pointer_value_number_float1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_float1 != nullptr,
+		"variable 'pointer_value_number_float1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::Long
-					BMTestSimple::json::Value& value_number_long1 = BMTestSimple::json::value::number::Long();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Int'
+	Value& value_number_int1 = JsonValueNumber::Int();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::Long with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_long1 = dynamic_cast<BMTestSimple::json::value::number::Long*>(&value_number_long1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Int'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::number::Int'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_number_int1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_int1 
+		= dynamic_cast<JsonValueNumber::Int*>(&value_number_int1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::Long is not null pointer
-					SourceAssert(pointer_value_number_long1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::Long is null pointer");
+	//	Check variable 'pointer_value_number_int1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_int1 != nullptr,
+		"variable 'pointer_value_number_int1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::LongDouble
-					BMTestSimple::json::Value& value_number_longdouble1 = BMTestSimple::json::value::number::LongDouble();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Long'
+	Value& value_number_long1 = JsonValueNumber::Long();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::LongDouble with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_longdouble1 = dynamic_cast<BMTestSimple::json::value::number::LongDouble*>(&value_number_longdouble1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Long'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::number::Long'
+	//		as first argument template of dynamic_cast
+	//	and address of variable 'value_number_long1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_long1 
+		= dynamic_cast<JsonValueNumber::Long*>(&value_number_long1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::LongDouble is not null pointer
-					SourceAssert(pointer_value_number_longdouble1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::LongDouble is null pointer");
+	//	Check variable 'pointer_value_number_long1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_long1 != nullptr,
+		"variable 'pointer_value_number_long1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::LongLong
-					BMTestSimple::json::Value& value_number_longlong1 = BMTestSimple::json::value::number::LongLong();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::number::LongDouble
+	Value& value_number_longdouble1 = JsonValueNumber::LongDouble();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::LongLong with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_longlong1 = dynamic_cast<BMTestSimple::json::value::number::LongLong*>(&value_number_longlong1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::number::LongDouble'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json
+	//		::number::LongDouble' as first argument template of dynamic_cast
+	//	and address of variable 'value_number_longdouble1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_longdouble1 = 
+		dynamic_cast<JsonValueNumber::LongDouble*>(&value_number_longdouble1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::LongLong is not null pointer
-					SourceAssert(pointer_value_number_longlong1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::LongLong is null pointer");
+	//	Check variable 'pointer_value_number_longdouble1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_longdouble1 != nullptr,
+		"variable 'pointer_value_number_longdouble1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::Short
-					BMTestSimple::json::Value& value_number_short1 = BMTestSimple::json::value::number::Short();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::number::LongLong
+	Value& value_number_longlong1 = JsonValueNumber::LongLong();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::Short with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_short1 = dynamic_cast<BMTestSimple::json::value::number::Short*>(&value_number_short1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::number::LongLong'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json
+	//		::number::LongLong' as first argument template of dynamic_cast
+	//	and address of variable 'value_number_longlong1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_longlong1 
+		= dynamic_cast<JsonValueNumber::LongLong*>(&value_number_longlong1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::Short is not null pointer
-					SourceAssert(pointer_value_number_short1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::Short is null pointer");
+	//	Check variable 'pointer_value_number_longlong1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_longlong1 != nullptr,
+		"variable 'pointer_value_number_longlong1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::UnsignedChar
-					BMTestSimple::json::Value& value_number_unsignedchar1 = BMTestSimple::json::value::number::UnsignedChar();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Short
+	Value& value_number_short1 = JsonValueNumber::Short();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedChar with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_unsignedchar1 = dynamic_cast<BMTestSimple::json::value::number::UnsignedChar*>(&value_number_unsignedchar1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Short'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json
+	//		::number::Short' as first argument template of dynamic_cast
+	//	and address of variable 'value_number_short1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_short1 
+		= dynamic_cast<JsonValueNumber::Short*>(&value_number_short1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedChar is not null pointer
-					SourceAssert(pointer_value_number_unsignedchar1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedChar is null pointer");
+	//	Check variable 'pointer_value_number_short1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_short1 != nullptr,
+		"variable 'pointer_value_number_short1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::UnsignedInt
-					BMTestSimple::json::Value& value_number_unsignedint1 = BMTestSimple::json::value::number::UnsignedInt();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedChar'
+	Value& value_number_unsignedchar1 = JsonValueNumber::UnsignedChar();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedInt with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_unsignedint1 = dynamic_cast<BMTestSimple::json::value::number::UnsignedInt*>(&value_number_unsignedint1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedChar'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json
+	//		::number::UnsignedChar' as first argument template of dynamic_cast
+	//	and address of variable 'value_number_unsignedchar1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_unsignedchar1 = dynamic_cast<
+		JsonValueNumber::UnsignedChar*>(&value_number_unsignedchar1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedInt is not null pointer
-					SourceAssert(pointer_value_number_unsignedint1 != nullptr,
-						"pointer class BrainMuscles::test::simple::json::value::number::UnsignedInt is null pointer");
+	//	Check variable 'pointer_value_number_unsignedchar1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_unsignedchar1 != nullptr,
+		"variable 'pointer_value_number_unsignedchar1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::UnsignedLong
-					BMTestSimple::json::Value& value_number_unsignedlong1 = BMTestSimple::json::value::number::UnsignedLong();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedInt'
+	Value& value_number_unsignedint1 = JsonValueNumber::UnsignedInt();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedLong with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_unsignedlong1 = dynamic_cast<BMTestSimple::json::value::number::UnsignedLong*>(&value_number_unsignedlong1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedInt'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json
+	//		::number::UnsignedInt' as first argument template of dynamic_cast
+	//	and address of variable 'value_number_unsignedint1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_unsignedint1 = dynamic_cast<
+		JsonValueNumber::UnsignedInt*>(&value_number_unsignedint1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedLong is not null pointer
-					SourceAssert(pointer_value_number_unsignedlong1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedLong is null pointer");
+	//	Check variable 'pointer_value_number_unsignedint1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_unsignedint1 != nullptr,
+		"variable 'pointer_value_number_unsignedint1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::UnsignedLongLong
-					BMTestSimple::json::Value& value_number_unsignedlonglong1 = BMTestSimple::json::value::number::UnsignedLongLong();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedLong'
+	Value& value_number_unsignedlong1 = JsonValueNumber::UnsignedLong();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedLongLong with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_unsignedlonglong1 = dynamic_cast<BMTestSimple::json::value::number::UnsignedLongLong*>(&value_number_unsignedlonglong1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedLong'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json
+	//		::number::UnsignedLong' as first argument template of dynamic_cast
+	//	and address of variable 'value_number_unsignedlong1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_unsignedlong1 = dynamic_cast<
+		JsonValueNumber::UnsignedLong*>(&value_number_unsignedlong1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedLongLong is not null pointer
-					SourceAssert(pointer_value_number_unsignedlonglong1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedLongLong is null pointer");
+	//	Check variable 'pointer_value_number_unsignedlong1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_unsignedlong1 != nullptr,
+		"variable 'pointer_value_number_unsignedlong1' is null pointer");
 
-					//declare variable reference of class BrainMuscles::test::simple::json::Value with copy initialization 
-					// from value initialization class BrainMuscles::test::simple::json::value::number::UnsignedShort
-					BMTestSimple::json::Value& value_number_unsignedshort1 = BMTestSimple::json::value::number::UnsignedShort();
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedLongLong'
+	Value& value_number_unsignedlonglong1 
+		= JsonValueNumber::UnsignedLongLong();
 
-					//declare variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedShort with copy initialization 
-					// from dynamic cast from reference class BrainMuscles::test::simple::json::Value
-					auto pointer_value_number_unsignedshort1 = dynamic_cast<BMTestSimple::json::value::number::UnsignedShort*>(&value_number_unsignedshort1);
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedLongLong'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::number
+	//		::UnsignedLongLong' as first argument template of dynamic_cast
+	//	and address of variable 'value_number_unsignedlonglong1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_unsignedlonglong1 = dynamic_cast<
+		JsonValueNumber::UnsignedLongLong*>(&value_number_unsignedlonglong1);
 
-					//check variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedShort is not null pointer
-					SourceAssert(pointer_value_number_unsignedshort1 != nullptr,
-						"variable pointer of class BrainMuscles::test::simple::json::value::number::UnsignedShort is null pointer");
-				}
+	//	Check variable 'pointer_value_number_unsignedlonglong1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_unsignedlonglong1 != nullptr,
+		"variable 'pointer_value_number_unsignedlonglong1' is null pointer");
 
-				void Value::PostTest()
-				{
-					SourceCall(experiment::test::simple::json::value::Number);
-				}
-			}
-		}
-	}
+	//	Declare variable reference of 
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with copy initialization from value initialization of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedShort'
+	Value& value_number_unsignedshort1 = JsonValueNumber::UnsignedShort();
+
+	//	Declare variable pointer of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedShort'
+	//	with copy initialization from
+	//		keyword 'dynamic_cast'
+	//	where pointer class 'BrainMuscles::test::simple::json::number
+	//		::UnsignedShort' as first argument template of dynamic_cast
+	//	and address of variable 'value_number_unsignedshort1' as 
+	//		first argument function of keyword 'dynamic_cast'
+	auto pointer_value_number_unsignedshort1 = dynamic_cast<
+		JsonValueNumber::UnsignedShort*>(&value_number_unsignedshort1);
+
+	//	Check variable 'pointer_value_number_unsignedshort1'
+	//	is not null pointer
+	SourceAssert(pointer_value_number_unsignedshort1 != nullptr,
+		"variable 'pointer_value_number_unsignedshort1' is null pointer");
+}
+
+void experiment::test::simple::json::Value::PostTest()
+{
+	//	Call function static member 'Call' of
+	//		class 'experiment::test::simple::json::value::Number'
+	SourceCall(experiment::test::simple::json::value::Number);
 }
