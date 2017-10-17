@@ -73,7 +73,7 @@ void experiment::test::simple::json::exception::BadCast::Test()
 	{
 		//	Check compare variable between 
 		//		return variable of
-		//			function member 'what()' from class 'std::exception'
+		//			function member 'what()' from variable 'e'
 		//	and 
 		//		variable static member 'Message' from 
 		//		class 'BrainMuscles::test::simple::json
