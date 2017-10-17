@@ -13,20 +13,22 @@ namespace experiment
 			{
 				namespace value
 				{
-					struct Array final :
-						public BrainMuscles::test::Source<Array>
-					{
-						friend class BrainMuscles::test::Source<Array>;
-					private:
-						Array() = default;
-					public:
-						static void PreTest();
-						static void Test();
-					};
+					struct Array;
 				}
 			}
 		}
 	}
 }
+
+struct experiment::test::simple::json::value::Array final :
+	public BrainMuscles::test::Source<Array>
+{
+	friend class BrainMuscles::test::Source<Array>;
+private:
+	Array() = default;
+public:
+	static void PreTest();
+	static void Test();
+};
 
 #endif //!EXPERIMENT_TEST_SIMPLE_JSON_VALUE_ARRAY_H_

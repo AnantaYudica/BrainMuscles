@@ -13,27 +13,29 @@ namespace experiment
 			{
 				namespace exception
 				{
-					struct UndefinedType final :
-						public BrainMuscles::test::Source<UndefinedType>
-					{
-						friend class BrainMuscles::test::Source<UndefinedType>;
-					private:
-						UndefinedType() = default;
-					public:
-						static void Test();
-						static void StaticTest();
-					public:
-						struct Int;
-					};
-
-					struct UndefinedType::Int
-					{
-						int Value;
-					};
+					struct UndefinedType;
 				}
 			}
 		}
 	}
 }
+
+struct experiment::test::simple::json::exception::UndefinedType final :
+	public BrainMuscles::test::Source<UndefinedType>
+{
+	friend class BrainMuscles::test::Source<UndefinedType>;
+private:
+	UndefinedType() = default;
+public:
+	static void Test();
+	static void StaticTest();
+public:
+	struct Int;
+};
+
+struct experiment::test::simple::json::exception::UndefinedType::Int
+{
+	int Value;
+};
 
 #endif //!EXPERIMENT_TEST_SIMPLE_JSON_EXCEPTION_UNDEFINEDTYPE_H_

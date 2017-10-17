@@ -13,20 +13,22 @@ namespace experiment
 			{
 				namespace exception
 				{
-					struct BadCast final :
-						public BrainMuscles::test::Source<BadCast>
-					{
-						friend class BrainMuscles::test::Source<BadCast>;
-					private:
-						BadCast() = default;
-					public:
-						static void Test();
-						static void StaticTest();
-					};
+					struct BadCast;
 				}
 			}
 		}
 	}
 }
+
+struct experiment::test::simple::json::exception::BadCast final :
+	public BrainMuscles::test::Source<BadCast>
+{
+	friend class BrainMuscles::test::Source<BadCast>;
+private:
+	BadCast() = default;
+public:
+	static void Test();
+	static void StaticTest();
+};
 
 #endif //EXPERIMENT_TEST_SIMPLE_JSON_EXCEPTION_BADCAST_H_

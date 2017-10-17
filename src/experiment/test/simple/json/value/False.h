@@ -13,19 +13,21 @@ namespace experiment
 			{
 				namespace value
 				{
-					struct False final :
-						public BrainMuscles::test::Source<False>
-					{
-						friend class BrainMuscles::test::Source<False>;
-					private:
-						False() = default;
-					public:
-						static void Test();
-					};
+					struct False;
 				}
 			}
 		}
 	}
 }
+
+struct experiment::test::simple::json::value::False final :
+	public BrainMuscles::test::Source<False>
+{
+	friend class BrainMuscles::test::Source<False>;
+private:
+	False() = default;
+public:
+	static void Test();
+};
 
 #endif //!EXPERIMENT_TEST_SIMPLE_JSON_VALUE_FALSE_H_

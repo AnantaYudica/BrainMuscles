@@ -15,21 +15,23 @@ namespace experiment
 				{
 					namespace number
 					{
-						struct LongLong final :
-							public BrainMuscles::test::Source<LongLong>
-						{
-							friend class BrainMuscles::test::Source<LongLong>;
-						private:
-							LongLong() = default;
-						public:
-							static void PreTest();
-							static void Test();
-						};
+						struct LongLong;
 					}
 				}
 			}
 		}
 	}
 }
+
+struct experiment::test::simple::json::value::number::LongLong final :
+	public BrainMuscles::test::Source<LongLong>
+{
+	friend class BrainMuscles::test::Source<LongLong>;
+private:
+	LongLong() = default;
+public:
+	static void PreTest();
+	static void Test();
+};
 
 #endif //!EXPERIMENT_TEST_SIMPLE_JSON_VALUE_NUMBER_LONGLONG_H_

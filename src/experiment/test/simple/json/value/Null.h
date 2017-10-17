@@ -13,19 +13,21 @@ namespace experiment
 			{
 				namespace value
 				{
-					struct Null final :
-						public BrainMuscles::test::Source<Null>
-					{
-						friend class BrainMuscles::test::Source<Null>;
-					private:
-						Null() = default;
-					public:
-						static void Test();
-					};
+					struct Null;
 				}
 			}
 		}
 	}
 }
+
+struct experiment::test::simple::json::value::Null final :
+	public BrainMuscles::test::Source<Null>
+{
+	friend class BrainMuscles::test::Source<Null>;
+private:
+	Null() = default;
+public:
+	static void Test();
+};
 
 #endif //!EXPERIMENT_TEST_SIMPLE_JSON_VALUE_NULL_H_

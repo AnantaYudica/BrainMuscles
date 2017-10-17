@@ -15,21 +15,23 @@ namespace experiment
 				{
 					namespace number
 					{
-						struct UnsignedChar final :
-							public BrainMuscles::test::Source<UnsignedChar>
-						{
-							friend class BrainMuscles::test::Source<UnsignedChar>;
-						private:
-							UnsignedChar() = default;
-						public:
-							static void PreTest();
-							static void Test();
-						};
+						struct UnsignedChar;
 					}
 				}
 			}
 		}
 	}
 }
+
+struct experiment::test::simple::json::value::number::UnsignedChar final :
+	public BrainMuscles::test::Source<UnsignedChar>
+{
+	friend class BrainMuscles::test::Source<UnsignedChar>;
+private:
+	UnsignedChar() = default;
+public:
+	static void PreTest();
+	static void Test();
+};
 
 #endif //!EXPERIMENT_TEST_SIMPLE_JSON_VALUE_NUMBER_UNSIGNEDCHAR_H_

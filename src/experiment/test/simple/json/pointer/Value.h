@@ -13,20 +13,22 @@ namespace experiment
 			{
 				namespace pointer
 				{
-					struct Value final :
-						public BrainMuscles::test::Source<Value>
-					{
-						friend class BrainMuscles::test::Source<Value>;
-					private:
-						Value() = default;
-					public:
-						static void PreTest();
-						static void Test();
-					};
+					struct Value;
 				}
 			}
 		}
 	}
 }
+
+struct experiment::test::simple::json::pointer::Value final :
+	public BrainMuscles::test::Source<Value>
+{
+	friend class BrainMuscles::test::Source<Value>;
+private:
+	Value() = default;
+public:
+	static void PreTest();
+	static void Test();
+};
 
 #endif //!EXPERIMENT_TEST_SIMPLE_JSON_POINTER_VALUE_H_
