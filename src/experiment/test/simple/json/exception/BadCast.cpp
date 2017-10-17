@@ -82,7 +82,7 @@ void experiment::test::simple::json::exception::BadCast::Test()
 		SourceAssert(strcmp(e.what(), JsonException
 			::BadCast<int, float>::Message.c_str()) == 0,
 			"compare variable between return variable of function member "
-			"'what()' from class 'std::exception' and variable static member "
+			"'what()' from variable 'e' and variable static member "
 			"'Message' from class BrainMuscles::test::simple::json::exception"
 			"::BadCast<int, float> is not same");
 	}
