@@ -65,11 +65,10 @@ void experiment::test::simple::json::exception::BadCast::Test()
 	//			::exception::BadCast<int, float>'
 	try
 	{
-		//	Throw class 'BrainMuscles::test::simple::json
-		//		::exception::BadCast<int, float>'
+		//	Throw variable 'exception_badcast'
 		throw(exception_badcast);
 	}
-	//	Catch object with const std::exception&
+	//	Catch variable with const std::exception&
 	catch (const std::exception& e)
 	{
 		//	Check compare variable between 
