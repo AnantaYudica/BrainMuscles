@@ -7,32 +7,39 @@
 
 #include "experiment\test\simple\json\value\Null.h"
 
-namespace experiment
+void experiment::test::simple::json::value::Null::Test()
 {
-	namespace test
-	{
-		namespace simple
-		{
-			namespace json
-			{
-				namespace value
-				{
-					void Null::Test()
-					{
-						//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
-						namespace BMTestSimple = BrainMuscles::test::simple;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple'
+	//	to 
+	//		'BMTestSimple'
+	namespace BMTestSimple = BrainMuscles::test::simple;
 
-						//declare variable of BrainMuscles::test::simple::json::value::Null
-						// with default initalization
-						BMTestSimple::json::value::Null value_null1;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json'
+	//	to 
+	//		'Json'
+	namespace Json = BMTestSimple::json;
 
-						//check string compare (strcmp) between variable of 'value_null1'
-						// and variable of BrainMuscles::test::simple::Constant::NullCString is same
-						SourceAssert(strcmp(value_null1, BMTestSimple::json::Constant::NullCString) == 0,
-							"variable of 'value_null1' and variable of BrainMuscles::test::simple::Constant::NullCString is not same");
-					}
-				}
-			}
-		}
-	}
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value'
+	//	to 
+	//		'JsonValue'
+	namespace JsonValue = Json::value;
+
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::Null'
+	// with default initalization
+	JsonValue::Null value_null1;
+
+	//	Check compare variable between 
+	//		variable 'value_null1'
+	//	and 
+	//		variable static member 'NullCString' from
+	//			class BrainMuscles::test::simple::Constant
+	//	is same
+	SourceAssert(strcmp(value_null1, Json::Constant::NullCString) == 0,
+		"compare variable between variable 'value_null1' and "
+		"variable static member 'NullCString' from "
+		"lass BrainMuscles::test::simple::Constant is not same");
 }
