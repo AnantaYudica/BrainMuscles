@@ -7,35 +7,43 @@
 
 #include "experiment\test\simple\json\value\False.h"
 
-namespace experiment
+void experiment::test::simple::json::value::False::Test()
 {
-	namespace test
-	{
-		namespace simple
-		{
-			namespace json
-			{
-				namespace value
-				{
-					void False::Test()
-					{
-						//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
-						namespace BMTestSimple = BrainMuscles::test::simple;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple'
+	//	to 
+	//		'BMTestSimple'
+	namespace BMTestSimple = BrainMuscles::test::simple;
 
-						//declare variable of class BrainMuscles::test::simple::json::value::False
-						// with default initialization
-						BMTestSimple::json::value::False value_false1;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json'
+	//	to 
+	//		'Json'
+	namespace Json = BMTestSimple::json;
 
-						//check value between variable of 'value_false1' and false is same
-						SourceAssert(value_false1 == false, "variable of 'value_false1' and false is not same");
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value'
+	//	to 
+	//		'JsonValue'
+	namespace JsonValue = Json::value;
 
-						//check string compare (strcmp) between variable of 'value_false1'
-						// and variable of BrainMuscles::test::simple::Constant::FalseCString is same
-						SourceAssert(std::strcmp(value_false1, BMTestSimple::json::Constant::FalseCString) == 0,
-							"variable of 'value_false1' and variable of BrainMuscles::test::simple::Constant::FalseCString is not same");
-					}
-				}
-			}
-		}
-	}
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::False'
+	//	with default initialization
+	JsonValue::False value_false1;
+
+	//	Check variable 'value_false1' is false
+	SourceAssert(value_false1 == false, 
+		"variable 'value_false1 is true");
+
+	//	Check compare variable between
+	//		variable 'value_false1'
+	//	and 
+	//		variable static member 'FalseCString' from
+	//			class 'BrainMuscles::test::simple::Constant'
+	//	is same
+	SourceAssert(std::strcmp(value_false1, Json::Constant::FalseCString) == 0,
+		"compare variable between variable 'value_false1' and "
+		"variable static member 'FalseCString' from "
+		"class 'BrainMuscles::test::simple::Constant' is same");
 }
