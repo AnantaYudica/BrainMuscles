@@ -147,7 +147,7 @@ int tool::source::Column::Check()
 				}
 				else if (character == '\t')
 				{
-					column += (column % 4) + 1;
+					column += (4 - ((column - 1) % 4));
 					string_line.push_back(character);
 				}
 			}
