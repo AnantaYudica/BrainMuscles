@@ -171,7 +171,8 @@ void experiment::test::simple::json::exception::UndefinedType::Test()
 	//	Check variable member 'Message' from 
 	//		variable 'exception_undefinedtype3'
 	//	is not empty
-	SourceAssert(std::strcmp(exception_undefinedtype3.Message.c_str(), "") != 0,
+	SourceAssert(
+		std::strcmp(exception_undefinedtype3.Message.c_str(), "") != 0,
 		"variable member 'Message' from variable 'exception_undefinedtype3' "
 		"is empty");
 
