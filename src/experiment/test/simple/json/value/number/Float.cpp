@@ -7,77 +7,98 @@
 
 #include "experiment\test\simple\json\value\number\Float.h"
 
-namespace experiment
+void experiment::test::simple::json::value::number::Float::PreTest()
 {
-	namespace test
-	{
-		namespace simple
-		{
-			namespace json
-			{
-				namespace value
-				{
-					namespace number
-					{
-						void Float::PreTest()
-						{
-							SourceRequirement(experiment::test::simple::json::value::Number);
-						}
+	//	Call function static member 'Requirement' from
+	//		class 'experiment::test::simple::json::value::Number'
+	SourceRequirement(experiment::test::simple::json::value::Number);
+}
 
-						void Float::Test()
-						{
-							//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
-							namespace BMTestSimple = BrainMuscles::test::simple;
+void experiment::test::simple::json::value::number::Float::Test()
+{
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple'
+	//	to 
+	//		'BMTestSimple'
+	namespace BMTestSimple = BrainMuscles::test::simple;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Float
-							// with default initialization 
-							BMTestSimple::json::value::number::Float value_number_float1;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json'
+	//	to 
+	//		'Json'
+	namespace Json = BMTestSimple::json;
 
-							//check value between variable 'value_number_float1' and 0 from int is same
-							SourceAssert(value_number_float1 == 0,
-								"value variable 'value_number_float1' is not equal with 0 from int");
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value'
+	//	to 
+	//		'JsonValue'
+	namespace JsonValue = Json::value;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Float
-							// with direct initialization from 15.15 from float
-							BMTestSimple::json::value::number::Float value_number_float2(15.15f);
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value::number'
+	//	to 
+	//		'JsonValueNumber'
+	namespace JsonValueNumber = JsonValue::number;
 
-							//check value between variable 'value_number_float2' and 15.15 from float is same
-							SourceAssert(value_number_float2 == 15.15f,
-								"value variable 'value_number_float2' is not equal with 15.15 from float");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Float'
+	//	with default initialization 
+	JsonValueNumber::Float value_number_float1;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Float
-							// with copy initialization from variable of class BrainMuscles::test::simple::json::value::number::Float
-							BMTestSimple::json::value::number::Float value_number_float3(value_number_float2);
+	//	Check variable 'value_number_float1' 
+	//	is 0 of int
+	SourceAssert(value_number_float1 == 0,
+		"variable 'value_number_float1' is not 0 of int");
 
-							//check value between variable 'value_number_float3' and variable 'value_number_float2' is same 
-							SourceAssert(value_number_float3 == value_number_float2,
-								"value variable 'value_number_float3' and variable 'value_number_float2' is not same");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Float'
+	//	with direct initialization from 15.15 from float
+	JsonValueNumber::Float value_number_float2(15.15f);
 
-							//assignment variable 'value_number_float1' with float
-							value_number_float1 = 12.12f;
+	//	Check variable 'value_number_float2' 
+	//	is 15.15 of float
+	SourceAssert(value_number_float2 == 15.15f,
+		"variable 'value_number_float2' is not 15.15 of float");
 
-							//check value between variable 'value_number_float1' and 12.12 from float is same
-							SourceAssert(value_number_float1 == 12.12f,
-								"value variable 'value_number_float1' is not equal with 12.12 from float");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Float'
+	//	with copy initialization from variable 'value_number_float2'
+	JsonValueNumber::Float value_number_float3(value_number_float2);
 
-							//declare reference variable of float with reference initialization 
-							// from class BrainMuscles::test::simple::json::value::number::Float
-							float &reference_float1 = value_number_float1;
+	//	Check compare variable between 
+	//		variable 'value_number_float3' 
+	//	and variable 'value_number_float2' 
+	//	is same 
+	SourceAssert(value_number_float3 == value_number_float2,
+		"compare variable between variable 'value_number_float3' and "
+		"variable 'value_number_float2' is not same");
 
-							//assignment reference variable 'reference_float1' with float
-							reference_float1 = 16.16f;
+	//	Assignment variable 'value_number_float1' with 12.12 of float
+	value_number_float1 = 12.12f;
 
-							//check value between reference variable 'reference_float1' and 16.16 from float is same
-							SourceAssert(reference_float1 == 16.16f,
-								"value of reference variable 'reference_float1' is not equal with 16.16 from float");
+	//	Check variable 'value_number_float1' 
+	//	is 12.12 of float
+	SourceAssert(value_number_float1 == 12.12f,
+		"variable 'value_number_float1' is not 12.12 of float");
 
-							//check value between reference variable 'reference_float1' and variable 'value_number_float1' is same
-							SourceAssert(reference_float1 == value_number_float1,
-								"value of reference variable 'reference_float1' and variable 'value_number_float1' is not same");
-						}
-					}
-				}
-			}
-		}
-	}
+	//	Declare reference variable of float 
+	//	with reference initialization from
+	//		variable 'value_number_float1'
+	float &reference_float1 = value_number_float1;
+
+	//	Assignment reference variable 'reference_float1' with 16.16 of float
+	reference_float1 = 16.16f;
+
+	//	Check reference variable 'reference_float1' 
+	//	is 16.16 of float
+	SourceAssert(reference_float1 == 16.16f,
+		"reference variable 'reference_float1' is not 16.16 of float");
+
+	//	Check compare variable between 
+	//		reference variable 'reference_float1' 
+	//	and variable 'value_number_float1' 
+	//	is same
+	SourceAssert(reference_float1 == value_number_float1,
+		"compare variable between reference variable 'reference_float1' "
+		"and variable 'value_number_float1' is not same");
 }
