@@ -7,77 +7,97 @@
 
 #include "experiment\test\simple\json\value\number\Int.h"
 
-namespace experiment
+void experiment::test::simple::json::value::number::Int::PreTest()
 {
-	namespace test
-	{
-		namespace simple
-		{
-			namespace json
-			{
-				namespace value
-				{
-					namespace number
-					{
-						void Int::PreTest()
-						{
-							SourceRequirement(experiment::test::simple::json::value::Number);
-						}
+	//	Call function static member 'Requirement' from
+	//		class 'experiment::test::simple::json::value::Number'
+	SourceRequirement(experiment::test::simple::json::value::Number);
+}
 
-						void Int::Test()
-						{
-							//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
-							namespace BMTestSimple = BrainMuscles::test::simple;
+void experiment::test::simple::json::value::number::Int::Test()
+{
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple'
+	//	to 
+	//		'BMTestSimple'
+	namespace BMTestSimple = BrainMuscles::test::simple;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Int
-							// with default initialization 
-							BMTestSimple::json::value::number::Int value_number_int1;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json'
+	//	to 
+	//		'Json'
+	namespace Json = BMTestSimple::json;
 
-							//check value between variable 'value_number_int1' and 0 from int is same
-							SourceAssert(value_number_int1 == 0,
-								"value variable 'value_number_int1' is not equal with 0 from int");
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value'
+	//	to 
+	//		'JsonValue'
+	namespace JsonValue = Json::value;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Int
-							// with direct initialization from 15 from int
-							BMTestSimple::json::value::number::Int value_number_int2(15);
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value::number'
+	//	to 
+	//		'JsonValueNumber'
+	namespace JsonValueNumber = JsonValue::number;
 
-							//check value between variable 'value_number_int2' and 15 from int is same
-							SourceAssert(value_number_int2 == 15,
-								"value variable 'value_number_int2' is not equal with 15 from int");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Int'
+	//	with default initialization 
+	JsonValueNumber::Int value_number_int1;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Int
-							// with copy initialization from variable of class BrainMuscles::test::simple::json::value::number::Int
-							BMTestSimple::json::value::number::Int value_number_int3(value_number_int2);
+	//	Check variable 'value_number_int1' 
+	//	is 0 of int
+	SourceAssert(value_number_int1 == 0,
+		" variable 'value_number_int1' is not 0 of int");
 
-							//check value between variable 'value_number_int3' and variable 'value_number_int2' is same 
-							SourceAssert(value_number_int3 == value_number_int2,
-								"value variable 'value_number_int3' and variable 'value_number_int2' is not same");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Int'
+	//	with direct initialization from 15 of int
+	JsonValueNumber::Int value_number_int2(15);
 
-							//assignment variable 'value_number_int1' with int
-							value_number_int1 = 12;
+	//	Check variable 'value_number_int2' 
+	//	is 15 of int
+	SourceAssert(value_number_int2 == 15,
+		"variable 'value_number_int2' is not 15 of int");
 
-							//check value between variable 'value_number_int1' and 12 from int is same
-							SourceAssert(value_number_int1 == 12,
-								"value variable 'value_number_int1' is not equal with 12 from int");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Int'
+	//	with copy initialization from variable 'value_number_int2'
+	JsonValueNumber::Int value_number_int3(value_number_int2);
 
-							//declare reference variable of int with reference initialization 
-							// from class BrainMuscles::test::simple::json::value::number::Int
-							int &reference_int1 = value_number_int1;
+	//	Check compare variable between 
+	//		variable 'value_number_int3' 
+	//	and variable 'value_number_int2' 
+	//	is same 
+	SourceAssert(value_number_int3 == value_number_int2,
+		"compare variable between variable 'value_number_int3' and "
+		"variable 'value_number_int2' is not same");
 
-							//assignment reference variable 'reference_int1' with int
-							reference_int1 = 16;
+	//	Assignment variable 'value_number_int1' with 12 of int
+	value_number_int1 = 12;
 
-							//check value between reference variable 'reference_int1' and 16 from int is same
-							SourceAssert(reference_int1 == 16,
-								"value of reference variable 'reference_int1' is not equal with 16 from int");
+	//	Check variable 'value_number_int1' 
+	//	is 12 of int
+	SourceAssert(value_number_int1 == 12,
+		"variable 'value_number_int1' is not 12 of int");
 
-							//check value between reference variable 'reference_int1' and variable 'value_number_int1' is same
-							SourceAssert(reference_int1 == value_number_int1,
-								"value of reference variable 'reference_int1' and variable 'value_number_int1' is not same");
-						}
-					}
-				}
-			}
-		}
-	}
+	//	Declare reference variable of int 
+	//	with reference initialization from 
+	//		variable 'value_number_int1'
+	int &reference_int1 = value_number_int1;
+
+	//	Assignment reference variable 'reference_int1' with 16 of int
+	reference_int1 = 16;
+
+	//	Check reference variable 'reference_int1 is 16 of int
+	SourceAssert(reference_int1 == 16,
+		"reference variable 'reference_int1 is not 16 of int");
+
+	//	Check compare variable between 
+	//		reference variable 'reference_int1' 
+	//	and variable 'value_number_int1' 
+	//	is same
+	SourceAssert(reference_int1 == value_number_int1,
+		"compare variable between  reference variable 'reference_int1' "
+		"and variable 'value_number_int1' is not same");
 }
