@@ -58,7 +58,7 @@ void experiment::test::simple::json::value::number::Double::Test()
 	//	Check variable 'value_number_double2' 
 	//	is 15.15 of double
 	SourceAssert(value_number_double2 == 15.15,
-		"variable 'value_number_double2' is 15.15 of double");
+		"variable 'value_number_double2' is not 15.15 of double");
 
 	//	Declare variable of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Double'
