@@ -7,77 +7,98 @@
 
 #include "experiment\test\simple\json\value\number\Long.h"
 
-namespace experiment
+void experiment::test::simple::json::value::number::Long::PreTest()
 {
-	namespace test
-	{
-		namespace simple
-		{
-			namespace json
-			{
-				namespace value
-				{
-					namespace number
-					{
-						void Long::PreTest()
-						{
-							SourceRequirement(experiment::test::simple::json::value::Number);
-						}
+	//	Call function static member 'Requirement' from
+	//		class 'experiment::test::simple::json::value::Number'
+	SourceRequirement(experiment::test::simple::json::value::Number);
+}
 
-						void Long::Test()
-						{
-							//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
-							namespace BMTestSimple = BrainMuscles::test::simple;
+void experiment::test::simple::json::value::number::Long::Test()
+{
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple'
+	//	to 
+	//		'BMTestSimple'
+	namespace BMTestSimple = BrainMuscles::test::simple;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Long
-							// with default initialization 
-							BMTestSimple::json::value::number::Long value_number_long1;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json'
+	//	to 
+	//		'Json'
+	namespace Json = BMTestSimple::json;
 
-							//check value between variable 'value_number_long1' and 0 from int is same
-							SourceAssert(value_number_long1 == 0,
-								"value variable 'value_number_long1' is not equal with 0 from int");
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value'
+	//	to 
+	//		'JsonValue'
+	namespace JsonValue = Json::value;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Long
-							// with direct initialization from 15 from long
-							BMTestSimple::json::value::number::Long value_number_long2(15L);
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value::number'
+	//	to 
+	//		'JsonValueNumber'
+	namespace JsonValueNumber = JsonValue::number;
 
-							//check value between variable 'value_number_long2' and 15 from long is same
-							SourceAssert(value_number_long2 == 15L,
-								"value variable 'value_number_long2' is not equal with 15 from long");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Long'
+	//	with default initialization 
+	JsonValueNumber::Long value_number_long1;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Long
-							// with copy initialization from variable of class BrainMuscles::test::simple::json::value::number::Long
-							BMTestSimple::json::value::number::Long value_number_long3(value_number_long2);
+	//	Check variable 'value_number_long1' 
+	//	is 0 of int
+	SourceAssert(value_number_long1 == 0,
+		"variable 'value_number_long1' is not 0 of int");
 
-							//check value between variable 'value_number_long3' and variable 'value_number_long2' is same 
-							SourceAssert(value_number_long3 == value_number_long2,
-								"value variable 'value_number_long3' and variable 'value_number_long2' is not same");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Long'
+	//	with direct initialization from 15 of long
+	JsonValueNumber::Long value_number_long2(15L);
 
-							//assignment variable 'value_number_long1' with long
-							value_number_long1 = 12L;
+	//	Check variable 'value_number_long2' 
+	//	is 15 of long
+	SourceAssert(value_number_long2 == 15L,
+		"variable 'value_number_long2' is not 15 of long");
 
-							//check value between variable 'value_number_long1' and 12 from long is same
-							SourceAssert(value_number_long1 == 12L,
-								"value variable 'value_number_long1' is not equal with 12 from long");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Long'
+	//	with copy initialization from variable 'value_number_long2'
+	JsonValueNumber::Long value_number_long3(value_number_long2);
 
-							//declare reference variable of Long with reference initialization 
-							// from class BrainMuscles::test::simple::json::value::number::Long
-							long &reference_long1 = value_number_long1;
+	//	Check compare variable between 
+	//		variable 'value_number_long3' 
+	//	and variable 'value_number_long2' 
+	//	is same 
+	SourceAssert(value_number_long3 == value_number_long2,
+		"compare variable between variable 'value_number_long3' and "
+		"variable 'value_number_long2' is not same");
 
-							//assignment reference variable 'reference_long1' with long
-							reference_long1 = 16L;
+	//	Assignment variable 'value_number_long1' with 12 of long
+	value_number_long1 = 12L;
 
-							//check value between reference variable 'reference_long1' and 16 from long is same
-							SourceAssert(reference_long1 == 16L,
-								"value of reference variable 'reference_long1' is not equal with 16 from long");
+	//	Check variable 'value_number_long1' 
+	//	is 12 of long
+	SourceAssert(value_number_long1 == 12L,
+		"variable 'value_number_long1' is not 12 of long");
 
-							//check value between reference variable 'reference_long1' and variable 'value_number_long1' is same
-							SourceAssert(reference_long1 == value_number_long1,
-								"value of reference variable 'reference_long1' and variable 'value_number_long1' is not same");
-						}
-					}
-				}
-			}
-		}
-	}
+	//	Declare reference variable of Long 
+	//		with reference initialization from
+	//			variable 'value_number_long1'
+	long &reference_long1 = value_number_long1;
+
+	//	Assignment reference variable 'reference_long1' with 16 of long
+	reference_long1 = 16L;
+
+	//	Check reference variable 'reference_long1' 
+	//	is 16 of long
+	SourceAssert(reference_long1 == 16L,
+		"reference variable 'reference_long1' is not 16 of long");
+
+	//	Check compare variable between 
+	//		reference variable 'reference_long1' 
+	//	and variable 'value_number_long1' 
+	//	is same
+	SourceAssert(reference_long1 == value_number_long1,
+		"compare variable between reference variable 'reference_long1' and "
+		"variable 'value_number_long1' is not same");
 }
