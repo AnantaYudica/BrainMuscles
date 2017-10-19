@@ -7,77 +7,110 @@
 
 #include "experiment\test\simple\json\value\number\UnsignedLongLong.h"
 
-namespace experiment
+void experiment::test::simple::json::value::number::UnsignedLongLong::PreTest()
 {
-	namespace test
-	{
-		namespace simple
-		{
-			namespace json
-			{
-				namespace value
-				{
-					namespace number
-					{
-						void UnsignedLongLong::PreTest()
-						{
-							SourceRequirement(experiment::test::simple::json::value::Number);
-						}
+	//	Call function static member 'Requirement' from
+	//		class 'experiment::test::simple::json::value::Number'
+	SourceRequirement(experiment::test::simple::json::value::Number);
+}
 
-						void UnsignedLongLong::Test()
-						{
-							//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
-							namespace BMTestSimple = BrainMuscles::test::simple;
+void experiment::test::simple::json::value::number::UnsignedLongLong::Test()
+{
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple'
+	//	to 
+	//		'BMTestSimple'
+	namespace BMTestSimple = BrainMuscles::test::simple;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::UnsignedLongLong
-							// with default initialization 
-							BMTestSimple::json::value::number::UnsignedLongLong value_number_unsignedlonglong1;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json'
+	//	to 
+	//		'Json'
+	namespace Json = BMTestSimple::json;
 
-							//check value between variable 'value_number_unsignedlonglong1' and 0 from int is same
-							SourceAssert(value_number_unsignedlonglong1 == 0,
-								"value variable 'value_number_unsignedlonglong1' is not equal with 0 from int");
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value'
+	//	to 
+	//		'JsonValue'
+	namespace JsonValue = Json::value;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::UnsignedLongLong
-							// with direct initialization from 15 from unsigned long long
-							BMTestSimple::json::value::number::UnsignedLongLong value_number_unsignedlonglong2(15ULL);
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value::number'
+	//	to 
+	//		'JsonValueNumber'
+	namespace JsonValueNumber = JsonValue::number;
 
-							//check value between variable 'value_number_unsignedlonglong2' and 15 from unsigned long long is same
-							SourceAssert(value_number_unsignedlonglong2 == 15ULL,
-								"value variable 'value_number_unsignedlonglong2' is not equal with 15 from unsigned long long");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedLongLong'
+	//	with default initialization 
+	JsonValueNumber::UnsignedLongLong value_number_unsignedlonglong1;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::UnsignedLongLong
-							// with copy initialization from variable of class BrainMuscles::test::simple::json::value::number::UnsignedLongLong
-							BMTestSimple::json::value::number::UnsignedLongLong value_number_unsignedlonglong3(value_number_unsignedlonglong2);
+	//	Check variable 'value_number_unsignedlonglong1' 
+	//	is 0 of int
+	SourceAssert(value_number_unsignedlonglong1 == 0,
+		"variable 'value_number_unsignedlonglong1' is not 0 of int");
 
-							//check value between variable 'value_number_unsignedlonglong3' and variable 'value_number_unsignedlonglong2' is same 
-							SourceAssert(value_number_unsignedlonglong3 == value_number_unsignedlonglong2,
-								"value variable 'value_number_unsignedlonglong3' and variable 'value_number_unsignedlonglong2' is not same");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedLongLong'
+	//	with direct initialization from 15 of unsigned long long
+	JsonValueNumber::UnsignedLongLong value_number_unsignedlonglong2(15ULL);
 
-							//assignment variable 'value_number_unsignedlonglong1' with unsigned long long
-							value_number_unsignedlonglong1 = 12ULL;
+	//	Check variable 'value_number_unsignedlonglong2'
+	//	is 15 of unsigned long long 
+	SourceAssert(value_number_unsignedlonglong2 == 15ULL,
+		"variable 'value_number_unsignedlonglong2' "
+		"is not 15 of unsigned long long");
 
-							//check value between variable 'value_number_unsignedlonglong1' and 12 from unsigned long long is same
-							SourceAssert(value_number_unsignedlonglong1 == 12ULL,
-								"value variable 'value_number_unsignedlonglong1' is not equal with 12 from unsigned long long");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value
+	//			::number::UnsignedLongLong'
+	//	with copy initialization from variable 'value_number_unsignedlonglong2'
+	JsonValueNumber::UnsignedLongLong 
+		value_number_unsignedlonglong3(value_number_unsignedlonglong2);
 
-							//declare reference variable of unsigned long long with reference initialization 
-							// from class BrainMuscles::test::simple::json::value::number::UnsignedLongLong
-							unsigned long long &reference_unsignedlonglong1 = value_number_unsignedlonglong1;
+	//	Check compare variable between 
+	//		variable 'value_number_unsignedlonglong3'
+	//	and variable 'value_number_unsignedlonglong2' 
+	//	is same 
+	SourceAssert(value_number_unsignedlonglong3 
+			== value_number_unsignedlonglong2,
+		"compare variable between variable 'value_number_unsignedlonglong3' "
+		"and variable 'value_number_unsignedlonglong2' is not same");
 
-							//assignment reference variable 'reference_unsignedlonglong1' with unsigned long long
-							reference_unsignedlonglong1 = 16ULL;
+	//	Assignment variable 'value_number_unsignedlonglong1' 
+	//	with 12 of unsigned long long
+	value_number_unsignedlonglong1 = 12ULL;
 
-							//check value between reference variable 'reference_unsignedlonglong1' and 16 from unsigned long long is same
-							SourceAssert(reference_unsignedlonglong1 == 16ULL,
-								"value of reference variable 'reference_unsignedlonglong1' is not equal with 16 from unsigned long long");
+	//	Check variable 'value_number_unsignedlonglong1' 
+	//	is 12 of unsigned long long
+	SourceAssert(value_number_unsignedlonglong1 == 12ULL,
+		"variable 'value_number_unsignedlonglong1' "
+		"is not 12 of unsigned long long");
 
-							//check value between reference variable 'reference_unsignedlonglong1' and variable 'value_number_unsignedlonglong1' is same
-							SourceAssert(reference_unsignedlonglong1 == value_number_unsignedlonglong1,
-								"value of reference variable 'reference_unsignedlonglong1' and variable 'value_number_unsignedlonglong1' is not same");
-						}
-					}
-				}
-			}
-		}
-	}
+	//	Declare reference variable of unsigned long long 
+	//		with reference initialization from
+	//			variable 'value_number_unsignedlonglong1'
+	unsigned long long &reference_unsignedlonglong1 
+		= value_number_unsignedlonglong1;
+
+	//	Assignment reference variable 'reference_unsignedlonglong1' 
+	//	with 16 of unsigned long long
+	reference_unsignedlonglong1 = 16ULL;
+
+	//	Check reference variable 'reference_unsignedlonglong1' 
+	//	is 16 of unsigned long long
+	SourceAssert(reference_unsignedlonglong1 == 16ULL,
+		"reference variable 'reference_unsignedlonglong1' "
+		"is not 16 of unsigned long long");
+
+	//	Check compare variable between 
+	//		reference variable 'reference_unsignedlonglong1' 
+	//	and variable 'value_number_unsignedlonglong1' 
+	//	is same
+	SourceAssert(reference_unsignedlonglong1 == value_number_unsignedlonglong1,
+		"compare variable between "
+		"reference variable 'reference_unsignedlonglong1' "
+		"and variable 'value_number_unsignedlonglong1' is not same");
 }
