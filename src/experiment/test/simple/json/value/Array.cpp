@@ -1901,7 +1901,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'value_array1',
 	//		variable 'value_array5'
 	//	and 
-	//		variable of 'value_array6' 
+	//		variable 'value_array6' 
 	//	is same 
 	for (std::size_t i = 0; i < value_array1.Size(); ++i)
 	{
