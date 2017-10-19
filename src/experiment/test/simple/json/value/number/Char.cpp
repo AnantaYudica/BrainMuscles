@@ -7,78 +7,99 @@
 
 #include "experiment\test\simple\json\value\number\Char.h"
 
-namespace experiment
+void experiment::test::simple::json::value::number::Char::PreTest()
 {
-	namespace test
-	{
-		namespace simple
-		{
-			namespace json
-			{
-				namespace value
-				{
-					namespace number
-					{
-						void Char::PreTest()
-						{
-							SourceRequirement(experiment::test::simple::json::value::Number);
-						}
+	//	Call function static member 'Requirement' from
+	//		class 'experiment::test::simple::json::value::Number'
+	SourceRequirement(experiment::test::simple::json::value::Number);
+}
 
-						void Char::Test()
-						{
-							//declare namespace from BrainMuscles::test::simple to BMTestSimple for simplify
-							namespace BMTestSimple = BrainMuscles::test::simple;
+void experiment::test::simple::json::value::number::Char::Test()
+{
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple'
+	//	to 
+	//		'BMTestSimple'
+	namespace BMTestSimple = BrainMuscles::test::simple;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Char
-							// with default initialization
-							BMTestSimple::json::value::number::Char value_number_char1;
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json'
+	//	to 
+	//		'Json'
+	namespace Json = BMTestSimple::json;
 
-							//check value between variable 'value_number_char1' and 0 from int is same
-							SourceAssert(value_number_char1 == 0, 
-								"value variable of 'value_number_char1' is not equal with 0 from int");
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value'
+	//	to 
+	//		'JsonValue'
+	namespace JsonValue = Json::value;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Char
-							// with direct initialization from copy initialization of int  
-							BMTestSimple::json::value::number::Char value_number_char2(15);
+	//	Declare namespace from 
+	//		'BrainMuscles::test::simple::json::value::number'
+	//	to 
+	//		'JsonValueNumber'
+	namespace JsonValueNumber = JsonValue::number;
 
-							//check value between variable of 'value_number_char2' and 15 from int is same
-							SourceAssert(value_number_char2 == 15,
-								"value variable of 'value_number_char2' is not equal with 15 from int");
+	//	Declare variable of
+	//		class 'BrainMuscles::test::simple::json::value::number::Char'
+	//	with default initialization
+	JsonValueNumber::Char value_number_char1;
 
-							//declare variable of class BrainMuscles::test::simple::json::value::number::Char
-							// with copy initialization from variable of class BrainMuscles::test::simple::json::value::number::Char
-							BMTestSimple::json::value::number::Char value_number_char3(value_number_char2);
+	//	Check variable 'value_number_char1' 
+	//	is 0 of int
+	SourceAssert(value_number_char1 == 0,
+		"variable 'value_number_char1' is not 0 of int");
 
-							//check value between variable 'value_number_char3' and variable 'value_number_char2' is same
-							SourceAssert(value_number_char3 == value_number_char2,
-								"value variable 'value_number_char3' is not same with value variable 'value_number_char2'");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Char'
+	//	with direct initialization from 15 of int
+	JsonValueNumber::Char value_number_char2(15);
 
-							//assignment variable 'value_number_char1' with int
-							value_number_char1 = 12;
+	//	Check variable 'value_number_char2'
+	//	is 15 of int
+	SourceAssert(value_number_char2 == 15,
+		"variable 'value_number_char2' is not 15 of int");
 
-							//check value between variable 'value_number_char1' and 12 from int is same
-							SourceAssert(value_number_char1 == 12,
-								"value variable 'value_number_char1' is not equal with 12 from int");
+	//	Declare variable of 
+	//		class 'BrainMuscles::test::simple::json::value::number::Char'
+	//	with copy initialization from variable 'value_number_char2'
+	JsonValueNumber::Char value_number_char3(value_number_char2);
 
-							//declare reference variable of char with reference initialization 
-							// from class BrainMuscles::test::simple::json::value::number::Char
-							char &reference_char1 = value_number_char1;
+	//	Check compare variable between
+	//		variable 'value_number_char3'
+	//	and variable 'value_number_char2'
+	//	is same
+	SourceAssert(value_number_char3 == value_number_char2,
+		"compare variable between variable 'value_number_char3' "
+		"and variable 'value_number_char2' is not same");
 
-							//assignment reference variable 'reference_char1' with int
-							reference_char1 = 16;
+	//	Assignment variable 'value_number_char1' with 12 of int
+	value_number_char1 = 12;
 
-							//check value between reference variable 'value_number_char1' and 16 from int is same
-							SourceAssert(reference_char1 == 16,
-								"value of reference variable 'reference_char1' is not equal with 16 from int");
+	//	Check variable 'value_number_char1' 
+	//	is 12 of int
+	SourceAssert(value_number_char1 == 12,
+		"variable 'value_number_char1' is not 12 of int");
 
-							//check value between variable 'value_number_char1' 
-							// and reference variable 'reference_char1' is same
-							SourceAssert(reference_char1 == value_number_char1,
-								"value of reference variable 'reference_char1' and variable 'value_number_char1' is not same");
-						}
-					}
-				}
-			}
-		}
-	}
+	//	declare reference variable of char 
+	//	with reference initialization from 
+	//		class 'BrainMuscles::test::simple::json::value::number::Char'
+	char &reference_char1 = value_number_char1;
+
+	//	Assignment reference variable 'reference_char1' with 
+	//	16 of int
+	reference_char1 = 16;
+
+	//	Check reference variable 'value_number_char1' 
+	//	is 16 of int
+	SourceAssert(reference_char1 == 16,
+		"reference variable 'value_number_char1' is not 16 of int");
+
+	//	Check compare variable between 
+	//		reference variable 'reference_char1' 
+	//	 and variable 'value_number_char1' 
+	//	is same
+	SourceAssert(reference_char1 == value_number_char1,
+		"compare variable between reference variable 'reference_char1' "
+		" and variable 'value_number_char1' is not same");
 }
