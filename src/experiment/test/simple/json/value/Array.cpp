@@ -233,7 +233,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::Array>'
-	//	where element value at 0 from variable 'value_array1'
+	//	where element variable at 0 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_array3 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValue::Array>(value_array1[0]);
@@ -249,7 +249,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::False>'
-	//	where element value at 1 from variable 'value_array1'
+	//	where element variable at 1 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_false1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValue::False>(value_array1[1]);
@@ -265,7 +265,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::Null>'
-	//	where element value at 2 from variable 'value_array1'
+	//	where element variable at 2 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_null1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValue::Null>(value_array1[2]);
@@ -281,7 +281,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::Object>'
-	//	where element value at 3 from variable 'value_array1'
+	//	where element variable at 3 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_object1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValue::Object>(value_array1[3]);
@@ -297,7 +297,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::String>'
-	//	where element value at 4 from variable 'value_array1'
+	//	where element variable at 4 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_string1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValue::String>(value_array1[4]);
@@ -313,7 +313,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::True>'
-	//	where element value at 5 from variable 'value_array1'
+	//	where element variable at 5 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_true1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValue::True>(value_array1[5]);
@@ -329,7 +329,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::Char>'
-	//	where element value at 6 from variable 'value_array1'
+	//	where element variable at 6 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_char1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::Char>(value_array1[6]);
@@ -345,7 +345,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::Double>'
-	//	where element value at 7 from variable 'value_array1'
+	//	where element variable at 7 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_double1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::Double>(value_array1[7]);
@@ -361,7 +361,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::Float>'
-	//	where element value at 8 from variable 'value_array1'
+	//	where element variable at 8 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_float1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::Float>(value_array1[8]);
@@ -377,7 +377,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::Int>'
-	//	where element value at 9 from variable 'value_array1'
+	//	where element variable at 9 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_int1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::Int>(value_array1[9]);
@@ -393,7 +393,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::Long>'
-	//	where element value at 10 from variable 'value_array1'
+	//	where element variable at 10 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_long1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::Long>(value_array1[10]);
@@ -410,7 +410,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::LongDouble>'
-	//	where element value at 11 from variable 'value_array1'
+	//	where element variable at 11 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_longdouble1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::LongDouble>(value_array1[11]);
@@ -426,7 +426,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::LongLong>'
-	//	where element value at 12 from variable 'value_array1'
+	//	where element variable at 12 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_longlong1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::LongLong>(value_array1[12]);
@@ -442,7 +442,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::Short>'
-	//	where element value at 13 from variable 'value_array1'
+	//	where element variable at 13 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_short1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::Short>(value_array1[13]);
@@ -459,7 +459,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::UnsignedChar>'
-	//	where element value at 14 from variable 'value_array1'
+	//	where element variable at 14 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_unsignedchar1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::UnsignedChar>(value_array1[14]);
@@ -476,7 +476,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::UnsignedInt>'
-	//	where element value at 15 from variable 'value_array1'
+	//	where element variable at 15 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_unsignedint1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::UnsignedInt>(value_array1[15]);
@@ -493,7 +493,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		return variable of function static member 'DynamicPointerCast<
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value::number::UnsignedLong>'
-	//	where element value at 16 from variable 'value_array1'
+	//	where element variable at 16 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_unsignedlong1 = Json::Memory::DynamicPointerCast<
 		Json::Value, JsonValueNumber::UnsignedLong>(value_array1[16]);
@@ -511,7 +511,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value
 	//				::number::UnsignedLongLong>'
-	//	where element value at 17 from variable 'value_array1'
+	//	where element variable at 17 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_unsignedlonglong1
 		= Json::Memory::DynamicPointerCast<Json::Value, 
@@ -531,7 +531,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//			BrainMuscles::test::simple::json::Value, 
 	//			BrainMuscles::test::simple::json::value
 	//				::number::UnsignedShort>'
-	//	where element value at 18 from variable 'value_array1'
+	//	where element variable at 18 from variable 'value_array1'
 	//		as first argument to function static member 'DynamicPointerCast'
 	auto pointer_value_number_unsignedshort1
 		= Json::Memory::DynamicPointerCast<Json::Value, 
@@ -691,13 +691,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert1' 
 	//	and 
-	//		element value at 0 from 
+	//		element variable at 0 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert1) == value_array1[0],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert1' and element value "
+		"iterator variable 'it_value_array1_insert1' and element variable "
 		"at 0 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -707,7 +707,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_array4' 
 	//	is same
 	SourceAssert(value_array1[0] == pointer_value_array4,
-		"compare variable between element value at 0 index from "
+		"compare variable between element variable at 0 index from "
 		"variable 'value_array1' and variable 'pointer_value_array4' "
 		"is not same");
 
@@ -725,13 +725,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert2' 
 	//	and 
-	//		element value at 1 from 
+	//		element variable at 1 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert2) == value_array1[1],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert2' and element value "
+		"iterator variable 'it_value_array1_insert2' and element variable "
 		"at 1 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -741,7 +741,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_false2' 
 	//	is same
 	SourceAssert(value_array1[1] == pointer_value_false2,
-		"compare variable between element value at 1 index from "
+		"compare variable between element variable at 1 index from "
 		"variable 'value_array1' and variable 'pointer_value_false2' "
 		"is not same");
 
@@ -759,13 +759,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert3' 
 	//	and 
-	//		element value at 2 from 
+	//		element variable at 2 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert3) == value_array1[2],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert3' and element value "
+		"iterator variable 'it_value_array1_insert3' and element variable "
 		"at 2 from "
 		"variable 'value_array1' is not same");
 
@@ -776,7 +776,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_null2' 
 	//	is same
 	SourceAssert(value_array1[2] == pointer_value_null2,
-		"compare variable between element value at 2 index from "
+		"compare variable between element variable at 2 index from "
 		"variable 'value_array1' and variable 'pointer_value_null2' "
 		"is not same");
 
@@ -794,13 +794,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert4' 
 	//	and 
-	//		element value at 3 from 
+	//		element variable at 3 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert4) == value_array1[3],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert4' and element value "
+		"iterator variable 'it_value_array1_insert4' and element variable "
 		"at 3 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -810,7 +810,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_object2' 
 	//	is same
 	SourceAssert(value_array1[3] == pointer_value_object2,
-		"compare variable between element value at 3 index from "
+		"compare variable between element variable at 3 index from "
 		"variable 'value_array1' and variable 'pointer_value_object2' "
 		"is not same");
 
@@ -828,13 +828,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert5' 
 	//	and 
-	//		element value at 4 from 
+	//		element variable at 4 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert5) == value_array1[4],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert5' and element value "
+		"iterator variable 'it_value_array1_insert5' and element variable "
 		"at 4 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -844,7 +844,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_string2' 
 	//	is same
 	SourceAssert(value_array1[4] == pointer_value_string2,
-		"compare variable between element value at 4 index from "
+		"compare variable between element variable at 4 index from "
 		"variable 'value_array1' and variable 'pointer_value_string2' "
 		"is not same");
 
@@ -862,13 +862,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert6' 
 	//	and 
-	//		element value at 5 from 
+	//		element variable at 5 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert6) == value_array1[5],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert6' and element value "
+		"iterator variable 'it_value_array1_insert6' and element variable "
 		"at 5 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -878,7 +878,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_true2' 
 	//	is same
 	SourceAssert(value_array1[5] == pointer_value_true2,
-		"compare variable between element value at 5 index from "
+		"compare variable between element variable at 5 index from "
 		"variable 'value_array1' and variable 'pointer_value_true2' "
 		"is not same");
 
@@ -897,13 +897,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert7' 
 	//	and 
-	//		element value at 6 from 
+	//		element variable at 6 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert7) == value_array1[6],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert7' and element value "
+		"iterator variable 'it_value_array1_insert7' and element variable "
 		"at 6 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -913,7 +913,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_char2' 
 	//	is same
 	SourceAssert(value_array1[6] == pointer_value_number_char2,
-		"compare variable between element value at 6 index from "
+		"compare variable between element variable at 6 index from "
 		"variable 'value_array1' and variable 'pointer_value_number_char2' "
 		"is not same");
 
@@ -932,13 +932,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert8' 
 	//	and 
-	//		element value at 7 from 
+	//		element variable at 7 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert8) == value_array1[7],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert8' and element value "
+		"iterator variable 'it_value_array1_insert8' and element variable "
 		"at 7 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -948,7 +948,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_double2' 
 	//	is same
 	SourceAssert(value_array1[7] == pointer_value_number_double2,
-		"compare variable between element value at 7 index from "
+		"compare variable between element variable at 7 index from "
 		"variable 'value_array1' and variable 'pointer_value_number_double2' "
 		"is not same");
 
@@ -967,13 +967,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert9' 
 	//	and 
-	//		element value at 8 from 
+	//		element variable at 8 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert9) == value_array1[8],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert9' and element value "
+		"iterator variable 'it_value_array1_insert9' and element variable "
 		"at 8 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -983,7 +983,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_float2' 
 	//	is same
 	SourceAssert(value_array1[8] == pointer_value_number_float2,
-		"compare variable between element value at 8 index from "
+		"compare variable between element variable at 8 index from "
 		"variable 'value_array1' and variable 'pointer_value_number_float2' "
 		"is not same");
 
@@ -1002,13 +1002,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert10' 
 	//	and 
-	//		element value at 9 from 
+	//		element variable at 9 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert10) == value_array1[9],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert10' and element value "
+		"iterator variable 'it_value_array1_insert10' and element variable "
 		"at 9 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1018,7 +1018,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_int2' 
 	//	is same
 	SourceAssert(value_array1[9] == pointer_value_number_int2,
-		"compare variable between element value at 9 index from "
+		"compare variable between element variable at 9 index from "
 		"variable 'value_array1' and variable 'pointer_value_number_int2' "
 		"is not same");
 
@@ -1037,13 +1037,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert11' 
 	//	and 
-	//		element value at 10 from 
+	//		element variable at 10 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert11) == value_array1[10],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert11' and element value "
+		"iterator variable 'it_value_array1_insert11' and element variable "
 		"at 10 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1053,7 +1053,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_long2' 
 	//	is same
 	SourceAssert(value_array1[10] == pointer_value_number_long2,
-		"compare variable between element value at 10 index from "
+		"compare variable between element variable at 10 index from "
 		"variable 'value_array1' and variable 'pointer_value_number_long2' "
 		"is not same");
 
@@ -1072,13 +1072,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert12' 
 	//	and 
-	//		element value at 11 from 
+	//		element variable at 11 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert12) == value_array1[11],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert12' and element value "
+		"iterator variable 'it_value_array1_insert12' and element variable "
 		"at 11 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1088,7 +1088,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_longdouble2 
 	//	is same
 	SourceAssert(value_array1[11] == pointer_value_number_longdouble2,
-		"compare variable between element value at 11 index from "
+		"compare variable between element variable at 11 index from "
 		"variable 'value_array1' "
 		"and variable 'pointer_value_number_longdouble2' "
 		"is not same");
@@ -1108,13 +1108,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert13' 
 	//	and 
-	//		element value at 12 from 
+	//		element variable at 12 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert13) == value_array1[12],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert13' and element value "
+		"iterator variable 'it_value_array1_insert13' and element variable "
 		"at 12 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1124,7 +1124,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_longlong2' 
 	//	is same
 	SourceAssert(value_array1[12] == pointer_value_number_longlong2,
-		"compare variable between element value at 12 index from "
+		"compare variable between element variable at 12 index from "
 		"variable 'value_array1' "
 		"and variable 'pointer_value_number_longlong2' "
 		"is not same");
@@ -1144,13 +1144,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert14' 
 	//	and 
-	//		element value at 13 from 
+	//		element variable at 13 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert14) == value_array1[13],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert14' and element value "
+		"iterator variable 'it_value_array1_insert14' and element variable "
 		"at 13 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1160,7 +1160,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_short2' 
 	//	is same
 	SourceAssert(value_array1[13] == pointer_value_number_short2,
-		"compare variable between element value at 13 index from "
+		"compare variable between element variable at 13 index from "
 		"variable 'value_array1' and variable 'pointer_value_number_short2' "
 		"is not same");
 
@@ -1179,13 +1179,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert15' 
 	//	and 
-	//		element value at 14 from 
+	//		element variable at 14 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert15) == value_array1[14],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert15' and element value "
+		"iterator variable 'it_value_array1_insert15' and element variable "
 		"at 14 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1195,7 +1195,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_unsignedchar2' 
 	//	is same
 	SourceAssert(value_array1[14] == pointer_value_number_unsignedchar2,
-		"compare variable between element value at 14 index from "
+		"compare variable between element variable at 14 index from "
 		"variable 'value_array1' "
 		"and variable 'pointer_value_number_unsignedchar2' "
 		"is not same");
@@ -1215,13 +1215,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert16' 
 	//	and 
-	//		element value at 15 from 
+	//		element variable at 15 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert16) == value_array1[15],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert16' and element value "
+		"iterator variable 'it_value_array1_insert16' and element variable "
 		"at 15 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1231,7 +1231,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_unsignedint2' 
 	//	is same
 	SourceAssert(value_array1[15] == pointer_value_number_unsignedint2,
-		"compare variable between element value at 15 index from "
+		"compare variable between element variable at 15 index from "
 		"variable 'value_array1' "
 		"and variable 'pointer_value_number_unsignedint2' "
 		"is not same");
@@ -1251,13 +1251,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert17' 
 	//	and 
-	//		element value at 16 from 
+	//		element variable at 16 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert17) == value_array1[16],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert17' and element value "
+		"iterator variable 'it_value_array1_insert17' and element variable "
 		"at 16 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1267,7 +1267,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_unsignedlong2' 
 	//	is same
 	SourceAssert(value_array1[16] == pointer_value_number_unsignedlong2,
-		"compare variable between element value at 16 index from "
+		"compare variable between element variable at 16 index from "
 		"variable 'value_array1' "
 		"and variable 'pointer_value_number_unsignedlong2' "
 		"is not same");
@@ -1287,13 +1287,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert18' 
 	//	and 
-	//		element value at 17 from 
+	//		element variable at 17 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert18) == value_array1[17],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert18' and element value "
+		"iterator variable 'it_value_array1_insert18' and element variable "
 		"at 17 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1303,7 +1303,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_unsignedlonglong2' 
 	//	is same
 	SourceAssert(value_array1[17] == pointer_value_number_unsignedlonglong2,
-		"compare variable between element value at 17 index from "
+		"compare variable between element variable at 17 index from "
 		"variable 'value_array1' "
 		"and variable 'pointer_value_number_unsignedlonglong2' "
 		"is not same");
@@ -1323,13 +1323,13 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable value of element variable from 
 	//			iterator variable 'it_value_array1_insert19' 
 	//	and 
-	//		element value at 18 from 
+	//		element variable at 18 from 
 	//			variable 'value_array1' 
 	//	is same
 	SourceAssert(
 		JsonValue::Array::Value(*it_value_array1_insert19) == value_array1[18],
 		"compare variable between variable value of element variable from "
-		"iterator variable 'it_value_array1_insert19' and element value "
+		"iterator variable 'it_value_array1_insert19' and element variable "
 		"at 18 from variable 'value_array1' is not same");
 
 	//	check compare variable between 
@@ -1339,7 +1339,7 @@ void experiment::test::simple::json::value::Array::Test()
 	//		variable 'pointer_value_number_unsignedshort2' 
 	//	is same
 	SourceAssert(value_array1[18] == pointer_value_number_unsignedshort2,
-		"compare variable between element value at 18 index from "
+		"compare variable between element variable at 18 index from "
 		"variable 'value_array1' "
 		"and variable 'pointer_value_number_unsignedshort2' "
 		"is not same");
@@ -1349,16 +1349,18 @@ void experiment::test::simple::json::value::Array::Test()
 	for (auto it_value : value_array1)
 	{
 		//	Check compare variable between 
-		//		variable 'it_value'
+		//		variable value of 
+		//			variable iterator 'it_value'
 		//	and 
-		//		element value of variable 'value_array1' 
+		//		element variable of variable 'value_array1' 
 		//	is same
-		//	where 'it_value' as key to access element value from
+		//	where 'it_value' as key to access element variable from
 		//		variable 'value_array1' 
 		SourceAssert(JsonValue::Array::Value(it_value) 
 			== value_array1[value_array1.Key(it_value)],
-			"compare variable between variable 'it_value' "
-			"and element value of variable 'value_array1' at %d is not same",
+			"compare variable between variable value of "
+			"variable iterator 'it_value' and element variable of "
+			"variable 'value_array1' at %d is not same",
 			value_array1.Key(it_value));
 	}
 
@@ -1367,16 +1369,18 @@ void experiment::test::simple::json::value::Array::Test()
 	for (auto it_const_value : std::as_const(value_array1))
 	{
 		//	Check compare variable between 
-		//		variable 'it_const_value'
+		//		variable value of 
+		//			variable const iterator 'it_const_value'
 		//	and 
-		//		element value of variable 'value_array1' 
+		//		element variable of variable 'value_array1' 
 		//	is same
-		//	where 'it_const_value' as key to access element value from
+		//	where 'it_const_value' as key to access element variable from
 		//		variable 'value_array1' 
 		SourceAssert(JsonValue::Array::Value(it_const_value) 
 			== value_array1[value_array1.Key(it_const_value)],
-			"compare variable between variable 'it_const_value' "
-			"and element value of variable 'value_array1' at %d is not same",
+			"compare variable between variable value of "
+			"variable const iterator 'it_const_value' and element variable of "
+			"variable 'value_array1' at %d is not same",
 			value_array1.Key(it_const_value));
 	}
 
@@ -1389,15 +1393,16 @@ void experiment::test::simple::json::value::Array::Test()
 		//	Check compare variable between 
 		//		variable const iterator 'const_it_value_array1'
 		//	and 
-		//		element value of variable 'value_array1' 
+		//		element variable of variable 'value_array1' 
 		//	is same
-		//	where 'const_it_value_array1' as key to access element value from
-		//		variable 'value_array1' 
+		//	where 'const_it_value_array1' as key to 
+		//		access element variable from
+		//			variable 'value_array1' 
 		SourceAssert(JsonValue::Array::Value(*const_it_value_array1)
 			== value_array1[value_array1.Key(*const_it_value_array1)],
 			"compare variable between "
 			"variable const iterator 'const_it_value_array1' "
-			"and element value of variable 'value_array1' at %d is same",
+			"and element variable of variable 'value_array1' at %d is same",
 			value_array1.Key(*const_it_value_array1));
 	}
 
