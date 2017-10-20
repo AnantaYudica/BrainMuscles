@@ -48,7 +48,7 @@ void experiment::test::simple::json::value::String::Test()
 	//	Declare variable of
 	//		class 'BrainMuscles::test::simple::json::value::String'
 	//	with direct initialization of 'string' of const char[]
-	JsonValue::String value_string3("string");
+	JsonValue::String value_string3("cstring");
 
 	//	Check variable 'value_string2'
 	//	is 'cstring' of const char[]
