@@ -26,7 +26,7 @@ void experiment::test::simple::json::exception::BadCast::Test()
 	//	is not empty
 	SourceAssert(
 		strcmp(JsonException::BadCast<int, float>::Message.c_str(), "") != 0,
-		"static variable static member 'Message' from "
+		"variable static member 'Message' from "
 		"class BrainMuscles::test::simple::json"
 		"::exception::BadCast<int, float> is empty");
 
