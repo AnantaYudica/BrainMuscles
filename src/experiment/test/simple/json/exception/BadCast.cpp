@@ -25,7 +25,7 @@ void experiment::test::simple::json::exception::BadCast::Test()
 	//			::exception::BadCast<int, float>'
 	//	is not empty
 	SourceAssert(
-		strcmp(JsonException::BadCast<int, float>::Message.c_str(), "") != 0,
+		strcmp(JsonException::BadCast<int, float>::Message().c_str(), "") != 0,
 		"variable static member 'Message' from "
 		"class BrainMuscles::test::simple::json"
 		"::exception::BadCast<int, float> is empty");
@@ -54,7 +54,7 @@ void experiment::test::simple::json::exception::BadCast::Test()
 	//				::exception::BadCast<int, float>'
 	//	is same
 	SourceAssert(strcmp(exception_badcast.what(), JsonException
-		::BadCast<int, float>::Message.c_str()) == 0,
+		::BadCast<int, float>::Message().c_str()) == 0,
 		"compare variable between return variable function member 'what()' "
 		"from variable 'exception_badcast' and variable static member "
 		"'Message' of class BrainMuscles::test::simple::json::exception"
@@ -80,7 +80,7 @@ void experiment::test::simple::json::exception::BadCast::Test()
 		//			::exception::BadCast<int, float>' 
 		//	is same
 		SourceAssert(strcmp(e.what(), JsonException
-			::BadCast<int, float>::Message.c_str()) == 0,
+			::BadCast<int, float>::Message().c_str()) == 0,
 			"compare variable between return variable of function member "
 			"'what()' from variable 'e' and variable static member "
 			"'Message' from class BrainMuscles::test::simple::json::exception"
