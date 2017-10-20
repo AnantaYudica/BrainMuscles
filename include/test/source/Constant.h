@@ -70,7 +70,7 @@ namespace BrainMuscles
 				{
 					caller_function += WhenCalledStr;
 				}
-				else if (function_str == FunctionPreTestStr || function_str == FunctionTestStr || function_str == FunctionPostTestStr)
+				else if (function_str == FunctionStaticTestStr || function_str == FunctionPreTestStr || function_str == FunctionTestStr || function_str == FunctionPostTestStr)
 				{
 					caller_function += InStr;
 				}
