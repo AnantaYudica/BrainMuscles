@@ -41,9 +41,9 @@ namespace BrainMuscles
 						public std::exception
 					{
 					public:
-						static const std::string Message;
+						const std::string Message;
 					public:
-						UndefinedType() = default;
+						UndefinedType();
 						~UndefinedType() = default;
 					public:
 						const char* what() const;
@@ -72,7 +72,9 @@ namespace BrainMuscles
 					}
 
 					template<typename TYPE>
-					const std::string UndefinedType<TYPE, void>::Message = InstanceMessage();
+					UndefinedType<TYPE, void>::UndefinedType() :
+						Message(InstanceMessage())
+					{}
 
 					template<typename TYPE>
 					const char* UndefinedType<TYPE, void>::what() const
