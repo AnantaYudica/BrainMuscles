@@ -26,7 +26,13 @@
 
 #include "experiment\test\simple\json\Value.h"
 
+#include "experiment\test\simple\json\value\Array.h"
+#include "experiment\test\simple\json\value\False.h"
+#include "experiment\test\simple\json\value\Null.h"
 #include "experiment\test\simple\json\value\Number.h"
+#include "experiment\test\simple\json\value\Object.h"
+#include "experiment\test\simple\json\value\String.h"
+#include "experiment\test\simple\json\value\True.h"
 
 void experiment::test::simple::json::Value::Test()
 {
@@ -482,6 +488,31 @@ void experiment::test::simple::json::Value::Test()
 void experiment::test::simple::json::Value::PostTest()
 {
 	//	Call function static member 'Call' of
+	//		class 'experiment::test::simple::json::value::Array'
+	SourceCall(experiment::test::simple::json::value::Array);
+
+	//	Call function static member 'Call' of
+	//		class 'experiment::test::simple::json::value::False'
+	SourceCall(experiment::test::simple::json::value::False);
+
+	//	Call function static member 'Call' of
+	//		class 'experiment::test::simple::json::value::Null'
+	SourceCall(experiment::test::simple::json::value::Null);
+
+	//	Call function static member 'Call' of
 	//		class 'experiment::test::simple::json::value::Number'
 	SourceCall(experiment::test::simple::json::value::Number);
+
+	//	Call function static member 'Call' of
+	//		class 'experiment::test::simple::json::value::Object'
+	SourceCall(experiment::test::simple::json::value::Object);
+
+	//	Call function static member 'Call' of
+	//		class 'experiment::test::simple::json::value::String'
+	SourceCall(experiment::test::simple::json::value::String);
+
+	//	Call function static member 'Call' of
+	//		class 'experiment::test::simple::json::value::True'
+	SourceCall(experiment::test::simple::json::value::True);
+
 }
