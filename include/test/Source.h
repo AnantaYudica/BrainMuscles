@@ -80,9 +80,9 @@ namespace BrainMuscles
 			template<typename OTHER_SOURCE>
 			static void SourceIsNotCompleted(std::string title, const char* file, const std::size_t& line);
 		protected:
-			static void Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str);
+			static void Assert(const char* file, const std::size_t& line, const char* condition_str, const bool& condition);
 			template<typename... ARGS>
-			static void Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str, ARGS... args);
+			static void Assert(const char* file, const std::size_t& line, const char* condition_str, const bool& condition, ARGS... args);
 			template<typename OTHER_SOURCE>
 			static typename std::enable_if<!std::is_same<DERIVED_TYPE, OTHER_SOURCE>::value, void>::type 
 				Requirement(const char* file, const std::size_t& line);
@@ -358,7 +358,7 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		void Source<DERIVED_TYPE>::Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str)
+		void Source<DERIVED_TYPE>::Assert(const char* file, const std::size_t& line, const char* condition_str, const bool& condition)
 		{
 
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
@@ -371,7 +371,7 @@ namespace BrainMuscles
 
 		template<typename DERIVED_TYPE>
 		template<typename... ARGS>
-		void Source<DERIVED_TYPE>::Assert(const bool& condition, const char* file, const std::size_t& line, const char* condition_str, ARGS... args)
+		void Source<DERIVED_TYPE>::Assert(const char* file, const std::size_t& line, const char* condition_str, const bool& condition, ARGS... args)
 		{
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
@@ -541,7 +541,7 @@ namespace BrainMuscles
 #ifndef SourceAssert
 
 //SourceAssert(CONDITION [, [MESSAGE | [FORMAT, ...]]])
-#define SourceAssert(CONDITION, ...) Assert(CONDITION, __FILE__, __LINE__, #CONDITION, __VA_ARGS__)
+#define SourceAssert(CONDITION, ...) Assert(__FILE__, __LINE__, #CONDITION, CONDITION, __VA_ARGS__)
 
 #endif //!SourceAssert
 
