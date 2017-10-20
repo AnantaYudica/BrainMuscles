@@ -376,7 +376,7 @@ namespace BrainMuscles
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
 				EnvironmentType::Trace(EnvironmentType::CallerFunction(), file, line);
-				SetError(file, line, ConstantType::AssertionFailed(), condition_str, args...);
+				SetError(file, line, ConstantType::AssertionFailed(), args...);
 				EnvironmentType::PopTrace();
 			}
 		}
