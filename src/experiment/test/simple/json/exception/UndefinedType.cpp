@@ -42,7 +42,7 @@ void experiment::test::simple::json::exception::UndefinedType::Test()
 	//				::exception::UndefinedType<int>'
 	//	is not empty
 	SourceAssert(std::strcmp(
-		JsonException::UndefinedType<int>::Message.c_str(), "") != 0,
+		JsonException::UndefinedType<int>().Message.c_str(), "") != 0,
 		"variable static member 'Message' from class BrainMuscles"
 		"::test::simple::json::exception::UndefinedType<int> is empty");
 
@@ -70,7 +70,7 @@ void experiment::test::simple::json::exception::UndefinedType::Test()
 	//				::exception::UndefinedType<int>'
 	//	is same
 	SourceAssert(strcmp(exception_undefinedtype1.what(), 
-		JsonException::UndefinedType<int>::Message.c_str()) == 0,
+		JsonException::UndefinedType<int>().Message.c_str()) == 0,
 		"compare variable between return variable of function member 'what()' "
 		"from variable 'exception_undefinedtype1' and variable static member "
 		"'Message' from class BrainMuscles::test::simple::json::exception"
@@ -95,7 +95,7 @@ void experiment::test::simple::json::exception::UndefinedType::Test()
 		//				::exception::UndefinedType<int>' 
 		//	is same 
 		SourceAssert(strcmp(e.what(), 
-			JsonException::UndefinedType<int>::Message.c_str()) == 0,
+			JsonException::UndefinedType<int>().Message.c_str()) == 0,
 			"compare variable return function member 'what()' from "
 			"variable 'e' and variable static member 'Message' from "
 			"class 'BrainMuscles::test::simple::json::exception"
