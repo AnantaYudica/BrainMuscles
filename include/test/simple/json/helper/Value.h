@@ -45,125 +45,125 @@ namespace BrainMuscles
 					private:
 						Value() = delete;
 					public:
-						static bool IsArray(const ValueType& value);
-						static bool IsFalse(const ValueType& value);
-						static bool IsNull(const ValueType& value);
-						static bool IsNumber(const ValueType& value);
-						static bool IsObject(const ValueType& value);
-						static bool IsString(const ValueType& value);
-						static bool IsTrue(const ValueType& value);
+						static inline bool IsArray(const ValueType& value);
+						static inline bool IsFalse(const ValueType& value);
+						static inline bool IsNull(const ValueType& value);
+						static inline bool IsNumber(const ValueType& value);
+						static inline bool IsObject(const ValueType& value);
+						static inline bool IsString(const ValueType& value);
+						static inline bool IsTrue(const ValueType& value);
 					public:
-						static bool IsNumberChar(const ValueType& value);
-						static bool IsNumberDouble(const ValueType& value);
-						static bool IsNumberFloat(const ValueType& value);
-						static bool IsNumberInt(const ValueType& value);
-						static bool IsNumberLong(const ValueType& value);
-						static bool IsNumberLongDouble(const ValueType& value);
-						static bool IsNumberLongLong(const ValueType& value);
-						static bool IsNumberShort(const ValueType& value);
-						static bool IsNumberUnsignedChar(const ValueType& value);
-						static bool IsNumberUnsignedInt(const ValueType& value);
-						static bool IsNumberUnsignedLong(const ValueType& value);
-						static bool IsNumberUnsignedLongLong(const ValueType& value);
-						static bool IsNumberUnsignedShort(const ValueType& value);
+						static inline bool IsNumberChar(const ValueType& value);
+						static inline bool IsNumberDouble(const ValueType& value);
+						static inline bool IsNumberFloat(const ValueType& value);
+						static inline bool IsNumberInt(const ValueType& value);
+						static inline bool IsNumberLong(const ValueType& value);
+						static inline bool IsNumberLongDouble(const ValueType& value);
+						static inline bool IsNumberLongLong(const ValueType& value);
+						static inline bool IsNumberShort(const ValueType& value);
+						static inline bool IsNumberUnsignedChar(const ValueType& value);
+						static inline bool IsNumberUnsignedInt(const ValueType& value);
+						static inline bool IsNumberUnsignedLong(const ValueType& value);
+						static inline bool IsNumberUnsignedLongLong(const ValueType& value);
+						static inline bool IsNumberUnsignedShort(const ValueType& value);
 					};
 
-					bool Value::IsArray(const ValueType& value)
+					inline bool Value::IsArray(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::Array*>(&value) != 0;
 					}
 
-					bool Value::IsFalse(const ValueType& value)
+					inline bool Value::IsFalse(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::False*>(&value) != 0;
 					}
 
-					bool Value::IsNull(const ValueType& value)
+					inline bool Value::IsNull(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::Null*>(&value) != 0;
 					}
 
-					bool Value::IsNumber(const ValueType& value)
+					inline bool Value::IsNumber(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::Number*>(&value) != 0;
 					}
 
-					bool Value::IsObject(const ValueType& value)
+					inline bool Value::IsObject(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::Object*>(&value) != 0;
 					}
 
-					bool Value::IsString(const ValueType& value)
+					inline bool Value::IsString(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::String*>(&value) != 0;
 					}
 
-					bool Value::IsTrue(const ValueType& value)
+					inline bool Value::IsTrue(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::True*>(&value) != 0;
 					}
 
-					bool Value::IsNumberChar(const ValueType& value)
+					inline bool Value::IsNumberChar(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Char*>(&value) != 0;
 					}
 
-					bool Value::IsNumberDouble(const ValueType& value)
+					inline bool Value::IsNumberDouble(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Double*>(&value) != 0;
 					}
 
-					bool Value::IsNumberFloat(const ValueType& value)
+					inline bool Value::IsNumberFloat(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Float*>(&value) != 0;
 					}
 
-					bool Value::IsNumberInt(const ValueType& value)
+					inline bool Value::IsNumberInt(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Int*>(&value) != 0;
 					}
 
-					bool Value::IsNumberLong(const ValueType& value)
+					inline bool Value::IsNumberLong(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Long*>(&value) != 0;
 					}
 
-					bool Value::IsNumberLongDouble(const ValueType& value)
+					inline bool Value::IsNumberLongDouble(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::LongDouble*>(&value) != 0;
 					}
 
-					bool Value::IsNumberLongLong(const ValueType& value)
+					inline bool Value::IsNumberLongLong(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::LongLong*>(&value) != 0;
 					}
 
-					bool Value::IsNumberShort(const ValueType& value)
+					inline bool Value::IsNumberShort(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::Short*>(&value) != 0;
 					}
 
-					bool Value::IsNumberUnsignedChar(const ValueType& value)
+					inline bool Value::IsNumberUnsignedChar(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedChar*>(&value) != 0;
 					}
 
-					bool Value::IsNumberUnsignedInt(const ValueType& value)
+					inline bool Value::IsNumberUnsignedInt(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedInt*>(&value) != 0;
 					}
 
-					bool Value::IsNumberUnsignedLong(const ValueType& value)
+					inline bool Value::IsNumberUnsignedLong(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedLong*>(&value) != 0;
 					}
 
-					bool Value::IsNumberUnsignedLongLong(const ValueType& value)
+					inline bool Value::IsNumberUnsignedLongLong(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedLongLong*>(&value) != 0;
 					}
 
-					bool Value::IsNumberUnsignedShort(const ValueType& value)
+					inline bool Value::IsNumberUnsignedShort(const ValueType& value)
 					{
 						return dynamic_cast<const BrainMuscles::test::simple::json::value::number::UnsignedShort*>(&value) != 0;
 					}

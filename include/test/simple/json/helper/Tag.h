@@ -26,19 +26,19 @@ namespace BrainMuscles
 					public:
 						const EnumType Value;
 					public:
-						Tag(const EnumType& value);
-						Tag(const Tag& copy);
+						inline Tag(const EnumType& value);
+						inline Tag(const Tag& copy);
 					public:
-						bool operator==(const Tag& tag) const;
-						bool operator==(const EnumType& value) const;
-						operator const BrainMuscles::test::simple::json::helper::Enum&() const;
+						inline bool operator==(const Tag& tag) const;
+						inline bool operator==(const EnumType& value) const;
+						inline operator const BrainMuscles::test::simple::json::helper::Enum&() const;
 					public:
-						static constexpr bool IsValue(const EnumType& value);
-						static constexpr bool IsValueNumber(const EnumType& value);
-						static constexpr bool IsFloatingPoint(const EnumType& value);
-						static constexpr bool IsInteger(const EnumType& value);
-						static constexpr bool IsSigned(const EnumType& value);
-						static constexpr bool IsUnsigned(const EnumType& value);
+						static inline constexpr bool IsValue(const EnumType& value);
+						static inline constexpr bool IsValueNumber(const EnumType& value);
+						static inline constexpr bool IsFloatingPoint(const EnumType& value);
+						static inline constexpr bool IsInteger(const EnumType& value);
+						static inline constexpr bool IsSigned(const EnumType& value);
+						static inline constexpr bool IsUnsigned(const EnumType& value);
 						template<typename HELPER_VALUE_TYPE, typename INPUT_VALUE_TYPE>
 						static Tag Identification(const INPUT_VALUE_TYPE& input_value);
 						template<typename RETURN_TYPE, typename IMPLEMENT_TYPE, typename... ARGS>
@@ -92,30 +92,30 @@ namespace BrainMuscles
 			{
 				namespace helper
 				{
-					Tag::Tag(const EnumType& tag_enum) :
+					inline Tag::Tag(const EnumType& tag_enum) :
 						Value(tag_enum)
 					{}
 
-					Tag::Tag(const Tag& copy) :
+					inline Tag::Tag(const Tag& copy) :
 						Value(copy.Value)
 					{}
 
-					bool Tag::operator==(const Tag& tag) const
+					inline bool Tag::operator==(const Tag& tag) const
 					{
 						return Value == tag.Value;
 					}
 
-					bool Tag::operator==(const EnumType& value) const
+					inline bool Tag::operator==(const EnumType& value) const
 					{
 						return Value == value;
 					}
 
-					Tag::operator const BrainMuscles::test::simple::json::helper::Enum&() const
+					inline Tag::operator const BrainMuscles::test::simple::json::helper::Enum&() const
 					{
 						return Value;
 					}
 
-					constexpr bool Tag::IsValue(const EnumType& value)
+					inline constexpr bool Tag::IsValue(const EnumType& value)
 					{
 						return value == EnumType::value_array ||
 							value == EnumType::value_false ||
@@ -126,26 +126,26 @@ namespace BrainMuscles
 							value == EnumType::value_true;
 					}
 
-					constexpr bool Tag::IsValueNumber(const EnumType& value)
+					inline constexpr bool Tag::IsValueNumber(const EnumType& value)
 					{
 						return value == EnumType::value_number ||
 							IsFloatingPoint(value) ||
 							IsInteger(value);
 					}
 
-					constexpr bool Tag::IsFloatingPoint(const EnumType& value)
+					inline constexpr bool Tag::IsFloatingPoint(const EnumType& value)
 					{
 						return value == EnumType::value_number_double ||
 							value == EnumType::value_number_float ||
 							value == EnumType::value_number_longdouble;
 					}
 
-					constexpr bool Tag::IsInteger(const EnumType& value)
+					inline constexpr bool Tag::IsInteger(const EnumType& value)
 					{
 						return IsSigned(value) || IsUnsigned(value);
 					}
 
-					constexpr bool Tag::IsSigned(const EnumType& value)
+					inline constexpr bool Tag::IsSigned(const EnumType& value)
 					{
 						return value == EnumType::value_number_char ||
 							value == EnumType::value_number_int ||
@@ -153,7 +153,7 @@ namespace BrainMuscles
 							value == EnumType::value_number_longlong ||
 							value == EnumType::value_number_short;
 					}
-					constexpr bool Tag::IsUnsigned(const EnumType& value)
+					inline constexpr bool Tag::IsUnsigned(const EnumType& value)
 					{
 						return value == EnumType::value_number_unsignedchar ||
 							value == EnumType::value_number_unsignedint ||

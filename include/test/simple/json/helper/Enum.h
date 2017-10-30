@@ -49,7 +49,7 @@ namespace BrainMuscles
 
 namespace std
 {
-	std::string to_string(const BrainMuscles::test::simple::json::helper::Enum& value)
+	inline std::string to_string(const BrainMuscles::test::simple::json::helper::Enum& value)
 	{
 		return to_string(static_cast<char>(value));
 	}

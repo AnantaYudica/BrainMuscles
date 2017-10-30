@@ -29,7 +29,7 @@ namespace BrainMuscles
 									::tag::number::FloatingPoint						BaseType;
 								typedef typename BaseType::EnumType						EnumType;
 							public:
-								LongDouble();
+								inline LongDouble();
 							};
 						}
 					}
@@ -65,7 +65,7 @@ namespace BrainMuscles
 					{
 						namespace number
 						{
-							LongDouble::LongDouble() :
+							inline LongDouble::LongDouble() :
 								BaseType(EnumType::value_number_longdouble)
 							{}
 						}

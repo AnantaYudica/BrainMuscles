@@ -29,7 +29,7 @@ namespace BrainMuscles
 									::tag::number::FloatingPoint						BaseType;
 								typedef typename BaseType::EnumType						EnumType;
 							public:
-								Float();
+								inline Float();
 							};
 						}
 					}
@@ -65,7 +65,7 @@ namespace BrainMuscles
 					{
 						namespace number
 						{
-							Float::Float() :
+							inline Float::Float() :
 								BaseType(EnumType::value_number_float)
 							{}
 						}

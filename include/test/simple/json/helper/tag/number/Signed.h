@@ -29,7 +29,7 @@ namespace BrainMuscles
 									::tag::number::Integer								BaseType;
 								typedef typename BaseType::EnumType						EnumType;
 							protected:
-								Signed(const EnumType& value);
+								inline Signed(const EnumType& value);
 							};
 						}
 					}
@@ -65,7 +65,7 @@ namespace BrainMuscles
 					{
 						namespace number
 						{
-							Signed::Signed(const EnumType& value) :
+							inline Signed::Signed(const EnumType& value) :
 								BaseType(value)
 							{}
 						}

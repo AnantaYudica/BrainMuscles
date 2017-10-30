@@ -30,7 +30,7 @@ namespace BrainMuscles
 									::tag::number::Unsigned								BaseType;
 								typedef typename BaseType::EnumType						EnumType;
 							public:
-								UnsignedLongLong();
+								inline UnsignedLongLong();
 							};
 						}
 					}
@@ -66,7 +66,7 @@ namespace BrainMuscles
 					{
 						namespace number
 						{
-							UnsignedLongLong::UnsignedLongLong() :
+							inline UnsignedLongLong::UnsignedLongLong() :
 								BaseType(EnumType::value_number_unsignedlonglong)
 							{}
 						}

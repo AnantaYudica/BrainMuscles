@@ -29,7 +29,7 @@ namespace BrainMuscles
 									::tag::number::Signed								BaseType;
 								typedef typename BaseType::EnumType						EnumType;
 							public:
-								Short();
+								inline Short();
 							};
 						}
 					}
@@ -65,7 +65,7 @@ namespace BrainMuscles
 					{
 						namespace number
 						{
-							Short::Short() :
+							inline Short::Short() :
 								BaseType(EnumType::value_number_short)
 							{}
 						}

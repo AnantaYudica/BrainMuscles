@@ -26,9 +26,9 @@ namespace BrainMuscles
 							typedef BrainMuscles::test::simple::json::helper::Tag	BaseType;
 							typedef typename BaseType::EnumType						EnumType;
 						protected:
-							Number(const EnumType& value);
+							inline Number(const EnumType& value);
 						public:
-							Number();
+							inline Number();
 						};
 					}
 				}
@@ -61,11 +61,11 @@ namespace BrainMuscles
 				{
 					namespace tag
 					{
-						Number::Number(const EnumType& value) :
+						inline Number::Number(const EnumType& value) :
 							BaseType(value)
 						{}
 
-						Number::Number() :
+						inline Number::Number() :
 							BaseType(EnumType::value_number)
 						{}
 					}

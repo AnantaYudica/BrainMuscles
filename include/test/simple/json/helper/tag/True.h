@@ -25,7 +25,7 @@ namespace BrainMuscles
 							typedef BrainMuscles::test::simple::json::helper::Tag	BaseType;
 							typedef typename BaseType::EnumType						EnumType;
 						public:
-							True();
+							inline True();
 						};
 					}
 				}
@@ -58,7 +58,7 @@ namespace BrainMuscles
 				{
 					namespace tag
 					{
-						True::True() :
+						inline True::True() :
 							BaseType(EnumType::value_true)
 						{}
 					}
