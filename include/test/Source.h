@@ -83,7 +83,7 @@ namespace BrainMuscles
 		protected:
 			static void Assert(const char* file, const std::size_t& line, std::string condition_str, const bool& condition);
 			template<typename... ARGS>
-			static void Assert(const char* file, const std::size_t& line, std::string condition_str, const bool& condition, ARGS... args);
+			static void Assert(const char* file, const std::size_t& line, std::string arguments_str, const bool& condition, ARGS... args);
 			template<typename OTHER_SOURCE>
 			static typename std::enable_if<!std::is_same<DERIVED_TYPE, OTHER_SOURCE>::value, void>::type 
 				Requirement(const char* file, const std::size_t& line);
@@ -110,9 +110,6 @@ namespace BrainMuscles
 		public:
 			static void TriggerError();
 			static std::string ErrorMessage();
-		public:
-			template<std::size_t N>
-			static std::string ConditionString(const char (&const_string)[N]);
 		};
 
 		template<typename DERIVED_TYPE>
@@ -375,7 +372,7 @@ namespace BrainMuscles
 
 		template<typename DERIVED_TYPE>
 		template<typename... ARGS>
-		void Source<DERIVED_TYPE>::Assert(const char* file, const std::size_t& line, std::string condition_str, const bool& condition, ARGS... args)
+		void Source<DERIVED_TYPE>::Assert(const char* file, const std::size_t& line, std::string arguments_str, const bool& condition, ARGS... args)
 		{
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
@@ -539,49 +536,13 @@ namespace BrainMuscles
 			}
 			return std::to_string(ms_instance.m_error);
 		}
-
-		template<typename DERIVED_TYPE>
-		template<std::size_t N>
-		std::string Source<DERIVED_TYPE>::ConditionString(const char(&const_string)[N])
-		{
-			static const char open_brackets[] = {'<', '[', '{', '('};
-			static const char close_brackets[] = {'>', ']', '}', ')'};
-			static_assert(sizeof(open_brackets) == sizeof(close_brackets), 
-				"size between variable 'open_brackets' and 'close_brackets' not same");
-			std::stack<char> stack_brackets;
-			std::string condition_string = "";
-			for (size_t i = 0; i < N; ++i)
-			{
-				if (stack_brackets.size() == 0
-					&& const_string[i] == ',')
-				{
-					break;
-				}
-				condition_string += const_string[i];
-				if (stack_brackets.size() > 0
-					&& const_string[i] == stack_brackets.top())
-				{
-					stack_brackets.pop();
-					continue;
-				}
-				for (std::size_t j = 0; j < sizeof(open_brackets); ++j)
-				{
-					if (const_string[i] == open_brackets[j])
-					{
-						stack_brackets.push(close_brackets[j]);
-						break;
-					}
-				}
-			}
-			return condition_string;
-		}
 	}
 }
 
 #ifndef SourceAssert
 
 //SourceAssert(CONDITION [, [MESSAGE | [FORMAT, ...]]])
-#define SourceAssert(CONDITION, ...) Assert(__FILE__, __LINE__, ConditionString(#CONDITION ", " #__VA_ARGS__), CONDITION, __VA_ARGS__)
+#define SourceAssert(...) Assert(__FILE__, __LINE__, #__VA_ARGS__, __VA_ARGS__)
 
 #endif //!SourceAssert
 
