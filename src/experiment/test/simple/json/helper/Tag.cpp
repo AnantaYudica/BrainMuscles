@@ -16,6 +16,142 @@
 
 #include "experiment\test\simple\json\helper\Tag.h"
 
+enum TagCase
+{
+	value, 
+	value_array, 
+	value_false, 
+	value_null, 
+	value_number, 
+	value_object, 
+	value_string, 
+	value_true,
+	value_number_char,
+	value_number_double,
+	value_number_float,
+	value_number_int,
+	value_number_long,
+	value_number_longdouble,
+	value_number_longlong,
+	value_number_short,
+	value_number_unsignedchar,
+	value_number_unsignedint,
+	value_number_unsignedlong,
+	value_number_unsignedlonglong,
+	value_number_unsignedshort,
+	value_number_floatingpoint,
+	value_number_integer,
+	value_number_signed,
+	value_number_unsigned
+};
+
+struct TagCaseImpl1
+{
+	typedef BrainMuscles::test::simple::json::helper::Tag TagType;
+	static TagCase Case(const TagType& tag);
+};
+
+struct TagCaseImpl2 
+{
+	typedef BrainMuscles::test::simple::json::helper::Tag TagType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::Array TagArrayType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::False TagFalseType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::Null TagNullType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::Number TagNumberType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::Object TagObjectType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::String TagStringType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::True TagTrueType;
+	static TagCase Case(const TagType& tag);
+	static TagCase Case(const TagArrayType& tag_array);
+	static TagCase Case(const TagFalseType& tag_false);
+	static TagCase Case(const TagNullType& tag_null);
+	static TagCase Case(const TagNumberType& tag_number);
+	static TagCase Case(const TagObjectType& tag_object);
+	static TagCase Case(const TagStringType& tag_string);
+	static TagCase Case(const TagTrueType& tag_true);
+};
+
+struct TagCaseImpl3
+{
+	typedef BrainMuscles::test::simple::json::helper::Tag TagType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::Char TagNumberCharType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::Double TagNumberDoubleType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::Float TagNumberFloatType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::Int TagNumberIntType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::Long TagNumberLongType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::LongDouble TagNumberLongDoubleType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::LongLong TagNumberLongLongType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::Short TagNumberShortType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::UnsignedChar TagNumberUnsignedCharType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::UnsignedInt TagNumberUnsignedIntType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::UnsignedLong TagNumberUnsignedLongType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::UnsignedLongLong TagNumberUnsignedLongLongType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::UnsignedShort TagNumberUnsignedShortType;
+	static TagCase Case(const TagType& tag);
+	static TagCase Case(const TagNumberCharType& tag_number_char);
+	static TagCase Case(const TagNumberDoubleType& tag_number_double);
+	static TagCase Case(const TagNumberFloatType& tag_number_float);
+	static TagCase Case(const TagNumberIntType& tag_number_int);
+	static TagCase Case(const TagNumberLongType& tag_number_long);
+	static TagCase Case(const TagNumberLongDoubleType& tag_number_longdouble);
+	static TagCase Case(const TagNumberLongLongType& tag_number_longlong);
+	static TagCase Case(const TagNumberShortType& tag_number_short);
+	static TagCase 
+		Case(const TagNumberUnsignedCharType& tag_number_unsignedchar);
+	static TagCase 
+		Case(const TagNumberUnsignedIntType& tag_number_unsignedint);
+	static TagCase 
+		Case(const TagNumberUnsignedLongType& tag_number_unsignedlong);
+	static TagCase 
+		Case(const TagNumberUnsignedLongLongType& tag_number_unsignedlonglong);
+	static TagCase 
+		Case(const TagNumberUnsignedShortType& tag_number_unsignedshort);
+};
+
+struct TagCaseImpl4
+{
+	typedef BrainMuscles::test::simple::json::helper::Tag TagType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::FloatingPoint TagNumberFloatingPointType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::Integer TagNumberIntegerType;
+	static TagCase Case(const TagType& tag);
+	static TagCase Case(const TagNumberFloatingPointType& tag_floatingpoint);
+	static TagCase Case(const TagNumberIntegerType& tag_integer);
+};
+
+struct TagCaseImpl5
+{
+	typedef BrainMuscles::test::simple::json::helper::Tag TagType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::Signed TagNumberSignedType;
+	typedef BrainMuscles::test::simple::json::helper
+		::tag::number::Unsigned TagNumberUnsignedType;
+	static TagCase Case(const TagType& tag);
+	static TagCase Case(const TagNumberSignedType& tag_signed);
+	static TagCase Case(const TagNumberUnsignedType& tag_unsigned);
+};
+
 void experiment::test::simple::json::helper::Tag::PreTest()
 {
 	//	Call function static member 'Requirement' from
@@ -4166,4 +4302,2155 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
 		"is not same, where variable 'value_number_unsignedshort1' "
 		"as first argument to function static member 'Identification'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_array' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_array)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_array' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_false' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_false)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_false' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_null' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_null)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_null' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_object' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_object)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_object' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_string' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_string)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_string' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_true' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_true)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_true' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_char' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_char)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_char' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_double' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_double)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_double' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_float' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_float)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_float' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_int' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_int)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_int' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_long' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_long)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_long' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longdouble' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_longdouble)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_longdouble' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_longlong)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_longlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_short' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_short)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_short' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedchar' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_unsignedchar)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedchar' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedint' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_unsignedint)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedint' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl1>(JsonHelper::Enum::value_number_unsignedlong)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlonglong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl1>(JsonHelper::Enum::value_number_unsignedlonglong)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedlonglong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl1>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedshort' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl1>(JsonHelper::Enum::value_number_unsignedshort)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl1>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedshort' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_array' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_array' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_array)
+			== TagCase::value_array,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_array' from enum 'TagCase' is not same, "
+		"where enumerator 'value_array' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_false' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_false' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_false)
+			== TagCase::value_false,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_false' from enum 'TagCase' is not same, "
+		"where enumerator 'value_false' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_null' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_null' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_null)
+			== TagCase::value_null,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_null' from enum 'TagCase' is not same, "
+		"where enumerator 'value_null' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_object' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_object' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_object)
+			== TagCase::value_object,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_object' from enum 'TagCase' is not same, "
+		"where enumerator 'value_object' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_string' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_string' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_string)
+			== TagCase::value_string,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_string' from enum 'TagCase' is not same, "
+		"where enumerator 'value_string' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_true' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_true' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_true)
+			== TagCase::value_true,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_true' from enum 'TagCase' is not same, "
+		"where enumerator 'value_true' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_char' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_char)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_char' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_double' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_double)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_double' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_float' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_float)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_float' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_int' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_int)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_int' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_long' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_long)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_long' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longdouble' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_longdouble)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_longdouble' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_longlong)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_longlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_short' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_short)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_short' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedchar' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_unsignedchar)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedchar' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedint' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_unsignedint)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedint' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl2>(JsonHelper::Enum::value_number_unsignedlong)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlonglong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl2>(JsonHelper::Enum::value_number_unsignedlonglong)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedlonglong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl2>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedshort' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl2>(JsonHelper::Enum::value_number_unsignedshort)
+			== TagCase::value_number,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl2>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_unsignedshort' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_array' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_array)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_array' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_false' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_false)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_false' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_null' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_null)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_null' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_object' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_object)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_object' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_string' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_string)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_string' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_true' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_true)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_true' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_char' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_char' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_char)
+			== TagCase::value_number_char,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_char' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_char' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_double' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_double' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_double)
+			== TagCase::value_number_double,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_double' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_double' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_float' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_float' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_float)
+			== TagCase::value_number_float,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_float' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_float' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_int' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_int' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_int)
+			== TagCase::value_number_int,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_int' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_int' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_long' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_long' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_long)
+			== TagCase::value_number_long,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_long' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_long' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_longdouble' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longdouble' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_longdouble)
+			== TagCase::value_number_longdouble,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_longdouble' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_longdouble' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_longlong' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_longlong)
+			== TagCase::value_number_longlong,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_longlong' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_longlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_short' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_short' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_short)
+			== TagCase::value_number_short,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_short' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_short' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsignedchar' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedchar' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_unsignedchar)
+			== TagCase::value_number_unsignedchar,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsignedchar' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedchar' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsignedint' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedint' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_unsignedint)
+			== TagCase::value_number_unsignedint,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsignedint' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedint' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsignedlong' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl3>(JsonHelper::Enum::value_number_unsignedlong)
+			== TagCase::value_number_unsignedlong,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsignedlong' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsignedlonglong' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlonglong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl3>(JsonHelper::Enum::value_number_unsignedlonglong)
+			== TagCase::value_number_unsignedlonglong,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsignedlonglong' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedlonglong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl3>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsignedshort' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedshort' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl3>(JsonHelper::Enum::value_number_unsignedshort)
+			== TagCase::value_number_unsignedshort,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl3>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsignedshort' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedshort' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_array' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_array)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_array' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_false' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_false)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_false' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_null' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_null)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_null' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_object' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_object)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_object' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_string' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_string)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_string' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_true' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_true)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_true' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_char' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_char)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_char' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_floatingpoint' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_double' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_double)
+			== TagCase::value_number_floatingpoint,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_floatingpoint' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_double' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_floatingpoint' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_float' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_float)
+			== TagCase::value_number_floatingpoint,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_floatingpoint' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_float' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_int' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_int)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_int' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_long' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_long)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_long' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_floatingpoint' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longdouble' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_longdouble)
+			== TagCase::value_number_floatingpoint,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_floatingpoint' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_longdouble' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_longlong)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_longlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_short' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_short)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_short' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedchar' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_unsignedchar)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedchar' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedint' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_unsignedint)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedint' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl4>(JsonHelper::Enum::value_number_unsignedlong)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlonglong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl4>(JsonHelper::Enum::value_number_unsignedlonglong)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedlonglong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl4>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_integer' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedshort' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl4>(JsonHelper::Enum::value_number_unsignedshort)
+			== TagCase::value_number_integer,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl4>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_integer' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedshort' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_array' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_array)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_array' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_false' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_false)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_false' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_null' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_null)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_null' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_object' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_object)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_object' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_string' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_string)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_string' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_true' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_true)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_true' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_signed' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_char' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_char)
+			== TagCase::value_number_signed,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_signed' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_char' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_double' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_double)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_double' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_float' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_float)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_float' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_signed' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_int' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_int)
+			== TagCase::value_number_signed,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_signed' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_int' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_signed' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_long' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_long)
+			== TagCase::value_number_signed,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_signed' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_long' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longdouble' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_longdouble)
+			== TagCase::value,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value' from enum 'TagCase' is not same, "
+		"where enumerator 'value_number_longdouble' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_signed' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_longlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_longlong)
+			== TagCase::value_number_signed,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_signed' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_longlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_signed' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_short' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_short)
+			== TagCase::value_number_signed,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_signed' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_short' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsigned' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedchar' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_unsignedchar)
+			== TagCase::value_number_unsigned,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsigned' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedchar' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsigned' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedint' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_unsignedint)
+			== TagCase::value_number_unsigned,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsigned' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedint' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsigned' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<
+			TagCase, TagCaseImpl5>(JsonHelper::Enum::value_number_unsignedlong)
+			== TagCase::value_number_unsigned,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsigned' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedlong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsigned' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedlonglong' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl5>(JsonHelper::Enum::value_number_unsignedlonglong)
+			== TagCase::value_number_unsigned,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsigned' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedlonglong' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+
+	//	Check value between 
+	//		return value of
+	//			function static member 'Case<TagCase, TagCaseImpl5>' from
+	//				class 'BrainMuscles::test::simple::json::helper::Tag'
+	//	and enumerator 'value_number_unsigned' from enum 'TagCase'
+	//	is same
+	//	where enumerator 'value_number_unsignedshort' from 
+	//		enum 'BrainMuscles::test::simple::json::helper::Enum'
+	//			as first argument to function static member 'Case'
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+			TagCaseImpl5>(JsonHelper::Enum::value_number_unsignedshort)
+			== TagCase::value_number_unsigned,
+		" value between return value of "
+		"function static member 'Case<TagCase, TagCaseImpl5>' from "
+		"class 'BrainMuscles::test::simple::json::helper::Tag' "
+		"and enumerator 'value_number_unsigned' from enum 'TagCase' "
+		"is not same, where enumerator 'value_number_unsignedshort' from "
+		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
+		"as first argument to function static member 'Case'");
+}
+
+TagCase TagCaseImpl1::Case(const TagType& tag)
+{
+	return TagCase::value;
+}
+
+TagCase TagCaseImpl2::Case(const TagType& tag)
+{
+	return TagCase::value;
+}
+
+TagCase TagCaseImpl2::Case(const TagArrayType& tag_array)
+{
+	return TagCase::value_array;
+}
+
+TagCase TagCaseImpl2::Case(const TagFalseType& tag_false)
+{
+	return TagCase::value_false;
+}
+
+TagCase TagCaseImpl2::Case(const TagNullType& tag_null)
+{
+	return TagCase::value_null;
+}
+
+TagCase TagCaseImpl2::Case(const TagNumberType& tag_number)
+{
+	return TagCase::value_number;
+}
+
+TagCase TagCaseImpl2::Case(const TagObjectType& tag_object)
+{
+	return TagCase::value_object;
+}
+
+TagCase TagCaseImpl2::Case(const TagStringType& tag_string)
+{
+	return TagCase::value_string;
+}
+
+TagCase TagCaseImpl2::Case(const TagTrueType& tag_true)
+{
+	return TagCase::value_true;
+}
+
+TagCase TagCaseImpl3::Case(const TagType& tag)
+{
+	return TagCase::value;
+}
+
+TagCase TagCaseImpl3::Case(const TagNumberCharType& tag_number_char)
+{
+	return TagCase::value_number_char;
+}
+
+TagCase TagCaseImpl3::Case(const TagNumberDoubleType& tag_number_double)
+{
+	return TagCase::value_number_double;
+}
+
+TagCase TagCaseImpl3::Case(const TagNumberFloatType& tag_number_float)
+{
+	return TagCase::value_number_float;
+}
+
+TagCase TagCaseImpl3::Case(const TagNumberIntType& tag_number_int)
+{
+	return TagCase::value_number_int;
+}
+
+TagCase TagCaseImpl3::Case(const TagNumberLongType& tag_number_long)
+{
+	return TagCase::value_number_long;
+}
+
+TagCase 
+TagCaseImpl3::Case(const TagNumberLongDoubleType& tag_number_longdouble)
+{
+	return TagCase::value_number_longdouble;
+}
+
+TagCase TagCaseImpl3::Case(const TagNumberLongLongType& tag_number_longlong)
+{
+	return TagCase::value_number_longlong;
+}
+
+TagCase TagCaseImpl3::Case(const TagNumberShortType& tag_number_short)
+{
+	return TagCase::value_number_short;
+}
+
+TagCase 
+TagCaseImpl3::Case(const TagNumberUnsignedCharType& tag_number_unsignedchar)
+{
+	return TagCase::value_number_unsignedchar;
+}
+
+TagCase 
+TagCaseImpl3::Case(const TagNumberUnsignedIntType& tag_number_unsignedint)
+{
+	return TagCase::value_number_unsignedint;
+}
+
+TagCase 
+TagCaseImpl3::Case(const TagNumberUnsignedLongType& tag_number_unsignedlong)
+{
+	return TagCase::value_number_unsignedlong;
+}
+
+TagCase TagCaseImpl3::Case
+	(const TagNumberUnsignedLongLongType& tag_number_unsignedlonglong)
+{
+	return TagCase::value_number_unsignedlonglong;
+}
+
+TagCase 
+TagCaseImpl3::Case(const TagNumberUnsignedShortType& tag_number_unsignedshort)
+{
+	return TagCase::value_number_unsignedshort;
+}
+
+TagCase TagCaseImpl4::Case(const TagType& tag)
+{
+	return TagCase::value;
+}
+
+TagCase TagCaseImpl4::Case(const TagNumberFloatingPointType& tag_floatingpoint)
+{
+	return TagCase::value_number_floatingpoint;
+}
+
+TagCase TagCaseImpl4::Case(const TagNumberIntegerType& tag_integer)
+{
+	return TagCase::value_number_integer;
+}
+
+TagCase TagCaseImpl5::Case(const TagType& tag)
+{
+	return TagCase::value;
+}
+
+TagCase TagCaseImpl5::Case(const TagNumberSignedType& tag_signed)
+{
+	return TagCase::value_number_signed;
+}
+
+TagCase TagCaseImpl5::Case(const TagNumberUnsignedType& tag_unsigned)
+{
+	return TagCase::value_number_unsigned;
 }
