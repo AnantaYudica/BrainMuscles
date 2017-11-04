@@ -11,26 +11,19 @@ namespace BrainMuscles
 		{
 			namespace info
 			{
-				typedef char FlagsType;
+				typedef unsigned char FlagsType;
 				enum Flags;
-				inline FlagsType TotalFlags();
 			}
 		}
 	}
 }
 
-
-BrainMuscles::test::source::info::Flags : FlagsType
+enum BrainMuscles::test::source::info::Flags : 
+	BrainMuscles::test::source::info::FlagsType
 {
 	assert_arguments = 1,
 	assert_message = 2
 };
-
-
-inline FlagsType BrainMuscles::test::source::info::TotalFlags()
-{
-	return assert_arguments || assert_message;
-}
 
 #endif //!_USING_TEST_SOURCE_
 
