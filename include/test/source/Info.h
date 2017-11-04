@@ -3,6 +3,8 @@
 
 #ifdef _USING_TEST_SOURCE_
 
+#include "test\source\info\Flags.h"
+
 namespace BrainMuscles
 {
 	namespace test
@@ -16,59 +18,43 @@ namespace BrainMuscles
 
 class BrainMuscles::test::source::Info
 {
-private:
-	typedef char FlagType;
 public:
-	enum Flag : FlagType
-	{
-		assert_arguments = 1,
-		assert_message = 2
-	};
+	typedef BrainMuscles::test::source::info::FlagsType FlagsType;
 private:
-	FlagType m_flag;
+	FlagsType m_flag;
 public:
 	inline Info();
-private:
-	static inline FlagType AllFlag();
 public:
-	inline void Enable(FlagType flag);
-	inline void Disable(FlagType flag);
+	inline void Enable(FlagsType flags);
+	inline void Disable(FlagsType flags);
 	inline void DisableAll();
-	inline bool IsEnable(Flag flag);
+	inline bool IsEnable(FlagsType flags) const;
 };
 
 inline BrainMuscles::test::source::Info::Info() :
 	m_flag(0)
 {
-	
 }
 
-inline typename BrainMuscles::test::source::Info::FlagType
-BrainMuscles::test::source::Info::AllFlag()
+inline void BrainMuscles::test::source::Info::Enable(FlagsType flags)
 {
-	return assert_arguments || assert_message;
+	m_flag |= flags;
 }
 
-inline void BrainMuscles::test::source::Info::Enable(FlagType flag)
+inline void BrainMuscles::test::source::Info::Disable(FlagsType flags)
 {
-	flag &= AllFlag();
-	m_flag |= flag;
-}
-
-inline void BrainMuscles::test::source::Info::Disable(FlagType flag)
-{
-	flag &= m_flag;
-	m_flag ^= flag;
+	flags &= m_flag;
+	m_flag ^= flags;
 }
 
 inline void BrainMuscles::test::source::Info::DisableAll()
 {
-	Disable(AllFlag());
+	Disable(static_cast<FlagsType>(0) - static_cast<FlagsType>(1));
 }
 
-inline bool BrainMuscles::test::source::Info::IsEnable(Flag flag)
+inline bool BrainMuscles::test::source::Info::IsEnable(FlagsType flags) const
 {
-	return m_flag & flag;
+	return m_flag & flags;
 }
 
 #endif //!_USING_TEST_SOURCE_
