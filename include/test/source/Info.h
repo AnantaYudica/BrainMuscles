@@ -49,7 +49,7 @@ inline void BrainMuscles::test::source::Info::Disable(FlagsType flags)
 
 inline void BrainMuscles::test::source::Info::DisableAll()
 {
-	Disable(static_cast<FlagsType>(0) - static_cast<FlagsType>(1));
+	Disable(~static_cast<FlagsType>(0));
 }
 
 inline bool BrainMuscles::test::source::Info::IsEnable(FlagsType flags) const
