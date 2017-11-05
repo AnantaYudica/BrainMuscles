@@ -42,6 +42,11 @@ public:
 	typedef BrainMuscles::test::source::Info InfoType;
 	typedef BrainMuscles::test::source::info::Flags FlagsType;
 	typedef BrainMuscles::test::source::info::FlagsType	FlagsIntegerType;
+public:
+	static constexpr std::size_t BufferSize = (std::is_unsigned<
+		decltype(_USING_TEST_SOURCE_INFO_DELEGATE_BUFFER_SIZE_)>::value ?
+			(std::size_t)_USING_TEST_SOURCE_INFO_DELEGATE_BUFFER_SIZE_
+			: _USING_TEST_SOURCE_INFO_DELEGATE_DEFAULT_BUFFER_SIZE_);
 private:
 	FlagsIntegerType m_flag;
 	char * m_buffer;
@@ -50,11 +55,8 @@ private:
 	const std::size_t m_line;
 	InfoType * const m_info;
 public:
-	Delegate(InfoType * const info, FlagsIntegerType flag, const char * file,
-		const std::size_t& line, std::size_t buffer_size = (std::is_unsigned<
-			decltype(_USING_TEST_SOURCE_INFO_DELEGATE_BUFFER_SIZE_)>::value ? 
-				(std::size_t)_USING_TEST_SOURCE_INFO_DELEGATE_BUFFER_SIZE_ 
-				: _USING_TEST_SOURCE_INFO_DELEGATE_DEFAULT_BUFFER_SIZE_));
+	Delegate(InfoType * const info, const char * file, const std::size_t& line,
+		FlagsIntegerType flags, std::size_t buffer_size = BufferSize);
 	~Delegate();
 public:
 	template<typename... ARGS>
@@ -66,8 +68,8 @@ public:
 
 template<typename ENVIRONMENT_TYPE>
 BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>
-	::Delegate(InfoType * const info, FlagsIntegerType flag, const char * file,
-		const std::size_t& line, std::size_t buffer_size) :
+	::Delegate(InfoType * const info, const char * file, const std::size_t& line,
+		FlagsIntegerType flags, std::size_t buffer_size) :
 	m_flag(flag),
 	m_buffer(nullptr),
 	m_bufferSize(buffer_size),
