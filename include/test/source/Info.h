@@ -27,10 +27,10 @@ private:
 public:
 	inline Info();
 public:
-	inline void Enable(FlagsIntegerType flags);
-	inline void Disable(FlagsIntegerType flags);
+	inline void Enable(FlagsIntegerType flag);
+	inline void Disable(FlagsIntegerType flag);
 	inline void DisableAll();
-	inline bool IsEnable(FlagsIntegerType flags) const;
+	inline int IsEnable(FlagsIntegerType flag) const;
 };
 
 inline BrainMuscles::test::source::Info::Info() :
@@ -38,15 +38,15 @@ inline BrainMuscles::test::source::Info::Info() :
 {
 }
 
-inline void BrainMuscles::test::source::Info::Enable(FlagsIntegerType flags)
+inline void BrainMuscles::test::source::Info::Enable(FlagsIntegerType flag)
 {
-	m_flag |= flags;
+	m_flag |= flag;
 }
 
-inline void BrainMuscles::test::source::Info::Disable(FlagsIntegerType flags)
+inline void BrainMuscles::test::source::Info::Disable(FlagsIntegerType flag)
 {
-	flags &= m_flag;
-	m_flag ^= flags;
+	flag &= m_flag;
+	m_flag ^= flag;
 }
 
 inline void BrainMuscles::test::source::Info::DisableAll()
@@ -54,10 +54,12 @@ inline void BrainMuscles::test::source::Info::DisableAll()
 	Disable(~static_cast<FlagsType>(0));
 }
 
-inline bool 
-BrainMuscles::test::source::Info::IsEnable(FlagsIntegerType flags) const
+inline int 
+BrainMuscles::test::source::Info::IsEnable(FlagsIntegerType flag) const
 {
-	return m_flag & flags;
+	FlagsIntegerType and_flag = m_flag & flag;
+	return and_flag == 0 ? 0
+		: and_flag == m_flag ? 1 : -1;
 }
 
 #endif //!_USING_TEST_SOURCE_
