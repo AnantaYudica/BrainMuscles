@@ -47,21 +47,22 @@ private:
 	typedef bool(DelegateType::*FunctionMemberFlagType)
 		(const FlagsIntegerType&);
 public:
-	static constexpr std::size_t BufferSize = (std::is_unsigned<
+	static constexpr std::size_t BufferAllocation = (std::is_unsigned<
 		decltype(_USING_TEST_SOURCE_INFO_DELEGATE_BUFFER_SIZE_)>::value ?
 			(std::size_t)_USING_TEST_SOURCE_INFO_DELEGATE_BUFFER_SIZE_
 			: _USING_TEST_SOURCE_INFO_DELEGATE_DEFAULT_BUFFER_SIZE_);
 private:
 	FlagsIntegerType m_flag;
 	char * m_buffer;
-	const std::size_t m_bufferSize;
+	std::size_t m_bufferSize;
+	const std::size_t m_bufferAllocation;
 	const char * m_file;
 	const std::size_t m_line;
 	InfoType * const m_info;
 	FunctionMemberFlagType m_functionFlag;
 public:
 	Delegate(InfoType * const info, const char * file, const std::size_t& line,
-		FlagsIntegerType flags, std::size_t buffer_size = BufferSize);
+		FlagsIntegerType flags, std::size_t buffer_allocation = BufferAllocation);
 	~Delegate();
 public:
 	bool FlagAnd(const FlagsIntegerType& flag);
@@ -85,10 +86,11 @@ template<typename ENVIRONMENT_TYPE>
 BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>
 	::Delegate(InfoType * const info, const char * file, 
 		const std::size_t& line, FlagsIntegerType flag,
-		std::size_t buffer_size) :
+		std::size_t buffer_allocation) :
 	m_flag(flag),
 	m_buffer(nullptr),
-	m_bufferSize(buffer_size),
+	m_bufferSize(0),
+	m_bufferAllocation(buffer_allocation),
 	m_file(file),
 	m_line(line),
 	m_info(info),
@@ -96,8 +98,8 @@ BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>
 {
 	if (m_info->IsEnable(flag))
 	{
-		m_buffer = new char[m_bufferSize + 1];
-		m_buffer[0] = m_buffer[m_bufferSize] = NULL;
+		m_buffer = new char[m_bufferAllocation + 1];
+		m_buffer[0] = m_buffer[m_bufferAllocation] = NULL;
 	}
 }
 
@@ -155,7 +157,8 @@ BrainMuscles::test::source::info::Delegate<
 {
 	if (m_buffer && condition)
 	{
-		std::snprintf(m_buffer, m_bufferSize, format, args...);
+		m_bufferSize += std::snprintf(m_buffer + m_bufferSize,
+			m_bufferAllocation - m_bufferSize, format, args...);
 	}
 	return *this;
 }
