@@ -41,7 +41,8 @@ public:
 public:
 	typedef BrainMuscles::test::source::Info InfoType;
 	typedef BrainMuscles::test::source::info::Flags FlagsType;
-	typedef BrainMuscles::test::source::info::FlagsType	FlagsIntegerType;
+	typedef BrainMuscles::test::source::info::FlagsIntegerType	
+		FlagsIntegerType;
 public:
 	static constexpr std::size_t BufferSize = (std::is_unsigned<
 		decltype(_USING_TEST_SOURCE_INFO_DELEGATE_BUFFER_SIZE_)>::value ?
