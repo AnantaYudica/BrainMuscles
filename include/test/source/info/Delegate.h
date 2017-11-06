@@ -43,6 +43,9 @@ public:
 	typedef BrainMuscles::test::source::info::Flags FlagsType;
 	typedef BrainMuscles::test::source::info::FlagsIntegerType	
 		FlagsIntegerType;
+private:
+	typedef bool(DelegateType::*FunctionMemberFlagType)
+		(const FlagsIntegerType&);
 public:
 	static constexpr std::size_t BufferSize = (std::is_unsigned<
 		decltype(_USING_TEST_SOURCE_INFO_DELEGATE_BUFFER_SIZE_)>::value ?
@@ -55,13 +58,24 @@ private:
 	const char * m_file;
 	const std::size_t m_line;
 	InfoType * const m_info;
+	FunctionMemberFlagType m_functionFlag;
 public:
 	Delegate(InfoType * const info, const char * file, const std::size_t& line,
 		FlagsIntegerType flags, std::size_t buffer_size = BufferSize);
 	~Delegate();
 public:
+	bool FlagAnd(const FlagsIntegerType& flag);
+	bool FlagOr(const FlagsIntegerType& flag);
+	DelegateType& FlagAnd();
+	DelegateType& FlagOr();
+public:
 	template<typename... ARGS>
-	DelegateType& Out(FlagsType flag, const char* format, ARGS... args);
+	DelegateType& OutIf(const bool& condition, const char* format,
+		ARGS... args);
+public:
+	template<typename... ARGS>
+	DelegateType& Out(const FlagsIntegerType& flag, const char* format,
+		ARGS... args);
 	template<typename... ARGS>
 	DelegateType& Out(const char* format, ARGS... args);
 	void End();
@@ -69,14 +83,16 @@ public:
 
 template<typename ENVIRONMENT_TYPE>
 BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>
-	::Delegate(InfoType * const info, const char * file, const std::size_t& line,
-		FlagsIntegerType flags, std::size_t buffer_size) :
+	::Delegate(InfoType * const info, const char * file, 
+		const std::size_t& line, FlagsIntegerType flag,
+		std::size_t buffer_size) :
 	m_flag(flag),
 	m_buffer(nullptr),
 	m_bufferSize(buffer_size),
 	m_file(file),
 	m_line(line),
-	m_info(info)
+	m_info(info),
+	m_functionFlag(&DelegateType::FlagAnd)
 {
 	if (m_info->IsEnable(flag))
 	{
@@ -95,20 +111,64 @@ BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>::~Delegate()
 }
 
 template<typename ENVIRONMENT_TYPE>
-template<typename... ARGS>
-typename BrainMuscles::test::source::info
-	::Delegate<ENVIRONMENT_TYPE>::DelegateType&
-BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>
-	::Out(FlagsType flag, const char* format, ARGS... args)
+bool BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::FlagAnd(const FlagsIntegerType& flag)
 {
-	if (m_buffer)
+	return m_info->IsEnable(flag) > 0;
+}
+
+template<typename ENVIRONMENT_TYPE>
+bool BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::FlagOr(const FlagsIntegerType& flag)
+{
+	return m_info->IsEnable(flag) < 0
+		|| m_info->IsEnable(flag) > 0;
+}
+
+template<typename ENVIRONMENT_TYPE>
+typename BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::DelegateType& 
+BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::FlagAnd()
+{
+	m_functionFlag = &DelegateType::FlagAnd;
+	return *this;
+}
+
+template<typename ENVIRONMENT_TYPE>
+typename BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::DelegateType&
+	BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::FlagOr()
+{
+	m_functionFlag = &DelegateType::FlagOr;
+	return *this;
+}
+
+template<typename ENVIRONMENT_TYPE>
+template<typename... ARGS>
+typename BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::DelegateType& 
+BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::OutIf(const bool& condition,
+		const char* format, ARGS... args)
+{
+	if (m_buffer && condition)
 	{
-		if (m_info->IsEnable(m_flag & flag))
-		{
-			return Out(format, args...);
-		}
+		std::snprintf(m_buffer, m_bufferSize, format, args...);
 	}
 	return *this;
+}
+
+template<typename ENVIRONMENT_TYPE>
+template<typename... ARGS>
+typename BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::DelegateType& 
+BrainMuscles::test::source::info::Delegate<
+	ENVIRONMENT_TYPE>::Out(const FlagsIntegerType& flag, const char* format,
+		ARGS... args)
+{
+	return OutIf((this->*m_functionFlag)(flag), format, args...);
 }
 
 template<typename ENVIRONMENT_TYPE>
@@ -118,22 +178,15 @@ typename BrainMuscles::test::source::info
 BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>
 	::Out(const char* format, ARGS... args)
 {
-	if (m_buffer)
-	{
-		std::snprintf(m_buffer, m_bufferSize, format, args...);
-	}
-	return *this;
+	return OutIf(true, format, args...);
 }
 
 template<typename ENVIRONMENT_TYPE>
 void BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>::End()
 {
-	if (m_buffer)
+	if (m_buffer && m_buffer[0] != NULL)
 	{
-		if (m_buffer[0] != NULL)
-		{
-			ENVIRONMENT_TYPE::Info(m_file, m_line, "%s", m_buffer);
-		}
+		ENVIRONMENT_TYPE::Info(m_file, m_line, "%s", m_buffer);
 	}
 }
 
