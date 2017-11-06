@@ -59,7 +59,7 @@ BrainMuscles::test::source::Info::IsEnable(FlagsIntegerType flag) const
 {
 	FlagsIntegerType and_flag = m_flag & flag;
 	return and_flag == 0 ? 0
-		: and_flag == m_flag ? 1 : -1;
+		: and_flag == flag ? 1 : -1;
 }
 
 #endif //!_USING_TEST_SOURCE_
