@@ -19,16 +19,18 @@ namespace BrainMuscles
 class BrainMuscles::test::source::Info
 {
 public:
-	typedef BrainMuscles::test::source::info::FlagsType FlagsType;
+	typedef BrainMuscles::test::source::info::Flags FlagsType;
+	typedef BrainMuscles::test::source::info::FlagsIntegerType
+		FlagsIntegerType;
 private:
-	FlagsType m_flag;
+	FlagsIntegerType m_flag;
 public:
 	inline Info();
 public:
-	inline void Enable(FlagsType flags);
-	inline void Disable(FlagsType flags);
+	inline void Enable(FlagsIntegerType flags);
+	inline void Disable(FlagsIntegerType flags);
 	inline void DisableAll();
-	inline bool IsEnable(FlagsType flags) const;
+	inline bool IsEnable(FlagsIntegerType flags) const;
 };
 
 inline BrainMuscles::test::source::Info::Info() :
@@ -36,12 +38,12 @@ inline BrainMuscles::test::source::Info::Info() :
 {
 }
 
-inline void BrainMuscles::test::source::Info::Enable(FlagsType flags)
+inline void BrainMuscles::test::source::Info::Enable(FlagsIntegerType flags)
 {
 	m_flag |= flags;
 }
 
-inline void BrainMuscles::test::source::Info::Disable(FlagsType flags)
+inline void BrainMuscles::test::source::Info::Disable(FlagsIntegerType flags)
 {
 	flags &= m_flag;
 	m_flag ^= flags;
@@ -52,7 +54,8 @@ inline void BrainMuscles::test::source::Info::DisableAll()
 	Disable(~static_cast<FlagsType>(0));
 }
 
-inline bool BrainMuscles::test::source::Info::IsEnable(FlagsType flags) const
+inline bool 
+BrainMuscles::test::source::Info::IsEnable(FlagsIntegerType flags) const
 {
 	return m_flag & flags;
 }
