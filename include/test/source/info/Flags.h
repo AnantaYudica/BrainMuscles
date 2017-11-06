@@ -11,7 +11,7 @@ namespace BrainMuscles
 		{
 			namespace info
 			{
-				typedef unsigned char FlagsType;
+				typedef unsigned char FlagsIntegerType;
 				enum Flags;
 			}
 		}
@@ -19,7 +19,7 @@ namespace BrainMuscles
 }
 
 enum BrainMuscles::test::source::info::Flags : 
-	BrainMuscles::test::source::info::FlagsType
+	BrainMuscles::test::source::info::FlagsIntegerType
 {
 	assert_arguments = 1,
 	assert_message = 2
