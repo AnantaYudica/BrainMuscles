@@ -28,6 +28,8 @@ namespace BrainMuscles
 			typedef BrainMuscles::test::source::Stage			StageType;
 			typedef BrainMuscles::test::source::Error			ErrorType;
 			typedef BrainMuscles::test::source::Constant		ConstantType;
+		public:
+			typedef typename EnvironmentType::InfoFlagsType InfoFlagsType;
 		private:
 			static DERIVED_TYPE ms_instance;
 		private:
@@ -80,6 +82,10 @@ namespace BrainMuscles
 			static void SourceIsError(std::string title, const char* file, const std::size_t& line);
 			template<typename OTHER_SOURCE>
 			static void SourceIsNotCompleted(std::string title, const char* file, const std::size_t& line);
+		private:
+			static void InfoAssert(const char* file, const std::size_t& line, std::string arguments_str);
+			template<typename... ARGS>
+			static void InfoAssert(const char* file, const std::size_t& line, std::string arguments_str, ARGS... args);
 		protected:
 			static void Assert(const char* file, const std::size_t& line, std::string condition_str, const bool& condition);
 			template<typename... ARGS>
@@ -359,9 +365,36 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
+		void Source<DERIVED_TYPE>::InfoAssert(const char* file, const std::size_t& line, std::string arguments_str)
+		{
+			InfoAssert(file, line, arguments_str, arguments_str.c_str());
+		}
+
+		template<typename DERIVED_TYPE>
+		template<typename... ARGS>
+		void Source<DERIVED_TYPE>::InfoAssert(const char* file, const std::size_t& line, std::string arguments_str, ARGS... args)
+		{
+			auto info = EnvironmentType::Info(file, line,
+				InfoFlagsType::assert_arguments 
+				| InfoFlagsType::assert_message);
+			info.Out("Assert { ");
+			info.Out(InfoFlagsType::assert_arguments,
+				"arguments \"%s\" ", arguments_str.c_str());
+			info.FlagAnd();
+			info.Out(InfoFlagsType::assert_arguments
+				| InfoFlagsType::assert_message, ", ");
+			info.Out(InfoFlagsType::assert_message,
+				"message \"");
+			info.Out(InfoFlagsType::assert_message, args...);
+			info.Out(InfoFlagsType::assert_message, "\"");
+			info.Out(" } ");
+			info.End();
+		}
+
+		template<typename DERIVED_TYPE>
 		void Source<DERIVED_TYPE>::Assert(const char* file, const std::size_t& line, std::string condition_str, const bool& condition)
 		{
-
+			InfoAssert(file, line, condition_str);
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
 				EnvironmentType::Trace(EnvironmentType::CallerFunction(), file, line);
@@ -374,6 +407,7 @@ namespace BrainMuscles
 		template<typename... ARGS>
 		void Source<DERIVED_TYPE>::Assert(const char* file, const std::size_t& line, std::string arguments_str, const bool& condition, ARGS... args)
 		{
+			InfoAssert(file, line, arguments_str, args...);
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
 				EnvironmentType::Trace(EnvironmentType::CallerFunction(), file, line);
