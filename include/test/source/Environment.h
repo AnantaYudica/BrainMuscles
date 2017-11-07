@@ -9,6 +9,8 @@
 
 #include "test\source\Result.h"
 #include "test\source\Error.h"
+#include "test\source\Info.h"
+#include "test\source\info\Delegate.h"
 
 namespace BrainMuscles
 {
@@ -21,12 +23,18 @@ namespace BrainMuscles
 			public:
 				typedef BrainMuscles::test::source::Result	ResultType;
 				typedef BrainMuscles::test::source::Error	ErrorType;
+				typedef BrainMuscles::test::source::Info	InfoType;
+				typedef typename InfoType::FlagsType		InfoFlagsType;
+				typedef typename InfoType::FlagsIntegerType	InfoFlagsIntegerType;
+			public:
+				typedef BrainMuscles::test::source::info::Delegate<Environment> DelegateType;
 			private:
 				ResultType m_result;
 				std::FILE* m_file;
 				std::stack<std::string> m_trace;
 				int m_skipTrace;
 				std::stack<std::string> m_callerFunction;
+				InfoType m_info;
 			private:
 				inline Environment();
 			private:
@@ -37,6 +45,14 @@ namespace BrainMuscles
 				static inline const Environment& GetInstance();
 				static inline const ResultType& Result();
 				static inline void Error(const ErrorType& error);
+			public:
+				static inline InfoType& Info();
+				static inline void Info(InfoFlagsIntegerType flag);
+				static inline DelegateType Info(const char* file, const std::size_t& line, InfoFlagsIntegerType flag, std::size_t buffer_allocation = DelegateType::BufferAllocation);
+				template<typename... ARGS>
+				static void Info(const char* file, const std::size_t& line, const char* format, ARGS... args);
+				template<typename... ARGS>
+				static void Info(InfoFlagsIntegerType info_flag, const char* file, const std::size_t& line, const char* format, ARGS... args);
 			public:
 				static inline void Trace(std::string caller, const char* file = NULL, const std::size_t& line = 0);
 				static inline void PopTrace();
@@ -53,7 +69,8 @@ namespace BrainMuscles
 			inline Environment::Environment() :
 				m_result(ResultType::pass),
 				m_file(stderr),
-				m_skipTrace(0)
+				m_skipTrace(0),
+				m_info()
 			{}
 
 			inline Environment& Environment::Instance()
@@ -87,6 +104,43 @@ namespace BrainMuscles
 					trace.pop();
 				}
 				Instance().m_result = ResultType::error;
+			}
+
+			inline typename Environment::InfoType& Environment::Info()
+			{
+				return Instance().m_info;
+			}
+
+			inline void Environment::Info(InfoFlagsIntegerType flag)
+			{
+				Info().Enable(flag);
+			}
+
+			inline typename Environment::DelegateType 
+				Environment::Info(const char* file, const std::size_t& line, 
+					InfoFlagsIntegerType flag, std::size_t buffer_allocation)
+			{
+				return DelegateType(&Info(), file, line, flag, buffer_allocation);
+			}
+
+			template<typename... ARGS>
+			void Environment::Info(const char* file, const std::size_t& line, 
+				const char* format, ARGS... args)
+			{
+				fprintf(Instance().m_file, "Info : ");
+				fprintf(Instance().m_file, format, args...);
+				fprintf(Instance().m_file, " file %s, line %zu\n", file, line);
+			}
+
+			template<typename... ARGS>
+			void Environment::Info(InfoFlagsIntegerType info_flag, 
+				const char* file, const std::size_t& line, 
+				const char* format, ARGS... args)
+			{
+				if (Info().IsEnable(info_flag))
+				{
+					Info(file, line, format, args);
+				}
 			}
 
 			inline void Environment::Trace(std::string caller, const char* file, const std::size_t& line)
