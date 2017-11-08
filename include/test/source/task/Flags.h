@@ -27,4 +27,4 @@ enum BrainMuscles::test::source::task::Flags :
 
 #endif //!_USING_TEST_SOURCE_
 
-#endif //!TEST_SOURCE_INTERFACE_FLAGS_H_
+#endif //!TEST_SOURCE_TASK_FLAGS_H_
