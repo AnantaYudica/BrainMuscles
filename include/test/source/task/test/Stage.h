@@ -164,7 +164,7 @@ inline bool BrainMuscles::test::source::task::test::Stage::CanBeginStage()
 
 inline bool BrainMuscles::test::source::task::test::Stage::CanPreTestStage()
 {
-	if (*this == ResultType::not_test && IsNotTest())
+	if (*this == ResultType::not_completed && IsNotTest())
 	{
 		SetPreTest();
 		return true;
@@ -174,13 +174,11 @@ inline bool BrainMuscles::test::source::task::test::Stage::CanPreTestStage()
 
 inline bool BrainMuscles::test::source::task::test::Stage::CanTestStage()
 {
-	if (*this == ResultType::not_test || *this == ResultType::not_completed)
+	if (*this == ResultType::not_completed 
+		&& (IsNotTest() || IsPreTest()))
 	{
-		if (IsNotTest() || IsPreTest())
-		{
-			SetTest();
-			return true;
-		}
+		SetTest();
+		return true;
 	}	
 	return false;
 }
