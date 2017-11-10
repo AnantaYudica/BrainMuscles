@@ -1,5 +1,5 @@
-#ifndef TEST_SOURCE_TASK_TEST_STAGE_H_
-#define TEST_SOURCE_TASK_TEST_STAGE_H_
+#ifndef TEST_SOURCE_TASK_DEFAULT_STAGE_H_
+#define TEST_SOURCE_TASK_DEFAULT_STAGE_H_
 
 #ifdef _USING_TEST_SOURCE_
 
@@ -15,7 +15,7 @@ namespace BrainMuscles
 		{
 			namespace task
 			{
-				namespace test
+				namespace default
 				{
 					class Stage;
 				}
@@ -24,7 +24,7 @@ namespace BrainMuscles
 	}
 }
 
-class BrainMuscles::test::source::task::test::Stage :
+class BrainMuscles::test::source::task::default::Stage :
 	public BrainMuscles::test::source::task::Stage
 {
 private:
@@ -68,91 +68,92 @@ public:
 	inline bool CanEndStage();
 };
 
-inline BrainMuscles::test::source::task::test::Stage::Stage() :
+inline BrainMuscles::test::source::task::default::Stage::Stage() :
 	m_value(0)
 {}
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsHasNotTest()
+inline bool BrainMuscles::test::source::task::default::Stage::IsHasNotTest()
 {
 	return m_value & BitNotTest;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsHasPreTest()
+inline bool BrainMuscles::test::source::task::default::Stage::IsHasPreTest()
 {
 	return m_value & BitPreTest;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsHasTest()
+inline bool BrainMuscles::test::source::task::default::Stage::IsHasTest()
 {
 	return m_value & BitTest;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsHasPostTest()
+inline bool BrainMuscles::test::source::task::default::Stage::IsHasPostTest()
 {
 	return m_value & BitPostTest;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsHasEnd()
+inline bool BrainMuscles::test::source::task::default::Stage::IsHasEnd()
 {
 	return m_value & BitEnd;
 }
 
-inline void BrainMuscles::test::source::task::test::Stage::SetNotTest()
+inline void BrainMuscles::test::source::task::default::Stage::SetNotTest()
 {
 	m_value |= BitNotTest;
 }
 
-inline void BrainMuscles::test::source::task::test::Stage::SetPreTest()
+inline void BrainMuscles::test::source::task::default::Stage::SetPreTest()
 {
 	m_value |= BitPreTest;
 }
 
-inline void BrainMuscles::test::source::task::test::Stage::SetTest()
+inline void BrainMuscles::test::source::task::default::Stage::SetTest()
 {
 	m_value |= BitTest;
 }
 
-inline void BrainMuscles::test::source::task::test::Stage::SetPostTest()
+inline void BrainMuscles::test::source::task::default::Stage::SetPostTest()
 {
 	m_value |= BitPostTest;
 }
 
-inline void BrainMuscles::test::source::task::test::Stage::SetEnd()
+inline void BrainMuscles::test::source::task::default::Stage::SetEnd()
 {
 	m_value |= BitEnd;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsBegin() const
+inline bool BrainMuscles::test::source::task::default::Stage::IsBegin() const
 {
 	return m_value == 0;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsNotTest() const
+inline bool BrainMuscles::test::source::task::default::Stage::IsNotTest() const
 {
 	return m_value == BitNotTest;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsPreTest() const
+inline bool BrainMuscles::test::source::task::default::Stage::IsPreTest() const
 {
 	return m_value >= BitPreTest && m_value < BitTest;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsTest() const
+inline bool BrainMuscles::test::source::task::default::Stage::IsTest() const
 {
 	return m_value >= BitTest && m_value < BitPostTest;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsPostTest() const
+inline bool 
+BrainMuscles::test::source::task::default::Stage::IsPostTest() const
 {
 	return m_value >= BitPostTest && m_value < BitEnd;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::IsEnd() const
+inline bool BrainMuscles::test::source::task::default::Stage::IsEnd() const
 {
 	return m_value >= BitEnd;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::CanBeginStage()
+inline bool BrainMuscles::test::source::task::default::Stage::CanBeginStage()
 {
 	if (*this == ResultType::not_test && IsBegin())
 	{
@@ -162,7 +163,7 @@ inline bool BrainMuscles::test::source::task::test::Stage::CanBeginStage()
 	return false;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::CanPreTestStage()
+inline bool BrainMuscles::test::source::task::default::Stage::CanPreTestStage()
 {
 	if (*this == ResultType::not_completed && IsNotTest())
 	{
@@ -172,7 +173,7 @@ inline bool BrainMuscles::test::source::task::test::Stage::CanPreTestStage()
 	return false;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::CanTestStage()
+inline bool BrainMuscles::test::source::task::default::Stage::CanTestStage()
 {
 	if (*this == ResultType::not_completed 
 		&& (IsNotTest() || IsPreTest()))
@@ -183,7 +184,8 @@ inline bool BrainMuscles::test::source::task::test::Stage::CanTestStage()
 	return false;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::CanPostTestStage()
+inline bool 
+BrainMuscles::test::source::task::default::Stage::CanPostTestStage()
 {
 	if (*this == ResultType::pass && IsTest())
 	{
@@ -193,7 +195,7 @@ inline bool BrainMuscles::test::source::task::test::Stage::CanPostTestStage()
 	return false;
 }
 
-inline bool BrainMuscles::test::source::task::test::Stage::CanEndStage()
+inline bool BrainMuscles::test::source::task::default::Stage::CanEndStage()
 {
 	if (!IsEnd())
 	{
@@ -205,4 +207,4 @@ inline bool BrainMuscles::test::source::task::test::Stage::CanEndStage()
 
 #endif //!_USING_TEST_SOURCE_
 
-#endif //!TEST_SOURCE_TASK_TEST_STAGE_H_
+#endif //!TEST_SOURCE_TASK_DEFAULT_STAGE_H_
