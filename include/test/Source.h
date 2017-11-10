@@ -8,11 +8,11 @@
 #include <string>
 #include <type_traits>
 
-#include "test\source\Result.h"
 #include "test\source\Error.h"
 #include "test\source\Stage.h"
 #include "test\source\Environment.h"
 #include "test\source\Constant.h"
+#include "test\source\result\Flags.h"
 
 namespace BrainMuscles
 {
@@ -24,9 +24,9 @@ namespace BrainMuscles
 		private:
 			typedef BrainMuscles::test::source::Environment		EnvironmentType;
 		public:
-			typedef BrainMuscles::test::source::Result			ResultType;
+			typedef BrainMuscles::test::source::result::Flags	ResultFlagsType;
 			typedef BrainMuscles::test::source::Stage			StageType;
-			typedef BrainMuscles::test::source::Error			ErrorType;
+			typedef BrainMuscles::test::source::Error ErrorMessageType;
 			typedef BrainMuscles::test::source::Constant		ConstantType;
 		public:
 			typedef typename EnvironmentType::InfoFlagsType InfoFlagsType;
@@ -37,11 +37,11 @@ namespace BrainMuscles
 			static std::true_type IsBaseOfSourceImpl(const Source<TYPE>&);
 			static std::false_type IsBaseOfSourceImpl(...);
 		private:
-			ResultType m_status;
-			ErrorType* m_error;
+			ResultFlagsType m_status;
+			ErrorMessageType* m_error;
 			StageType m_stage;
 		public:
-			static const ResultType ResultStaticTest;
+			static const ResultFlagsType ResultStaticTest;
 		protected:
 			Source();
 		public:
@@ -66,10 +66,10 @@ namespace BrainMuscles
 			static void StagePostTest();
 			static void StageEnd();
 		private:
-			static ResultType RunStaticTest();
+			static ResultFlagsType RunStaticTest();
 			static void RunPreTest();
 			static void RunPostTest();
-			static const ResultType& SetStatus(const ResultType& status);
+			static const ResultFlagsType& SetStatus(const ResultFlagsType& status);
 			static void SetError(const char* file, const std::size_t& line, std::string title, std::string message);
 			template<typename... ARGS>
 			static void SetError(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args);
@@ -106,8 +106,8 @@ namespace BrainMuscles
 			static bool IsNotCompleted();
 			static bool IsPassStaticTest();
 		public:
-			static const ResultType& Status();
-			static ResultType RunTest();
+			static const ResultFlagsType& Status();
+			static ResultFlagsType RunTest();
 			static const DERIVED_TYPE& GetInstance();
 			static void Test();
 			static void StaticTest();
@@ -119,14 +119,14 @@ namespace BrainMuscles
 		};
 
 		template<typename DERIVED_TYPE>
-		const typename Source<DERIVED_TYPE>::ResultType Source<DERIVED_TYPE>::ResultStaticTest = RunStaticTest();
+		const typename Source<DERIVED_TYPE>::ResultFlagsType Source<DERIVED_TYPE>::ResultStaticTest = RunStaticTest();
 
 		template<typename DERIVED_TYPE>
 		DERIVED_TYPE Source<DERIVED_TYPE>::ms_instance = DERIVED_TYPE();
 
 		template<typename DERIVED_TYPE>
 		Source<DERIVED_TYPE>::Source() :
-			m_status(ResultType::not_test),
+			m_status(ResultFlagsType::not_test),
 			m_error(nullptr)
 		{}
 
@@ -210,7 +210,7 @@ namespace BrainMuscles
 		{
 			if (CanBeginStage())
 			{
-				SetStatus(ResultType::not_completed);
+				SetStatus(ResultFlagsType::not_completed);
 			}
 		}
 
@@ -233,7 +233,7 @@ namespace BrainMuscles
 				EnvironmentType::CallerFunction(ConstantType::CallerTest<DERIVED_TYPE>());
 				DERIVED_TYPE::Test();
 				EnvironmentType::PopCallerFunction();
-				SetStatus(ResultType::pass);
+				SetStatus(ResultFlagsType::pass);
 			}
 		}
 
@@ -257,7 +257,7 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		typename Source<DERIVED_TYPE>::ResultType Source<DERIVED_TYPE>::RunStaticTest()
+		typename Source<DERIVED_TYPE>::ResultFlagsType Source<DERIVED_TYPE>::RunStaticTest()
 		{
 			if (EnvironmentType::IsPass() && HasStaticTest())
 			{
@@ -268,7 +268,7 @@ namespace BrainMuscles
 				SetStatus(EnvironmentType::Result());
 				return EnvironmentType::Result();
 			}
-			return ResultType::not_test;
+			return ResultFlagsType::not_test;
 		}
 
 		template<typename DERIVED_TYPE>
@@ -290,13 +290,13 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		typename const Source<DERIVED_TYPE>::ResultType& Source<DERIVED_TYPE>::SetStatus(const ResultType& status)
+		typename const Source<DERIVED_TYPE>::ResultFlagsType& Source<DERIVED_TYPE>::SetStatus(const ResultFlagsType& status)
 		{
-			if (IsNotTest() && (status == ResultType::not_completed || status == ResultType::error))
+			if (IsNotTest() && (status == ResultFlagsType::not_completed || status == ResultFlagsType::error))
 			{
 				ms_instance.m_status = status;
 			}
-			else if (IsNotCompleted() && (status == ResultType::error || status == ResultType::pass))
+			else if (IsNotCompleted() && (status == ResultFlagsType::error || status == ResultFlagsType::pass))
 			{
 				ms_instance.m_status = status;
 			}
@@ -308,9 +308,9 @@ namespace BrainMuscles
 		{
 			if (!IsPass() && ms_instance.m_error == nullptr)
 			{
-				ms_instance.m_error = new ErrorType(EnvironmentType::ErrorMessage(file, line, title, message));
+				ms_instance.m_error = new ErrorMessageType(EnvironmentType::ErrorMessage(file, line, title, message));
 			}
-			SetStatus(ResultType::error);
+			SetStatus(ResultFlagsType::error);
 		}
 
 		template<typename DERIVED_TYPE>
@@ -319,9 +319,9 @@ namespace BrainMuscles
 		{
 			if (!IsPass() && ms_instance.m_error == nullptr)
 			{
-				ms_instance.m_error = new ErrorType(EnvironmentType::ErrorMessage(file, line, title, format, args...));
+				ms_instance.m_error = new ErrorMessageType(EnvironmentType::ErrorMessage(file, line, title, format, args...));
 			}
-			SetStatus(ResultType::error);
+			SetStatus(ResultFlagsType::error);
 		}
 
 		template<typename DERIVED_TYPE>
@@ -480,41 +480,41 @@ namespace BrainMuscles
 		template<typename DERIVED_TYPE>
 		bool Source<DERIVED_TYPE>::IsPass()
 		{
-			return Status() == ResultType::pass;
+			return Status() == ResultFlagsType::pass;
 		}
 
 		template<typename DERIVED_TYPE>
 		bool Source<DERIVED_TYPE>::IsError()
 		{
-			return Status() == ResultType::error;
+			return Status() == ResultFlagsType::error;
 		}
 
 		template<typename DERIVED_TYPE>
 		bool Source<DERIVED_TYPE>::IsNotTest()
 		{
-			return Status() == ResultType::not_test;
+			return Status() == ResultFlagsType::not_test;
 		}
 
 		template<typename DERIVED_TYPE>
 		bool Source<DERIVED_TYPE>::IsNotCompleted()
 		{
-			return Status() == ResultType::not_completed;
+			return Status() == ResultFlagsType::not_completed;
 		}
 
 		template<typename DERIVED_TYPE>
 		bool Source<DERIVED_TYPE>::IsPassStaticTest()
 		{
-			return ResultStaticTest == ResultType::not_test || ResultStaticTest == ResultType::pass;
+			return ResultStaticTest == ResultFlagsType::not_test || ResultStaticTest == ResultFlagsType::pass;
 		}
 
 		template<typename DERIVED_TYPE>
-		const typename Source<DERIVED_TYPE>::ResultType& Source<DERIVED_TYPE>::Status()
+		const typename Source<DERIVED_TYPE>::ResultFlagsType& Source<DERIVED_TYPE>::Status()
 		{
 			return ms_instance.m_status;
 		}
 
 		template<typename DERIVED_TYPE>
-		typename Source<DERIVED_TYPE>::ResultType Source<DERIVED_TYPE>::RunTest()
+		typename Source<DERIVED_TYPE>::ResultFlagsType Source<DERIVED_TYPE>::RunTest()
 		{
 			if (HasTest() && IsNotTest() && IsPassStaticTest() && EnvironmentType::IsPass())
 			{

@@ -7,10 +7,10 @@
 #include <stack>
 #include <cstdio>
 
-#include "test\source\Result.h"
-#include "test\source\Error.h"
 #include "test\source\Info.h"
+#include "test\source\Error.h"
 #include "test\source\info\Delegate.h"
+#include "test\source\result\Flags.h"
 
 namespace BrainMuscles
 {
@@ -21,15 +21,15 @@ namespace BrainMuscles
 			class Environment final
 			{
 			public:
-				typedef BrainMuscles::test::source::Result	ResultType;
-				typedef BrainMuscles::test::source::Error	ErrorType;
+				typedef BrainMuscles::test::source::result::Flags	ResultFlagsType;
+				typedef BrainMuscles::test::source::Error	ErrorMessageType;
 				typedef BrainMuscles::test::source::Info	InfoType;
 				typedef typename InfoType::FlagsType		InfoFlagsType;
 				typedef typename InfoType::FlagsIntegerType	InfoFlagsIntegerType;
 			public:
 				typedef BrainMuscles::test::source::info::Delegate<Environment> DelegateType;
 			private:
-				ResultType m_result;
+				ResultFlagsType m_result;
 				std::FILE* m_file;
 				std::stack<std::string> m_trace;
 				int m_skipTrace;
@@ -43,8 +43,8 @@ namespace BrainMuscles
 				static inline bool IsPass();
 			public:
 				static inline const Environment& GetInstance();
-				static inline const ResultType& Result();
-				static inline void Error(const ErrorType& error);
+				static inline const ResultFlagsType& Result();
+				static inline void Error(const ErrorMessageType& error_message);
 			public:
 				static inline InfoType& Info();
 				static inline void Info(InfoFlagsIntegerType flag);
@@ -61,13 +61,13 @@ namespace BrainMuscles
 				static inline std::string CallerFunction();
 				static inline void PopCallerFunction();
 			public:
-				static inline ErrorType ErrorMessage(const char* file, const std::size_t& line, std::string title, std::string message);
+				static inline ErrorMessageType ErrorMessage(const char* file, const std::size_t& line, std::string title, std::string message);
 				template<typename... ARGS>
-				static inline ErrorType ErrorMessage(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args);
+				static inline ErrorMessageType ErrorMessage(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args);
 			};
 
 			inline Environment::Environment() :
-				m_result(ResultType::pass),
+				m_result(ResultFlagsType::pass),
 				m_file(stderr),
 				m_skipTrace(0),
 				m_info()
@@ -81,7 +81,7 @@ namespace BrainMuscles
 
 			inline bool Environment::IsPass()
 			{
-				return Result() == ResultType::pass;
+				return Result() == ResultFlagsType::pass;
 			}
 
 			inline const Environment& Environment::GetInstance()
@@ -89,12 +89,12 @@ namespace BrainMuscles
 				return Instance();
 			}
 
-			inline const typename Environment::ResultType& Environment::Result()
+			inline const typename Environment::ResultFlagsType& Environment::Result()
 			{
 				return GetInstance().m_result;
 			}
 
-			inline void Environment::Error(const ErrorType& error)
+			inline void Environment::Error(const ErrorMessageType& error)
 			{
 				fprintf(Instance().m_file, "%s\n", std::to_string(error).c_str());
 				std::stack<std::string> trace(error.Trace);
@@ -103,7 +103,7 @@ namespace BrainMuscles
 					fprintf(Instance().m_file, "%s\n", trace.top().c_str());
 					trace.pop();
 				}
-				Instance().m_result = ResultType::error;
+				Instance().m_result = ResultFlagsType::error;
 			}
 
 			inline typename Environment::InfoType& Environment::Info()
@@ -208,7 +208,7 @@ namespace BrainMuscles
 				}
 			}
 
-			inline typename Environment::ErrorType
+			inline typename Environment::ErrorMessageType
 				Environment::ErrorMessage(const char* file, const std::size_t& line, std::string title, std::string message)
 			{
 				std::string cause = title;
@@ -218,11 +218,11 @@ namespace BrainMuscles
 				information += file;
 				information += ", line ";
 				information += std::to_string(line);
-				return ErrorType(cause, information, Instance().m_trace);
+				return ErrorMessageType(cause, information, Instance().m_trace);
 			}
 
 			template<typename... ARGS>
-			inline typename Environment::ErrorType
+			inline typename Environment::ErrorMessageType
 				Environment::ErrorMessage(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args)
 			{
 				char buffer[1024];
@@ -238,7 +238,7 @@ namespace BrainMuscles
 				information += file;
 				information += ", line ";
 				information += std::to_string(line);
-				return ErrorType(cause, information, Instance().m_trace);
+				return ErrorMessageType(cause, information, Instance().m_trace);
 			}
 		}
 	}
