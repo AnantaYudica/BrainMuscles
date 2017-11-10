@@ -30,7 +30,7 @@ protected:
 	Interface() = default;
 public:
 	static bool Runnable();
-	static void Run();
+	static bool Run();
 	static ResultType Status();
 };
 
@@ -41,14 +41,18 @@ bool BrainMuscles::test::source::task::Interface<IMPLEMENT_TYPE>::Runnable()
 }
 
 template<typename IMPLEMENT_TYPE>
-void BrainMuscles::test::source::task::Interface<IMPLEMENT_TYPE>::Run()
-{}
+bool BrainMuscles::test::source::task::Interface<IMPLEMENT_TYPE>::Run()
+{
+	return false;
+}
 
 template<typename IMPLEMENT_TYPE>
 typename BrainMuscles::test::source::task::Interface<
 	IMPLEMENT_TYPE>::ResultType 
 	BrainMuscles::test::source::task::Interface<IMPLEMENT_TYPE>::Status()
-{}
+{
+	ResultType::not_test;
+}
 
 #endif //!_USING_TEST_SOURCE_
 
