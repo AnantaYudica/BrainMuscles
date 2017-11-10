@@ -3,7 +3,7 @@
 
 #ifdef _USING_TEST_SOURCE_
 
-#include "test\source\Result.h"
+#include "test\source\result\Flags.h"
 #include "test\source\task\Flags.h"
 
 namespace BrainMuscles
@@ -25,13 +25,13 @@ template<typename IMPLEMENT_TYPE>
 class BrainMuscles::test::source::task::Interface
 {
 public:
-	typedef BrainMuscles::test::source::Result ResultType;
+	typedef BrainMuscles::test::source::result::Flags ResultFlagsType;
 protected:
 	Interface() = default;
 public:
 	static bool Runnable();
 	static bool Run();
-	static ResultType Status();
+	static ResultFlagsType Status();
 };
 
 template<typename IMPLEMENT_TYPE>
@@ -48,7 +48,7 @@ bool BrainMuscles::test::source::task::Interface<IMPLEMENT_TYPE>::Run()
 
 template<typename IMPLEMENT_TYPE>
 typename BrainMuscles::test::source::task::Interface<
-	IMPLEMENT_TYPE>::ResultType 
+	IMPLEMENT_TYPE>::ResultFlagsType
 	BrainMuscles::test::source::task::Interface<IMPLEMENT_TYPE>::Status()
 {
 	ResultType::not_test;

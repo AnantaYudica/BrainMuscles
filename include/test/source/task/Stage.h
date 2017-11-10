@@ -3,7 +3,7 @@
 
 #ifdef _USING_TEST_SOURCE_
 
-#include "test\source\Result.h"
+#include "test\source\result\Flags.h"
 
 namespace BrainMuscles
 {
@@ -22,48 +22,48 @@ namespace BrainMuscles
 class BrainMuscles::test::source::task::Stage
 {
 public:
-	typedef BrainMuscles::test::source::Result ResultType;
+	typedef BrainMuscles::test::source::result::Flags ResultFlagsType;
 private:
-	ResultType m_result;
+	ResultFlagsType m_result;
 public:
 	inline Stage();
 public:
-	inline bool Update(ResultType result);
-	inline operator BrainMuscles::test::source::Result() const;
+	inline bool Update(ResultFlagsType result);
+	inline operator BrainMuscles::test::source::result::Flags() const;
 };
 
 inline BrainMuscles::test::source::task::Stage::Stage() :
-	m_result(ResultType::not_test)
+	m_result(ResultFlagsType::not_test)
 {}
 
-inline bool BrainMuscles::test::source::task::Stage::Update(ResultType result)
+inline bool BrainMuscles::test::source::task::Stage::Update(ResultFlagsType result)
 {
 	switch(result)
 	{
-	case ResultType::not_test:
+	case ResultFlagsType::not_test:
 		break;
-	case ResultType::not_completed:
+	case ResultFlagsType::not_completed:
 		switch(m_result)
 		{
-		case ResultType::not_test:
+		case ResultFlagsType::not_test:
 			break;
 		default:
 			return false;
 		}
 		break;
-	case ResultType::error:
+	case ResultFlagsType::error:
 		switch (m_result)
 		{
-		case ResultType::not_test:
-		case ResultType::not_completed:
+		case ResultFlagsType::not_test:
+		case ResultFlagsType::not_completed:
 			break;
 		default:
 			return false;
 		}
-	case ResultType::pass:
+	case ResultFlagsType::pass:
 		switch (m_result)
 		{
-		case ResultType::not_completed:
+		case ResultFlagsType::not_completed:
 			break;
 		default:
 			return false;
@@ -74,7 +74,7 @@ inline bool BrainMuscles::test::source::task::Stage::Update(ResultType result)
 }
 
 inline BrainMuscles::test::source::task::Stage::operator 
-	BrainMuscles::test::source::Result() const
+	BrainMuscles::test::source::result::Flags() const
 {
 	return m_result;
 }

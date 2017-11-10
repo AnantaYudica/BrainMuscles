@@ -4,7 +4,7 @@
 #ifdef _USING_TEST_SOURCE_
 
 #include "test\source\Environment.h"
-#include "test\source\Result.h"
+#include "test\source\result\Flags.h"
 #include "test\source\task\Stage.h"
 
 namespace BrainMuscles
@@ -30,7 +30,7 @@ class BrainMuscles::test::source::task::default::Stage :
 private:
 	typedef unsigned char ValueType;
 private:
-	typedef BrainMuscles::test::source::Result ResultType;
+	typedef BrainMuscles::test::source::result::Flags ResultFlagsType;
 private:
 	static constexpr ValueType BitNotTest = 1;
 	static constexpr ValueType BitPreTest = 2;
@@ -155,7 +155,7 @@ inline bool BrainMuscles::test::source::task::default::Stage::IsEnd() const
 
 inline bool BrainMuscles::test::source::task::default::Stage::CanBeginStage()
 {
-	if (*this == ResultType::not_test && IsBegin())
+	if (*this == ResultFlagsType::not_test && IsBegin())
 	{
 		SetNotTest();
 		return true;
@@ -165,7 +165,7 @@ inline bool BrainMuscles::test::source::task::default::Stage::CanBeginStage()
 
 inline bool BrainMuscles::test::source::task::default::Stage::CanPreTestStage()
 {
-	if (*this == ResultType::not_completed && IsNotTest())
+	if (*this == ResultFlagsType::not_completed && IsNotTest())
 	{
 		SetPreTest();
 		return true;
@@ -175,7 +175,7 @@ inline bool BrainMuscles::test::source::task::default::Stage::CanPreTestStage()
 
 inline bool BrainMuscles::test::source::task::default::Stage::CanTestStage()
 {
-	if (*this == ResultType::not_completed 
+	if (*this == ResultFlagsType::not_completed
 		&& (IsNotTest() || IsPreTest()))
 	{
 		SetTest();
@@ -187,7 +187,7 @@ inline bool BrainMuscles::test::source::task::default::Stage::CanTestStage()
 inline bool 
 BrainMuscles::test::source::task::default::Stage::CanPostTestStage()
 {
-	if (*this == ResultType::pass && IsTest())
+	if (*this == ResultFlagsType::pass && IsTest())
 	{
 		SetPostTest();
 		return true;

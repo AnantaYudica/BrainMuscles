@@ -8,7 +8,7 @@
 #include "test\Source.h"
 #include "test\source\Environment.h"
 #include "test\source\Interface.h"
-#include "test\source\Result.h"
+#include "test\source\result\Flags.h"
 #include "test\source\task\Interface.h"
 
 #include "test\source\task\default\Stage.h"
@@ -41,7 +41,7 @@ private:
 		BrainMuscles::test::Source<IMPLEMENT_TYPE>, IMPLEMENT_TYPE> SourceInterfaceType;
 	typedef  BrainMuscles::test::source::interface::Flags SourceInterfaceFlagsType;
 public:
-	typedef BrainMuscles::test::source::Result ResultType;
+	typedef BrainMuscles::test::source::result::Flags ResultFlagsType;
 private:
 	typedef BrainMuscles::test::source::task::default::Stage StageType;
 private:
@@ -64,7 +64,7 @@ private:
 public:
 	static bool Runnable();
 	static bool Run();
-	static ResultType Status();
+	static ResultFlagsType Status();
 };
 
 template<typename IMPLEMENT_TYPE>
@@ -108,7 +108,7 @@ void BrainMuscles::test::source::task::Default<IMPLEMENT_TYPE>::StageBegin()
 {
 	if (Stage().CanBeginStage())
 	{
-		Stage().Update(ResultType::not_completed);
+		Stage().Update(ResultFlagsType::not_completed);
 	}
 }
 
@@ -133,7 +133,7 @@ void BrainMuscles::test::source::task::Default<IMPLEMENT_TYPE>::StageTest()
 		EnvironmentType::CallerFunction(CallerTest());
 		InterfaceType::Call(InterfaceFlagsType::test);
 		EnvironmentType::PopCallerFunction();
-		Stage().Update(ResultType::pass);
+		Stage().Update(ResultFlagsType::pass);
 	}
 }
 
@@ -177,7 +177,7 @@ bool BrainMuscles::test::source::task::Default<IMPLEMENT_TYPE>::Run()
 }
 
 template<typename IMPLEMENT_TYPE>
-typename BrainMuscles::test::source::task::Default<IMPLEMENT_TYPE>::ResultType
+typename BrainMuscles::test::source::task::Default<IMPLEMENT_TYPE>::ResultFlagsType
 	BrainMuscles::test::source::task::Default<IMPLEMENT_TYPE>::Status()
 {
 	return Stage();
