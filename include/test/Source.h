@@ -8,10 +8,10 @@
 #include <string>
 #include <type_traits>
 
-#include "test\source\Error.h"
 #include "test\source\Stage.h"
 #include "test\source\Environment.h"
 #include "test\source\Constant.h"
+#include "test\source\error\Message.h"
 #include "test\source\result\Flags.h"
 
 namespace BrainMuscles
@@ -26,7 +26,7 @@ namespace BrainMuscles
 		public:
 			typedef BrainMuscles::test::source::result::Flags	ResultFlagsType;
 			typedef BrainMuscles::test::source::Stage			StageType;
-			typedef BrainMuscles::test::source::Error ErrorMessageType;
+			typedef BrainMuscles::test::source::error::Message ErrorMessageType;
 			typedef BrainMuscles::test::source::Constant		ConstantType;
 		public:
 			typedef typename EnvironmentType::InfoFlagsType InfoFlagsType;

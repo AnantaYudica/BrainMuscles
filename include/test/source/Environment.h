@@ -8,7 +8,7 @@
 #include <cstdio>
 
 #include "test\source\Info.h"
-#include "test\source\Error.h"
+#include "test\source\error\Message.h"
 #include "test\source\info\Delegate.h"
 #include "test\source\result\Flags.h"
 
@@ -22,7 +22,7 @@ namespace BrainMuscles
 			{
 			public:
 				typedef BrainMuscles::test::source::result::Flags	ResultFlagsType;
-				typedef BrainMuscles::test::source::Error	ErrorMessageType;
+				typedef BrainMuscles::test::source::error::Message	ErrorMessageType;
 				typedef BrainMuscles::test::source::Info	InfoType;
 				typedef typename InfoType::FlagsType		InfoFlagsType;
 				typedef typename InfoType::FlagsIntegerType	InfoFlagsIntegerType;
