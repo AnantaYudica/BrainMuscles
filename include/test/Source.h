@@ -330,7 +330,7 @@ namespace BrainMuscles
 		{
 			if (!decltype(IsBaseOfSourceImpl(std::declval<OTHER_SOURCE>()))::value)
 			{
-				SetError(file, line, title, ConstantType::BaseOfSourceMsg, typeid(OTHER_SOURCE).name());
+				SetError(file, line, title, ConstantType::CstringMessageBaseOfSource, typeid(OTHER_SOURCE).name());
 			}
 		}
 
@@ -340,7 +340,7 @@ namespace BrainMuscles
 		{
 			if (!OTHER_SOURCE::HasTest())
 			{
-				SetError(file, line, title, ConstantType::SourceHasTestMsg, typeid(OTHER_SOURCE).name());
+				SetError(file, line, title, ConstantType::CstringMessageSourceHasTest, typeid(OTHER_SOURCE).name());
 			}
 		}
 
@@ -350,7 +350,7 @@ namespace BrainMuscles
 		{
 			if (OTHER_SOURCE::IsError())
 			{
-				SetError(file, line, title, ConstantType::SourceIsErrorMsg, typeid(OTHER_SOURCE).name());
+				SetError(file, line, title, ConstantType::CstringMessageSourceHasError, typeid(OTHER_SOURCE).name());
 			}
 		}
 
@@ -360,7 +360,7 @@ namespace BrainMuscles
 		{
 			if (OTHER_SOURCE::IsNotCompleted())
 			{
-				SetError(file, line, title, ConstantType::SourceIsNotCompletedMsg, typeid(OTHER_SOURCE).name());
+				SetError(file, line, title, ConstantType::CstringMessageSourceIsNotCompleted, typeid(OTHER_SOURCE).name());
 			}
 		}
 
