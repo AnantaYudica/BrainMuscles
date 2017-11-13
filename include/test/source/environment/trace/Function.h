@@ -29,7 +29,7 @@ class BrainMuscles::test::source::environment::trace::Function :
 public:
 	inline Function();
 public:
-	inline std::string Push(const char * file, std::size_t line,
+	inline void Push(const char * file, std::size_t line,
 		std::string function);
 };
 
@@ -38,7 +38,7 @@ inline BrainMuscles::test::source::environment
 	BrainMuscles::test::source::environment::Trace("")
 {}
 
-inline std::string
+inline void
 BrainMuscles::test::source::environment::trace
 ::Function::Push(const char * file, std::size_t line, std::string function)
 {
