@@ -60,6 +60,8 @@ namespace BrainMuscles
 				static inline std::string AssertionFailed();
 				static inline std::string RequirementFailed();
 				static inline std::string CallFailed();
+			public:
+				static inline std::string& AppendFileLine(std::string& out, const char * file, const std::size_t& line);
 			};
 
 			template<typename SOURCE_TYPE>
@@ -150,6 +152,22 @@ namespace BrainMuscles
 			inline std::string Constant::CallFailed()
 			{
 				return Failed(TitleCallStr);
+			}
+
+			inline std::string& Constant::AppendFileLine(std::string& out, const char * file, const std::size_t& line)
+			{
+				if (file == nullptr)
+				{
+					if (!out.empty())
+					{
+						out += ",";
+					}
+					str += " file ";
+					str += file;
+					str += ", line ";
+					str += std::to_string(line);
+				}
+				return out;
 			}
 		}
 	}
