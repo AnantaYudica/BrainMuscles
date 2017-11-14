@@ -5,7 +5,6 @@
 
 #include <string>
 
-#include "test\source\Environment.h"
 #include "test\source\interface\Flags.h"
 
 namespace BrainMuscles
@@ -18,7 +17,6 @@ namespace BrainMuscles
 			{
 				Constant() = delete;
 			public:
-				typedef BrainMuscles::test::source::Environment	EnvironmentType;
 				typedef BrainMuscles::test::source::interface::Flags InterfaceFlagsType;
 			private:
 				static constexpr const char* CstringIn = "in";
@@ -56,9 +54,9 @@ namespace BrainMuscles
 				template<typename SOURCE_TYPE>
 				static inline std::string CallerPostTest();
 				template<typename SOURCE_TYPE>
-				static inline std::string CallerRequirement();
+				static inline std::string CallerRequirement(std::string caller_function);
 				template<typename SOURCE_TYPE>
-				static inline std::string CallerCall();
+				static inline std::string CallerCall(std::string caller_function);
 			public:
 				static inline std::string AssertionFailed();
 				static inline std::string RequirementFailed();
@@ -137,23 +135,23 @@ namespace BrainMuscles
 			}
 
 			template<typename SOURCE_TYPE>
-			inline std::string Constant::CallerRequirement()
+			inline std::string Constant::CallerRequirement(std::string caller_function)
 			{
-				if (EnvironmentType::CallerFunction().empty())
+				if (caller_function.empty())
 				{
 					return Caller<SOURCE_TYPE>(CstringFunctionRequirement);
 				}
-				return EnvironmentType::CallerFunction();
+				return caller_function;
 			}
 
 			template<typename SOURCE_TYPE>
-			inline std::string Constant::CallerCall()
+			inline std::string Constant::CallerCall(std::string caller_function)
 			{
-				if (EnvironmentType::CallerFunction().empty())
+				if (caller_function.empty())
 				{
 					return Caller<SOURCE_TYPE>(CstringFunctionCall);
 				}
-				return EnvironmentType::CallerFunction();
+				return caller_function;
 			}
 
 			inline std::string Constant::AssertionFailed()
