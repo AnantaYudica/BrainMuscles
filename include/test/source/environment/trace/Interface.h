@@ -46,7 +46,8 @@ BrainMuscles::test::source::environment::trace
 ::Interface::Push(FlagsType flag)
 {
 	std::string string_result 
-		= BrainMuscles::test::source::Constant::StringInterface(flag);
+		= BrainMuscles::test::source::Constant::StringInterface<
+			IMPLEMENT_TYPE>(flag);
 	BrainMuscles::test::source::environment::Trace::Push(string_result);
 }
 
