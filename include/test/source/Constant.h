@@ -105,6 +105,8 @@ namespace BrainMuscles
 				static inline std::string StringInterfaceTest();
 				template<typename IMPLEMENT_TYPE>
 				static inline std::string StringInterface(InterfaceFlagsType flag);
+			public:
+				static inline FunctionFlagsType Cast(InterfaceFlagsType flag);
 			};
 
 			template<typename SOURCE_TYPE>
@@ -396,6 +398,24 @@ BrainMuscles::test::source::Constant::StringInterface(InterfaceFlagsType flag)
 		return StringInterfaceTest<IMPLEMENT_TYPE>();
 	default:
 		return StringFunctionUnknown<IMPLEMENT_TYPE>();
+	}
+}
+
+inline typename BrainMuscles::test::source::Constant::FunctionFlagsType
+BrainMuscles::test::source::Constant::Cast(InterfaceFlagsType flag)
+{
+	switch (flag)
+	{
+	case InterfaceFlagsType::post_test:
+		return FunctionFlagsType::post_test;
+	case InterfaceFlagsType::pre_test:
+		return FunctionFlagsType::pre_test;
+	case InterfaceFlagsType::static_test:
+		return FunctionFlagsType::static_test;
+	case InterfaceFlagsType::test:
+		return FunctionFlagsType::test;
+	default:
+		return FunctionFlagsType::unknown;
 	}
 }
 
