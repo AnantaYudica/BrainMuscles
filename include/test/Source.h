@@ -13,6 +13,8 @@
 #include "test\source\Constant.h"
 #include "test\source\error\Message.h"
 #include "test\source\result\Flags.h"
+#include "test\source\interface\Flags.h"
+#include "test\source\function\Flags.h"
 
 namespace BrainMuscles
 {
@@ -28,6 +30,9 @@ namespace BrainMuscles
 			typedef BrainMuscles::test::source::Stage			StageType;
 			typedef BrainMuscles::test::source::error::Message ErrorMessageType;
 			typedef BrainMuscles::test::source::Constant		ConstantType;
+		public:
+			typedef BrainMuscles::test::source::interface::Flags InterfaceFlagsType;
+			typedef BrainMuscles::test::source::function::Flags FunctionFlagsType;
 		public:
 			typedef typename EnvironmentType::InfoFlagsType InfoFlagsType;
 		private:
@@ -219,9 +224,9 @@ namespace BrainMuscles
 		{
 			if (CanPreTestStage())
 			{
-				EnvironmentType::CallerFunction(ConstantType::CallerPreTest<DERIVED_TYPE>());
+				EnvironmentType::TraceInterface().Push<DERIVED_TYPE>(InterfaceFlagsType::pre_test);
 				DERIVED_TYPE::PreTest();
-				EnvironmentType::PopCallerFunction();
+				EnvironmentType::TraceInterface().Pop();
 			}
 		}
 
@@ -230,9 +235,9 @@ namespace BrainMuscles
 		{
 			if (CanTestStage())
 			{
-				EnvironmentType::CallerFunction(ConstantType::CallerTest<DERIVED_TYPE>());
+				EnvironmentType::TraceInterface().Push<DERIVED_TYPE>(InterfaceFlagsType::test);
 				DERIVED_TYPE::Test();
-				EnvironmentType::PopCallerFunction();
+				EnvironmentType::TraceInterface().Pop();
 				SetStatus(ResultFlagsType::pass);
 			}
 		}
@@ -242,9 +247,9 @@ namespace BrainMuscles
 		{
 			if (CanPostTestStage())
 			{
-				EnvironmentType::CallerFunction(ConstantType::CallerPostTest<DERIVED_TYPE>());
+				EnvironmentType::TraceInterface().Push<DERIVED_TYPE>(InterfaceFlagsType::post_test);
 				DERIVED_TYPE::PostTest();
-				EnvironmentType::PopCallerFunction();
+				EnvironmentType::TraceInterface().Pop();
 			}
 		}
 
@@ -261,10 +266,10 @@ namespace BrainMuscles
 		{
 			if (EnvironmentType::IsPass() && HasStaticTest())
 			{
-				EnvironmentType::CallerFunction(ConstantType::CallerStaticTest<DERIVED_TYPE>());
+				EnvironmentType::TraceInterface().Push<DERIVED_TYPE>(InterfaceFlagsType::static_test);
 				DERIVED_TYPE::StaticTest();
 				TriggerError();
-				EnvironmentType::PopCallerFunction();
+				EnvironmentType::TraceInterface().Pop();
 				SetStatus(EnvironmentType::Result());
 				return EnvironmentType::Result();
 			}
@@ -397,9 +402,9 @@ namespace BrainMuscles
 			InfoAssert(file, line, condition_str);
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
-				EnvironmentType::Trace(EnvironmentType::CallerFunction(), file, line);
+				EnvironmentType::TraceFunction().Push<DERIVED_TYPE>(file, line, FunctionFlagsType::assert);
 				SetError(file, line, ConstantType::AssertionFailed(), condition_str);
-				EnvironmentType::PopTrace();
+				EnvironmentType::TraceFunction().Pop();
 			}
 		}
 
@@ -410,9 +415,9 @@ namespace BrainMuscles
 			InfoAssert(file, line, arguments_str, args...);
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
-				EnvironmentType::Trace(EnvironmentType::CallerFunction(), file, line);
+				EnvironmentType::TraceFunction().Push<DERIVED_TYPE>(file, line, FunctionFlagsType::assert);
 				SetError(file, line, ConstantType::AssertionFailed(), args...);
-				EnvironmentType::PopTrace();
+				EnvironmentType::TraceFunction().Pop();
 			}
 		}
 
@@ -421,7 +426,7 @@ namespace BrainMuscles
 		typename std::enable_if<!std::is_same<DERIVED_TYPE, OTHER_SOURCE>::value, void>::type 
 			Source<DERIVED_TYPE>::Requirement(const char* file, const std::size_t& line)
 		{
-			EnvironmentType::Trace(ConstantType::CallerRequirement<DERIVED_TYPE>(EnvironmentType::CallerFunction()), file, line);
+			EnvironmentType::TraceFunction().Push<DERIVED_TYPE>(file, line, FunctionFlagsType::requirement);
 			if (EnvironmentType::IsPass())
 			{
 				if (OTHER_SOURCE::IsNotTest())
@@ -437,20 +442,20 @@ namespace BrainMuscles
 				SourceIsError<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
 				SourceIsNotCompleted<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
 			}
-			EnvironmentType::PopTrace();
+			EnvironmentType::TraceFunction().Pop();
 		}
 
 		template<typename DERIVED_TYPE>
 		void Source<DERIVED_TYPE>::Call(const char* file, const std::size_t& line)
 		{
-			EnvironmentType::Trace(ConstantType::CallerCall<DERIVED_TYPE>(EnvironmentType::CallerFunction()), file, line);
+			EnvironmentType::TraceFunction().Push<DERIVED_TYPE>(file, line, FunctionFlagsType::call);
 			if (EnvironmentType::IsPass() && IsNotTest())
 			{
 				SourceHasTest<DERIVED_TYPE>(ConstantType::CallFailed(), file, line);
 				RunTest();
 				TriggerError();
 			}
-			EnvironmentType::PopTrace();
+			EnvironmentType::TraceFunction().Pop();
 		}
 
 		template<typename DERIVED_TYPE>
