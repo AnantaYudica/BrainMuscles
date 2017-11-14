@@ -34,6 +34,7 @@ public:
 	inline void Pop();
 	inline std::string Top(std::string default = "");
 	inline std::stack<std::string> Get();
+	inline std::size_t Size();
 };
 
 inline BrainMuscles::test::source
@@ -85,6 +86,13 @@ inline std::stack<std::string>
 BrainMuscles::test::source::environment::Trace::Get()
 {
 	return m_stack;
+}
+
+
+inline std::size_t 
+BrainMuscles::test::source::environment::Trace::Size()
+{
+	return m_stack.size();
 }
 
 #endif //!_USING_TEST_SOURCE_
