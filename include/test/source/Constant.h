@@ -25,10 +25,10 @@ namespace BrainMuscles
 				static constexpr const char* CstringFailed = "failed";
 			private:
 				static constexpr const char* CstringFunctionUnknown = "function unknown";
-				static constexpr const char* CstringInterfaceStaticTest = "static function member 'StaticTest()'";
-				static constexpr const char* CstringInterfacePreTest = "static function member 'PreTest()'";
-				static constexpr const char* CstringInterfaceTest = "static function member 'Test()'";
-				static constexpr const char* CstringInterfacePostTest = "static function member 'PostTest()'";
+				static constexpr const char* CstringFunctionStaticTest = "static function member 'StaticTest()'";
+				static constexpr const char* CstringFunctionPreTest = "static function member 'PreTest()'";
+				static constexpr const char* CstringFunctionTest = "static function member 'Test()'";
+				static constexpr const char* CstringFunctionPostTest = "static function member 'PostTest()'";
 				static constexpr const char* CstringFunctionRequirement = "static function member 'Requirement(const char* file, const std::size_t& line)'";
 				static constexpr const char* CstringFunctionCall = "static function member 'Call(const char* file, const std::size_t& line)'";
 			private:
@@ -87,7 +87,7 @@ namespace BrainMuscles
 				{
 					caller_function += CstringWhenCalled;
 				}
-				else if (function_str == CstringInterfaceStaticTest || function_str == CstringInterfacePreTest || function_str == CstringInterfaceTest || function_str == CstringInterfacePostTest)
+				else if (function_str == CstringFunctionStaticTest || function_str == CstringFunctionPreTest || function_str == CstringFunctionTest || function_str == CstringFunctionPostTest)
 				{
 					caller_function += CstringIn;
 				}
@@ -114,24 +114,24 @@ namespace BrainMuscles
 			template<typename SOURCE_TYPE>
 			inline std::string Constant::CallerStaticTest()
 			{
-				return Caller<SOURCE_TYPE>(CstringInterfaceStaticTest);
+				return Caller<SOURCE_TYPE>(CstringFunctionStaticTest);
 			}
 
 			template<typename SOURCE_TYPE>
 			inline std::string Constant::CallerPreTest()
 			{
-				return Caller<SOURCE_TYPE>(CstringInterfacePreTest);
+				return Caller<SOURCE_TYPE>(CstringFunctionPreTest);
 			}
 			template<typename SOURCE_TYPE>
 			inline std::string Constant::CallerTest()
 			{
-				return Caller<SOURCE_TYPE>(CstringInterfaceTest);
+				return Caller<SOURCE_TYPE>(CstringFunctionTest);
 			}
 
 			template<typename SOURCE_TYPE>
 			inline std::string Constant::CallerPostTest()
 			{
-				return Caller<SOURCE_TYPE>(CstringInterfacePostTest);
+				return Caller<SOURCE_TYPE>(CstringFunctionPostTest);
 			}
 
 			template<typename SOURCE_TYPE>
@@ -194,10 +194,10 @@ inline std::string BrainMuscles::test
 ::source::Constant::StringInterface(const char * cstring_interface)
 {
 	std::string string_result = "";
-	if (cstring_interface == CstringInterfaceStaticTest
-		|| cstring_interface == CstringInterfacePreTest 
-		|| cstring_interface == CstringInterfaceTest 
-		|| cstring_interface == CstringInterfacePostTest)
+	if (cstring_interface == CstringFunctionStaticTest
+		|| cstring_interface == CstringFunctionPreTest 
+		|| cstring_interface == CstringFunctionTest 
+		|| cstring_interface == CstringFunctionPostTest)
 	{
 		string_result += CstringIn;
 	}
@@ -217,28 +217,28 @@ template<typename IMPLEMENT_TYPE>
 inline std::string
 BrainMuscles::test::source::Constant::StringInterfacePostTest()
 {
-	return  StringInterface<IMPLEMENT_TYPE>(CstringInterfacePostTest);
+	return  StringInterface<IMPLEMENT_TYPE>(CstringFunctionPostTest);
 }
 
 template<typename IMPLEMENT_TYPE>
 inline std::string 
 BrainMuscles::test::source::Constant::StringInterfacePreTest()
 {
-	return StringInterface<IMPLEMENT_TYPE>(CstringInterfacePreTest);
+	return StringInterface<IMPLEMENT_TYPE>(CstringFunctionPreTest);
 }
 
 template<typename IMPLEMENT_TYPE>
 inline std::string
 BrainMuscles::test::source::Constant::StringInterfaceStaticTest()
 {
-	return StringInterface<IMPLEMENT_TYPE>(CstringInterfaceStaticTest);
+	return StringInterface<IMPLEMENT_TYPE>(CstringFunctionStaticTest);
 }
 
 template<typename IMPLEMENT_TYPE>
 inline std::string 
 BrainMuscles::test::source::Constant::StringInterfaceTest()
 {
-	return StringInterface<IMPLEMENT_TYPE>(CstringInterfaceTest);
+	return StringInterface<IMPLEMENT_TYPE>(CstringFunctionTest);
 }
 
 template<typename IMPLEMENT_TYPE>
