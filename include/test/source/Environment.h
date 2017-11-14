@@ -11,6 +11,8 @@
 #include "test\source\error\Message.h"
 #include "test\source\info\Delegate.h"
 #include "test\source\result\Flags.h"
+#include "test\source\environment\trace\Interface.h"
+#include "test\source\environment\trace\Function.h"
 
 namespace BrainMuscles
 {
@@ -26,15 +28,18 @@ namespace BrainMuscles
 				typedef BrainMuscles::test::source::Info	InfoType;
 				typedef typename InfoType::FlagsType		InfoFlagsType;
 				typedef typename InfoType::FlagsIntegerType	InfoFlagsIntegerType;
+				typedef BrainMuscles::test::source::environment::trace::Interface
+					TraceInterfaceType;
+				typedef BrainMuscles::test::source::environment::trace::Function
+					TraceFunctionType;
 			public:
 				typedef BrainMuscles::test::source::info::Delegate<Environment> DelegateType;
 			private:
 				ResultFlagsType m_result;
 				std::FILE* m_file;
-				std::stack<std::string> m_trace;
-				int m_skipTrace;
-				std::stack<std::string> m_callerFunction;
 				InfoType m_info;
+				TraceInterfaceType m_traceInterface;
+				TraceFunctionType m_traceFunction;
 			private:
 				inline Environment();
 			private:
@@ -54,23 +59,20 @@ namespace BrainMuscles
 				template<typename... ARGS>
 				static void Info(InfoFlagsIntegerType info_flag, const char* file, const std::size_t& line, const char* format, ARGS... args);
 			public:
-				static inline void Trace(std::string caller, const char* file = NULL, const std::size_t& line = 0);
-				static inline void PopTrace();
-			public:
-				static inline void CallerFunction(std::string caller);
-				static inline std::string CallerFunction();
-				static inline void PopCallerFunction();
-			public:
 				static inline ErrorMessageType ErrorMessage(const char* file, const std::size_t& line, std::string title, std::string message);
 				template<typename... ARGS>
 				static inline ErrorMessageType ErrorMessage(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args);
+			public:
+				static inline TraceInterfaceType& TraceInterface();
+				static inline TraceFunctionType& TraceFunction();
 			};
 
 			inline Environment::Environment() :
 				m_result(ResultFlagsType::pass),
 				m_file(stderr),
-				m_skipTrace(0),
-				m_info()
+				m_info(),
+				m_traceInterface(),
+				m_traceFunction(&m_traceInterface)
 			{}
 
 			inline Environment& Environment::Instance()
@@ -143,71 +145,6 @@ namespace BrainMuscles
 				}
 			}
 
-			inline void Environment::Trace(std::string caller, const char* file, const std::size_t& line)
-			{
-				std::string msg = "";
-				if (!caller.empty())
-				{
-					msg += caller;
-					if (file != NULL)
-					{
-						msg += ", file ";
-						msg += file;
-						msg += ", line ";
-						msg += std::to_string(line);
-					}
-					Instance().m_trace.push(msg);
-				}
-				else
-				{
-					++Instance().m_skipTrace;
-				}
-			}
-
-			inline void Environment::PopTrace()
-			{
-				if (Instance().m_skipTrace == 0)
-				{
-					if (!Instance().m_trace.empty())
-					{
-						Instance().m_trace.pop();
-					}
-				}
-				else
-				{
-					--Instance().m_skipTrace;
-				}
-			}
-
-			inline void Environment::CallerFunction(std::string caller)
-			{
-				if (!caller.empty())
-				{
-					Instance().m_callerFunction.push(caller);
-				}
-				else
-				{
-					Instance().m_callerFunction.push("call unknown function");
-				}
-			}
-
-			inline std::string Environment::CallerFunction()
-			{
-				if (!Instance().m_callerFunction.empty())
-				{
-					return Instance().m_callerFunction.top();
-				}
-				return "";
-			}
-
-			inline void Environment::PopCallerFunction()
-			{
-				if (!Instance().m_callerFunction.empty())
-				{
-					Instance().m_callerFunction.pop();
-				}
-			}
-
 			inline typename Environment::ErrorMessageType
 				Environment::ErrorMessage(const char* file, const std::size_t& line, std::string title, std::string message)
 			{
@@ -218,7 +155,7 @@ namespace BrainMuscles
 				information += file;
 				information += ", line ";
 				information += std::to_string(line);
-				return ErrorMessageType(cause, information, Instance().m_trace);
+				return ErrorMessageType(cause, information, Instance().m_traceFunction.Get());
 			}
 
 			template<typename... ARGS>
@@ -238,10 +175,22 @@ namespace BrainMuscles
 				information += file;
 				information += ", line ";
 				information += std::to_string(line);
-				return ErrorMessageType(cause, information, Instance().m_trace);
+				return ErrorMessageType(cause, information, Instance().m_traceFunction.Get());
 			}
 		}
 	}
+}
+
+inline typename BrainMuscles::test::source::Environment::TraceInterfaceType&
+BrainMuscles::test::source::Environment::TraceInterface()
+{
+	return Instance().m_traceInterface;
+}
+
+inline  typename BrainMuscles::test::source::Environment::TraceFunctionType& 
+BrainMuscles::test::source::Environment::TraceFunction() 
+{
+	return Instance().m_traceFunction;
 }
 
 #endif //!_USING_TEST_SOURCE_
