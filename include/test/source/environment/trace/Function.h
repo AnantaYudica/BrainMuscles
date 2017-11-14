@@ -43,10 +43,10 @@ public:
 public:
 	template<typename IMPLEMENT_TYPE>
 	inline void Push(const char * file, std::size_t line,
-		InterfaceFlagsType flag);
+		FunctionFlagsType flag);
 	template<typename IMPLEMENT_TYPE>
 	inline void Push(const char * file, std::size_t line,
-		FunctionFlagsType flag);
+		InterfaceFlagsType flag);
 };
 
 inline BrainMuscles::test::source::environment
@@ -56,7 +56,7 @@ inline BrainMuscles::test::source::environment
 
 template<typename IMPLEMENT_TYPE>
 inline void BrainMuscles::test::source::environment::trace
-::Function::Push(const char * file, std::size_t line, InterfaceFlagsType flag)
+::Function::Push(const char * file, std::size_t line, FunctionFlagsType flag)
 {
 	std::string string_result = "";
 	if (!ConstantType::IsInterfaceFlags(flag)
@@ -77,7 +77,7 @@ inline void BrainMuscles::test::source::environment::trace
 
 template<typename IMPLEMENT_TYPE>
 inline void BrainMuscles::test::source::environment::trace
-::Function::Push(const char * file, std::size_t line, FunctionFlagsType flag)
+::Function::Push(const char * file, std::size_t line, InterfaceFlagsType flag)
 {
 	return Push<IMPLEMENT_TYPE>(file, line, ConstantType::Cast(flag));
 }
