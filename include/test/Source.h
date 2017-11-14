@@ -421,7 +421,7 @@ namespace BrainMuscles
 		typename std::enable_if<!std::is_same<DERIVED_TYPE, OTHER_SOURCE>::value, void>::type 
 			Source<DERIVED_TYPE>::Requirement(const char* file, const std::size_t& line)
 		{
-			EnvironmentType::Trace(ConstantType::CallerRequirement<DERIVED_TYPE>(), file, line);
+			EnvironmentType::Trace(ConstantType::CallerRequirement<DERIVED_TYPE>(EnvironmentType::CallerFunction()), file, line);
 			if (EnvironmentType::IsPass())
 			{
 				if (OTHER_SOURCE::IsNotTest())
@@ -443,7 +443,7 @@ namespace BrainMuscles
 		template<typename DERIVED_TYPE>
 		void Source<DERIVED_TYPE>::Call(const char* file, const std::size_t& line)
 		{
-			EnvironmentType::Trace(ConstantType::CallerCall<DERIVED_TYPE>(), file, line);
+			EnvironmentType::Trace(ConstantType::CallerCall<DERIVED_TYPE>(EnvironmentType::CallerFunction()), file, line);
 			if (EnvironmentType::IsPass() && IsNotTest())
 			{
 				SourceHasTest<DERIVED_TYPE>(ConstantType::CallFailed(), file, line);
