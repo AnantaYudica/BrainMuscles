@@ -203,7 +203,7 @@ namespace BrainMuscles
 
 			inline std::string& Constant::AppendFileLine(std::string& out, const char * file, const std::size_t& line)
 			{
-				if (file == nullptr)
+				if (file != nullptr)
 				{
 					if (!out.empty())
 					{
