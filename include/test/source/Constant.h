@@ -107,6 +107,8 @@ namespace BrainMuscles
 				static inline std::string StringInterface(InterfaceFlagsType flag);
 			public:
 				static inline FunctionFlagsType Cast(InterfaceFlagsType flag);
+			public:
+				static inline bool IsInterfaceFlags(FunctionFlagsType flag);
 			};
 
 			template<typename SOURCE_TYPE>
@@ -417,6 +419,15 @@ BrainMuscles::test::source::Constant::Cast(InterfaceFlagsType flag)
 	default:
 		return FunctionFlagsType::unknown;
 	}
+}
+
+inline bool 
+BrainMuscles::test::source::Constant::IsInterfaceFlags(FunctionFlagsType flag)
+{
+	return flag == FunctionFlagsType::post_test
+		|| flag == FunctionFlagsType::pre_test
+		|| flag == FunctionFlagsType::static_test
+		|| flag == FunctionFlagsType::test;
 }
 
 #endif //!_USING_TEST_SOURCE_
