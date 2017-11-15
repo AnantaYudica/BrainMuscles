@@ -59,10 +59,6 @@ namespace BrainMuscles
 				template<typename... ARGS>
 				static void Info(InfoFlagsIntegerType info_flag, const char* file, const std::size_t& line, const char* format, ARGS... args);
 			public:
-				static inline ErrorMessageType ErrorMessage(const char* file, const std::size_t& line, std::string title, std::string message);
-				template<typename... ARGS>
-				static inline ErrorMessageType ErrorMessage(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args);
-			public:
 				static inline TraceInterfaceType& TraceInterface();
 				static inline TraceFunctionType& TraceFunction();
 			};
@@ -99,12 +95,6 @@ namespace BrainMuscles
 			inline void Environment::Error(const ErrorMessageType& error)
 			{
 				fprintf(Instance().m_file, "%s\n", std::to_string(error).c_str());
-				std::stack<std::string> trace(error.Trace);
-				while (trace.size() != 0)
-				{
-					fprintf(Instance().m_file, "%s\n", trace.top().c_str());
-					trace.pop();
-				}
 				Instance().m_result = ResultFlagsType::error;
 			}
 
@@ -143,39 +133,6 @@ namespace BrainMuscles
 				{
 					Info(file, line, format, args);
 				}
-			}
-
-			inline typename Environment::ErrorMessageType
-				Environment::ErrorMessage(const char* file, const std::size_t& line, std::string title, std::string message)
-			{
-				std::string cause = title;
-				cause += ": ";
-				cause += message;
-				std::string information = "file ";
-				information += file;
-				information += ", line ";
-				information += std::to_string(line);
-				return ErrorMessageType(cause, information, Instance().m_traceFunction.Get());
-			}
-
-			template<typename... ARGS>
-			inline typename Environment::ErrorMessageType
-				Environment::ErrorMessage(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args)
-			{
-				char buffer[1024];
-#if ((defined(_WIN32) || defined(_WIN64)) && !defined(_CRT_SECURE_NO_WARNINGS))
-				sprintf_s(buffer, format, args...);
-#else
-				std::sprintf(buffer, format, args...);
-#endif
-				std::string cause = title;
-				cause += ": ";
-				cause += buffer;
-				std::string information = "file ";
-				information += file;
-				information += ", line ";
-				information += std::to_string(line);
-				return ErrorMessageType(cause, information, Instance().m_traceFunction.Get());
 			}
 		}
 	}
