@@ -25,6 +25,8 @@ namespace BrainMuscles
 				static constexpr const char* CstringWhenCalled = "when called";
 				static constexpr const char* CstringFrom = "from";
 				static constexpr const char* CstringFailed = "failed";
+				static constexpr const char* CstringColon = ":";
+				static constexpr const char* CstringSingleSpace = " ";
 			private:
 				static constexpr const char* CstringFunctionUnknown = "function unknown";
 				static constexpr const char* CstringFunctionStaticTest = "static function member 'StaticTest()'";
@@ -109,6 +111,8 @@ namespace BrainMuscles
 				static inline FunctionFlagsType Cast(InterfaceFlagsType flag);
 			public:
 				static inline bool IsInterfaceFlags(FunctionFlagsType flag);
+			public:
+				static inline std::string StringErrorTitle(FunctionFlagsType flag);
 			};
 
 			template<typename SOURCE_TYPE>
@@ -428,6 +432,30 @@ BrainMuscles::test::source::Constant::IsInterfaceFlags(FunctionFlagsType flag)
 		|| flag == FunctionFlagsType::pre_test
 		|| flag == FunctionFlagsType::static_test
 		|| flag == FunctionFlagsType::test;
+}
+
+inline std::string 
+BrainMuscles::test::source::Constant::StringErrorTitle(FunctionFlagsType flag)
+{
+	std::string string_result = "";
+	switch (flag)
+	{
+	case FunctionFlagsType::assert :
+		string_result += CstringTitleAssertion;
+		break;
+	case FunctionFlagsType::requirement :
+		string_result += CstringFunctionRequirement;
+		break;
+	case FunctionFlagsType::call :
+		string_result += CstringFunctionCall;
+		break;
+	}
+	if (!string_result.empty())
+	{
+		string_result += CstringColon;
+		string_result += CstringSingleSpace;
+	}
+	return string_result;
 }
 
 #endif //!_USING_TEST_SOURCE_
