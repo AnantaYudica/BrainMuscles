@@ -75,18 +75,18 @@ namespace BrainMuscles
 			static void RunPreTest();
 			static void RunPostTest();
 			static const ResultFlagsType& SetStatus(const ResultFlagsType& status);
-			static void SetError(const char* file, const std::size_t& line, std::string title, std::string message);
+			static void SetError(const char* file, const std::size_t& line, FunctionFlagsType flag, std::string message);
 			template<typename... ARGS>
-			static void SetError(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args);
+			static void SetError(const char* file, const std::size_t& line, FunctionFlagsType flag, const char* format, ARGS... args);
 		private:
 			template<typename OTHER_SOURCE>
-			static void BaseOfSource(std::string title, const char* file, const std::size_t& line);
+			static void BaseOfSource(FunctionFlagsType flag, const char* file, const std::size_t& line);
 			template<typename OTHER_SOURCE>
-			static void SourceHasTest(std::string title, const char* file, const std::size_t& line);
+			static void SourceHasTest(FunctionFlagsType flag, const char* file, const std::size_t& line);
 			template<typename OTHER_SOURCE>
-			static void SourceIsError(std::string title, const char* file, const std::size_t& line);
+			static void SourceIsError(FunctionFlagsType flag, const char* file, const std::size_t& line);
 			template<typename OTHER_SOURCE>
-			static void SourceIsNotCompleted(std::string title, const char* file, const std::size_t& line);
+			static void SourceIsNotCompleted(FunctionFlagsType flag, const char* file, const std::size_t& line);
 		private:
 			static void InfoAssert(const char* file, const std::size_t& line, std::string arguments_str);
 			template<typename... ARGS>
@@ -309,63 +309,63 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		void Source<DERIVED_TYPE>::SetError(const char* file, const std::size_t& line, std::string title, std::string message)
+		void Source<DERIVED_TYPE>::SetError(const char* file, const std::size_t& line, FunctionFlagsType flag, std::string message)
 		{
 			if (!IsPass() && ms_instance.m_error == nullptr)
 			{
-				ms_instance.m_error = new ErrorMessageType(EnvironmentType::ErrorMessage(file, line, title, message));
+				ms_instance.m_error = new ErrorMessageType(ErrorMessageType::Instance<EnvironmentType>(file, line, flag, message));
 			}
 			SetStatus(ResultFlagsType::error);
 		}
 
 		template<typename DERIVED_TYPE>
 		template<typename... ARGS>
-		void Source<DERIVED_TYPE>::SetError(const char* file, const std::size_t& line, std::string title, const char* format, ARGS... args)
+		void Source<DERIVED_TYPE>::SetError(const char* file, const std::size_t& line, FunctionFlagsType flag, const char* format, ARGS... args)
 		{
 			if (!IsPass() && ms_instance.m_error == nullptr)
 			{
-				ms_instance.m_error = new ErrorMessageType(EnvironmentType::ErrorMessage(file, line, title, format, args...));
+				ms_instance.m_error = new ErrorMessageType(ErrorMessageType::Instance<EnvironmentType, ARGS...>(file, line, flag, format, args...));
 			}
 			SetStatus(ResultFlagsType::error);
 		}
 
 		template<typename DERIVED_TYPE>
 		template<typename OTHER_SOURCE>
-		void Source<DERIVED_TYPE>::BaseOfSource(std::string title, const char* file, const std::size_t& line)
+		void Source<DERIVED_TYPE>::BaseOfSource(FunctionFlagsType flag, const char* file, const std::size_t& line)
 		{
 			if (!decltype(IsBaseOfSourceImpl(std::declval<OTHER_SOURCE>()))::value)
 			{
-				SetError(file, line, title, ConstantType::CstringMessageBaseOfSource, typeid(OTHER_SOURCE).name());
+				SetError(file, line, flag, ConstantType::CstringMessageBaseOfSource, typeid(OTHER_SOURCE).name());
 			}
 		}
 
 		template<typename DERIVED_TYPE>
 		template<typename OTHER_SOURCE>
-		void Source<DERIVED_TYPE>::SourceHasTest(std::string title, const char* file, const std::size_t& line)
+		void Source<DERIVED_TYPE>::SourceHasTest(FunctionFlagsType flag, const char* file, const std::size_t& line)
 		{
 			if (!OTHER_SOURCE::HasTest())
 			{
-				SetError(file, line, title, ConstantType::CstringMessageSourceHasTest, typeid(OTHER_SOURCE).name());
+				SetError(file, line, flag, ConstantType::CstringMessageSourceHasTest, typeid(OTHER_SOURCE).name());
 			}
 		}
 
 		template<typename DERIVED_TYPE>
 		template<typename OTHER_SOURCE>
-		void Source<DERIVED_TYPE>::SourceIsError(std::string title, const char* file, const std::size_t& line)
+		void Source<DERIVED_TYPE>::SourceIsError(FunctionFlagsType flag, const char* file, const std::size_t& line)
 		{
 			if (OTHER_SOURCE::IsError())
 			{
-				SetError(file, line, title, ConstantType::CstringMessageSourceHasError, typeid(OTHER_SOURCE).name());
+				SetError(file, line, flag, ConstantType::CstringMessageSourceHasError, typeid(OTHER_SOURCE).name());
 			}
 		}
 
 		template<typename DERIVED_TYPE>
 		template<typename OTHER_SOURCE>
-		void Source<DERIVED_TYPE>::SourceIsNotCompleted(std::string title, const char* file, const std::size_t& line)
+		void Source<DERIVED_TYPE>::SourceIsNotCompleted(FunctionFlagsType flag, const char* file, const std::size_t& line)
 		{
 			if (OTHER_SOURCE::IsNotCompleted())
 			{
-				SetError(file, line, title, ConstantType::CstringMessageSourceIsNotCompleted, typeid(OTHER_SOURCE).name());
+				SetError(file, line, flag, ConstantType::CstringMessageSourceIsNotCompleted, typeid(OTHER_SOURCE).name());
 			}
 		}
 
@@ -403,7 +403,7 @@ namespace BrainMuscles
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
 				EnvironmentType::TraceFunction().Push<DERIVED_TYPE>(file, line, FunctionFlagsType::assert);
-				SetError(file, line, ConstantType::AssertionFailed(), condition_str);
+				SetError(file, line, FunctionFlagsType::assert, condition_str);
 				EnvironmentType::TraceFunction().Pop();
 			}
 		}
@@ -416,7 +416,7 @@ namespace BrainMuscles
 			if (EnvironmentType::IsPass() && !IsError() && !condition)
 			{
 				EnvironmentType::TraceFunction().Push<DERIVED_TYPE>(file, line, FunctionFlagsType::assert);
-				SetError(file, line, ConstantType::AssertionFailed(), args...);
+				SetError(file, line, FunctionFlagsType::assert, args...);
 				EnvironmentType::TraceFunction().Pop();
 			}
 		}
@@ -431,16 +431,16 @@ namespace BrainMuscles
 			{
 				if (OTHER_SOURCE::IsNotTest())
 				{
-					BaseOfSource<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
-					SourceHasTest<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
+					BaseOfSource<OTHER_SOURCE>(FunctionFlagsType::requirement, file, line);
+					SourceHasTest<OTHER_SOURCE>(FunctionFlagsType::requirement, file, line);
 					if (!IsError())
 					{
 						OTHER_SOURCE::RunTest();
 						OTHER_SOURCE::TriggerError();
 					}
 				}
-				SourceIsError<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
-				SourceIsNotCompleted<OTHER_SOURCE>(ConstantType::RequirementFailed(), file, line);
+				SourceIsError<OTHER_SOURCE>(FunctionFlagsType::requirement, file, line);
+				SourceIsNotCompleted<OTHER_SOURCE>(FunctionFlagsType::requirement, file, line);
 			}
 			EnvironmentType::TraceFunction().Pop();
 		}
@@ -451,7 +451,7 @@ namespace BrainMuscles
 			EnvironmentType::TraceFunction().Push<DERIVED_TYPE>(file, line, FunctionFlagsType::call);
 			if (EnvironmentType::IsPass() && IsNotTest())
 			{
-				SourceHasTest<DERIVED_TYPE>(ConstantType::CallFailed(), file, line);
+				SourceHasTest<DERIVED_TYPE>(FunctionFlagsType::call, file, line);
 				RunTest();
 				TriggerError();
 			}
