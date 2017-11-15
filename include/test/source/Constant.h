@@ -4,6 +4,7 @@
 #ifdef _USING_TEST_SOURCE_
 
 #include <string>
+#include <stack>
 
 #include "test\source\interface\Flags.h"
 #include "test\source\function\Flags.h"
@@ -26,7 +27,9 @@ namespace BrainMuscles
 				static constexpr const char* CstringFrom = "from";
 				static constexpr const char* CstringFailed = "failed";
 				static constexpr const char* CstringColon = ":";
+				static constexpr const char* CstringComma = ",";
 				static constexpr const char* CstringSingleSpace = " ";
+				static constexpr const char* CstringNewline = "\n";
 			private:
 				static constexpr const char* CstringFunctionUnknown = "function unknown";
 				static constexpr const char* CstringFunctionStaticTest = "static function member 'StaticTest()'";
@@ -113,6 +116,9 @@ namespace BrainMuscles
 				static inline bool IsInterfaceFlags(FunctionFlagsType flag);
 			public:
 				static inline std::string StringErrorTitle(FunctionFlagsType flag);
+			public:
+				static inline std::string StringErrorMessage(std::string cause,
+					std::string information, std::stack<std::string> trace);
 			};
 
 			template<typename SOURCE_TYPE>
@@ -454,6 +460,29 @@ BrainMuscles::test::source::Constant::StringErrorTitle(FunctionFlagsType flag)
 	{
 		string_result += CstringColon;
 		string_result += CstringSingleSpace;
+	}
+	return string_result;
+}
+
+inline std::string 
+BrainMuscles::test::source::Constant::StringErrorMessage(std::string cause,
+	std::string information, std::stack<std::string> trace)
+{
+	std::string string_result = cause;
+	if (trace.size() == 0)
+	{
+		string_result += CstringComma;
+		string_result += CstringSingleSpace;
+		string_result += information;
+	}
+	else
+	{
+		while (trace.size() != 0)
+		{
+			string_result += CstringNewline;
+			string_result += trace.top();
+			trace.pop();
+		}
 	}
 	return string_result;
 }
