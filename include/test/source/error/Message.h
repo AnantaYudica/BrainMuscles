@@ -50,6 +50,7 @@ public:
 public:
 	inline Message(const std::string& cause, const std::string& information,
 		const std::stack<std::string>& trace);
+	inline Message(const Message& copy);
 public:
 	template<typename ENVIRONMENT_TYPE>
 	static inline Message Instance(const char* file, const std::size_t& line,
@@ -65,6 +66,14 @@ inline BrainMuscles::test::source
 	Cause(cause),
 	Information(information),
 	Trace(trace)
+{}
+
+
+inline BrainMuscles::test::source
+::error::Message::Message(const Message& copy) :
+	Cause(copy.Cause),
+	Information(copy.Information),
+	Trace(copy.Trace)
 {}
 
 template<typename ENVIRONMENT_TYPE>
