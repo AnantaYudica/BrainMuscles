@@ -450,14 +450,17 @@ BrainMuscles::test::source::Constant::StringErrorTitle(FunctionFlagsType flag)
 		string_result += CstringTitleAssertion;
 		break;
 	case FunctionFlagsType::requirement :
-		string_result += CstringFunctionRequirement;
+		string_result += CstringTitleRequirement;
 		break;
 	case FunctionFlagsType::call :
-		string_result += CstringFunctionCall;
+		string_result += CstringTitleCall;
 		break;
 	}
 	if (!string_result.empty())
 	{
+		string_result += CstringSingleSpace;
+		string_result += CstringFailed;
+		string_result += CstringSingleSpace;
 		string_result += CstringColon;
 		string_result += CstringSingleSpace;
 	}
