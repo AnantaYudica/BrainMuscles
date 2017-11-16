@@ -24,6 +24,7 @@ private:
 	Flags m_flag;
 public:
 	inline Status();
+	inline Status(Flags flag);
 public:
 	inline bool IsPass() const;
 	inline bool IsError() const;
@@ -41,6 +42,10 @@ public:
 
 inline BrainMuscles::test::source::Status::Status() :
 	m_flag(Flags::not_test)
+{}
+
+inline BrainMuscles::test::source::Status::Status(Flags flag) :
+	m_flag(flag)
 {}
 
 inline bool BrainMuscles::test::source::Status::IsPass() const
@@ -71,7 +76,7 @@ BrainMuscles::test::source::Status::Flag() const
 
 inline bool BrainMuscles::test::source::Status::SetPass()
 {
-	if (IsNotCompleted())
+	if (IsNotTest() || IsNotCompleted())
 	{
 		m_flag = Flags::pass;
 		return true;
@@ -81,7 +86,7 @@ inline bool BrainMuscles::test::source::Status::SetPass()
 
 inline bool BrainMuscles::test::source::Status::SetError()
 {
-	if (IsNotTest() || IsNotCompleted())
+	if (IsNotTest() || IsNotCompleted() || IsPass())
 	{
 		m_flag = Flags::error;
 		return true;
