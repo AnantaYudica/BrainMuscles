@@ -11,6 +11,7 @@
 #include "test\source\Stage.h"
 #include "test\source\Environment.h"
 #include "test\source\Constant.h"
+#include "test\source\Status.h"
 #include "test\source\error\Message.h"
 #include "test\source\status\Flags.h"
 #include "test\source\interface\Flags.h"
@@ -26,6 +27,7 @@ namespace BrainMuscles
 		private:
 			typedef BrainMuscles::test::source::Environment		EnvironmentType;
 		public:
+			typedef BrainMuscles::test::source::Status StatusType;
 			typedef BrainMuscles::test::source::status::Flags	StatusFlagsType;
 			typedef BrainMuscles::test::source::Stage			StageType;
 			typedef BrainMuscles::test::source::error::Message ErrorMessageType;
@@ -42,7 +44,7 @@ namespace BrainMuscles
 			static std::true_type IsBaseOfSourceImpl(const Source<TYPE>&);
 			static std::false_type IsBaseOfSourceImpl(...);
 		private:
-			StatusFlagsType m_status;
+			StatusType m_status;
 			ErrorMessageType* m_error;
 			StageType m_stage;
 		public:
@@ -74,7 +76,6 @@ namespace BrainMuscles
 			static StatusFlagsType RunStaticTest();
 			static void RunPreTest();
 			static void RunPostTest();
-			static const StatusFlagsType& SetStatus(const StatusFlagsType& status);
 			static void SetError(const char* file, const std::size_t& line, FunctionFlagsType flag, std::string message);
 			template<typename... ARGS>
 			static void SetError(const char* file, const std::size_t& line, FunctionFlagsType flag, const char* format, ARGS... args);
@@ -111,7 +112,7 @@ namespace BrainMuscles
 			static bool IsNotCompleted();
 			static bool IsPassStaticTest();
 		public:
-			static const StatusFlagsType& Status();
+			static StatusFlagsType Status();
 			static StatusFlagsType RunTest();
 			static const DERIVED_TYPE& GetInstance();
 			static void Test();
@@ -131,7 +132,6 @@ namespace BrainMuscles
 
 		template<typename DERIVED_TYPE>
 		Source<DERIVED_TYPE>::Source() :
-			m_status(StatusFlagsType::not_test),
 			m_error(nullptr)
 		{}
 
@@ -215,7 +215,7 @@ namespace BrainMuscles
 		{
 			if (CanBeginStage())
 			{
-				SetStatus(StatusFlagsType::not_completed);
+				ms_instance.m_status.SetNotCompleted();
 			}
 		}
 
@@ -238,7 +238,7 @@ namespace BrainMuscles
 				EnvironmentType::TraceInterface().Push<DERIVED_TYPE>(InterfaceFlagsType::test);
 				DERIVED_TYPE::Test();
 				EnvironmentType::TraceInterface().Pop();
-				SetStatus(StatusFlagsType::pass);
+				ms_instance.m_status.SetPass();
 			}
 		}
 
@@ -270,7 +270,7 @@ namespace BrainMuscles
 				DERIVED_TYPE::StaticTest();
 				TriggerError();
 				EnvironmentType::TraceInterface().Pop();
-				SetStatus(EnvironmentType::Result());
+				ms_instance.m_status.Set(EnvironmentType::Result());
 				return EnvironmentType::Result();
 			}
 			return StatusFlagsType::not_test;
@@ -295,27 +295,13 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		typename const Source<DERIVED_TYPE>::StatusFlagsType& Source<DERIVED_TYPE>::SetStatus(const StatusFlagsType& status)
-		{
-			if (IsNotTest() && (status == StatusFlagsType::not_completed || status == StatusFlagsType::error))
-			{
-				ms_instance.m_status = status;
-			}
-			else if (IsNotCompleted() && (status == StatusFlagsType::error || status == StatusFlagsType::pass))
-			{
-				ms_instance.m_status = status;
-			}
-			return ms_instance.m_status;
-		}
-
-		template<typename DERIVED_TYPE>
 		void Source<DERIVED_TYPE>::SetError(const char* file, const std::size_t& line, FunctionFlagsType flag, std::string message)
 		{
 			if (!IsPass() && ms_instance.m_error == nullptr)
 			{
 				ms_instance.m_error = new ErrorMessageType(ErrorMessageType::Instance<EnvironmentType>(file, line, flag, message));
 			}
-			SetStatus(StatusFlagsType::error);
+			ms_instance.m_status.SetError();
 		}
 
 		template<typename DERIVED_TYPE>
@@ -326,7 +312,7 @@ namespace BrainMuscles
 			{
 				ms_instance.m_error = new ErrorMessageType(ErrorMessageType::Instance<EnvironmentType, ARGS...>(file, line, flag, format, args...));
 			}
-			SetStatus(StatusFlagsType::error);
+			ms_instance.m_status.SetError();
 		}
 
 		template<typename DERIVED_TYPE>
@@ -513,9 +499,9 @@ namespace BrainMuscles
 		}
 
 		template<typename DERIVED_TYPE>
-		const typename Source<DERIVED_TYPE>::StatusFlagsType& Source<DERIVED_TYPE>::Status()
+		typename Source<DERIVED_TYPE>::StatusFlagsType Source<DERIVED_TYPE>::Status()
 		{
-			return ms_instance.m_status;
+			return ms_instance.m_status.Flag();
 		}
 
 		template<typename DERIVED_TYPE>
