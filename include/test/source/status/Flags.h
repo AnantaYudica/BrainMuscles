@@ -1,5 +1,5 @@
-#ifndef TEST_SOURCE_RESULT_FLAGS_H_
-#define TEST_SOURCE_RESULT_FLAGS_H_
+#ifndef TEST_SOURCE_STATUS_FLAGS_H_
+#define TEST_SOURCE_STATUS_FLAGS_H_
 
 #ifdef _USING_TEST_SOURCE_
 
@@ -9,7 +9,7 @@ namespace BrainMuscles
 	{
 		namespace source
 		{
-			namespace result
+			namespace status
 			{
 				typedef unsigned char FlagsType;
 				enum Flags;
@@ -18,8 +18,8 @@ namespace BrainMuscles
 	}
 }
 
-enum BrainMuscles::test::source::result::Flags :
-	BrainMuscles::test::source::result::FlagsType
+enum BrainMuscles::test::source::status::Flags :
+	BrainMuscles::test::source::status::FlagsType
 {
 	pass,
 	error,
@@ -29,4 +29,4 @@ enum BrainMuscles::test::source::result::Flags :
 
 #endif //!_USING_TEST_SOURCE_
 
-#endif //!TEST_SOURCE_RESULT_FLAGS_H_
+#endif //!TEST_SOURCE_STATUS_FLAGS_H_
