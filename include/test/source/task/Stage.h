@@ -3,7 +3,7 @@
 
 #ifdef _USING_TEST_SOURCE_
 
-#include "test\source\result\Flags.h"
+#include "test\source\status\Flags.h"
 
 namespace BrainMuscles
 {
@@ -22,48 +22,48 @@ namespace BrainMuscles
 class BrainMuscles::test::source::task::Stage
 {
 public:
-	typedef BrainMuscles::test::source::result::Flags ResultFlagsType;
+	typedef BrainMuscles::test::source::status::Flags StatusFlagsType;
 private:
-	ResultFlagsType m_result;
+	StatusFlagsType m_result;
 public:
 	inline Stage();
 public:
-	inline bool Update(ResultFlagsType result);
-	inline operator BrainMuscles::test::source::result::Flags() const;
+	inline bool Update(StatusFlagsType result);
+	inline operator BrainMuscles::test::source::status::Flags() const;
 };
 
 inline BrainMuscles::test::source::task::Stage::Stage() :
-	m_result(ResultFlagsType::not_test)
+	m_result(StatusFlagsType::not_test)
 {}
 
-inline bool BrainMuscles::test::source::task::Stage::Update(ResultFlagsType result)
+inline bool BrainMuscles::test::source::task::Stage::Update(StatusFlagsType result)
 {
 	switch(result)
 	{
-	case ResultFlagsType::not_test:
+	case StatusFlagsType::not_test:
 		break;
-	case ResultFlagsType::not_completed:
+	case StatusFlagsType::not_completed:
 		switch(m_result)
 		{
-		case ResultFlagsType::not_test:
+		case StatusFlagsType::not_test:
 			break;
 		default:
 			return false;
 		}
 		break;
-	case ResultFlagsType::error:
+	case StatusFlagsType::error:
 		switch (m_result)
 		{
-		case ResultFlagsType::not_test:
-		case ResultFlagsType::not_completed:
+		case StatusFlagsType::not_test:
+		case StatusFlagsType::not_completed:
 			break;
 		default:
 			return false;
 		}
-	case ResultFlagsType::pass:
+	case StatusFlagsType::pass:
 		switch (m_result)
 		{
-		case ResultFlagsType::not_completed:
+		case StatusFlagsType::not_completed:
 			break;
 		default:
 			return false;
@@ -74,7 +74,7 @@ inline bool BrainMuscles::test::source::task::Stage::Update(ResultFlagsType resu
 }
 
 inline BrainMuscles::test::source::task::Stage::operator 
-	BrainMuscles::test::source::result::Flags() const
+	BrainMuscles::test::source::status::Flags() const
 {
 	return m_result;
 }
