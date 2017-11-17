@@ -501,7 +501,7 @@ namespace BrainMuscles
 		template<typename DERIVED_TYPE>
 		typename Source<DERIVED_TYPE>::StatusFlagsType Source<DERIVED_TYPE>::Status()
 		{
-			return ms_instance.m_status.Flag();
+			return ms_instance.m_status;
 		}
 
 		template<typename DERIVED_TYPE>
