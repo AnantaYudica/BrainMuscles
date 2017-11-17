@@ -13,6 +13,7 @@
 #include "test\source\Constant.h"
 #include "test\source\Status.h"
 #include "test\source\error\Message.h"
+#include "test\source\error\Numbers.h"
 #include "test\source\status\Flags.h"
 #include "test\source\interface\Flags.h"
 #include "test\source\function\Flags.h"
@@ -31,6 +32,7 @@ namespace BrainMuscles
 			typedef BrainMuscles::test::source::status::Flags	StatusFlagsType;
 			typedef BrainMuscles::test::source::Stage			StageType;
 			typedef BrainMuscles::test::source::error::Message ErrorMessageType;
+			typedef BrainMuscles::test::source::error::Numbers ErrorNumbersType;
 			typedef BrainMuscles::test::source::Constant		ConstantType;
 		public:
 			typedef BrainMuscles::test::source::interface::Flags InterfaceFlagsType;
@@ -321,7 +323,7 @@ namespace BrainMuscles
 		{
 			if (!decltype(IsBaseOfSourceImpl(std::declval<OTHER_SOURCE>()))::value)
 			{
-				SetError(file, line, flag, ConstantType::CstringMessageBaseOfSource, typeid(OTHER_SOURCE).name());
+				SetError(file, line, flag, ConstantType::FormatCause(ErrorNumbersType::not_base_of_source), typeid(OTHER_SOURCE).name());
 			}
 		}
 
@@ -331,7 +333,7 @@ namespace BrainMuscles
 		{
 			if (!OTHER_SOURCE::HasTest())
 			{
-				SetError(file, line, flag, ConstantType::CstringMessageSourceHasTest, typeid(OTHER_SOURCE).name());
+				SetError(file, line, flag, ConstantType::FormatCause(ErrorNumbersType::has_not_impl_test), typeid(OTHER_SOURCE).name());
 			}
 		}
 
@@ -341,7 +343,7 @@ namespace BrainMuscles
 		{
 			if (OTHER_SOURCE::IsError())
 			{
-				SetError(file, line, flag, ConstantType::CstringMessageSourceHasError, typeid(OTHER_SOURCE).name());
+				SetError(file, line, flag, ConstantType::FormatCause(ErrorNumbersType::has_error), typeid(OTHER_SOURCE).name());
 			}
 		}
 
@@ -351,7 +353,7 @@ namespace BrainMuscles
 		{
 			if (OTHER_SOURCE::IsNotCompleted())
 			{
-				SetError(file, line, flag, ConstantType::CstringMessageSourceIsNotCompleted, typeid(OTHER_SOURCE).name());
+				SetError(file, line, flag, ConstantType::FormatCause(ErrorNumbersType::has_not_completed), typeid(OTHER_SOURCE).name());
 			}
 		}
 
