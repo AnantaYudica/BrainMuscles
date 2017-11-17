@@ -8,6 +8,7 @@
 
 #include "test\source\interface\Flags.h"
 #include "test\source\function\Flags.h"
+#include "test\source\error\Numbers.h"
 
 namespace BrainMuscles
 {
@@ -21,6 +22,7 @@ namespace BrainMuscles
 			public:
 				typedef BrainMuscles::test::source::interface::Flags InterfaceFlagsType;
 				typedef BrainMuscles::test::source::function::Flags FunctionFlagsType;
+				typedef BrainMuscles::test::source::error::Numbers ErrorNumbersType;
 			private:
 				static constexpr const char* CstringIn = "in";
 				static constexpr const char* CstringWhenCalled = "when called";
@@ -45,11 +47,12 @@ namespace BrainMuscles
 				static constexpr const char* CstringTitleAssertion = "Assertion";
 				static constexpr const char* CstringTitleRequirement = "Requirement";
 				static constexpr const char* CstringTitleCall = "Call";
-			public:
-				static constexpr const char* CstringMessageBaseOfSource = "%s is not base class with class BrainMuscles::test::Source";
-				static constexpr const char* CstringMessageSourceHasTest = "%s is not has static function member 'Test'";
-				static constexpr const char* CstringMessageSourceHasError = "%s has error";
-				static constexpr const char* CstringMessageSourceIsNotCompleted = "test in %s is not completed";
+			private:
+				static constexpr const char* CstringFormatCauseEmpty = "";
+				static constexpr const char* CstringFormatCauseBaseOfSource = "%s is not base class with class BrainMuscles::test::Source";
+				static constexpr const char* CstringFormatCauseSourceHasNotImplTest = "%s is not has static function member 'Test'";
+				static constexpr const char* CstringFormatCauseSourceHasError = "%s has error";
+				static constexpr const char* CstringFormatCauseSourceIsNotCompleted = "test in %s is not completed";
 			private:
 				template<typename SOURCE_TYPE>
 				static inline std::string Caller(const char* function_str);
@@ -119,6 +122,8 @@ namespace BrainMuscles
 			public:
 				static inline std::string StringErrorMessage(std::string cause,
 					std::string information, std::stack<std::string> trace);
+			public:
+				static const char * FormatCause(ErrorNumbersType error_number);
 			};
 
 			template<typename SOURCE_TYPE>
@@ -488,6 +493,25 @@ BrainMuscles::test::source::Constant::StringErrorMessage(std::string cause,
 		}
 	}
 	return string_result;
+}
+
+
+inline const char * BrainMuscles::test::source
+::Constant::FormatCause(ErrorNumbersType error_number)
+{
+	switch (error_number)
+	{
+	case ErrorNumbersType::has_error :
+		return CstringFormatCauseSourceHasError;
+	case ErrorNumbersType::has_not_completed :
+		return CstringFormatCauseSourceIsNotCompleted;
+	case ErrorNumbersType::has_not_impl_test :
+		return CstringFormatCauseSourceHasNotImplTest;
+	case ErrorNumbersType::not_base_of_source :
+		return CstringFormatCauseBaseOfSource;
+	default:
+		return CstringFormatCauseEmpty;
+	}
 }
 
 #endif //!_USING_TEST_SOURCE_
