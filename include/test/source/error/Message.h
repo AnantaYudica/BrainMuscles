@@ -62,7 +62,7 @@ public:
 		FunctionFlagsType flag, const char* format, ARGS... args);
 	template<typename ENVIRONMENT_TYPE, typename... ARGS>
 	static inline Message Instance(const char* file, const std::size_t& line,
-		ErrorNumbersType error_number, ARGS... args);
+		FunctionFlagsType flag, ErrorNumbersType error_number, ARGS... args);
 };
 
 inline BrainMuscles::test::source
@@ -112,10 +112,11 @@ BrainMuscles::test::source::error::Message::Instance(const char* file,
 template<typename ENVIRONMENT_TYPE, typename... ARGS>
 inline typename BrainMuscles::test::source::error::Message
 BrainMuscles::test::source::error::Message::Instance(const char* file,
-	const std::size_t& line, ErrorNumbersType error_number, ARGS... args)
+	const std::size_t& line, FunctionFlagsType flag, 
+	ErrorNumbersType error_number, ARGS... args)
 {
-	return  Instance<ENVIRONMENT_TYPE, ARGS...>(file, line,
-		ConstantType::FormatCause(error_number), args...)
+	return Instance<ENVIRONMENT_TYPE, ARGS...>(file, line, flag,
+		ConstantType::FormatCause(error_number), args...);
 }
 
 namespace std
