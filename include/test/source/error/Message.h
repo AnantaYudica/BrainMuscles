@@ -17,6 +17,7 @@
 
 #include "test\source\Constant.h"
 #include "test\source\function\Flags.h"
+#include "test\source\error\Numbers.h"
 
 namespace BrainMuscles
 {
@@ -38,6 +39,7 @@ private:
 	typedef BrainMuscles::test::source::Constant ConstantType;
 public:
 	typedef BrainMuscles::test::source::function::Flags FunctionFlagsType;
+	typedef BrainMuscles::test::source::error::Numbers ErrorNumbersType;
 private:
 	static constexpr std::size_t BufferAllocation = (std::is_unsigned<
 		decltype(_USING_TEST_SOURCE_ERROR_MESSAGE_BUFFER_ALLOCATION_)>::value ?
@@ -58,6 +60,9 @@ public:
 	template<typename ENVIRONMENT_TYPE, typename... ARGS>
 	static inline Message Instance(const char* file, const std::size_t& line,
 		FunctionFlagsType flag, const char* format, ARGS... args);
+	template<typename ENVIRONMENT_TYPE, typename... ARGS>
+	static inline Message Instance(const char* file, const std::size_t& line,
+		ErrorNumbersType error_number, ARGS... args);
 };
 
 inline BrainMuscles::test::source
@@ -67,7 +72,6 @@ inline BrainMuscles::test::source
 	Information(information),
 	Trace(trace)
 {}
-
 
 inline BrainMuscles::test::source
 ::error::Message::Message(const Message& copy) :
@@ -103,6 +107,15 @@ BrainMuscles::test::source::error::Message::Instance(const char* file,
 	ConstantType::AppendFileLine(string_information, file, line);
 	return Message(string_cause, string_information, 
 		ENVIRONMENT_TYPE::TraceFunction().Get());
+}
+
+template<typename ENVIRONMENT_TYPE, typename... ARGS>
+inline typename BrainMuscles::test::source::error::Message
+BrainMuscles::test::source::error::Message::Instance(const char* file,
+	const std::size_t& line, ErrorNumbersType error_number, ARGS... args)
+{
+	return  Instance<ENVIRONMENT_TYPE, ARGS...>(file, line,
+		ConstantType::FormatCause(error_number), args...)
 }
 
 namespace std
