@@ -8,6 +8,7 @@
 #include <cstdio>
 
 #include "test\source\Info.h"
+#include "test\source\Status.h"
 #include "test\source\error\Message.h"
 #include "test\source\info\Delegate.h"
 #include "test\source\status\Flags.h"
@@ -23,6 +24,7 @@ namespace BrainMuscles
 			class Environment final
 			{
 			public:
+				typedef BrainMuscles::test::source::Status StatusType;
 				typedef BrainMuscles::test::source::status::Flags	StatusFlagsType;
 				typedef BrainMuscles::test::source::error::Message	ErrorMessageType;
 				typedef BrainMuscles::test::source::Info	InfoType;
@@ -35,7 +37,7 @@ namespace BrainMuscles
 			public:
 				typedef BrainMuscles::test::source::info::Delegate<Environment> DelegateType;
 			private:
-				StatusFlagsType m_result;
+				StatusType m_status;
 				std::FILE* m_file;
 				InfoType m_info;
 				TraceInterfaceType m_traceInterface;
@@ -48,7 +50,7 @@ namespace BrainMuscles
 				static inline bool IsPass();
 			public:
 				static inline const Environment& GetInstance();
-				static inline const StatusFlagsType& Result();
+				static inline StatusFlagsType Result();
 				static inline void Error(const ErrorMessageType& error_message);
 			public:
 				static inline InfoType& Info();
@@ -64,7 +66,7 @@ namespace BrainMuscles
 			};
 
 			inline Environment::Environment() :
-				m_result(StatusFlagsType::pass),
+				m_status(StatusFlagsType::pass),
 				m_file(stderr),
 				m_info(),
 				m_traceInterface(),
@@ -87,15 +89,15 @@ namespace BrainMuscles
 				return Instance();
 			}
 
-			inline const typename Environment::StatusFlagsType& Environment::Result()
+			inline typename Environment::StatusFlagsType Environment::Result()
 			{
-				return GetInstance().m_result;
+				return GetInstance().m_status;
 			}
 
 			inline void Environment::Error(const ErrorMessageType& error)
 			{
 				fprintf(Instance().m_file, "%s\n", std::to_string(error).c_str());
-				Instance().m_result = StatusFlagsType::error;
+				Instance().m_status = StatusFlagsType::error;
 			}
 
 			inline typename Environment::InfoType& Environment::Info()
