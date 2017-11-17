@@ -31,13 +31,15 @@ public:
 	inline bool IsNotTest() const;
 	inline bool IsNotCompleted() const;
 public:
-	inline Flags Flag() const;
-public:
 	inline bool SetPass();
 	inline bool SetError();
 	inline bool SetNotTest();
 	inline bool SetNotCompleted();
 	inline bool Set(Flags flag);
+public:
+	inline operator BrainMuscles::test::source::status::Flags() const;
+	inline Status& operator=(const Status& status);
+	inline Status& operator=(const Flags& flag);
 };
 
 inline BrainMuscles::test::source::Status::Status() :
@@ -66,12 +68,6 @@ inline bool BrainMuscles::test::source::Status::IsNotTest() const
 inline bool BrainMuscles::test::source::Status::IsNotCompleted() const
 {
 	return m_flag == Flags::not_completed;
-}
-
-inline typename BrainMuscles::test::source::Status::Flags 
-BrainMuscles::test::source::Status::Flag() const
-{
-	return m_flag;
 }
 
 inline bool BrainMuscles::test::source::Status::SetPass()
@@ -115,6 +111,26 @@ inline bool BrainMuscles::test::source::Status::Set(Flags flag)
 		: flag == Flags::not_completed ? SetNotCompleted()
 		: flag == Flags::not_test ? SetNotTest()
 		: flag == Flags::pass ? SetPass() : false;
+}
+
+inline BrainMuscles::test::source::Status::operator 
+BrainMuscles::test::source::status::Flags() const
+{
+	return m_flag;
+}
+
+inline BrainMuscles::test::source::Status& 
+BrainMuscles::test::source::Status::operator=(const Status& status)
+{
+	Set(status);
+	return *this;
+}
+
+inline BrainMuscles::test::source::Status& 
+BrainMuscles::test::source::Status::operator=(const Flags& flag)
+{
+	Set(flag);
+	return *this;
 }
 
 #endif //!_USING_TEST_SOURCE_
