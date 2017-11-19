@@ -11,7 +11,7 @@ set_property(TARGET Test-File PROPERTY FOLDER experiment/test)
 target_link_libraries (Test-File BrainMuscles)
 
 #PROJECT_TEST_SIMPLE_FUNCTIONAL
-add_executable (Test-Simple-Functional ${PROJECT_SOURCE_DIR}/../experiment/test/test-simple-Functional.cpp)
+add_executable (Test-Simple-Functional ${PROJECT_SOURCE_DIR}/../experiment/test/test-simple-functional.cpp)
 set_property(TARGET Test-Simple-Functional PROPERTY FOLDER experiment/test/simple)
 target_link_libraries (Test-Simple-Functional BrainMuscles)
 
