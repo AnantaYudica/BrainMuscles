@@ -5,3 +5,4 @@ jobs:
      steps:
        - checkout
        - run: echo "hello world"
+       - run: cmake
