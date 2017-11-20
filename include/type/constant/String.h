@@ -295,7 +295,7 @@ namespace BrainMuscles
 			template<size_t N>
 			constexpr size_t String::Find(const char(&str)[N], FunctionCompareType compare, const size_t start) const
 			{
-				return Find(str, compare, start, 0)
+				return Find(str, compare, start, 0);
 			}
 
 			template<size_t N>
