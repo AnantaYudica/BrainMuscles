@@ -4,5 +4,6 @@ jobs:
      machine: true
      steps:
        - checkout
-       - run: cmake -G "Unix Makefiles" ~/project/cmake -DPROJECT_SOURCE_DIR:PATH=~/project/cmake
+       - run: mkdir -p Build
+       - run: cmake -G "Unix Makefiles" ~/project/cmake -DPROJECT_SOURCE_DIR:PATH=~/project/cmake -DPROJECT_BINARY_DIR:PATH=~/project/Build
        - run: make
