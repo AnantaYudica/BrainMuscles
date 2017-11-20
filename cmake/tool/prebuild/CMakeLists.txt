@@ -1,5 +1,8 @@
 #TOOL
 set (TOOL_DIR ${PROJECT_SOURCE_DIR}/../src/tool)
+
+include_directories (${TOOL_DIR})
+
 set (TOOL_HEADER_FILES
 	${TOOL_DIR}/Environment.h
 	${TOOL_DIR}/PreBuild.h)
