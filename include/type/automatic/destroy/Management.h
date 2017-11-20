@@ -15,6 +15,7 @@ namespace BrainMuscles
 	}
 }
 
+#include <algorithm>
 #include "type/automatic/destroy/Base.h"
 #include <vector>
 
