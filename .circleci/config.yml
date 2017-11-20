@@ -9,3 +9,4 @@ jobs:
        - run: cd Build
        - run: ls /home/circleci/project/cmake/../experiment/test
        - run: cmake ~/project/cmake
+       - run: make
