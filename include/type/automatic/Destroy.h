@@ -1,20 +1,20 @@
 #ifndef TYPE_TRAIT_AUTOMATIC_DESTROY_H_
 #define TYPE_TRAIT_AUTOMATIC_DESTROY_H_
 
+#include "type/automatic/destroy/Base.h"
+
 namespace BrainMuscles
 {
 	namespace type
 	{
 		namespace automatic
 		{
-			template<typename BASE = destroy::Base>
+			template<typename BASE = BrainMuscles::type::automatic::destroy::Base>
 			class Destroy;
 		}
 	}
 }
 
-
-#include "type/automatic/destroy/Base.h"
 #include "type/automatic/destroy/Function.h"
 #include "type/automatic/destroy/Management.h"
 #include <vector>
