@@ -143,7 +143,7 @@ namespace BrainMuscles
 
 				template<typename... ARGS>
 				template<typename... FUNCTION_PRE_ARGS>
-				static void Function<void, Types<>, ARGS...>::Caller(TypeParameter function, Types<> types, FUNCTION_PRE_ARGS... function_pre_args)
+				void Function<void, Types<>, ARGS...>::Caller(TypeParameter function, Types<> types, FUNCTION_PRE_ARGS... function_pre_args)
 				{
 					Filler<void, TypeParameter, void, ARGS...>::Fill(function, types, function_pre_args...);
 				}
