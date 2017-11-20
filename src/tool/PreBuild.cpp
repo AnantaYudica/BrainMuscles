@@ -78,7 +78,7 @@ std::string tool::PreBuild::ManualInput()
 #if ((defined(_WIN32) || defined(_WIN64)) && !defined(_CRT_SECURE_NO_WARNINGS))
 	scanf_s("%s", pathname, 256);
 #else
-	std::scanf_s("%s", filename);
+	std::scanf("%s", filename);
 #endif
 	return pathname;
 }
