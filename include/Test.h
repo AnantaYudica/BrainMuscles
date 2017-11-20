@@ -21,7 +21,6 @@ namespace BrainMuscles
 
 namespace BrainMuscles
 {
-
 	class Test :
 		public type::Singleton<Test, Test, Test&>
 	{
@@ -33,8 +32,22 @@ namespace BrainMuscles
 			SELECT
 		};
 		typedef Test& (*FunctionOutputType)(Test& tout, const test::test::info::Base & information, const test::test::message::Base & message);
+	public:
+#if defined(_WIN32) || defined(_WIN64)
+		static constexpr char DirectorySeparator = '\\';
+#elif __GNUC__
+		static constexpr char DirectorySeparator = '/';
+#else
+#error DirectorySeparator is undefined 
+#endif
 	private:
+#if defined(_WIN32) || defined(_WIN64)
 		static constexpr char RelativePath[] = "\\include\\test.h";
+#elif __GNUC__
+		static constexpr char RelativePath[] = "/include/test.h";
+#else
+#error RelativePath is undefined 
+#endif
 		static constexpr char FilePath[] = __FILE__;
 		static const char * ms_listFile[];
 		static const size_t SizeListFile();
@@ -66,7 +79,6 @@ namespace BrainMuscles
 		Test& operator<< (const unsigned int& value);
 		Test& operator<< (const long& value);
 		Test& operator<< (const unsigned long& value);
-		Test& operator<< (const std::size_t& value);
 	};
 
 
@@ -196,20 +208,13 @@ namespace BrainMuscles
 		fprintf(GetInstance().m_outFile, "%lu", value);
 		return *this;
 	}
-
-	Test& 
-		Test::operator<< (const std::size_t& value)
-	{
-		fprintf(GetInstance().m_outFile, "%zu", value);
-		return *this;
-	}
 }
 
 #define Debug(MSG, ...) \
-{\
-	typedef BrainMuscles::test::test::Info<BrainMuscles::type::constant::String::CSize(__FILE__), BrainMuscles::Test::BeginRelative, BrainMuscles::type::constant::String::ReverseFindChar(__FILE__, '\\') + 1, BrainMuscles::type::constant::String::ReverseFindChar(__FILE__, '.')> InfoType;\
+do{\
+	typedef BrainMuscles::test::test::Info<BrainMuscles::type::constant::String::CSize(__FILE__), BrainMuscles::Test::BeginRelative, BrainMuscles::type::constant::String::ReverseFindChar(__FILE__, BrainMuscles::Test::DirectorySeparator) + 1, BrainMuscles::type::constant::String::ReverseFindChar(__FILE__, '.')> InfoType;\
 	BrainMuscles::Test::Debug(InfoType(__FILE__, __LINE__), MSG, ##__VA_ARGS__);\
-}
+}while(false)
 
 //
 
