@@ -13,8 +13,8 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\trait\Types.h"
-#include "test\test\message\Base.h"
+#include "type/trait/Types.h"
+#include "test/test/message/Base.h"
 
 namespace BrainMuscles
 {

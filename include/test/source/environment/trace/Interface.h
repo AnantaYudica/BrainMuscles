@@ -3,9 +3,9 @@
 
 #ifdef _USING_TEST_SOURCE_
 
-#include "test\source\Constant.h"
-#include "test\source\environment\Trace.h"
-#include "test\source\interface\Flags.h"
+#include "test/source/Constant.h"
+#include "test/source/environment/Trace.h"
+#include "test/source/interface/Flags.h"
 
 namespace BrainMuscles
 {

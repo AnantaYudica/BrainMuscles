@@ -20,8 +20,8 @@ namespace BrainMuscles
 }
 
 #include <initializer_list>
-#include "type\container\element\IsType.h"
-#include "type\container\definition\IsType.h"
+#include "type/container/element/IsType.h"
+#include "type/container/definition/IsType.h"
 
 namespace BrainMuscles
 {

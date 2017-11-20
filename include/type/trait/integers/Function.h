@@ -17,7 +17,7 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\trait\Integers.h"
+#include "type/trait/Integers.h"
 
 namespace BrainMuscles
 {

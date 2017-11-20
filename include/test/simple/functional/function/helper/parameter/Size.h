@@ -1,11 +1,11 @@
 #ifndef TEST_SIMPLE_FUNCTIONAL_FUNCTION_HELPER_PARAMETER_SIZE_H_
 #define TEST_SIMPLE_FUNCTIONAL_FUNCTION_HELPER_PARAMETER_SIZE_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\functional\Function.h"
+#include "test/simple/functional/Function.h"
 
 namespace BrainMuscles
 {

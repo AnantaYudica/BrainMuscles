@@ -1,7 +1,7 @@
 #ifndef TYPE_ITERATOR_TAG_RANDOMACCESS_H_
 #define TYPE_ITERATOR_TAG_RANDOMACCESS_H_
 
-#include "type\iterator\handle\Info.h"
+#include "type/iterator/handle/Info.h"
 
 namespace BrainMuscles
 {
@@ -18,16 +18,16 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\iterator\Tag.h"
-#include "type\iterator\Base.h"
-#include "type\iterator\member\M_Arithmetic.h"
-#include "type\iterator\member\M_Assignment.h"
-#include "type\iterator\member\M_Decrement.h"
-#include "type\iterator\member\M_Equality.h"
-#include "type\iterator\member\M_Increment.h"
-#include "type\iterator\member\M_Inequality.h"
-#include "type\iterator\member\M_Offset.h"
-#include "type\iterator\member\M_LeftValue.h"
+#include "type/iterator/Tag.h"
+#include "type/iterator/Base.h"
+#include "type/iterator/member/M_Arithmetic.h"
+#include "type/iterator/member/M_Assignment.h"
+#include "type/iterator/member/M_Decrement.h"
+#include "type/iterator/member/M_Equality.h"
+#include "type/iterator/member/M_Increment.h"
+#include "type/iterator/member/M_Inequality.h"
+#include "type/iterator/member/M_Offset.h"
+#include "type/iterator/member/M_LeftValue.h"
 #include <iterator>
 
 namespace BrainMuscles

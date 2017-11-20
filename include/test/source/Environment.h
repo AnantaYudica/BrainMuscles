@@ -7,13 +7,13 @@
 #include <stack>
 #include <cstdio>
 
-#include "test\source\Info.h"
-#include "test\source\Status.h"
-#include "test\source\error\Message.h"
-#include "test\source\info\Delegate.h"
-#include "test\source\status\Flags.h"
-#include "test\source\environment\trace\Interface.h"
-#include "test\source\environment\trace\Function.h"
+#include "test/source/Info.h"
+#include "test/source/Status.h"
+#include "test/source/error/Message.h"
+#include "test/source/info/Delegate.h"
+#include "test/source/status/Flags.h"
+#include "test/source/environment/trace/Interface.h"
+#include "test/source/environment/trace/Function.h"
 
 namespace BrainMuscles
 {

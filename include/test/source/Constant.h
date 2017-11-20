@@ -6,9 +6,9 @@
 #include <string>
 #include <stack>
 
-#include "test\source\interface\Flags.h"
-#include "test\source\function\Flags.h"
-#include "test\source\error\Numbers.h"
+#include "test/source/interface/Flags.h"
+#include "test/source/function/Flags.h"
+#include "test/source/error/Numbers.h"
 
 namespace BrainMuscles
 {

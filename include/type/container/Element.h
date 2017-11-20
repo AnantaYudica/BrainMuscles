@@ -21,8 +21,8 @@ namespace BrainMuscles
 }
 
 #include <type_traits>
-#include "type\trait\conditional\Or.h"
-#include "type\container\element\Base.h"
+#include "type/trait/conditional/Or.h"
+#include "type/container/element/Base.h"
 
 namespace BrainMuscles
 {

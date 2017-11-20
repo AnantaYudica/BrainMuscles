@@ -3,14 +3,14 @@
 
 #include <type_traits>
 
-#include "type\iterator\Tag.h"
+#include "type/iterator/Tag.h"
 
-#include "type\container\element\IsType.h"
+#include "type/container/element/IsType.h"
 
-#include "type\container\vector\iterator\Handle.h"
+#include "type/container/vector/iterator/Handle.h"
 
-#include "type\container\vector\iterator\Input.h"
-#include "type\container\vector\iterator\RandomAccess.h"
+#include "type/container/vector/iterator/Input.h"
+#include "type/container/vector/iterator/RandomAccess.h"
 
 namespace BrainMuscles
 {

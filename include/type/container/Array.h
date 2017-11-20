@@ -4,29 +4,29 @@
 #include <cstddef>
 #include <array>
 
-#include "type\container\array\Definition.h"
+#include "type/container/array/Definition.h"
 
-#include "type\container\member\capacity\M_Empty.h"
-#include "type\container\member\capacity\M_MaximumSize.h"
-#include "type\container\member\capacity\M_Size.h"
+#include "type/container/member/capacity/M_Empty.h"
+#include "type/container/member/capacity/M_MaximumSize.h"
+#include "type/container/member/capacity/M_Size.h"
 
-#include "type\container\member\observer\M_Data.h"
+#include "type/container/member/observer/M_Data.h"
 
-#include "type\container\member\element\M_Element.h"
-#include "type\container\member\element\M_First.h"
-#include "type\container\member\element\M_Last.h"
+#include "type/container/member/element/M_Element.h"
+#include "type/container/member/element/M_First.h"
+#include "type/container/member/element/M_Last.h"
 
-#include "type\container\member\iterator\M_ConstIterator.h"
-#include "type\container\member\iterator\M_ConstReverseIterator.h"
-#include "type\container\member\iterator\M_Iterator.h"
-#include "type\container\member\iterator\M_ReverseIterator.h"
+#include "type/container/member/iterator/M_ConstIterator.h"
+#include "type/container/member/iterator/M_ConstReverseIterator.h"
+#include "type/container/member/iterator/M_Iterator.h"
+#include "type/container/member/iterator/M_ReverseIterator.h"
 
-#include "type\container\member\modifier\M_Fill.h"
-#include "type\container\member\modifier\M_Swap.h"
+#include "type/container/member/modifier/M_Fill.h"
+#include "type/container/member/modifier/M_Swap.h"
 
-#include "type\container\member\M_StandardContainer.h"
+#include "type/container/member/M_StandardContainer.h"
 
-#include "type\container\array\Get.h"
+#include "type/container/array/Get.h"
 
 namespace BrainMuscles
 {

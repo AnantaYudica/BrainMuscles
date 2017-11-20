@@ -2,10 +2,10 @@
 #define TYPE_CONTAINER_VECTOR_ITERATOR_HANDLE_H_
 
 #include <vector>
-#include "type\container\vector\iterator\handle\definition\ConstIterator.h"
-#include "type\container\vector\iterator\handle\definition\Iterator.h"
-#include "type\container\vector\iterator\handle\definition\IsType.h"
-#include "type\Cloneable.h"
+#include "type/container/vector/iterator/handle/definition/ConstIterator.h"
+#include "type/container/vector/iterator/handle/definition/Iterator.h"
+#include "type/container/vector/iterator/handle/definition/IsType.h"
+#include "type/Cloneable.h"
 
 namespace BrainMuscles
 {

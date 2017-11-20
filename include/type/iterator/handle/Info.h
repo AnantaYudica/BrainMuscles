@@ -1,8 +1,8 @@
 #ifndef TYPE_ITERATOR_HANDLE_INFO_H_
 #define TYPE_ITERATOR_HANDLE_INFO_H_
 
-#include "type\iterator\handle\Definition.h"
-#include "type\iterator\handle\definition\IsType.h"
+#include "type/iterator/handle/Definition.h"
+#include "type/iterator/handle/definition/IsType.h"
 
 namespace BrainMuscles
 {

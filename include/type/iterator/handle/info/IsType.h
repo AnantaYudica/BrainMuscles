@@ -1,7 +1,7 @@
 #ifndef TYPE_ITERATOR_HANDLE_INFO_ISTYPE_H_
 #define TYPE_ITERATOR_HANDLE_INFO_ISTYPE_H_
 
-#include "type\iterator\handle\Info.h"
+#include "type/iterator/handle/Info.h"
 
 namespace BrainMuscles
 {

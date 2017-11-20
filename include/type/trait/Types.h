@@ -14,11 +14,11 @@ namespace BrainMuscles
 
 }
 
-#include "type\trait\types\Base.h"
-#include "type\trait\types\GetIndex.h"
-#include "type\trait\types\GetSize.h"
-#include "type\trait\types\Function.h"
-#include "type\trait\types\Filler.h"
+#include "type/trait/types/Base.h"
+#include "type/trait/types/GetIndex.h"
+#include "type/trait/types/GetSize.h"
+#include "type/trait/types/Function.h"
+#include "type/trait/types/Filler.h"
 
 namespace BrainMuscles
 {

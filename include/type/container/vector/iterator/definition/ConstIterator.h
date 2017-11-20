@@ -1,9 +1,9 @@
 #ifndef TYPE_CONTAINER_VECTOR_ITERATOR_DEFINITION_CONSTITERATOR_H_
 #define TYPE_CONTAINER_VECTOR_ITERATOR_DEFINITION_CONSTITERATOR_H_
 
-#include "type\iterator\derived\definition\Base.h"
+#include "type/iterator/derived/definition/Base.h"
 
-#include "type\container\element\IsType.h"
+#include "type/container/element/IsType.h"
 
 namespace BrainMuscles
 {

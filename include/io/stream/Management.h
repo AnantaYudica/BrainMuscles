@@ -1,9 +1,9 @@
 #ifndef IO_STREAM_MANAGEMENT_H_
 #define IO_STREAM_MANAGEMENT_H_
 
-#include "type\Singleton.h"
-#include "type\Journal.h"
-#include "io\Stream.h"
+#include "type/Singleton.h"
+#include "type/Journal.h"
+#include "io/Stream.h"
 #include <vector>
 
 namespace BrainMuscles

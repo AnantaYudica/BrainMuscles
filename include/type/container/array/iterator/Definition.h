@@ -4,9 +4,9 @@
 #include <cstddef>
 
 #include <array>
-#include "type\container\array\iterator\definition\ConstIterator.h"
-#include "type\container\array\iterator\definition\Iterator.h"
-#include "type\iterator\derived\definition\Base.h"
+#include "type/container/array/iterator/definition/ConstIterator.h"
+#include "type/container/array/iterator/definition/Iterator.h"
+#include "type/iterator/derived/definition/Base.h"
 
 namespace BrainMuscles
 {

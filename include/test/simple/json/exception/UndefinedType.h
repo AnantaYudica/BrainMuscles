@@ -1,14 +1,14 @@
 #ifndef TEST_SIMPLE_JSON_EXCEPTION_UNDEFINEDTYPE_H_
 #define TEST_SIMPLE_JSON_EXCEPTION_UNDEFINEDTYPE_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
 #include <exception>
 #include <string>
 
-#include "test\simple\type\Name.h"
+#include "test/simple/type/Name.h"
 
 namespace BrainMuscles
 {

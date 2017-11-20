@@ -1,14 +1,14 @@
 #ifndef TEST_SIMPLE_MEMORY_POOL_H_
 #define TEST_SIMPLE_MEMORY_POOL_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
 #include <cstddef>
 #include <cstdlib>
 
-#include "test\simple\memory\pool\Linkers.h"
+#include "test/simple/memory/pool/Linkers.h"
 
 namespace BrainMuscles
 {

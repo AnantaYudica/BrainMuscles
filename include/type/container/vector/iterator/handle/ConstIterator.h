@@ -3,11 +3,11 @@
 
 #include <vector>
 
-#include "type\container\element\IsType.h"
+#include "type/container/element/IsType.h"
 
-#include "type\container\vector\iterator\handle\definition\ConstIterator.h"
+#include "type/container/vector/iterator/handle/definition/ConstIterator.h"
 
-#include "type\container\vector\iterator\Handle.h"
+#include "type/container/vector/iterator/Handle.h"
 
 namespace BrainMuscles
 {

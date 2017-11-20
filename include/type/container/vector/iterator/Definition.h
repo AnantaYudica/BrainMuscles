@@ -1,19 +1,19 @@
 #ifndef TYPE_CONTAINER_VECTOR_ITERATOR_DEFINITION_H_
 #define TYPE_CONTAINER_VECTOR_ITERATOR_DEFINITION_H_
 
-#include "type\iterator\derived\definition\Base.h"
+#include "type/iterator/derived/definition/Base.h"
 
-#include "type\container\vector\iterator\definition\ConstIterator.h"
+#include "type/container/vector/iterator/definition/ConstIterator.h"
 
-#include "type\container\vector\iterator\definition\Iterator.h"
+#include "type/container/vector/iterator/definition/Iterator.h"
 
-#include "type\container\vector\iterator\handle\ConstIterator.h"
+#include "type/container/vector/iterator/handle/ConstIterator.h"
 
-#include "type\container\vector\iterator\handle\ConstReverseIterator.h"
+#include "type/container/vector/iterator/handle/ConstReverseIterator.h"
 
-#include "type\container\vector\iterator\handle\Iterator.h"
+#include "type/container/vector/iterator/handle/Iterator.h"
 
-#include "type\container\vector\iterator\handle\ReverseIterator.h"
+#include "type/container/vector/iterator/handle/ReverseIterator.h"
 
 namespace BrainMuscles
 {

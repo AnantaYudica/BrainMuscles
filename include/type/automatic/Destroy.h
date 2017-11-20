@@ -14,9 +14,9 @@ namespace BrainMuscles
 }
 
 
-#include "type\automatic\destroy\Base.h"
-#include "type\automatic\destroy\Function.h"
-#include "type\automatic\destroy\Management.h"
+#include "type/automatic/destroy/Base.h"
+#include "type/automatic/destroy/Function.h"
+#include "type/automatic/destroy/Management.h"
 #include <vector>
 
 namespace BrainMuscles

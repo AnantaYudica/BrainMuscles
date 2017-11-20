@@ -19,11 +19,11 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\iterator\Base.h"
-#include "type\iterator\tag\RandomAccess.h"
-#include "type\iterator\derived\Info.h"
+#include "type/iterator/Base.h"
+#include "type/iterator/tag/RandomAccess.h"
+#include "type/iterator/derived/Info.h"
 
-#include "type\container\array\iterator\Definition.h"
+#include "type/container/array/iterator/Definition.h"
 
 namespace BrainMuscles
 {

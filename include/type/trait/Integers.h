@@ -14,12 +14,12 @@ namespace BrainMuscles
 	
 }
 
-#include "type\trait\integers\ToTypeArray.h"
-#include "type\trait\integers\GetIndex.h"
-#include "type\trait\integers\GetSize.h"
-#include "type\trait\integers\IsContainValue.h"
-#include "type\trait\integers\Filler.h"
-#include "type\trait\integers\Function.h"
+#include "type/trait/integers/ToTypeArray.h"
+#include "type/trait/integers/GetIndex.h"
+#include "type/trait/integers/GetSize.h"
+#include "type/trait/integers/IsContainValue.h"
+#include "type/trait/integers/Filler.h"
+#include "type/trait/integers/Function.h"
 
 namespace BrainMuscles
 {

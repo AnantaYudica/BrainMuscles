@@ -1,32 +1,32 @@
 #ifndef TEST_SIMPLE_JSON_HELPER_VALUE_H_
 #define TEST_SIMPLE_JSON_HELPER_VALUE_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\json\Value.h"
-#include "test\simple\json\value\Array.h"
-#include "test\simple\json\value\False.h"
-#include "test\simple\json\value\Null.h"
-#include "test\simple\json\value\Number.h"
-#include "test\simple\json\value\Object.h"
-#include "test\simple\json\value\String.h"
-#include "test\simple\json\value\True.h"
+#include "test/simple/json/Value.h"
+#include "test/simple/json/value/Array.h"
+#include "test/simple/json/value/False.h"
+#include "test/simple/json/value/Null.h"
+#include "test/simple/json/value/Number.h"
+#include "test/simple/json/value/Object.h"
+#include "test/simple/json/value/String.h"
+#include "test/simple/json/value/True.h"
 
-#include "test\simple\json\value\number\Char.h"
-#include "test\simple\json\value\number\Double.h"
-#include "test\simple\json\value\number\Float.h"
-#include "test\simple\json\value\number\Int.h"
-#include "test\simple\json\value\number\Long.h"
-#include "test\simple\json\value\number\LongDouble.h"
-#include "test\simple\json\value\number\LongLong.h"
-#include "test\simple\json\value\number\Short.h"
-#include "test\simple\json\value\number\UnsignedChar.h"
-#include "test\simple\json\value\number\UnsignedInt.h"
-#include "test\simple\json\value\number\UnsignedLong.h"
-#include "test\simple\json\value\number\UnsignedLongLong.h"
-#include "test\simple\json\value\number\UnsignedShort.h"
+#include "test/simple/json/value/number/Char.h"
+#include "test/simple/json/value/number/Double.h"
+#include "test/simple/json/value/number/Float.h"
+#include "test/simple/json/value/number/Int.h"
+#include "test/simple/json/value/number/Long.h"
+#include "test/simple/json/value/number/LongDouble.h"
+#include "test/simple/json/value/number/LongLong.h"
+#include "test/simple/json/value/number/Short.h"
+#include "test/simple/json/value/number/UnsignedChar.h"
+#include "test/simple/json/value/number/UnsignedInt.h"
+#include "test/simple/json/value/number/UnsignedLong.h"
+#include "test/simple/json/value/number/UnsignedLongLong.h"
+#include "test/simple/json/value/number/UnsignedShort.h"
 
 namespace BrainMuscles
 {

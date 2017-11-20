@@ -3,7 +3,7 @@
 
 #ifdef _USING_TEST_SOURCE_
 
-#include "test\source\status\Flags.h"
+#include "test/source/status/Flags.h"
 
 namespace BrainMuscles
 {

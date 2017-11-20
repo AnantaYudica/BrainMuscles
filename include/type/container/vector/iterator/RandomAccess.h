@@ -2,14 +2,14 @@
 #define TYPE_CONTAINER_VECTOR_ITERATOR_RANDOMACCESS_H_
 
 #include <vector>
-#include "type\iterator\Base.h"
-#include "type\iterator\Tag.h"
-#include "type\iterator\tag\RandomAccess.h"
-#include "type\iterator\derived\Info.h"
+#include "type/iterator/Base.h"
+#include "type/iterator/Tag.h"
+#include "type/iterator/tag/RandomAccess.h"
+#include "type/iterator/derived/Info.h"
 
-#include "type\container\vector\iterator\Handle.h"
+#include "type/container/vector/iterator/Handle.h"
 
-#include "type\container\vector\iterator\Definition.h"
+#include "type/container/vector/iterator/Definition.h"
 
 namespace BrainMuscles
 {

@@ -19,7 +19,7 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\container\node\Direction.h"
+#include "type/container/node/Direction.h"
 
 namespace BrainMuscles
 {

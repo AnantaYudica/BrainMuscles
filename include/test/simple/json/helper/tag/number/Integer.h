@@ -1,4 +1,4 @@
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
@@ -42,7 +42,7 @@ namespace BrainMuscles
 #endif //!TEST_SIMPLE_JSON_HELPER_TAG_NUMBER_INTEGER_H___DEFINITION__
 
 #else //ELSE TEST_SIMPLE_JSON_HELPER_TAG_NUMBER_H___DEFINITION__
-#include "test\simple\json\helper\Tag.h"
+#include "test/simple/json/helper/Tag.h"
 
 #endif //!TEST_SIMPLE_JSON_HELPER_TAG_NUMBER_H___DEFINITION__
 

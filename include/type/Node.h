@@ -11,8 +11,8 @@ namespace BrainMuscles
 }
 
 
-#include "type\node\Child.h"
-#include "type\container\Element.h"
+#include "type/node/Child.h"
+#include "type/container/Element.h"
 
 namespace BrainMuscles
 {

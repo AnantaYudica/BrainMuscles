@@ -4,13 +4,13 @@
 #include <cstddef>
 #include <array>
 
-#include "type\container\definition\Base.h"
+#include "type/container/definition/Base.h"
 
-#include "type\container\Element.h"
+#include "type/container/Element.h"
 
-#include "type\container\Base.h"
+#include "type/container/Base.h"
 
-#include "type\container\array\Iterator.h"
+#include "type/container/array/Iterator.h"
 
 namespace BrainMuscles
 {

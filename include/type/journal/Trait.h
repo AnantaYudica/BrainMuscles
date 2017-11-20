@@ -1,7 +1,7 @@
 #ifndef TYPE_JOURNAL_TRAIT_H_
 #define TYPE_JOURNAL_TRAIT_H_
 
-#include "type\trait\conditional\Index.h"
+#include "type/trait/conditional/Index.h"
 #include <type_traits>
 
 namespace BrainMuscles

@@ -1,7 +1,7 @@
 #ifndef TYPE_TRAIT_INTEGERS_ISCOINTAINVALUE_H_
 #define TYPE_TRAIT_INTEGERS_ISCOINTAINVALUE_H_
 
-#include "type\trait\integers\GetSize.h"
+#include "type/trait/integers/GetSize.h"
 
 namespace BrainMuscles
 {
@@ -18,7 +18,7 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\trait\Integers.h"
+#include "type/trait/Integers.h"
 
 namespace BrainMuscles
 {

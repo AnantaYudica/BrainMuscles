@@ -13,8 +13,8 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\constant\String.h"
-#include "test\test\info\Base.h"
+#include "type/constant/String.h"
+#include "test/test/info/Base.h"
 
 namespace BrainMuscles
 {

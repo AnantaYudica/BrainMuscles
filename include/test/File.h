@@ -1,14 +1,14 @@
 #ifndef TEST_FILE_H_
 #define TEST_FILE_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
 #include <cstdio>
-#include "type\Singleton.h"
+#include "type/Singleton.h"
 
-#include "test\file\Info.h"
+#include "test/file/Info.h"
 
 namespace BrainMuscles
 {

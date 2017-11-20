@@ -3,7 +3,7 @@
 
 #ifdef _USING_TEST_SOURCE_
 
-#include "test\source\Environment.h"
+#include "test/source/Environment.h"
 
 namespace BrainMuscles
 {

@@ -5,7 +5,7 @@
 #include <cassert>
 #include <vector>
 
-#include "type\container\vector\Definition.h"
+#include "type/container/vector/Definition.h"
 
 namespace BrainMuscles
 {

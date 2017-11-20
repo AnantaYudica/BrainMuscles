@@ -1,7 +1,7 @@
 #ifndef TYPE_ITERATOR_DERIVED_INFO_H_
 #define TYPE_ITERATOR_DERIVED_INFO_H_
 
-#include "type\iterator\derived\definition\IsType.h"
+#include "type/iterator/derived/definition/IsType.h"
 
 namespace BrainMuscles
 {

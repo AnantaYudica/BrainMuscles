@@ -1,7 +1,7 @@
 #ifndef TEST_SIMPLE_JSON_EXCEPTION_BADCAST_H_
 #define TEST_SIMPLE_JSON_EXCEPTION_BADCAST_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
@@ -9,7 +9,7 @@
 #include <string>
 #include <typeindex>
 
-#include "test\simple\type\Name.h"
+#include "test/simple/type/Name.h"
 
 namespace BrainMuscles
 {

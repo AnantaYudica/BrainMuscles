@@ -15,7 +15,7 @@ namespace BrainMuscles
 	}
 }
 
-#include "test\test\Message.h"
+#include "test/test/Message.h"
 
 namespace BrainMuscles
 {

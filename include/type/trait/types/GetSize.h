@@ -16,7 +16,7 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\trait\Types.h"
+#include "type/trait/Types.h"
 
 namespace BrainMuscles
 {

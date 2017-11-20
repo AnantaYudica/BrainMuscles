@@ -15,7 +15,7 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\automatic\Destroy.h"
+#include "type/automatic/Destroy.h"
 
 namespace BrainMuscles
 {

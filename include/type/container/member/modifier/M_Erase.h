@@ -19,7 +19,7 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\container\definition\IsType.h"
+#include "type/container/definition/IsType.h"
 
 namespace BrainMuscles
 {

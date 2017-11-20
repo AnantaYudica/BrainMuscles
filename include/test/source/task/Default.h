@@ -5,13 +5,13 @@
 
 #include <string>
 
-#include "test\Source.h"
-#include "test\source\Environment.h"
-#include "test\source\Interface.h"
-#include "test\source\status\Flags.h"
-#include "test\source\task\Interface.h"
+#include "test/Source.h"
+#include "test/source/Environment.h"
+#include "test/source/Interface.h"
+#include "test/source/status/Flags.h"
+#include "test/source/task/Interface.h"
 
-#include "test\source\task\default\Stage.h"
+#include "test/source/task/default/Stage.h"
 
 namespace BrainMuscles
 {

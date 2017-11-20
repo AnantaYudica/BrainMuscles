@@ -15,8 +15,8 @@
 #include <cstdio>
 #include <type_traits>
 
-#include "test\source\Info.h"
-#include "test\source\info\Flags.h"
+#include "test/source/Info.h"
+#include "test/source/info/Flags.h"
 
 namespace BrainMuscles
 {

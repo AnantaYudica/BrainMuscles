@@ -1,7 +1,7 @@
 #ifndef TEST_SIMPLE_JSON_VALUE_NUMBER_LONGLONG_H_
 #define TEST_SIMPLE_JSON_VALUE_NUMBER_LONGLONG_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 

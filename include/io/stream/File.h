@@ -2,7 +2,7 @@
 #define IO_STREAM_FILE_H_
 
 
-#include "io\stream\file\Type.h"
+#include "io/stream/file/Type.h"
 
 namespace BrainMuscles
 {
@@ -23,7 +23,7 @@ namespace BrainMuscles
 	
 }
 
-#include "io\Stream.h"
+#include "io/Stream.h"
 
 namespace BrainMuscles
 {

@@ -22,8 +22,8 @@ namespace BrainMuscles
 	}
 }
 
-#include "type\container\vector\iterator\definition\ConstIterator.h"
-#include "type\container\vector\iterator\definition\Iterator.h"
+#include "type/container/vector/iterator/definition/ConstIterator.h"
+#include "type/container/vector/iterator/definition/Iterator.h"
 
 
 namespace BrainMuscles

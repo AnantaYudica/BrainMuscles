@@ -2,16 +2,16 @@
 #define TYPE_CONTAINER_VECTOR_ITERATOR_INPUT_H_
 
 #include <vector>
-#include "type\iterator\Tag.h"
-#include "type\iterator\Base.h"
-#include "type\iterator\tag\Input.h"
-#include "type\iterator\derived\Info.h"
+#include "type/iterator/Tag.h"
+#include "type/iterator/Base.h"
+#include "type/iterator/tag/Input.h"
+#include "type/iterator/derived/Info.h"
 
-#include "type\container\element\IsType.h"
+#include "type/container/element/IsType.h"
 
-#include "type\container\vector\iterator\Handle.h"
+#include "type/container/vector/iterator/Handle.h"
 
-#include "type\container\vector\iterator\Definition.h"
+#include "type/container/vector/iterator/Definition.h"
 
 namespace BrainMuscles
 {

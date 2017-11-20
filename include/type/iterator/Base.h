@@ -1,8 +1,8 @@
 #ifndef TYPE_ITERATOR_BASE_H_
 #define TYPE_ITERATOR_BASE_H_
 
-#include "type\Cloneable.h"
-#include "type\iterator\derived\info\IsType.h"
+#include "type/Cloneable.h"
+#include "type/iterator/derived/info/IsType.h"
 #include <type_traits>
 
 namespace BrainMuscles

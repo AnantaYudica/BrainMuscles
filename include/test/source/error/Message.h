@@ -15,9 +15,9 @@
 #include <string>
 #include <stack>
 
-#include "test\source\Constant.h"
-#include "test\source\function\Flags.h"
-#include "test\source\error\Numbers.h"
+#include "test/source/Constant.h"
+#include "test/source/function/Flags.h"
+#include "test/source/error/Numbers.h"
 
 namespace BrainMuscles
 {
