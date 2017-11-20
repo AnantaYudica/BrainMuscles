@@ -29,7 +29,7 @@ namespace BrainMuscles
 				template<typename TYPES, size_t COUNTER>
 				struct GetSize
 				{
-					static constexpr size_t Value = GetSize<TYPES::Next, COUNTER + 1>::Value;
+					static constexpr size_t Value = GetSize<typename TYPES::Next, COUNTER + 1>::Value;
 				};
 
 				template<size_t COUNTER>
