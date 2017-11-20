@@ -8,4 +8,6 @@ jobs:
        - run: |
             cd ~/project/Build
             cmake -G "Unix Makefiles" ~/project/cmake -DPROJECT_SOURCE_DIR:PATH=~/project/cmake -DPROJECT_BINARY_DIR:PATH=~/project/Build
-       - run: make -d
+       - run: |
+            cd ~/project/Build
+            make -d
