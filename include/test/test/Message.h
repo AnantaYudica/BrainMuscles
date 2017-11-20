@@ -14,6 +14,7 @@ namespace BrainMuscles
 }
 
 #include "type/trait/Types.h"
+#include "type/trait/types/Function.h"
 #include "test/test/message/Base.h"
 
 namespace BrainMuscles
