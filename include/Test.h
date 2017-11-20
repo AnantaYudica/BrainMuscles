@@ -1,7 +1,7 @@
 #ifndef TEST_H_
 #define TEST_H_
 
-#include "type\constant\String.h"
+#include "type/constant/String.h"
 
 #ifndef Debug
 
@@ -15,9 +15,9 @@ namespace BrainMuscles
 #ifdef USING_TEST
 
 #include <cstdio>
-#include "test\test\Info.h"
-#include "test\test\Message.h"
-#include "type\Singleton.h"
+#include "test/test/Info.h"
+#include "test/test/Message.h"
+#include "type/Singleton.h"
 
 namespace BrainMuscles
 {
@@ -34,7 +34,7 @@ namespace BrainMuscles
 		};
 		typedef Test& (*FunctionOutputType)(Test& tout, const test::test::info::Base & information, const test::test::message::Base & message);
 	private:
-		static constexpr char RelativePath[] = "\\include\\test\\test.h";
+		static constexpr char RelativePath[] = "\\include\\test.h";
 		static constexpr char FilePath[] = __FILE__;
 		static const char * ms_listFile[];
 		static const size_t SizeListFile();
@@ -60,13 +60,13 @@ namespace BrainMuscles
 		template<typename... ARGS>
 		static void Debug(const test::test::info::Base & information, const char * const message, ARGS... args);
 
-		
 		Test& operator<< (const char * cstr);
 		Test& operator<< (const test::test::message::Base & value);
 		Test& operator<< (const int& value);
 		Test& operator<< (const unsigned int& value);
 		Test& operator<< (const long& value);
 		Test& operator<< (const unsigned long& value);
+		Test& operator<< (const std::size_t& value);
 	};
 
 
@@ -103,7 +103,7 @@ namespace BrainMuscles
 	Test::FunctionOutputDefault(Test & tout, const test::test::info::Base & information, const test::test::message::Base & message)
 	{
 		tout << information.RelativePath() << information.Filename();
-		tout << "(" << information.Line() << ") : ";
+		tout << "(" << (unsigned long)information.Line() << ") : ";
 		tout << message << "\n";
 		return tout;
 	}
@@ -194,6 +194,13 @@ namespace BrainMuscles
 	Test::operator<< (const unsigned long& value)
 	{
 		fprintf(GetInstance().m_outFile, "%lu", value);
+		return *this;
+	}
+
+	Test& 
+		Test::operator<< (const std::size_t& value)
+	{
+		fprintf(GetInstance().m_outFile, "%zu", value);
 		return *this;
 	}
 }
