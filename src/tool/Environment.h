@@ -48,10 +48,10 @@ inline void tool::Environment::ErrorNumber(int error_number)
 	strerror_s(msg, errno);
 	std::printf("%s\n", msg);
 #elif (__GNUC__ \
-	|| (defined(_WIN32) || defined(_WIN64)) \
-		&& defined(_CRT_SECURE_NO_WARNINGS))
+	|| ((defined(_WIN32) || defined(_WIN64)) \
+		&& defined(_CRT_SECURE_NO_WARNINGS)))
 	strncpy(msg, std::strerror(error_number), ERROR_MESSAGE_BUFFER_SIZE);
-	msg[ERROR_MESSAGE_BUFFER_SIZE - 1] = NULL;
+	msg[ERROR_MESSAGE_BUFFER_SIZE - 1] = 0;
 	std::printf("%s\n", msg);
 #else
 #error "Undefined Compiler"
