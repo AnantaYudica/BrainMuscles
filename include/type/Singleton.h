@@ -10,8 +10,7 @@ namespace BrainMuscles
 	}
 }
 
-#include "test\test.h"
-#include "type\automatic\Destroy.h"
+#include "type/automatic/Destroy.h"
 #include <cassert>
 
 namespace BrainMuscles
