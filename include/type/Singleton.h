@@ -30,7 +30,7 @@ namespace BrainMuscles
 		{
 		private:
 			typedef Singleton<TYPE, TYPE*, TYPE*> SingletonType;
-			friend typename TYPE;
+			friend TYPE;
 			static TYPE* ms_instance;
 			Singleton();
 			void Destructor();
@@ -47,7 +47,7 @@ namespace BrainMuscles
 		class Singleton<TYPE, TYPE, INSTANCE_RETURN_TYPE>
 		{
 		private:
-			friend typename TYPE;
+			friend TYPE;
 			static TYPE ms_instance;
 			bool m_hasInstance;
 			Singleton();
@@ -111,7 +111,7 @@ namespace BrainMuscles
 			if (!ms_instance.m_hasInstance)
 			{
 				ms_instance = TYPE(args...);
-				m_hasInstance = true;
+				ms_instance.m_hasInstance = true;
 			}
 		}
 
@@ -128,7 +128,7 @@ namespace BrainMuscles
 		template <typename TYPE, typename INSTANCE_RETURN_TYPE>
 		void Singleton<TYPE, TYPE, INSTANCE_RETURN_TYPE>::DestroyInstance()
 		{
-			m_hasInstance = false;
+			ms_instance.m_hasInstance = false;
 		}
 
 		template <typename TYPE, typename INSTANCE_RETURN_TYPE>
