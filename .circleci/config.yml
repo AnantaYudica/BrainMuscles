@@ -2,6 +2,7 @@ version: 2
 jobs:
    build:
      machine:
+      - image: circleci/classic:latest
       - image: library/gcc:5.5.0
      steps:
        - checkout
