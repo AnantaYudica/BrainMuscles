@@ -2,11 +2,11 @@ version: 2
 jobs:
    build:
      docker:
-      - image: library/gcc:5.5.0
+      - image: buildpack-deps:trusty
      steps:
        - checkout
-       - run: sudo apt-get install cmake
        - run: mkdir -p Build
+       - run: sudo apt-get install g++-4.9
        - run: |
             gcc --version
             g++ --version
