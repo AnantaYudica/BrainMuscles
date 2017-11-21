@@ -7,7 +7,7 @@ jobs:
      steps:
        - checkout
        - run: mkdir -p Build
-       - run: sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5.5.0 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5.5.0
+       - run: sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5.5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5.5
        - run: |
             gcc --version
             g++ --version
