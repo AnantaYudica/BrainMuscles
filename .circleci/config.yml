@@ -1,14 +1,14 @@
 version: 2
 jobs:
    build:
-     docker:
-      - image: buildpack-deps:trusty
+     machine: true
      steps:
        - checkout
        - run: mkdir -p Build
        - run: |
+            sudo add-apt-repository ppa:ubuntu-toolchain-r/test
             sudo apt-get update
-            sudo apt-get install build-essential
+            sudo apt-get install gcc-5 g++-5
        - run: |
             gcc --version
             g++ --version
