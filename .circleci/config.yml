@@ -1,6 +1,9 @@
 version: 2
 jobs:
    build:
+     branches:
+       only:
+          - circleci_builds
      docker: 
        - image: library/gcc:5.5.0
      steps:
