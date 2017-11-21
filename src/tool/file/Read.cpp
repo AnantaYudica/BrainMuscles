@@ -105,7 +105,7 @@ tool::file::Read::GetLine(SizeType buffer_size)
 	{
 		char* buff = new char[buffer_size];
 		m_filestream.getline(buff, buffer_size);
-		buff[buffer_size - 1] = NULL;
+		buff[buffer_size - 1] = 0;
 		string_result = buff;
 		delete[] buff;
 	}
@@ -120,7 +120,7 @@ tool::file::Read::GetLine(char end_character, SizeType buffer_size)
 	{
 		char* buff = new char[buffer_size];
 		m_filestream.getline(buff, buffer_size, end_character);
-		buff[buffer_size - 1] = NULL;
+		buff[buffer_size - 1] = 0;
 		string_result = buff;
 		delete[] buff;
 	}
