@@ -1,15 +1,19 @@
 version: 2
 jobs:
    build:
-     machine: true
+     docker: 
+       - image: library/gcc:5.5.0
      steps:
        - checkout
        - run: mkdir -p Build
        - run: |
-            sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-            sudo apt-get update
-            sudo apt-get install gcc-5 g++-5
-            sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 60 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+            cd ~
+            wget https://cmake.org/files/v3.10/cmake-3.10.0.tar.gz
+            tar xzf cmake-3.10.0.tar.gz
+            cd cmake-3.10.0
+            ./bootstrap
+            make
+            make install
        - run: |
             gcc --version
             g++ --version
