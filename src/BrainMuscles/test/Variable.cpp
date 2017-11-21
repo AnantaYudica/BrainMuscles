@@ -1,5 +1,5 @@
 #include "test/Variable.h"
 
-extern char BrainMuscles::test::variable::simple::type::name::DefaultAliasName[] = "TYPE";
-extern char BrainMuscles::test::variable::simple::type::name::DefaultBeginAliasName[] = "[";
-extern char BrainMuscles::test::variable::simple::type::name::DefaultEndAliasName[] = "]";
+char BrainMuscles::test::variable::simple::type::name::DefaultAliasName[] = "TYPE";
+char BrainMuscles::test::variable::simple::type::name::DefaultBeginAliasName[] = "[";
+char BrainMuscles::test::variable::simple::type::name::DefaultEndAliasName[] = "]";
