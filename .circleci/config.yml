@@ -6,7 +6,9 @@ jobs:
      steps:
        - checkout
        - run: mkdir -p Build
-       - run: sudo apt-get install g++-4.9
+       - run: |
+            sudo apt-get update
+            sudo apt-get install g++-4.9
        - run: |
             gcc --version
             g++ --version
