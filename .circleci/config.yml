@@ -1,13 +1,9 @@
 version: 2
 jobs:
    build:
-     machine: true
+     docker:
+      - image: library/gcc:5.5.0
      steps:
-       - run: |
-            sudo add-apt-repository ppa:ubuntu-toolchain-r/test 
-            sudo apt-get update
-            sudo apt-get install gcc-4.9
-            sudo apt-get install g++-4.9
        - checkout
        - run: mkdir -p Build
        - run: |
