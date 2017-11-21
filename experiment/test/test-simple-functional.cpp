@@ -5,10 +5,10 @@
 #include <tuple>
 #include <type_traits>
 #include <typeinfo>
-#include "test\simple\functional\Function.h"
-#include "test\simple\functional\function\Member.h"
-#include "test\simple\functional\function\helper\parameter\Element.h"
-#include "test\simple\functional\function\helper\parameter\Size.h"
+#include "test/simple/functional/Function.h"
+#include "test/simple/functional/function/Member.h"
+#include "test/simple/functional/function/helper/parameter/Element.h"
+#include "test/simple/functional/function/helper/parameter/Size.h"
 
 using namespace BrainMuscles::test::simple;
 using namespace std;
