@@ -272,22 +272,22 @@ int main(int argc, char *argv[])
 		printf("Last Name form person1 : %s\n", f_move_f_callFunctionConstMemberPersonGetLastName());
 
 		//declaration f_callFunctionFrom_f_callFunctionConstMemberPersonGetFirstName and initialization with f_callFunctionConstMemberPersonGetFirstName
-		// where R = const char*
-		functional::Function<const char*>
+		// where R = const char* and ARGS {const Person*}
+		functional::Function<const char*, const Person*>
 			f_callFunctionFrom_f_callFunctionConstMemberPersonGetFirstName = f_callFunctionConstMemberPersonGetFirstName;
 
 		//declaration f_callFunctionFrom_f_callFunctionConstMemberPersonGetLastName and initialization with f_callFunctionConstMemberPersonGetLastName
-		// where R = const char*
-		functional::Function<const char*>
+		// where R = const char* and ARGS {const Person*}
+		functional::Function<const char*, const Person*>
 			f_callFunctionFrom_f_callFunctionConstMemberPersonGetLastName = f_callFunctionConstMemberPersonGetLastName;
 
 		//call printf with format = "First Name from person1 with function::Function : %s\n" and args = {
 		// {from returnh call f_callFunctionFrom_f_callFunctionConstMemberPersonGetFirstName}}
-		printf("First Name from person1 with function::Function : %s\n", f_callFunctionFrom_f_callFunctionConstMemberPersonGetFirstName());
+		printf("First Name from person1 with function::Function : %s\n", f_callFunctionFrom_f_callFunctionConstMemberPersonGetFirstName(&person1));
 
 		//call printf with format = "Last Name form person1 with function::Function : %s\n" and args = {
 		// {from return call f_callFunctionFrom_f_callFunctionConstMemberPersonGetLastName}}
-		printf("Last Name form person1 with function::Function : %s\n", f_callFunctionFrom_f_callFunctionConstMemberPersonGetLastName());
+		printf("Last Name form person1 with function::Function : %s\n", f_callFunctionFrom_f_callFunctionConstMemberPersonGetLastName(&person1));
 
 		//declaration f_callFunctionMemberPersonSetAge and initialization with &Person::SetAge and &person1
 		// where R = void, T = Person, ARGS = {const unsigned char&}
@@ -307,13 +307,13 @@ int main(int argc, char *argv[])
 		printf("get Age of person1 : %u\n", f_callFunctionMemberPersonGetAge());
 
 		//declaration f_callFunctionFrom_f_callFunctionMemberPersonGetAge and initialization with f_callFunctionMemberPersonGetAge
-		// where R = unsigned char
-		functional::Function<unsigned char>
+		// where R = unsigned char and ARGS {Person*}
+		functional::Function<unsigned char, Person*>
 			f_callFunctionFrom_f_callFunctionMemberPersonGetAge = f_callFunctionMemberPersonGetAge;
 
 		//call printf with format = "get Age of person1 with function::Function : %u\n" args = {
 		//{from return call f_callFunctionFrom_f_callFunctionMemberPersonGetAge}}
-		printf("get Age of person1 with function::Function : %u\n", f_callFunctionFrom_f_callFunctionMemberPersonGetAge());
+		printf("get Age of person1 with function::Function : %u\n", f_callFunctionFrom_f_callFunctionMemberPersonGetAge(&person1));
 		
 		//declaration f_callFunctonConstMemberPersonGetAge and initialization with &Person::GetAge and &person1
 		// where R = unsigned char, T = const Person, ARGS = {}
@@ -325,13 +325,13 @@ int main(int argc, char *argv[])
 		printf("get Age of person1 : %u\n", f_callFunctonConstMemberPersonGetAge());
 
 		//declaration f_callFunctionFrom_f_callFunctonConstMemberPersonGetAge and initialization with f_callFunctonConstMemberPersonGetAge
-		// where R = unsigned char
-		functional::Function<unsigned char>
+		// where R = unsigned char and ARGS {const Person*}
+		functional::Function<unsigned char, const Person*>
 			f_callFunctionFrom_f_callFunctonConstMemberPersonGetAge = f_callFunctonConstMemberPersonGetAge;
 
 		//call printf with format = "get Age of person1 with function::Function : %u\n" args = {
 		//{from return call f_callFunctionFrom_f_callFunctonConstMemberPersonGetAge}}
-		printf("get Age of person1 with function::Function : %u\n", f_callFunctionFrom_f_callFunctonConstMemberPersonGetAge());
+		printf("get Age of person1 with function::Function : %u\n", f_callFunctionFrom_f_callFunctonConstMemberPersonGetAge(&person1));
 
 		//declaration f_callFunctionVolatileMemberPersonGetAge and initialization with &Person::GetAge and &person1
 		// where R = unsigned char, T = const Person, ARGS = {}
@@ -343,13 +343,13 @@ int main(int argc, char *argv[])
 		printf("get Age of person1 = %u\n", f_callFunctionVolatileMemberPersonGetAge());
 
 		//declaration f_callFunctionFrom_f_callFunctionVolatileMemberPersonGetAge and initialization with f_callFunctionVolatileMemberPersonGetAge
-		// where R = unsigned char
-		functional::Function<unsigned char>
+		// where R = unsigned char and ARGS {volatile Person*}
+		functional::Function<unsigned char, volatile Person*>
 			f_callFunctionFrom_f_callFunctionVolatileMemberPersonGetAge = f_callFunctionVolatileMemberPersonGetAge;
 
 		//call printf with format = "get Age of person1 with function::Function : %u\n" args = {
 		//{from return call f_callFunctionFrom_f_callFunctionVolatileMemberPersonGetAge}}
-		printf("get Age of person1 with function::Function : %u\n", f_callFunctionFrom_f_callFunctionVolatileMemberPersonGetAge());
+		printf("get Age of person1 with function::Function : %u\n", f_callFunctionFrom_f_callFunctionVolatileMemberPersonGetAge(&person1));
 
 		//declaration f_callFunctionConstVolatileMemberPersonGetAge and initialization with &Person::GetAge and &person1
 		// where R = unsigned char, T = const Person, ARGS = {}
@@ -361,13 +361,13 @@ int main(int argc, char *argv[])
 		printf("get Age of person1 = %u\n", f_callFunctionConstVolatileMemberPersonGetAge());
 
 		//declaration f_callFunctionFrom_f_callFunctionConstVolatileMemberPersonGetAge and initialization with f_callFunctionConstVolatileMemberPersonGetAge
-		// where R = unsigned char
-		functional::Function<unsigned char>
+		// where R = unsigned char and ARGS {const volatile Person*}
+		functional::Function<unsigned char, const volatile Person*>
 			f_callFunctionFrom_f_callFunctionConstVolatileMemberPersonGetAge = f_callFunctionConstVolatileMemberPersonGetAge;
 
 		//call printf with format = "get Age of person1 with function::Function : %u\n" args = {
 		//{from return call f_callFunctionFrom_f_callFunctionConstVolatileMemberPersonGetAge}}
-		printf("get Age of person1 with function::Function : %u\n", f_callFunctionFrom_f_callFunctionConstVolatileMemberPersonGetAge());
+		printf("get Age of person1 with function::Function : %u\n", f_callFunctionFrom_f_callFunctionConstVolatileMemberPersonGetAge(&person1));
 
 		//declaration f_callFunctionVolatileMemberPersonAddAge and initialization with &Person::AddAge and &person1
 		// where R = int, T = Person, ARGS = {int}
@@ -442,7 +442,7 @@ int main(int argc, char *argv[])
 		//call printf with format = "size parameter of Func_1_Type : %d\n" and args = {
 		// {from get value from functional::function::helper::parameter::Size<Func_1_Type>::Value 
 		// where FUNCTION_TYPE = Func_1_Type}}
-		printf("size parameter of Func_1_Type : %d\n", functional::function::helper::parameter::Size<Func_1_Type>::Value);
+		printf("size parameter of Func_1_Type : %zu\n", functional::function::helper::parameter::Size<Func_1_Type>::Value);
 	
 		//declaration type Func_2_Type with functional::Function 
 		// where RETURN_TYPE = void and ARGS = {}
@@ -451,7 +451,7 @@ int main(int argc, char *argv[])
 		//call printf with format = "size parameter of Func_2_Type : %d\n" and args = {
 		// {from get value from functional::function::helper::parameter::Size<Func_2_Type>::Value 
 		// where FUNCTION_TYPE = Func_2_Type}}
-		printf("size parameter of Func_2_Type : %d\n", functional::function::helper::parameter::Size<Func_2_Type>::Value);
+		printf("size parameter of Func_2_Type : %zu\n", functional::function::helper::parameter::Size<Func_2_Type>::Value);
 
 	}
 
