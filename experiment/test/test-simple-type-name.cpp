@@ -6,7 +6,7 @@
 #include <cstring>
 #include <string>
 
-#include "test\simple\type\Name.h"
+#include "test/simple/type/Name.h"
 
 using namespace std;
 using namespace BrainMuscles::test::simple;
