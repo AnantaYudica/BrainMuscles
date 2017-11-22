@@ -1,4 +1,5 @@
-#include "test\File.h"
+#define _USING_TEST_
+#include "test/File.h"
 
 #include <cstdio>
 
