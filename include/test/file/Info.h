@@ -20,8 +20,12 @@ namespace BrainMuscles
 			private:
 				FILE** m_fileInfo;
 			private:
+				Info();
 				Info(FILE** file_info);
 			};
+
+			Info::Info()
+			{}
 
 			Info::Info(FILE** file_info) :
 				m_fileInfo(file_info)
