@@ -27,11 +27,15 @@ namespace BrainMuscles
 				private:
 					static void AliasNameInstance(std::string& out);
 					template<typename VALUE_TYPE>
-					static typename std::enable_if<std::is_same<std::string, typename std::remove_cv<typename std::remove_reference<VALUE_TYPE>::type>::type>::value
-						|| (std::is_pointer<VALUE_TYPE>::value && std::is_same<typename std::remove_cv<typename std::remove_pointer<VALUE_TYPE>::type>::type, char>::value)>::type
+					static typename std::enable_if<std::is_pointer<VALUE_TYPE>::value>::type
 						ValueOfTypeInstance(std::string& out, VALUE_TYPE value);
 					template<typename VALUE_TYPE>
-					static typename std::enable_if<!std::is_same<std::string, VALUE_TYPE>::value && !(std::is_pointer<VALUE_TYPE>::value && std::is_same<typename std::remove_cv<typename std::remove_pointer<VALUE_TYPE>::type>::type, char>::value)>::type
+					static typename std::enable_if<!std::is_pointer<VALUE_TYPE>::value 
+						&& std::is_same<std::string, typename std::remove_cv<typename std::remove_reference<VALUE_TYPE>::type>::type>::value>::type
+						ValueOfTypeInstance(std::string& out, VALUE_TYPE value);
+					template<typename VALUE_TYPE>
+					static typename std::enable_if<!std::is_pointer<VALUE_TYPE>::value 
+						&& !std::is_same<std::string, typename std::remove_cv<typename std::remove_reference<VALUE_TYPE>::type>::type>::value>::type
 						ValueOfTypeInstance(std::string& out, VALUE_TYPE value);
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
@@ -163,8 +167,16 @@ namespace BrainMuscles
 
 				template<typename TYPE, const char* ALIAS_NAME>
 				template<typename VALUE_TYPE>
-				typename std::enable_if<std::is_same<std::string, typename std::remove_cv<typename std::remove_reference<VALUE_TYPE>::type>::type>::value
-					|| (std::is_pointer<VALUE_TYPE>::value && std::is_same<typename std::remove_cv<typename std::remove_pointer<VALUE_TYPE>::type>::type, char>::value)>::type
+				typename std::enable_if<std::is_pointer<VALUE_TYPE>::value>::type
+					Name<TYPE, ALIAS_NAME>::ValueOfTypeInstance(std::string& out, VALUE_TYPE value)
+				{
+					ValueOfTypeInstance(out, *value);
+				}
+
+				template<typename TYPE, const char* ALIAS_NAME>
+				template<typename VALUE_TYPE>
+				typename std::enable_if<!std::is_pointer<VALUE_TYPE>::value
+					&& std::is_same<std::string, typename std::remove_cv<typename std::remove_reference<VALUE_TYPE>::type>::type>::value>::type
 					Name<TYPE, ALIAS_NAME>::ValueOfTypeInstance(std::string& out, VALUE_TYPE value)
 				{
 					out += " = ";
@@ -173,7 +185,8 @@ namespace BrainMuscles
 
 				template<typename TYPE, const char* ALIAS_NAME>
 				template<typename VALUE_TYPE>
-				typename std::enable_if<!std::is_same<std::string, VALUE_TYPE>::value && !(std::is_pointer<VALUE_TYPE>::value && std::is_same<typename std::remove_cv<typename std::remove_pointer<VALUE_TYPE>::type>::type, char>::value)>::type
+				typename std::enable_if<!std::is_pointer<VALUE_TYPE>::value
+					&& !std::is_same<std::string, typename std::remove_cv<typename std::remove_reference<VALUE_TYPE>::type>::type>::value>::type
 					Name<TYPE, ALIAS_NAME>::ValueOfTypeInstance(std::string& out, VALUE_TYPE value)
 				{
 					out += " = ";
