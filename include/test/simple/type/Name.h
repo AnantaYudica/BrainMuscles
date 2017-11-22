@@ -9,7 +9,7 @@
 #include <type_traits>
 #include <typeindex>
 
-#include "test\Variable.h"
+#include "test/Variable.h"
 
 namespace BrainMuscles
 {
@@ -154,7 +154,7 @@ namespace BrainMuscles
 
 				template<typename TYPE, const char* ALIAS_NAME>
 				template<typename VALUE_TYPE>
-				static typename std::enable_if<std::is_same<std::string, typename std::remove_cv<typename std::remove_reference<VALUE_TYPE>::type>::type>::value
+				typename std::enable_if<std::is_same<std::string, typename std::remove_cv<typename std::remove_reference<VALUE_TYPE>::type>::type>::value
 					|| (std::is_pointer<VALUE_TYPE>::value && std::is_same<typename std::remove_cv<typename std::remove_pointer<VALUE_TYPE>::type>::type, char>::value)>::type
 					Name<TYPE, ALIAS_NAME>::ValueOfTypeInstance(std::string& out, VALUE_TYPE value)
 				{
@@ -164,7 +164,7 @@ namespace BrainMuscles
 
 				template<typename TYPE, const char* ALIAS_NAME>
 				template<typename VALUE_TYPE>
-				static typename std::enable_if<!std::is_same<std::string, VALUE_TYPE>::value && !(std::is_pointer<VALUE_TYPE>::value && std::is_same<typename std::remove_cv<typename std::remove_pointer<VALUE_TYPE>::type>::type, char>::value)>::type
+				typename std::enable_if<!std::is_same<std::string, VALUE_TYPE>::value && !(std::is_pointer<VALUE_TYPE>::value && std::is_same<typename std::remove_cv<typename std::remove_pointer<VALUE_TYPE>::type>::type, char>::value)>::type
 					Name<TYPE, ALIAS_NAME>::ValueOfTypeInstance(std::string& out, VALUE_TYPE value)
 				{
 					out += " = ";
