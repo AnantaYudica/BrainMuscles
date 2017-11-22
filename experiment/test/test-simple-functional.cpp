@@ -1,3 +1,4 @@
+#define _USING_TEST_
 #include <cstdio>
 #include <cstring>
 #include <algorithm>
