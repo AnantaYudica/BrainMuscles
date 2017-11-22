@@ -43,6 +43,9 @@ namespace BrainMuscles
 			m_fileError(stderr)
 		{}
 
+		File::~File()
+		{}
+
 		template<unsigned int N>
 		void File::SetInfo(char(&file_info)[N])
 		{}
