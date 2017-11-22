@@ -50,6 +50,7 @@ namespace BrainMuscles
 				{
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
+					using Name<TYPE, ALIAS_NAME>::ValueInstance;
 				public:
 					static std::string Value();
 					template<typename VALUE_TYPE>
@@ -62,6 +63,7 @@ namespace BrainMuscles
 				{
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
+					using Name<TYPE, ALIAS_NAME>::ValueInstance;
 				public:
 					static std::string Value();
 					template<typename VALUE_TYPE>
@@ -74,6 +76,7 @@ namespace BrainMuscles
 				{
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
+					using Name<TYPE, ALIAS_NAME>::ValueInstance;
 				public:
 					static std::string Value();
 					template<typename VALUE_TYPE>
@@ -86,6 +89,7 @@ namespace BrainMuscles
 				{
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
+					using Name<TYPE, ALIAS_NAME>::ValueInstance;
 				public:
 					static std::string Value();
 					template<typename VALUE_TYPE>
@@ -98,6 +102,7 @@ namespace BrainMuscles
 				{
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
+					using Name<TYPE, ALIAS_NAME>::ValueInstance;
 				public:
 					static std::string Value();
 					template<typename VALUE_TYPE>
@@ -110,6 +115,7 @@ namespace BrainMuscles
 				{
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
+					using Name<TYPE, ALIAS_NAME>::ValueInstance;
 				public:
 					static std::string Value();
 					template<typename VALUE_TYPE>
@@ -122,6 +128,7 @@ namespace BrainMuscles
 				{
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
+					using Name<TYPE, ALIAS_NAME>::ValueInstance;
 				public:
 					static std::string Value();
 					template<typename VALUE_TYPE>
@@ -134,6 +141,7 @@ namespace BrainMuscles
 				{
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
+					using Name<TYPE, ALIAS_NAME>::ValueInstance;
 				public:
 					static std::string Value();
 					template<typename VALUE_TYPE>
@@ -146,6 +154,7 @@ namespace BrainMuscles
 				{
 				protected:
 					static void TypeNameInstance(std::string& out, std::string pre_name = "", std::string post_name = "");
+					using Name<TYPE, ALIAS_NAME>::ValueInstance;
 				public:
 					static std::string Value();
 					template<typename VALUE_TYPE>
