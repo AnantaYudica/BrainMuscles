@@ -60,6 +60,6 @@ int main()
 
 	//test output Debug with output file
 	BrainMuscles::Test::OutFile("output.txt");
-	Debug("test output.txt")
+	Debug("test output.txt");
 	return 1;
 }
