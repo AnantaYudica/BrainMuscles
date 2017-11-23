@@ -1210,19 +1210,19 @@ int main(int argc, char *argv[])
 	{
 		//experiment with assignment reference variable json::value::Number with zero-initialization of 'json/value/number'
 		{
-			json::value::Number& number1 = json::value::number::Char();
-			json::value::Number& number2 = json::value::number::Double();
-			json::value::Number& number3 = json::value::number::Float();
-			json::value::Number& number4 = json::value::number::Int();
-			json::value::Number& number5 = json::value::number::Long();
-			json::value::Number& number6 = json::value::number::LongDouble();
-			json::value::Number& number7 = json::value::number::LongLong();
-			json::value::Number& number8 = json::value::number::Short();
-			json::value::Number& number9 = json::value::number::UnsignedChar();
-			json::value::Number& number10 = json::value::number::UnsignedInt();
-			json::value::Number& number11 = json::value::number::UnsignedLong();
-			json::value::Number& number12 = json::value::number::UnsignedLongLong();
-			json::value::Number& number13 = json::value::number::UnsignedShort();
+			json::value::Number&& number1 = json::value::number::Char();
+			json::value::Number&& number2 = json::value::number::Double();
+			json::value::Number&& number3 = json::value::number::Float();
+			json::value::Number&& number4 = json::value::number::Int();
+			json::value::Number&& number5 = json::value::number::Long();
+			json::value::Number&& number6 = json::value::number::LongDouble();
+			json::value::Number&& number7 = json::value::number::LongLong();
+			json::value::Number&& number8 = json::value::number::Short();
+			json::value::Number&& number9 = json::value::number::UnsignedChar();
+			json::value::Number&& number10 = json::value::number::UnsignedInt();
+			json::value::Number&& number11 = json::value::number::UnsignedLong();
+			json::value::Number&& number12 = json::value::number::UnsignedLongLong();
+			json::value::Number&& number13 = json::value::number::UnsignedShort();
 		}
 
 		//experiment with 'json/value/number/Char.h'
@@ -2284,7 +2284,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::Array
 		{
 			//declaration json::value& from assignment value initialization of json::value::Array();
-			json::Value& value_array1 = json::value::Array();
+			json::Value&& value_array1 = json::value::Array();
 
 			//declaration json::value::Array& with cast from json::helper::Cast::To<json::value::Array> and json::Value&
 			json::value::Array& cast_value_array1 = json::helper::Cast::To<json::value::Array>(value_array1);
@@ -2332,7 +2332,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::False
 		{
 			//declaration json::value& from assignment value initialization of json::value::False();
-			json::Value& value_false1 = json::value::False();
+			json::Value&& value_false1 = json::value::False();
 
 			//declaration json::value::False& with cast from json::helper::Cast::To<json::value::False> and json::Value&
 			json::value::False& cast_value_false1 = json::helper::Cast::To<json::value::False>(value_false1);
@@ -2378,7 +2378,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::Null
 		{
 			//declaration json::value& from assignment value initialization of json::value::Null();
-			json::Value& value_null1 = json::value::Null();
+			json::Value&& value_null1 = json::value::Null();
 
 			//declaration json::value::Null& with cast from json::helper::Cast::To<json::value::Null> and json::Value&
 			json::value::Null& cast_value_null1 = json::helper::Cast::To<json::value::Null>(value_null1);
@@ -2424,7 +2424,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::Object
 		{
 			//declaration json::value& from assignment value initialization of json::value::Object();
-			json::Value& value_object1 = json::value::Object();
+			json::Value&& value_object1 = json::value::Object();
 
 			//declaration json::value::Object& with cast from json::helper::Cast::To<json::value::Object> and json::Value&
 			json::value::Object& cast_value_object1 = json::helper::Cast::To<json::value::Object>(value_object1);
@@ -2472,7 +2472,7 @@ int main(int argc, char *argv[])
 		//expriment with json::value::String
 		{
 			//declaration json::value& from assignment value initialization of json::value::String();
-			json::Value& value_string1 = json::value::String();
+			json::Value&& value_string1 = json::value::String();
 
 			//declaration json::value::String& with cast from json::helper::Cast::To<json::value::String> and json::Value&
 			json::value::String& cast_value_string1 = json::helper::Cast::To<json::value::String>(value_string1);
@@ -2520,7 +2520,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::True
 		{
 			//declaration json::value& from assignment value initialization of json::value::True();
-			json::Value& value_true1 = json::value::True();
+			json::Value&& value_true1 = json::value::True();
 
 			//declaration json::value::True& with cast from json::helper::Cast::To<json::value::True> and json::Value&
 			json::value::True& cast_value_true1 = json::helper::Cast::To<json::value::True>(value_true1);
@@ -2566,7 +2566,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::Char
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::Char();
-			json::Value& value_number_char1 = json::value::number::Char();
+			json::Value&& value_number_char1 = json::value::number::Char();
 
 			//declaration json::value::number::Char& with cast from json::helper::Cast::To<json::value::number::Char> and json::Value&
 			json::value::number::Char& cast_value_number_char1 = json::helper::Cast::To<json::value::number::Char>(value_number_char1);
@@ -2614,7 +2614,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::Double
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::Double();
-			json::Value& value_number_double1 = json::value::number::Double();
+			json::Value&& value_number_double1 = json::value::number::Double();
 
 			//declaration json::value::number::Double& with cast from json::helper::Cast::To<json::value::number::Double> and json::Value&
 			json::value::number::Double& cast_value_number_double1 = json::helper::Cast::To<json::value::number::Double>(value_number_double1);
@@ -2662,7 +2662,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::Float
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::Float();
-			json::Value& value_number_float1 = json::value::number::Float();
+			json::Value&& value_number_float1 = json::value::number::Float();
 
 			//declaration json::value::number::Float& with cast from json::helper::Cast::To<json::value::number::Float> and json::Value&
 			json::value::number::Float& cast_value_number_float1 = json::helper::Cast::To<json::value::number::Float>(value_number_float1);
@@ -2710,7 +2710,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::Int
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::Int();
-			json::Value& value_number_int1 = json::value::number::Int();
+			json::Value&& value_number_int1 = json::value::number::Int();
 
 			//declaration json::value::number::Int& with cast from json::helper::Cast::To<json::value::number::Int> and json::Value&
 			json::value::number::Int& cast_value_number_int1 = json::helper::Cast::To<json::value::number::Int>(value_number_int1);
@@ -2758,7 +2758,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::Long
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::Long();
-			json::Value& value_number_long1 = json::value::number::Long();
+			json::Value&& value_number_long1 = json::value::number::Long();
 
 			//declaration json::value::number::Long& with cast from json::helper::Cast::To<json::value::number::Long> and json::Value&
 			json::value::number::Long& cast_value_number_long1 = json::helper::Cast::To<json::value::number::Long>(value_number_long1);
@@ -2806,7 +2806,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::LongDouble
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::LongDouble();
-			json::Value& value_number_longdouble1 = json::value::number::LongDouble();
+			json::Value&& value_number_longdouble1 = json::value::number::LongDouble();
 
 			//declaration json::value::number::LongDouble& with cast from json::helper::Cast::To<json::value::number::LongDouble> and json::Value&
 			json::value::number::LongDouble& cast_value_number_longdouble1 = json::helper::Cast::To<json::value::number::LongDouble>(value_number_longdouble1);
@@ -2854,7 +2854,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::LongLong
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::LongLong();
-			json::Value& value_number_longlong1 = json::value::number::LongLong();
+			json::Value&& value_number_longlong1 = json::value::number::LongLong();
 
 			//declaration json::value::number::LongLong& with cast from json::helper::Cast::To<json::value::number::LongLong> and json::Value&
 			json::value::number::LongLong& cast_value_number_longlong1 = json::helper::Cast::To<json::value::number::LongLong>(value_number_longlong1);
@@ -2902,7 +2902,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::Short
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::Short();
-			json::Value& value_number_short1 = json::value::number::Short();
+			json::Value&& value_number_short1 = json::value::number::Short();
 
 			//declaration json::value::number::Short& with cast from json::helper::Cast::To<json::value::number::Short> and json::Value&
 			json::value::number::Short& cast_value_number_short1 = json::helper::Cast::To<json::value::number::Short>(value_number_short1);
@@ -2950,7 +2950,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::UnsignedChar
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::UnsignedChar();
-			json::Value& value_number_unsignedchar1 = json::value::number::UnsignedChar();
+			json::Value&& value_number_unsignedchar1 = json::value::number::UnsignedChar();
 
 			//declaration json::value::number::UnsignedChar& with cast from json::helper::Cast::To<json::value::number::UnsignedChar> and json::Value&
 			json::value::number::UnsignedChar& cast_value_number_unsignedchar1 = json::helper::Cast::To<json::value::number::UnsignedChar>(value_number_unsignedchar1);
@@ -2998,7 +2998,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::UnsignedInt
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::UnsignedInt();
-			json::Value& value_number_unsignedint1 = json::value::number::UnsignedInt();
+			json::Value&& value_number_unsignedint1 = json::value::number::UnsignedInt();
 
 			//declaration json::value::number::UnsignedInt& with cast from json::helper::Cast::To<json::value::number::UnsignedInt> and json::Value&
 			json::value::number::UnsignedInt& cast_value_number_unsignedint1 = json::helper::Cast::To<json::value::number::UnsignedInt>(value_number_unsignedint1);
@@ -3046,7 +3046,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::UnsignedLong
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::UnsignedLong();
-			json::Value& value_number_unsignedlong1 = json::value::number::UnsignedLong();
+			json::Value&& value_number_unsignedlong1 = json::value::number::UnsignedLong();
 
 			//declaration json::value::number::UnsignedLong& with cast from json::helper::Cast::To<json::value::number::UnsignedLong> and json::Value&
 			json::value::number::UnsignedLong& cast_value_number_unsignedlong1 = json::helper::Cast::To<json::value::number::UnsignedLong>(value_number_unsignedlong1);
@@ -3094,7 +3094,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::UnsignedLongLong
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::UnsignedLongLong();
-			json::Value& value_number_unsignedlonglong1 = json::value::number::UnsignedLongLong();
+			json::Value&& value_number_unsignedlonglong1 = json::value::number::UnsignedLongLong();
 
 			//declaration json::value::number::UnsignedLongLong& with cast from json::helper::Cast::To<json::value::number::UnsignedLongLong> and json::Value&
 			json::value::number::UnsignedLongLong& cast_value_number_unsignedlonglong1 = json::helper::Cast::To<json::value::number::UnsignedLongLong>(value_number_unsignedlonglong1);
@@ -3142,7 +3142,7 @@ int main(int argc, char *argv[])
 		//experiment with json::value::number::UnsignedShort
 		{
 			//declaration json::value& from assignment value initialization of json::value::number::UnsignedShort();
-			json::Value& value_number_unsignedshort1 = json::value::number::UnsignedShort();
+			json::Value&& value_number_unsignedshort1 = json::value::number::UnsignedShort();
 
 			//declaration json::value::number::UnsignedShort& with cast from json::helper::Cast::To<json::value::number::UnsignedShort> and json::Value&
 			json::value::number::UnsignedShort& cast_value_number_unsignedshort1 = json::helper::Cast::To<json::value::number::UnsignedShort>(value_number_unsignedshort1);
@@ -4560,67 +4560,67 @@ int main(int argc, char *argv[])
 		//check between json::helper::tag::Number and json::helper::Enum is same
 		{
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Char()
-			json::helper::tag::Number& tag_number_char1 = json::helper::tag::number::Char();
+			json::helper::tag::Number&& tag_number_char1 = json::helper::tag::number::Char();
 			//check between value of tag_number_char1 and json::helper::Enum::value_number_char is same
 			assert(tag_number_char1 == json::helper::Enum::value_number_char);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Double()
-			json::helper::tag::Number& tag_number_double1 = json::helper::tag::number::Double();
+			json::helper::tag::Number&& tag_number_double1 = json::helper::tag::number::Double();
 			//check between value of tag_number_double1 and json::helper::Enum::value_number_double is same
 			assert(tag_number_double1 == json::helper::Enum::value_number_double);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Float()
-			json::helper::tag::Number& tag_number_float1 = json::helper::tag::number::Float();
+			json::helper::tag::Number&& tag_number_float1 = json::helper::tag::number::Float();
 			//check between value of tag_number_float1 and json::helper::Enum::value_number_float is same
 			assert(tag_number_float1 == json::helper::Enum::value_number_float);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Int()
-			json::helper::tag::Number& tag_number_int1 = json::helper::tag::number::Int();
+			json::helper::tag::Number&& tag_number_int1 = json::helper::tag::number::Int();
 			//check between value of tag_number_int1 and json::helper::Enum::value_number_int is same
 			assert(tag_number_int1 == json::helper::Enum::value_number_int);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Long()
-			json::helper::tag::Number& tag_number_long1 = json::helper::tag::number::Long();
+			json::helper::tag::Number&& tag_number_long1 = json::helper::tag::number::Long();
 			//check between value of tag_number_long1 and json::helper::Enum::value_number_long is same
 			assert(tag_number_long1 == json::helper::Enum::value_number_long);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::LongDouble()
-			json::helper::tag::Number& tag_number_longdouble1 = json::helper::tag::number::LongDouble();
+			json::helper::tag::Number&& tag_number_longdouble1 = json::helper::tag::number::LongDouble();
 			//check between value of tag_number_longdouble1 and json::helper::Enum::value_number_longdouble is same
 			assert(tag_number_longdouble1 == json::helper::Enum::value_number_longdouble);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::LongLong()
-			json::helper::tag::Number& tag_number_longlong1 = json::helper::tag::number::LongLong();
+			json::helper::tag::Number&& tag_number_longlong1 = json::helper::tag::number::LongLong();
 			//check between value of tag_number_longlong1 and json::helper::Enum::value_number_longlong is same
 			assert(tag_number_longlong1 == json::helper::Enum::value_number_longlong);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::Short()
-			json::helper::tag::Number& tag_number_short1 = json::helper::tag::number::Short();
+			json::helper::tag::Number&& tag_number_short1 = json::helper::tag::number::Short();
 			//check between value of tag_number_short1 and json::helper::Enum::value_number_short is same
 			assert(tag_number_short1 == json::helper::Enum::value_number_short);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedChar()
-			json::helper::tag::Number& tag_number_unsignedchar1 = json::helper::tag::number::UnsignedChar();
+			json::helper::tag::Number&& tag_number_unsignedchar1 = json::helper::tag::number::UnsignedChar();
 			//check between value of tag_number_unsignedchar1 and json::helper::Enum::value_number_unsignedchar is same
 			assert(tag_number_unsignedchar1 == json::helper::Enum::value_number_unsignedchar);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedInt()
-			json::helper::tag::Number& tag_number_unsignedint1 = json::helper::tag::number::UnsignedInt();
+			json::helper::tag::Number&& tag_number_unsignedint1 = json::helper::tag::number::UnsignedInt();
 			//check between value of tag_number_unsignedint1 and json::helper::Enum::value_number_unsignedint is same
 			assert(tag_number_unsignedint1 == json::helper::Enum::value_number_unsignedint);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedLong()
-			json::helper::tag::Number& tag_number_unsignedlong1 = json::helper::tag::number::UnsignedLong();
+			json::helper::tag::Number&& tag_number_unsignedlong1 = json::helper::tag::number::UnsignedLong();
 			//check between value of tag_number_unsignedlong1 and json::helper::Enum::value_number_unsignedlong is same
 			assert(tag_number_unsignedlong1 == json::helper::Enum::value_number_unsignedlong);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedLongLong()
-			json::helper::tag::Number& tag_number_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
+			json::helper::tag::Number&& tag_number_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
 			//check between value of tag_number_unsignedlonglong1 and json::helper::Enum::value_number_unsignedlonglong is same
 			assert(tag_number_unsignedlonglong1 == json::helper::Enum::value_number_unsignedlonglong);
 
 			//declare json::helper::tag::Number& with assignment from json::helper::tag::number::UnsignedShort()
-			json::helper::tag::Number& tag_number_unsignedshort1 = json::helper::tag::number::UnsignedShort();
+			json::helper::tag::Number&& tag_number_unsignedshort1 = json::helper::tag::number::UnsignedShort();
 			//check between value of tag_number_unsignedshort1 and json::helper::Enum::value_number_unsignedshort is same
 			assert(tag_number_unsignedshort1 == json::helper::Enum::value_number_unsignedshort);
 		}
@@ -4633,12 +4633,12 @@ int main(int argc, char *argv[])
 			assert(tag_number_floatingpoint_double1 == json::helper::Enum::value_number_double);
 
 			//declare json::helper::tag::number::FloatingPoint& with assignment json::helper::tag::number::Float()
-			json::helper::tag::number::FloatingPoint& tag_number_floatingpoint_float1 = json::helper::tag::number::Float();
+			json::helper::tag::number::FloatingPoint&& tag_number_floatingpoint_float1 = json::helper::tag::number::Float();
 			//check between value of tag_number_floatingpoint_float1 and json::helper::Enum::value_number_float is same
 			assert(tag_number_floatingpoint_float1 == json::helper::Enum::value_number_float);
 
 			//declare json::helper::tag::number::FloatingPoint& with assignment json::helper::tag::number::LongDouble()
-			json::helper::tag::number::FloatingPoint& tag_number_floatingpoint_longdouble1 = json::helper::tag::number::LongDouble();
+			json::helper::tag::number::FloatingPoint&& tag_number_floatingpoint_longdouble1 = json::helper::tag::number::LongDouble();
 			//check between value of tag_number_floatingpoint_longdouble1 and json::helper::Enum::value_number_longdouble is same
 			assert(tag_number_floatingpoint_longdouble1 == json::helper::Enum::value_number_longdouble);
 		}
@@ -4646,52 +4646,52 @@ int main(int argc, char *argv[])
 		//check between json::helper::tag::number::Integer and json::helper::Enum is same
 		{
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::Char()
-			json::helper::tag::number::Integer& tag_number_integer_char1 = json::helper::tag::number::Char();
+			json::helper::tag::number::Integer&& tag_number_integer_char1 = json::helper::tag::number::Char();
 			//check between value of tag_number_integer_char1 and json::helper::Enum::value_number_char is same
 			assert(tag_number_integer_char1 == json::helper::Enum::value_number_char);
 
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::Int()
-			json::helper::tag::number::Integer& tag_number_integer_int1 = json::helper::tag::number::Int();
+			json::helper::tag::number::Integer&& tag_number_integer_int1 = json::helper::tag::number::Int();
 			//check between value of tag_number_integer_int1 and json::helper::Enum::value_number_int is same
 			assert(tag_number_integer_int1 == json::helper::Enum::value_number_int);
 
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::Long()
-			json::helper::tag::number::Integer& tag_number_integer_long1 = json::helper::tag::number::Long();
+			json::helper::tag::number::Integer&& tag_number_integer_long1 = json::helper::tag::number::Long();
 			//check between value of tag_number_integer_long1 and json::helper::Enum::value_number_long is same
 			assert(tag_number_integer_long1 == json::helper::Enum::value_number_long);
 
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::LongLong()
-			json::helper::tag::number::Integer& tag_number_integer_longlong1 = json::helper::tag::number::LongLong();
+			json::helper::tag::number::Integer&& tag_number_integer_longlong1 = json::helper::tag::number::LongLong();
 			//check between value of tag_number_integer_longlong1 and json::helper::Enum::value_number_longlong is same
 			assert(tag_number_integer_longlong1 == json::helper::Enum::value_number_longlong);
 
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::Short()
-			json::helper::tag::number::Integer& tag_number_integer_short1 = json::helper::tag::number::Short();
+			json::helper::tag::number::Integer&& tag_number_integer_short1 = json::helper::tag::number::Short();
 			//check between value of tag_number_integer_short1 and json::helper::Enum::value_number_short is same
 			assert(tag_number_integer_short1 == json::helper::Enum::value_number_short);
 
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedChar()
-			json::helper::tag::number::Integer& tag_number_integer_unsignedchar1 = json::helper::tag::number::UnsignedChar();
+			json::helper::tag::number::Integer&& tag_number_integer_unsignedchar1 = json::helper::tag::number::UnsignedChar();
 			//check between value of tag_number_integer_unsignedchar1 and json::helper::Enum::value_number_unsignedchar is same
 			assert(tag_number_integer_unsignedchar1 == json::helper::Enum::value_number_unsignedchar);
 
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedInt()
-			json::helper::tag::number::Integer& tag_number_integer_unsignedint1 = json::helper::tag::number::UnsignedInt();
+			json::helper::tag::number::Integer&& tag_number_integer_unsignedint1 = json::helper::tag::number::UnsignedInt();
 			//check between value of tag_number_integer_unsignedint1 and json::helper::Enum::value_number_unsignedint is same
 			assert(tag_number_integer_unsignedint1 == json::helper::Enum::value_number_unsignedint);
 
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedLong()
-			json::helper::tag::number::Integer& tag_number_integer_unsignedlong1 = json::helper::tag::number::UnsignedLong();
+			json::helper::tag::number::Integer&& tag_number_integer_unsignedlong1 = json::helper::tag::number::UnsignedLong();
 			//check between value of tag_number_integer_unsignedlong1 and json::helper::Enum::value_number_unsignedlong is same
 			assert(tag_number_integer_unsignedlong1 == json::helper::Enum::value_number_unsignedlong);
 
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedLongLong()
-			json::helper::tag::number::Integer& tag_number_integer_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
+			json::helper::tag::number::Integer&& tag_number_integer_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
 			//check between value of tag_number_integer_unsignedlonglong1 and json::helper::Enum::value_number_unsignedlonglong is same
 			assert(tag_number_integer_unsignedlonglong1 == json::helper::Enum::value_number_unsignedlonglong);
 
 			//declare json::helper::tag::number::Integer& with assignment json::helper::tag::number::UnsignedShort()
-			json::helper::tag::number::Integer& tag_number_integer_unsignedshort1 = json::helper::tag::number::UnsignedShort();
+			json::helper::tag::number::Integer&& tag_number_integer_unsignedshort1 = json::helper::tag::number::UnsignedShort();
 			//check between value of tag_number_integer_unsignedshort1 and json::helper::Enum::value_number_unsignedshort is same
 			assert(tag_number_integer_unsignedshort1 == json::helper::Enum::value_number_unsignedshort);
 		}
@@ -4699,27 +4699,27 @@ int main(int argc, char *argv[])
 		//check between json::helper::tag::number::Signed and json::helper::Enum is same
 		{
 			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::Char()
-			json::helper::tag::number::Signed& tag_number_signed_char1 = json::helper::tag::number::Char();
+			json::helper::tag::number::Signed&& tag_number_signed_char1 = json::helper::tag::number::Char();
 			//check between value of tag_number_signed_char1 and json::helper::Enum::value_number_char is same
 			assert(tag_number_signed_char1 == json::helper::Enum::value_number_char);
 
 			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::Int()
-			json::helper::tag::number::Signed& tag_number_signed_int1 = json::helper::tag::number::Int();
+			json::helper::tag::number::Signed&& tag_number_signed_int1 = json::helper::tag::number::Int();
 			//check between value of tag_number_signed_int1 and json::helper::Enum::value_number_int is same
 			assert(tag_number_signed_int1 == json::helper::Enum::value_number_int);
 
 			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::Long()
-			json::helper::tag::number::Signed& tag_number_signed_long1 = json::helper::tag::number::Long();
+			json::helper::tag::number::Signed&& tag_number_signed_long1 = json::helper::tag::number::Long();
 			//check between value of tag_number_signed_long1 and json::helper::Enum::value_number_long is same
 			assert(tag_number_signed_long1 == json::helper::Enum::value_number_long);
 
 			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::LongLong()
-			json::helper::tag::number::Signed& tag_number_signed_longlong1 = json::helper::tag::number::LongLong();
+			json::helper::tag::number::Signed&& tag_number_signed_longlong1 = json::helper::tag::number::LongLong();
 			//check between value of tag_number_signed_longlong1 and json::helper::Enum::value_number_longlong is same
 			assert(tag_number_signed_longlong1 == json::helper::Enum::value_number_longlong);
 
 			//declare json::helper::tag::number::Signed& with assignment json::helper::tag::number::Short()
-			json::helper::tag::number::Signed& tag_number_signed_short1 = json::helper::tag::number::Short();
+			json::helper::tag::number::Signed&& tag_number_signed_short1 = json::helper::tag::number::Short();
 			//check between value of tag_number_signed_short1 and json::helper::Enum::value_number_short is same
 			assert(tag_number_signed_short1 == json::helper::Enum::value_number_short);
 		}
@@ -4727,27 +4727,27 @@ int main(int argc, char *argv[])
 		//check between json::helper::tag::number::Unsigned and json::helper::Enum is same
 		{
 			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedChar()
-			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedchar1 = json::helper::tag::number::UnsignedChar();
+			json::helper::tag::number::Unsigned&& tag_number_unsigned_unsignedchar1 = json::helper::tag::number::UnsignedChar();
 			//check between value of tag_number_unsigned_unsignedchar1 and json::helper::Enum::value_number_unsignedchar is same
 			assert(tag_number_unsigned_unsignedchar1 == json::helper::Enum::value_number_unsignedchar);
 
 			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedInt()
-			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedint1 = json::helper::tag::number::UnsignedInt();
+			json::helper::tag::number::Unsigned&& tag_number_unsigned_unsignedint1 = json::helper::tag::number::UnsignedInt();
 			//check between value of tag_number_unsigned_unsignedint1 and json::helper::Enum::value_number_unsignedint is same
 			assert(tag_number_unsigned_unsignedint1 == json::helper::Enum::value_number_unsignedint);
 
 			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedLong()
-			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedlong1 = json::helper::tag::number::UnsignedLong();
+			json::helper::tag::number::Unsigned&& tag_number_unsigned_unsignedlong1 = json::helper::tag::number::UnsignedLong();
 			//check between value of tag_number_unsigned_unsignedlong1 and json::helper::Enum::value_number_unsignedlong is same
 			assert(tag_number_unsigned_unsignedlong1 == json::helper::Enum::value_number_unsignedlong);
 
 			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedLongLong()
-			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
+			json::helper::tag::number::Unsigned&& tag_number_unsigned_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
 			//check between value of tag_number_unsigned_unsignedlonglong1 and json::helper::Enum::value_number_unsignedlonglong is same
 			assert(tag_number_unsigned_unsignedlonglong1 == json::helper::Enum::value_number_unsignedlonglong);
 
 			//declare json::helper::tag::number::Unsigned& with assignment json::helper::tag::number::UnsignedShort()
-			json::helper::tag::number::Unsigned& tag_number_unsigned_unsignedshort1 = json::helper::tag::number::UnsignedShort();
+			json::helper::tag::number::Unsigned&& tag_number_unsigned_unsignedshort1 = json::helper::tag::number::UnsignedShort();
 			//check between value of tag_number_unsigned_unsignedshort1 and json::helper::Enum::value_number_unsignedshort is same
 			assert(tag_number_unsigned_unsignedshort1 == json::helper::Enum::value_number_unsignedshort);
 		}
@@ -4759,92 +4759,92 @@ int main(int argc, char *argv[])
 			auto TagIdentification = json::helper::Tag::Identification<json::helper::Value, const json::Value&>;
 
 			//declare json::Value& with assignment from json::value::Array()
-			json::Value& value_array1 = json::value::Array();
+			json::Value&& value_array1 = json::value::Array();
 			//check return function of TagIdentification with value_array1 is json::helper::value_array
 			assert(TagIdentification(value_array1) == json::helper::value_array);
 
 			//declare json::Value& with assignment from json::value::False()
-			json::Value& value_false1 = json::value::False();
+			json::Value&& value_false1 = json::value::False();
 			//check return function of TagIdentification with value_false1 is json::helper::value_false
 			assert(TagIdentification(value_false1) == json::helper::value_false);
 
 			//declare json::Value& with assignment from json::value::Null()
-			json::Value& value_null1 = json::value::Null();
+			json::Value&& value_null1 = json::value::Null();
 			//check return function of TagIdentification with value_null1 is json::helper::value_null
 			assert(TagIdentification(value_null1) == json::helper::value_null);
 
 			//declare json::Value& with assignment from json::value::Object()
-			json::Value& value_object1 = json::value::Object();
+			json::Value&& value_object1 = json::value::Object();
 			//check return function of TagIdentification with value_object1 is json::helper::value_object
 			assert(TagIdentification(value_object1) == json::helper::value_object);
 
 			//declare json::Value& with assignment from json::value::String()
-			json::Value& value_string1 = json::value::String();
+			json::Value&& value_string1 = json::value::String();
 			//check return function of TagIdentification with value_string1 is json::helper::value_string
 			assert(TagIdentification(value_string1) == json::helper::value_string);
 
 			//declare json::Value& with assignment from json::value::True()
-			json::Value& value_true1 = json::value::True();
+			json::Value&& value_true1 = json::value::True();
 			//check return function of TagIdentification with value_true1 is json::helper::value_true
 			assert(TagIdentification(value_true1) == json::helper::value_true);
 
 			//declare json::Value& with assignment from json::value::number::Char()
-			json::Value& value_number_char1 = json::value::number::Char();
+			json::Value&& value_number_char1 = json::value::number::Char();
 			//check return function of TagIdentification with value_number_char1 is json::helper::value_number_char
 			assert(TagIdentification(value_number_char1) == json::helper::value_number_char);
 
 			//declare json::Value& with assignment from json::value::number::Double()
-			json::Value& value_number_double1 = json::value::number::Double();
+			json::Value&& value_number_double1 = json::value::number::Double();
 			//check return function of TagIdentification with value_number_double1 is json::helper::value_number_double
 			assert(TagIdentification(value_number_double1) == json::helper::value_number_double);
 
 			//declare json::Value& with assignment from json::value::number::Float()
-			json::Value& value_number_float1 = json::value::number::Float();
+			json::Value&& value_number_float1 = json::value::number::Float();
 			//check return function of TagIdentification with value_number_float1 is json::helper::value_number_float
 			assert(TagIdentification(value_number_float1) == json::helper::value_number_float);
 
 			//declare json::Value& with assignment from json::value::number::Int()
-			json::Value& value_number_int1 = json::value::number::Int();
+			json::Value&& value_number_int1 = json::value::number::Int();
 			//check return function of TagIdentification with value_number_int1 is json::helper::value_number_int
 			assert(TagIdentification(value_number_int1) == json::helper::value_number_int);
 
 			//declare json::Value& with assignment from json::value::number::Long()
-			json::Value& value_number_long1 = json::value::number::Long();
+			json::Value&& value_number_long1 = json::value::number::Long();
 			//check return function of TagIdentification with value_number_long1 is json::helper::value_number_long
 			assert(TagIdentification(value_number_long1) == json::helper::value_number_long);
 
 			//declare json::Value& with assignment from json::value::number::LongDouble()
-			json::Value& value_number_longdouble1 = json::value::number::LongDouble();
+			json::Value&& value_number_longdouble1 = json::value::number::LongDouble();
 			//check return function of TagIdentification with value_number_longdouble1 is json::helper::value_number_longdouble
 			assert(TagIdentification(value_number_longdouble1) == json::helper::value_number_longdouble);
 
 			//declare json::Value& with assignment from json::value::number::LongLong()
-			json::Value& value_number_longlong1 = json::value::number::LongLong();
+			json::Value&& value_number_longlong1 = json::value::number::LongLong();
 			//check return function of TagIdentification with value_number_longlong1 is json::helper::value_number_longlong
 			assert(TagIdentification(value_number_longlong1) == json::helper::value_number_longlong);
 
 			//declare json::Value& with assignment from json::value::number::UnsignedChar()
-			json::Value& value_number_unsignedchar1 = json::value::number::UnsignedChar();
+			json::Value&& value_number_unsignedchar1 = json::value::number::UnsignedChar();
 			//check return function of TagIdentification with value_number_unsignedchar1 is json::helper::value_number_unsignedchar
 			assert(TagIdentification(value_number_unsignedchar1) == json::helper::value_number_unsignedchar);
 
 			//declare json::Value& with assignment from json::value::number::UnsignedInt()
-			json::Value& value_number_unsignedint1 = json::value::number::UnsignedInt();
+			json::Value&& value_number_unsignedint1 = json::value::number::UnsignedInt();
 			//check return function of TagIdentification with value_number_unsignedint1 is json::helper::value_number_unsignedint
 			assert(TagIdentification(value_number_unsignedint1) == json::helper::value_number_unsignedint);
 
 			//declare json::Value& with assignment from json::value::number::UnsignedLong()
-			json::Value& value_number_unsignedlong1 = json::value::number::UnsignedLong();
+			json::Value&& value_number_unsignedlong1 = json::value::number::UnsignedLong();
 			//check return function of TagIdentification with value_number_unsignedlong1 is json::helper::value_number_unsignedlong
 			assert(TagIdentification(value_number_unsignedlong1) == json::helper::value_number_unsignedlong);
 
 			//declare json::Value& with assignment from json::value::number::UnsignedLongLong()
-			json::Value& value_number_unsignedlonglong1 = json::value::number::UnsignedLongLong();
+			json::Value&& value_number_unsignedlonglong1 = json::value::number::UnsignedLongLong();
 			//check return function of TagIdentification with value_number_unsignedlonglong is json::helper::value_number_unsignedlonglong
 			assert(TagIdentification(value_number_unsignedlonglong1) == json::helper::value_number_unsignedlonglong);
 
 			//declare json::Value& with assignment from json::value::number::UnsignedShort()
-			json::Value& value_number_unsignedshort1 = json::value::number::UnsignedShort();
+			json::Value&& value_number_unsignedshort1 = json::value::number::UnsignedShort();
 			//check return function of TagIdentification with value_number_unsignedshort is json::helper::value_number_unsignedshort
 			assert(TagIdentification(value_number_unsignedshort1) == json::helper::value_number_unsignedshort);
 		}
@@ -4855,7 +4855,7 @@ int main(int argc, char *argv[])
 		//check helper before use
 		{
 			//declare json::Value& for argument for function Case
-			json::Value& value_string = json::value::String();
+			json::Value&& value_string = json::value::String();
 
 			//check struct FullImplementHelperValueCase
 			{
@@ -5505,31 +5505,31 @@ int main(int argc, char *argv[])
 					= json::helper::value::Case<ReturnHelperValueCase, TypeNumber2ImplementHelperValueCase>;
 
 				//declare json::Value& for argument for function Case
-				json::Value& value_string1 = json::value::String();
+				json::Value&& value_string1 = json::value::String();
 
 				//declare json::Tag& from assignment with /json/helper/tag
-				json::helper::Tag& tag_array1 = json::helper::tag::Array();
-				json::helper::Tag& tag_false1 = json::helper::tag::False();
-				json::helper::Tag& tag_null1 = json::helper::tag::Null();
-				json::helper::Tag& tag_number1 = json::helper::tag::Number();
-				json::helper::Tag& tag_object1 = json::helper::tag::Object();
-				json::helper::Tag& tag_string1 = json::helper::tag::String();
-				json::helper::Tag& tag_true1 = json::helper::tag::True();
+				json::helper::Tag&& tag_array1 = json::helper::tag::Array();
+				json::helper::Tag&& tag_false1 = json::helper::tag::False();
+				json::helper::Tag&& tag_null1 = json::helper::tag::Null();
+				json::helper::Tag&& tag_number1 = json::helper::tag::Number();
+				json::helper::Tag&& tag_object1 = json::helper::tag::Object();
+				json::helper::Tag&& tag_string1 = json::helper::tag::String();
+				json::helper::Tag&& tag_true1 = json::helper::tag::True();
 
 				//declare json::Tag& from assignment with /json/helper/tag/number
-				json::helper::Tag& tag_number_char1 = json::helper::tag::number::Char();
-				json::helper::Tag& tag_number_double1 = json::helper::tag::number::Double();
-				json::helper::Tag& tag_number_float1 = json::helper::tag::number::Float();
-				json::helper::Tag& tag_number_int1 = json::helper::tag::number::Int();
-				json::helper::Tag& tag_number_long1 = json::helper::tag::number::Long();
-				json::helper::Tag& tag_number_longdouble1 = json::helper::tag::number::LongDouble();
-				json::helper::Tag& tag_number_longlong1 = json::helper::tag::number::LongLong();
-				json::helper::Tag& tag_number_short1 = json::helper::tag::number::Short();
-				json::helper::Tag& tag_number_unsignedchar1 = json::helper::tag::number::UnsignedChar();
-				json::helper::Tag& tag_number_unsignedint1 = json::helper::tag::number::UnsignedInt();
-				json::helper::Tag& tag_number_unsignedlong1 = json::helper::tag::number::UnsignedLong();
-				json::helper::Tag& tag_number_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
-				json::helper::Tag& tag_number_unsignedshort1 = json::helper::tag::number::UnsignedShort();
+				json::helper::Tag&& tag_number_char1 = json::helper::tag::number::Char();
+				json::helper::Tag&& tag_number_double1 = json::helper::tag::number::Double();
+				json::helper::Tag&& tag_number_float1 = json::helper::tag::number::Float();
+				json::helper::Tag&& tag_number_int1 = json::helper::tag::number::Int();
+				json::helper::Tag&& tag_number_long1 = json::helper::tag::number::Long();
+				json::helper::Tag&& tag_number_longdouble1 = json::helper::tag::number::LongDouble();
+				json::helper::Tag&& tag_number_longlong1 = json::helper::tag::number::LongLong();
+				json::helper::Tag&& tag_number_short1 = json::helper::tag::number::Short();
+				json::helper::Tag&& tag_number_unsignedchar1 = json::helper::tag::number::UnsignedChar();
+				json::helper::Tag&& tag_number_unsignedint1 = json::helper::tag::number::UnsignedInt();
+				json::helper::Tag&& tag_number_unsignedlong1 = json::helper::tag::number::UnsignedLong();
+				json::helper::Tag&& tag_number_unsignedlonglong1 = json::helper::tag::number::UnsignedLongLong();
+				json::helper::Tag&& tag_number_unsignedshort1 = json::helper::tag::number::UnsignedShort();
 
 				//check CaseFullImplementTagConstValue with parameters json::Tag and json::Value&
 				{
