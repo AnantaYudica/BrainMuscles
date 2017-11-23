@@ -28,10 +28,10 @@ namespace BrainMuscles
 						const VALUE_TYPE Value;
 						const std::string Message;
 					public:
-						UndefinedType(VALUE_TYPE value);
-						~UndefinedType() = default;
+						UndefinedType(VALUE_TYPE value) throw();
+						~UndefinedType() throw() = default;
 					public:
-						const char* what() const;
+						const char* what() const throw();
 					private:
 						static const std::string InstanceMessage(const VALUE_TYPE& value);
 					};
@@ -43,22 +43,22 @@ namespace BrainMuscles
 					public:
 						const std::string Message;
 					public:
-						UndefinedType();
-						~UndefinedType() = default;
+						UndefinedType() throw();
+						~UndefinedType() throw() = default;
 					public:
-						const char* what() const;
+						const char* what() const throw();
 					private:
 						static const std::string InstanceMessage();
 					};
 
 					template<typename TYPE, typename VALUE_TYPE>
-					UndefinedType<TYPE, VALUE_TYPE>::UndefinedType(VALUE_TYPE value) :
+					UndefinedType<TYPE, VALUE_TYPE>::UndefinedType(VALUE_TYPE value) throw() :
 						Value(value),
 						Message(InstanceMessage(value))
 					{}
 
 					template<typename TYPE, typename VALUE_TYPE>
-					const char* UndefinedType<TYPE, VALUE_TYPE>::what() const
+					const char* UndefinedType<TYPE, VALUE_TYPE>::what() const throw()
 					{
 						return Message.c_str();
 					}
@@ -72,12 +72,12 @@ namespace BrainMuscles
 					}
 
 					template<typename TYPE>
-					UndefinedType<TYPE, void>::UndefinedType() :
+					UndefinedType<TYPE, void>::UndefinedType() throw() :
 						Message(InstanceMessage())
 					{}
 
 					template<typename TYPE>
-					const char* UndefinedType<TYPE, void>::what() const
+					const char* UndefinedType<TYPE, void>::what() const throw()
 					{
 						return Message.c_str();
 					}
