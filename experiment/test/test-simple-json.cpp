@@ -713,6 +713,8 @@ int main(int argc, char *argv[])
 		//main variable with default constructor json::value::Array
 		json::value::Array array1;
 		json::value::Array array2;
+		const json::value::Array& const_array1 = array1;
+		const json::value::Array& const_array2 = array2;
 
 		//experiment with Insert and operator[] of json::value::Array with initialization value of jsonvalue
 		{
@@ -1076,7 +1078,7 @@ int main(int argc, char *argv[])
 			}
 
 			//check range-for is work with const variable of array1
-			for (auto it : std::as_const(array1))
+			for (auto it : const_array1)
 			{
 				assert(json::value::Array::Value(it) == array1[array1.Key(it)]);
 			}
@@ -1163,7 +1165,7 @@ int main(int argc, char *argv[])
 			for (size_t i = 0; i < array2.Size(); ++i)
 			{
 				assert(array2[i] == array2.At(i));
-				assert(as_const(array2)[i] == as_const(array2).At(i));
+				assert(const_array2[i] == const_array2.At(i));
 			}
 		}
 
@@ -1671,6 +1673,8 @@ int main(int argc, char *argv[])
 		//main variable with default constructor json::value::Object
 		json::value::Object object1;
 		json::value::Object object2;
+		const json::value::Object& const_object1 = object1;
+		const json::value::Object& const_object2 = object2;
 
 		//experiment with Insert and operator[] of json::value::Object with initialization value of json/value
 		{
@@ -2034,7 +2038,7 @@ int main(int argc, char *argv[])
 			}
 
 			//check range-for is work with const variable of object1
-			for (auto it : std::as_const(object1))
+			for (auto it : const_object1)
 			{
 				assert(json::value::Object::Value(it) == object1[object1.Key(it)]);
 			}
@@ -2134,7 +2138,7 @@ int main(int argc, char *argv[])
 			for (auto it : object2)
 			{
 				assert(object2[object2.Key(it)] == object2.At(object2.Key(it)));
-				assert(as_const(object2)[object2.Key(it)] == as_const(object2).At(object2.Key(it)));
+				assert(const_object2[object2.Key(it)] == const_object2.At(object2.Key(it)));
 			}
 		}
 
