@@ -2169,7 +2169,7 @@ int main(int argc, char *argv[])
 		assert(strcmp(string2, "cstring") == 0);
 
 		//fill constructor with std::string
-		json::value::String string3("string"s);
+		json::value::String string3(std::string("string"));
 		//check compare string3 and "string" is same
 		assert(strcmp(string3, "string") == 0);
 
@@ -4628,7 +4628,7 @@ int main(int argc, char *argv[])
 		//check between json::helper::tag::number::FloatingPoint and json::helper::Enum is same
 		{
 			//declare json::helper::tag::number::FloatingPoint& with assignment json::helper::tag::number::Double()
-			json::helper::tag::number::FloatingPoint&  tag_number_floatingpoint_double1 = json::helper::tag::number::Double();
+			json::helper::tag::number::FloatingPoint&&  tag_number_floatingpoint_double1 = json::helper::tag::number::Double();
 			//check between value of tag_number_floatingpoint_double1 and json::helper::Enum::value_number_double is same
 			assert(tag_number_floatingpoint_double1 == json::helper::Enum::value_number_double);
 
