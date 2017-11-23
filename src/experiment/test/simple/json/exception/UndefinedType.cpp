@@ -14,14 +14,12 @@
 typedef experiment::test::simple::json::exception::UndefinedType
 UndefinedType;
 
-//	Declare overloaded function 'std::to_string'
-namespace std
+//	Declare implementation 'experiment::test::simple::json
+//		::exception::to_string'
+std::string experiment::test::simple::json
+	::exception::to_string(const typename UndefinedType::Int& obj)
 {
-	inline std::string
-		to_string(const typename UndefinedType::Int& obj)
-	{
-		return std::to_string(obj.Value);
-	}
+	return std::to_string(obj.Value);
 }
 
 void experiment::test::simple::json::exception::UndefinedType::Test()
