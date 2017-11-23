@@ -11,15 +11,15 @@ namespace BrainMuscles
 		{
 			namespace error
 			{
-				typedef unsigned char NumbersType;
-				enum Numbers;
+				typedef unsigned char NumbersIntegerType;
+				enum Numbers : NumbersIntegerType;
 			}
 		}
 	}
 }
 
 enum BrainMuscles::test::source::error::Numbers :
-	BrainMuscles::test::source::error::NumbersType
+	BrainMuscles::test::source::error::NumbersIntegerType
 {
 	not_base_of_source = 1,
 	has_not_impl_test,
