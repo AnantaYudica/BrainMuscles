@@ -31,7 +31,6 @@
 #include "test/simple/json/pointer/value/number/UnsignedShort.h"
 
 #include "test/simple/json/helper/value/Declare.h"
-#include "test/simple/json/helper/pointer/value/Declare.h"
 
 namespace BrainMuscles
 {
