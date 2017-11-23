@@ -1,11 +1,12 @@
+#define _USING_TEST_
 #define _USING_TEST_SOURCE_
 
 #include <cstring>
 #include <string>
 
-#include "test\simple\json\exception\UndefinedType.h"
+#include "test/simple/json/exception/UndefinedType.h"
 
-#include "experiment\test\simple\json\exception\UndefinedType.h"
+#include "experiment/test/simple/json/exception/UndefinedType.h"
 
 //	Declare alias type 'UndefinedType' 
 //	with prototype class
