@@ -228,34 +228,32 @@ namespace BrainMuscles
 					{
 						return m_container;
 					}
+
+					inline auto begin(BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.Begin())
+					{
+						return _Cont.Begin();
+					}
+
+					inline auto end(BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.End())
+					{
+						return _Cont.End();
+					}
+
+					inline auto begin(const BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.Begin())
+					{
+						return _Cont.Begin();
+					}
+
+					inline auto end(const BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.End())
+					{
+						return _Cont.End();
+					}
 				}
 			}
 		}
 	}
 }
 
-namespace std
-{
-	auto inline begin(BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.Begin())
-	{
-		return _Cont.Begin();
-	}
-
-	auto inline end(BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.End())
-	{
-		return _Cont.End();
-	}
-
-	auto inline begin(const BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.Begin())
-	{
-		return _Cont.Begin();
-	}
-
-	auto inline end(const BrainMuscles::test::simple::json::value::Array& _Cont) -> decltype(_Cont.End())
-	{
-		return _Cont.End();
-	}
-}
 
 #endif
 
