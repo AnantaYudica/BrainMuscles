@@ -12,7 +12,7 @@ namespace BrainMuscles
 			namespace interface
 			{
 				typedef unsigned char FlagsIntegerType;
-				enum Flags;
+				enum Flags : FlagsIntegerType;
 			}
 		}
 	}

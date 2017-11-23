@@ -11,15 +11,15 @@ namespace BrainMuscles
 		{
 			namespace status
 			{
-				typedef unsigned char FlagsType;
-				enum Flags;
+				typedef unsigned char FlagsIntegerType;
+				enum Flags : FlagsIntegerType;
 			}
 		}
 	}
 }
 
 enum BrainMuscles::test::source::status::Flags :
-	BrainMuscles::test::source::status::FlagsType
+	BrainMuscles::test::source::status::FlagsIntegerType
 {
 	pass,
 	error,

@@ -12,7 +12,7 @@ namespace BrainMuscles
 			namespace function
 			{
 				typedef unsigned short FlagsType;
-				enum Flags;
+				enum Flags : FlagsType;
 			}
 		}
 	}
