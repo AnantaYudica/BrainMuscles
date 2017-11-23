@@ -28,16 +28,16 @@ namespace BrainMuscles
 					public:
 						const std::string Message;
 					public:
-						BadCast();
-						~BadCast() = default;
+						BadCast() throw();
+						~BadCast() throw() = default;
 					private:
 						static const std::string InstanceMessage();
 					public:
-						const char* what() const;
+						const char* what() const throw();
 					};
 
 					template<typename FROM_TYPE, typename TO_TYPE>
-					BadCast<FROM_TYPE, TO_TYPE>::BadCast() :
+					BadCast<FROM_TYPE, TO_TYPE>::BadCast() throw() :
 						Message(InstanceMessage())
 					{}
 			
@@ -52,7 +52,7 @@ namespace BrainMuscles
 					}
 
 					template<typename FROM_TYPE, typename TO_TYPE>
-					const char* BadCast<FROM_TYPE, TO_TYPE>::what() const
+					const char* BadCast<FROM_TYPE, TO_TYPE>::what() const throw()
 					{
 						return Message.c_str();
 					}
