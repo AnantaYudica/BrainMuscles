@@ -338,133 +338,133 @@ int main(int argc, char *argv[])
 	//experiment with 'json/Value.h' 
 	{
 		//declaration json::value& from assignment json::value::Array();
-		json::Value& value_array1 = json::value::Array();
+		json::Value&& value_array1 = json::value::Array();
 		//cast from json::value to json::value::Array;
 		auto pointer_value_array1 = dynamic_cast<json::value::Array*>(&value_array1);
 		//check pointer_value_array1 is not null
 		assert(pointer_value_array1);
 
 		//declaration json::value& from assignment json::value::False();
-		json::Value& value_false1 = json::value::False();
+		json::Value&& value_false1 = json::value::False();
 		//cast from json::value to json::value::False;
 		auto pointer_value_false1 = dynamic_cast<json::value::False*>(&value_false1);
 		//check pointer_value_false1 is not null
 		assert(pointer_value_false1);
 
 		//declaration json::value& from assignment json::value::Null();
-		json::Value& value_null1 = json::value::Null();
+		json::Value&& value_null1 = json::value::Null();
 		//cast from json::value to json::value::Null;
 		auto pointer_value_null1 = dynamic_cast<json::value::Null*>(&value_null1);
 		//check pointer_value_null1 is not null
 		assert(pointer_value_null1);
 
 		//declaration json::value& from assignment json::value::Object();
-		json::Value& value_object1 = json::value::Object();
+		json::Value&& value_object1 = json::value::Object();
 		//cast from json::value to json::value::Object;
 		auto pointer_value_object1 = dynamic_cast<json::value::Object*>(&value_object1);
 		//check pointer_value_object1 is not null
 		assert(pointer_value_object1);
 
 		//declaration json::value& from assignment json::value::String();
-		json::Value& value_string1 = json::value::String();
+		json::Value&& value_string1 = json::value::String();
 		//cast from json::value to json::value::String;
 		auto pointer_value_string1 = dynamic_cast<json::value::String*>(&value_string1);
 		//check pointer_value_string1 is not null
 		assert(pointer_value_string1);
 
 		//declaration json::value& from assignment json::value::True();
-		json::Value& value_true1 = json::value::True();
+		json::Value&& value_true1 = json::value::True();
 		//cast from json::value to json::value::True;
 		auto pointer_value_true1 = dynamic_cast<json::value::True*>(&value_true1);
 		//check pointer_value_true1 is not null
 		assert(pointer_value_true1);
 
 		//declaration json::value& from assignment json::value::number::Char();
-		json::Value& value_number_char1 = json::value::number::Char();
+		json::Value&& value_number_char1 = json::value::number::Char();
 		//cast from json::value to json::value::number::Char;
 		auto pointer_value_number_char1 = dynamic_cast<json::value::number::Char*>(&value_number_char1);
 		//check pointer_value_number_char1 is not null
 		assert(pointer_value_number_char1);
 
 		//declaration json::value& from assignment json::value::number::Double();
-		json::Value& value_number_double1 = json::value::number::Double();
+		json::Value&& value_number_double1 = json::value::number::Double();
 		//cast from json::value to json::value::number::Double;
 		auto pointer_value_number_double1 = dynamic_cast<json::value::number::Double*>(&value_number_double1);
 		//check pointer_value_number_double1 is not null
 		assert(pointer_value_number_double1);
 
 		//declaration json::value& from assignment json::value::number::Float();
-		json::Value& value_number_float1 = json::value::number::Float();
+		json::Value&& value_number_float1 = json::value::number::Float();
 		//cast from json::value to json::value::number::Float;
 		auto pointer_value_number_float1 = dynamic_cast<json::value::number::Float*>(&value_number_float1);
 		//check pointer_value_number_float1 is not null
 		assert(pointer_value_number_float1);
 
 		//declaration json::value& from assignment json::value::number::Int();
-		json::Value& value_number_int1 = json::value::number::Int();
+		json::Value&& value_number_int1 = json::value::number::Int();
 		//cast from json::value to json::value::number::Int;
 		auto pointer_value_number_int1 = dynamic_cast<json::value::number::Int*>(&value_number_int1);
 		//check pointer_value_number_int1 is not null
 		assert(pointer_value_number_int1);
 
 		//declaration json::value& from assignment json::value::number::Long();
-		json::Value& value_number_long1 = json::value::number::Long();
+		json::Value&& value_number_long1 = json::value::number::Long();
 		//cast from json::value to json::value::number::Long;
 		auto pointer_value_number_long1 = dynamic_cast<json::value::number::Long*>(&value_number_long1);
 		//check pointer_value_number_long1 is not null
 		assert(pointer_value_number_long1);
 
 		//declaration json::value& from assignment json::value::number::LongDouble();
-		json::Value& value_number_longdouble1 = json::value::number::LongDouble();
+		json::Value&& value_number_longdouble1 = json::value::number::LongDouble();
 		//cast from json::value to json::value::number::LongDouble;
 		auto pointer_value_number_longdouble1 = dynamic_cast<json::value::number::LongDouble*>(&value_number_longdouble1);
 		//check pointer_value_number_longdouble1 is not null
 		assert(pointer_value_number_longdouble1);
 
 		//declaration json::value& from assignment json::value::number::LongLong();
-		json::Value& value_number_longlong1 = json::value::number::LongLong();
+		json::Value&& value_number_longlong1 = json::value::number::LongLong();
 		//cast from json::value to json::value::number::LongLong;
 		auto pointer_value_number_longlong1 = dynamic_cast<json::value::number::LongLong*>(&value_number_longlong1);
 		//check pointer_value_number_longlong1 is not null
 		assert(pointer_value_number_longlong1);
 
 		//declaration json::value& from assignment json::value::number::Short();
-		json::Value& value_number_short1 = json::value::number::Short();
+		json::Value&& value_number_short1 = json::value::number::Short();
 		//cast from json::value to json::value::number::Short;
 		auto pointer_value_number_short1 = dynamic_cast<json::value::number::Short*>(&value_number_short1);
 		//check pointer_value_number_short1 is not null
 		assert(pointer_value_number_short1);
 
 		//declaration json::value& from assignment json::value::number::UnsignedChar();
-		json::Value& value_number_unsignedchar1 = json::value::number::UnsignedChar();
+		json::Value&& value_number_unsignedchar1 = json::value::number::UnsignedChar();
 		//cast from json::value to json::value::number::UnsignedChar;
 		auto pointer_value_number_unsignedchar1 = dynamic_cast<json::value::number::UnsignedChar*>(&value_number_unsignedchar1);
 		//check pointer_value_number_unsignedchar1 is not null
 		assert(pointer_value_number_unsignedchar1);
 
 		//declaration json::value& from assignment json::value::number::UnsignedInt();
-		json::Value& value_number_unsignedint1 = json::value::number::UnsignedInt();
+		json::Value&& value_number_unsignedint1 = json::value::number::UnsignedInt();
 		//cast from json::value to json::value::number::UnsignedInt;
 		auto pointer_value_number_unsignedint1 = dynamic_cast<json::value::number::UnsignedInt*>(&value_number_unsignedint1);
 		//check pointer_value_number_unsignedint1 is not null
 		assert(pointer_value_number_unsignedint1);
 
 		//declaration json::value& from assignment json::value::number::UnsignedLong();
-		json::Value& value_number_unsignedlong1 = json::value::number::UnsignedLong();
+		json::Value&& value_number_unsignedlong1 = json::value::number::UnsignedLong();
 		//cast from json::value to json::value::number::UnsignedLong;
 		auto pointer_value_number_unsignedlong1 = dynamic_cast<json::value::number::UnsignedLong*>(&value_number_unsignedlong1);
 		//check pointer_value_number_unsignedlong1 is not null
 		assert(pointer_value_number_unsignedlong1);
 
 		//declaration json::value& from assignment json::value::number::UnsignedLongLong();
-		json::Value& value_number_unsignedlonglong1 = json::value::number::UnsignedLongLong();
+		json::Value&& value_number_unsignedlonglong1 = json::value::number::UnsignedLongLong();
 		//cast from json::value to json::value::number::UnsignedLongLong;
 		auto pointer_value_number_unsignedlonglong1 = dynamic_cast<json::value::number::UnsignedLongLong*>(&value_number_unsignedlonglong1);
 		//check pointer_value_number_unsignedlonglong1 is not null
 		assert(pointer_value_number_unsignedlonglong1);
 
 		//declaration json::value& from assignment json::value::number::UnsignedShort();
-		json::Value& value_number_unsignedshort1 = json::value::number::UnsignedShort();
+		json::Value&& value_number_unsignedshort1 = json::value::number::UnsignedShort();
 		//cast from json::value to json::value::number::UnsignedShort;
 		auto pointer_value_number_unsignedshort1 = dynamic_cast<json::value::number::UnsignedShort*>(&value_number_unsignedshort1);
 		//check pointer_value_number_unsignedshort1 is not null
