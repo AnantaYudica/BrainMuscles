@@ -1,12 +1,12 @@
 #ifndef TEST_SIMPLE_JSON_HELPER_VALUE_CASE_H_
 #define TEST_SIMPLE_JSON_HELPER_VALUE_CASE_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\json\helper\Tag.h"
-#include "test\simple\json\helper\Value.h"
+#include "test/simple/json/helper/Tag.h"
+#include "test/simple/json/helper/Value.h"
 
 namespace BrainMuscles
 {
@@ -23,7 +23,7 @@ namespace BrainMuscles
 						template<typename RETURN_TYPE, typename IMPLEMENT_TYPE, typename INPUT_TYPE, typename... ARGS>
 						RETURN_TYPE CaseImpl(INPUT_TYPE value, ARGS... args)
 						{
-							return BrainMuscles::test::simple::json::helper::Tag::Case<RETURN_TYPE, IMPLEMENT_TYPE, INPUT_TYPE>(
+							return BrainMuscles::test::simple::json::helper::Tag::Case<RETURN_TYPE, IMPLEMENT_TYPE, INPUT_TYPE, ARGS...>(
 								BrainMuscles::test::simple::json::helper::Tag::Identification<BrainMuscles::test::simple::json::helper::Value, INPUT_TYPE>(value), value, args...);
 						}
 

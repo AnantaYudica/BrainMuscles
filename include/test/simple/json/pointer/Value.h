@@ -7,7 +7,7 @@
 
 #include <type_traits>
 
-#include "test\simple\json\Value.h"
+#include "test/simple/json/Value.h"
 
 namespace BrainMuscles
 {

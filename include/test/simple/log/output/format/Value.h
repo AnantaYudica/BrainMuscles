@@ -1,13 +1,13 @@
 #ifndef TEST_SIMPLE_LOG_OUTPUT_FORMAT_VALUE_H_
 #define TEST_SIMPLE_LOG_OUTPUT_FORMAT_VALUE_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\log\output\format\Flags.h"
-#include "test\simple\log\output\format\Width.h"
-#include "test\simple\log\output\format\Precision.h"
+#include "test/simple/log/output/format/Flags.h"
+#include "test/simple/log/output/format/Width.h"
+#include "test/simple/log/output/format/Precision.h"
 
 namespace BrainMuscles
 {
@@ -76,7 +76,7 @@ namespace BrainMuscles
 							bool IsSetSigned() const;
 							void SignedEnable();
 							void SignedDisable();
-							bool isSignedEnable() const;
+							bool IsSignedEnable() const;
 
 						private:
 							void SetCharacter();
@@ -243,13 +243,13 @@ namespace BrainMuscles
 						void Value::SignedDisable()
 						{
 							SetSigned();
-							if (isSignedEnable())
+							if (IsSignedEnable())
 							{
 								m_setting ^= SignedBitIndex;
 							}
 						}
 
-						bool Value::isSignedEnable() const
+						bool Value::IsSignedEnable() const
 						{
 							return (m_setting & SignedBitIndex);
 						}

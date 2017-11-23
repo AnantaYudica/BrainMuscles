@@ -1,16 +1,16 @@
 #ifndef TEST_SIMPLE_LOG_OUTPUT_HANDLE_H_
 #define TEST_SIMPLE_LOG_OUTPUT_HANDLE_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\functional\Function.h"
+#include "test/simple/functional/Function.h"
 
-#include "test\simple\log\output\Signal.h"
-#include "test\simple\log\output\format\Value.h"
-#include "test\simple\log\output\Format.h"
-#include "test\simple\log\output\call\Value.h"
+#include "test/simple/log/output/Signal.h"
+#include "test/simple/log/output/format/Value.h"
+#include "test/simple/log/output/Format.h"
+#include "test/simple/log/output/call/Value.h"
 
 namespace BrainMuscles
 {

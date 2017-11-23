@@ -1,7 +1,7 @@
 #ifndef TEST_SIMPLE_LOG_OUTPUT_HELPER_DEBUG_CALL_ISTYPE_H_
 #define TEST_SIMPLE_LOG_OUTPUT_HELPER_DEBUG_CALL_ISTYPE_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
@@ -9,7 +9,7 @@
 
 #include <utility>
 
-#include "test\simple\log\output\Call.h"
+#include "test/simple/log/output/Call.h"
 
 namespace BrainMuscles
 {

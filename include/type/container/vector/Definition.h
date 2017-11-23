@@ -4,18 +4,18 @@
 #include <cstddef>
 #include <vector>
 
-#include "type\iterator\Tag.h"
+#include "type/iterator/Tag.h"
 
-#include "type\container\definition\Base.h"
+#include "type/container/definition/Base.h"
 
-#include "type\container\Element.h"
+#include "type/container/Element.h"
 
-#include "type\container\Base.h"
+#include "type/container/Base.h"
 
-#include "type\container\vector\Iterator.h"
+#include "type/container/vector/Iterator.h"
 
-#include "type\container\vector\iterator\handle\definition\ConstIterator.h"
-#include "type\container\vector\iterator\handle\definition\Iterator.h"
+#include "type/container/vector/iterator/handle/definition/ConstIterator.h"
+#include "type/container/vector/iterator/handle/definition/Iterator.h"
 
 namespace BrainMuscles
 {

@@ -5,7 +5,7 @@
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\json\value\Number.h"
+#include "test/simple/json/value/Number.h"
 
 namespace BrainMuscles
 {

@@ -1,7 +1,7 @@
 #ifndef TEST_SIMPLE_LOG_OUTPUT_CALL_VALUE_TAG_H_
 #define TEST_SIMPLE_LOG_OUTPUT_CALL_VALUE_TAG_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 

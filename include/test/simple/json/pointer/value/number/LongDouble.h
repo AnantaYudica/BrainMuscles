@@ -5,8 +5,8 @@
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\json\Memory.h"
-#include "test\simple\json\value\number\LongDouble.h"
+#include "test/simple/json/Memory.h"
+#include "test/simple/json/value/number/LongDouble.h"
 
 namespace BrainMuscles
 {

@@ -1,14 +1,14 @@
 #ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_CLEAR_H_
 #define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_CLEAR_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\log\output\format\Value.h"
+#include "test/simple/log/output/format/Value.h"
 
-#include "test\simple\log\output\call\value\Tag.h"
-#include "test\simple\log\output\call\Value.h"
+#include "test/simple/log/output/call/value/Tag.h"
+#include "test/simple/log/output/call/Value.h"
 
 namespace BrainMuscles
 {

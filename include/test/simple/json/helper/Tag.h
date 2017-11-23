@@ -5,9 +5,9 @@
 #ifndef TEST_SIMPLE_JSON_HELPER_TAG_H___DEFINITION__
 #define TEST_SIMPLE_JSON_HELPER_TAG_H___DEFINITION__
 
-#include "test\simple\json\exception\UndefinedType.h"
+#include "test/simple/json/exception/UndefinedType.h"
 
-#include "test\simple\json\helper\Enum.h"
+#include "test/simple/json/helper/Enum.h"
 
 namespace BrainMuscles
 {
@@ -50,32 +50,32 @@ namespace BrainMuscles
 	}
 }
 
-#include "test\simple\json\helper\tag\Array.h"
-#include "test\simple\json\helper\tag\False.h"
-#include "test\simple\json\helper\tag\Null.h"
-#include "test\simple\json\helper\tag\Number.h"
-#include "test\simple\json\helper\tag\Object.h"
-#include "test\simple\json\helper\tag\String.h"
-#include "test\simple\json\helper\tag\True.h"
+#include "test/simple/json/helper/tag/Array.h"
+#include "test/simple/json/helper/tag/False.h"
+#include "test/simple/json/helper/tag/Null.h"
+#include "test/simple/json/helper/tag/Number.h"
+#include "test/simple/json/helper/tag/Object.h"
+#include "test/simple/json/helper/tag/String.h"
+#include "test/simple/json/helper/tag/True.h"
 
-#include "test\simple\json\helper\tag\number\FloatingPoint.h"
-#include "test\simple\json\helper\tag\number\Integer.h"
-#include "test\simple\json\helper\tag\number\Signed.h"
-#include "test\simple\json\helper\tag\number\Unsigned.h"
+#include "test/simple/json/helper/tag/number/FloatingPoint.h"
+#include "test/simple/json/helper/tag/number/Integer.h"
+#include "test/simple/json/helper/tag/number/Signed.h"
+#include "test/simple/json/helper/tag/number/Unsigned.h"
 
-#include "test\simple\json\helper\tag\number\Char.h"
-#include "test\simple\json\helper\tag\number\Double.h"
-#include "test\simple\json\helper\tag\number\Float.h"
-#include "test\simple\json\helper\tag\number\Int.h"
-#include "test\simple\json\helper\tag\number\Long.h"
-#include "test\simple\json\helper\tag\number\LongDouble.h"
-#include "test\simple\json\helper\tag\number\LongLong.h"
-#include "test\simple\json\helper\tag\number\Short.h"
-#include "test\simple\json\helper\tag\number\UnsignedChar.h"
-#include "test\simple\json\helper\tag\number\UnsignedInt.h"
-#include "test\simple\json\helper\tag\number\UnsignedLong.h"
-#include "test\simple\json\helper\tag\number\UnsignedLongLong.h"
-#include "test\simple\json\helper\tag\number\UnsignedShort.h"
+#include "test/simple/json/helper/tag/number/Char.h"
+#include "test/simple/json/helper/tag/number/Double.h"
+#include "test/simple/json/helper/tag/number/Float.h"
+#include "test/simple/json/helper/tag/number/Int.h"
+#include "test/simple/json/helper/tag/number/Long.h"
+#include "test/simple/json/helper/tag/number/LongDouble.h"
+#include "test/simple/json/helper/tag/number/LongLong.h"
+#include "test/simple/json/helper/tag/number/Short.h"
+#include "test/simple/json/helper/tag/number/UnsignedChar.h"
+#include "test/simple/json/helper/tag/number/UnsignedInt.h"
+#include "test/simple/json/helper/tag/number/UnsignedLong.h"
+#include "test/simple/json/helper/tag/number/UnsignedLongLong.h"
+#include "test/simple/json/helper/tag/number/UnsignedShort.h"
 
 #endif //!TEST_SIMPLE_JSON_HELPER_TAG_H___DEFINITION__
 

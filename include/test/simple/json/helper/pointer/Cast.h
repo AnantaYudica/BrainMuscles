@@ -5,31 +5,31 @@
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\json\Memory.h"
+#include "test/simple/json/Memory.h"
 
-#include "test\simple\json\pointer\Value.h"
-#include "test\simple\json\pointer\value\Array.h"
-#include "test\simple\json\pointer\value\False.h"
-#include "test\simple\json\pointer\value\Number.h"
-#include "test\simple\json\pointer\value\Object.h"
-#include "test\simple\json\pointer\value\String.h"
-#include "test\simple\json\pointer\value\True.h"
+#include "test/simple/json/pointer/Value.h"
+#include "test/simple/json/pointer/value/Array.h"
+#include "test/simple/json/pointer/value/False.h"
+#include "test/simple/json/pointer/value/Number.h"
+#include "test/simple/json/pointer/value/Object.h"
+#include "test/simple/json/pointer/value/String.h"
+#include "test/simple/json/pointer/value/True.h"
 
-#include "test\simple\json\pointer\value\number\Char.h"
-#include "test\simple\json\pointer\value\number\Double.h"
-#include "test\simple\json\pointer\value\number\Float.h"
-#include "test\simple\json\pointer\value\number\Int.h"
-#include "test\simple\json\pointer\value\number\Long.h"
-#include "test\simple\json\pointer\value\number\LongDouble.h"
-#include "test\simple\json\pointer\value\number\LongLong.h"
-#include "test\simple\json\pointer\value\number\Short.h"
-#include "test\simple\json\pointer\value\number\UnsignedChar.h"
-#include "test\simple\json\pointer\value\number\UnsignedInt.h"
-#include "test\simple\json\pointer\value\number\UnsignedLong.h"
-#include "test\simple\json\pointer\value\number\UnsignedLongLong.h"
-#include "test\simple\json\pointer\value\number\UnsignedShort.h"
+#include "test/simple/json/pointer/value/number/Char.h"
+#include "test/simple/json/pointer/value/number/Double.h"
+#include "test/simple/json/pointer/value/number/Float.h"
+#include "test/simple/json/pointer/value/number/Int.h"
+#include "test/simple/json/pointer/value/number/Long.h"
+#include "test/simple/json/pointer/value/number/LongDouble.h"
+#include "test/simple/json/pointer/value/number/LongLong.h"
+#include "test/simple/json/pointer/value/number/Short.h"
+#include "test/simple/json/pointer/value/number/UnsignedChar.h"
+#include "test/simple/json/pointer/value/number/UnsignedInt.h"
+#include "test/simple/json/pointer/value/number/UnsignedLong.h"
+#include "test/simple/json/pointer/value/number/UnsignedLongLong.h"
+#include "test/simple/json/pointer/value/number/UnsignedShort.h"
 
-#include "test\simple\json\exception\BadCast.h"
+#include "test/simple/json/exception/BadCast.h"
 
 namespace BrainMuscles
 {

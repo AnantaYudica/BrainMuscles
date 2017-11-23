@@ -1,15 +1,15 @@
 #ifndef TEST_SIMPLE_LOG_OUTPUT_DELEGATE_LOOP_H_
 #define TEST_SIMPLE_LOG_OUTPUT_DELEGATE_LOOP_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
 #include <cstddef>
 
-#include "test\simple\log\output\Constant.h"
+#include "test/simple/log/output/Constant.h"
 
-#include "test\simple\log\output\call\Handle.h"
+#include "test/simple/log/output/call/Handle.h"
 
 namespace BrainMuscles
 {

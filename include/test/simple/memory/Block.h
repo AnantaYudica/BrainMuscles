@@ -1,11 +1,11 @@
 #ifndef TEST_SIMPLE_MEMORY_BLOCK_H_
 #define TEST_SIMPLE_MEMORY_BLOCK_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\memory\block\Data.h"
+#include "test/simple/memory/block/Data.h"
 
 namespace BrainMuscles
 {

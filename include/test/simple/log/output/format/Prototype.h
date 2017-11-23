@@ -1,17 +1,17 @@
 #ifndef TEST_SIMPLE_LOG_OUTPUT_FORMAT_PROTOTYPE_H_
 #define TEST_SIMPLE_LOG_OUTPUT_FORMAT_PROTOTYPE_H_
 
-#include "test\Configure.h"
+#include "test/Configure.h"
 
 #if defined(_USING_TEST_)
 
 #include <type_traits>
 
-#include "test\simple\log\output\format\Constant.h"
-#include "test\simple\log\output\format\Specifier.h"
-#include "test\simple\log\output\format\Length.h"
+#include "test/simple/log/output/format/Constant.h"
+#include "test/simple/log/output/format/Specifier.h"
+#include "test/simple/log/output/format/Length.h"
 
-#include "test\simple\log\output\format\Value.h"
+#include "test/simple/log/output/format/Value.h"
 
 namespace BrainMuscles
 {
@@ -263,7 +263,7 @@ namespace BrainMuscles
 
 						void Prototype::InCaseIntegerSignedDecimalEnable(SizeType& index)
 						{
-							if (m_value.isSignedEnable())
+							if (m_value.IsSignedEnable())
 							{
 								SpecifierType::SignedDecimal().CopyToFormat(m_formatString, index);
 							}

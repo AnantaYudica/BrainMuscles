@@ -10,8 +10,8 @@
 #include <vector>
 #include <map>
 
-#include "test\simple\json\Value.h"
-#include "test\simple\json\pointer\Value.h"
+#include "test/simple/json/Value.h"
+#include "test/simple/json/pointer/Value.h"
 
 namespace BrainMuscles
 {
