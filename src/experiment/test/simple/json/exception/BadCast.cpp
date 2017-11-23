@@ -1,10 +1,11 @@
+#define _USING_TEST_
 #define _USING_TEST_SOURCE_
 
 #include <cstring>
 
-#include "test\simple\json\exception\BadCast.h"
+#include "test/simple/json/exception/BadCast.h"
 
-#include "experiment\test\simple\json\exception\BadCast.h"
+#include "experiment/test/simple/json/exception/BadCast.h"
 
 void experiment::test::simple::json::exception::BadCast::Test()
 {
