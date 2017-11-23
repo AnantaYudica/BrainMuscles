@@ -5,7 +5,7 @@
 
 #if defined(_USING_TEST_)
 
-#include "test\simple\json\Constant.h"
+#include "test/simple/json/Constant.h"
 
 namespace BrainMuscles
 {
@@ -30,16 +30,16 @@ namespace BrainMuscles
 					public:
 						~False() = default;
 					public:
-						inline operator const bool const();
-						inline operator const char* const();
+						inline operator const bool() const;
+						inline operator const char*() const;
 					};
 
-					inline False::operator const bool const()
+					inline False::operator const bool() const
 					{
 						return false;
 					}
 
-					inline False::operator const char* const()
+					inline False::operator const char*() const
 					{
 						return ConstantType::FalseCString;
 					}
