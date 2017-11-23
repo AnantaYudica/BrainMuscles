@@ -30,10 +30,10 @@ namespace BrainMuscles
 					public:
 						~Null() = default;
 					public:
-						inline operator const char* const();
+						inline operator const char*() const;
 					};
 
-					inline Null::operator const char* const()
+					inline Null::operator const char*() const
 					{
 						return ConstantType::NullCString;
 					}

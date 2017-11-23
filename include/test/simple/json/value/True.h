@@ -30,16 +30,16 @@ namespace BrainMuscles
 					public:
 						~True() = default;
 					public:
-						inline operator const bool const();
-						inline operator const char* const();
+						inline operator const bool() const;
+						inline operator const char*() const;
 					};
 
-					inline True::operator const bool const()
+					inline True::operator const bool() const
 					{
 						return true;
 					}
 
-					inline True::operator const char* const()
+					inline True::operator const char*() const
 					{
 						return ConstantType::TrueCString;
 					}
