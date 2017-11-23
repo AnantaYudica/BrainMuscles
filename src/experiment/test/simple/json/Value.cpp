@@ -1,38 +1,38 @@
 #define _USING_TEST_
 #define _USING_TEST_SOURCE_
 
-#include "test\simple\json\Value.h"
-#include "test\simple\json\value\Array.h"
-#include "test\simple\json\value\False.h"
-#include "test\simple\json\value\Null.h"
-#include "test\simple\json\value\Number.h"
-#include "test\simple\json\value\Object.h"
-#include "test\simple\json\value\String.h"
-#include "test\simple\json\value\True.h"
+#include "test/simple/json/Value.h"
+#include "test/simple/json/value/Array.h"
+#include "test/simple/json/value/False.h"
+#include "test/simple/json/value/Null.h"
+#include "test/simple/json/value/Number.h"
+#include "test/simple/json/value/Object.h"
+#include "test/simple/json/value/String.h"
+#include "test/simple/json/value/True.h"
 
-#include "test\simple\json\value\number\Char.h"
-#include "test\simple\json\value\number\Double.h"
-#include "test\simple\json\value\number\Float.h"
-#include "test\simple\json\value\number\Int.h"
-#include "test\simple\json\value\number\Long.h"
-#include "test\simple\json\value\number\LongDouble.h"
-#include "test\simple\json\value\number\LongLong.h"
-#include "test\simple\json\value\number\Short.h"
-#include "test\simple\json\value\number\UnsignedChar.h"
-#include "test\simple\json\value\number\UnsignedInt.h"
-#include "test\simple\json\value\number\UnsignedLong.h"
-#include "test\simple\json\value\number\UnsignedLongLong.h"
-#include "test\simple\json\value\number\UnsignedShort.h"
+#include "test/simple/json/value/number/Char.h"
+#include "test/simple/json/value/number/Double.h"
+#include "test/simple/json/value/number/Float.h"
+#include "test/simple/json/value/number/Int.h"
+#include "test/simple/json/value/number/Long.h"
+#include "test/simple/json/value/number/LongDouble.h"
+#include "test/simple/json/value/number/LongLong.h"
+#include "test/simple/json/value/number/Short.h"
+#include "test/simple/json/value/number/UnsignedChar.h"
+#include "test/simple/json/value/number/UnsignedInt.h"
+#include "test/simple/json/value/number/UnsignedLong.h"
+#include "test/simple/json/value/number/UnsignedLongLong.h"
+#include "test/simple/json/value/number/UnsignedShort.h"
 
-#include "experiment\test\simple\json\Value.h"
+#include "experiment/test/simple/json/Value.h"
 
-#include "experiment\test\simple\json\value\Array.h"
-#include "experiment\test\simple\json\value\False.h"
-#include "experiment\test\simple\json\value\Null.h"
-#include "experiment\test\simple\json\value\Number.h"
-#include "experiment\test\simple\json\value\Object.h"
-#include "experiment\test\simple\json\value\String.h"
-#include "experiment\test\simple\json\value\True.h"
+#include "experiment/test/simple/json/value/Array.h"
+#include "experiment/test/simple/json/value/False.h"
+#include "experiment/test/simple/json/value/Null.h"
+#include "experiment/test/simple/json/value/Number.h"
+#include "experiment/test/simple/json/value/Object.h"
+#include "experiment/test/simple/json/value/String.h"
+#include "experiment/test/simple/json/value/True.h"
 
 void experiment::test::simple::json::Value::Test()
 {
@@ -59,11 +59,11 @@ void experiment::test::simple::json::Value::Test()
 	//		'BrainMuscles::test::simple::json::Value'
 	typedef BMTestSimple::json::Value Value;
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of
 	//		class 'BrainMuscles::test::simple::json::value::Array'
-	Value& value_array1 = JsonValue::Array();
+	Value&& value_array1 = JsonValue::Array();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::Array'
@@ -80,11 +80,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_array1 != nullptr,
 		"variable 'pointer_value_array1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::False'
-	Value& value_false1 = JsonValue::False();
+	Value&& value_false1 = JsonValue::False();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::False'
@@ -101,11 +101,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_false1 != nullptr,
 		"variable 'pointer_value_false1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::Null'
-	Value& value_null1 = JsonValue::Null();
+	Value&& value_null1 = JsonValue::Null();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::Null'
@@ -122,11 +122,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_null1 != nullptr,
 		"variable 'pointer_value_null1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::Object'
-	Value& value_object1 = JsonValue::Object();
+	Value&& value_object1 = JsonValue::Object();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::Object'
@@ -144,11 +144,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_object1 != nullptr,
 		"variable 'pointer_value_object1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::String'
-	Value& value_string1 = JsonValue::String();
+	Value&& value_string1 = JsonValue::String();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::String'
@@ -166,11 +166,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_string1 != nullptr,
 		"variable 'pointer_value_string1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::True'
-	Value& value_true1 = JsonValue::True();
+	Value&& value_true1 = JsonValue::True();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::True'
@@ -187,11 +187,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_true1 != nullptr,
 		"variable 'pointer_value_true1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Char'
-	Value& value_number_char1 = JsonValueNumber::Char();
+	Value&& value_number_char1 = JsonValueNumber::Char();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Char'
@@ -209,11 +209,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_char1 != nullptr,
 		"variable 'pointer_value_number_char1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Double'
-	Value& value_number_double1 = JsonValueNumber::Double();
+	Value&& value_number_double1 = JsonValueNumber::Double();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Double'
@@ -231,11 +231,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_double1 != nullptr,
 		"variable 'pointer_value_number_double1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Float'
-	Value& value_number_float1 = JsonValueNumber::Float();
+	Value&& value_number_float1 = JsonValueNumber::Float();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Float'
@@ -253,11 +253,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_float1 != nullptr,
 		"variable 'pointer_value_number_float1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Int'
-	Value& value_number_int1 = JsonValueNumber::Int();
+	Value&& value_number_int1 = JsonValueNumber::Int();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Int'
@@ -275,11 +275,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_int1 != nullptr,
 		"variable 'pointer_value_number_int1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Long'
-	Value& value_number_long1 = JsonValueNumber::Long();
+	Value&& value_number_long1 = JsonValueNumber::Long();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Long'
@@ -297,11 +297,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_long1 != nullptr,
 		"variable 'pointer_value_number_long1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::LongDouble
-	Value& value_number_longdouble1 = JsonValueNumber::LongDouble();
+	Value&& value_number_longdouble1 = JsonValueNumber::LongDouble();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::number::LongDouble'
@@ -319,11 +319,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_longdouble1 != nullptr,
 		"variable 'pointer_value_number_longdouble1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::LongLong
-	Value& value_number_longlong1 = JsonValueNumber::LongLong();
+	Value&& value_number_longlong1 = JsonValueNumber::LongLong();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::number::LongLong'
@@ -341,11 +341,11 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_longlong1 != nullptr,
 		"variable 'pointer_value_number_longlong1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Short
-	Value& value_number_short1 = JsonValueNumber::Short();
+	Value&& value_number_short1 = JsonValueNumber::Short();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Short'
@@ -363,12 +363,12 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_short1 != nullptr,
 		"variable 'pointer_value_number_short1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedChar'
-	Value& value_number_unsignedchar1 = JsonValueNumber::UnsignedChar();
+	Value&& value_number_unsignedchar1 = JsonValueNumber::UnsignedChar();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value
@@ -387,12 +387,12 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_unsignedchar1 != nullptr,
 		"variable 'pointer_value_number_unsignedchar1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedInt'
-	Value& value_number_unsignedint1 = JsonValueNumber::UnsignedInt();
+	Value&& value_number_unsignedint1 = JsonValueNumber::UnsignedInt();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value
@@ -411,12 +411,12 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_unsignedint1 != nullptr,
 		"variable 'pointer_value_number_unsignedint1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedLong'
-	Value& value_number_unsignedlong1 = JsonValueNumber::UnsignedLong();
+	Value&& value_number_unsignedlong1 = JsonValueNumber::UnsignedLong();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value
@@ -435,12 +435,12 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_unsignedlong1 != nullptr,
 		"variable 'pointer_value_number_unsignedlong1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedLongLong'
-	Value& value_number_unsignedlonglong1 
+	Value&& value_number_unsignedlonglong1 
 		= JsonValueNumber::UnsignedLongLong();
 
 	//	Declare variable pointer of 
@@ -460,12 +460,12 @@ void experiment::test::simple::json::Value::Test()
 	SourceAssert(pointer_value_number_unsignedlonglong1 != nullptr,
 		"variable 'pointer_value_number_unsignedlonglong1' is null pointer");
 
-	//	Declare variable reference of 
+	//	Declare variable right-value reference of 
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	with copy initialization from value initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedShort'
-	Value& value_number_unsignedshort1 = JsonValueNumber::UnsignedShort();
+	Value&& value_number_unsignedshort1 = JsonValueNumber::UnsignedShort();
 
 	//	Declare variable pointer of 
 	//		class 'BrainMuscles::test::simple::json::value
