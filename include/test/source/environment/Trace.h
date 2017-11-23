@@ -24,23 +24,23 @@ class BrainMuscles::test::source::environment::Trace
 {
 private:
 	std::size_t m_counter;
-	std::string m_default;
+	std::string m_empty;
 	std::stack<std::string> m_stack;
 protected:
-	inline Trace(std::string default = "");
+	inline Trace(std::string empty = "");
 protected:
 	inline void Push(std::string value);
 public:
 	inline void Pop();
-	inline std::string Top(std::string default = "");
+	inline std::string Top(std::string empty = "");
 	inline std::stack<std::string> Get();
 	inline std::size_t Size();
 };
 
 inline BrainMuscles::test::source
-	::environment::Trace::Trace(std::string default) :
+	::environment::Trace::Trace(std::string empty) :
 	m_counter(0),
-	m_default(default)
+	m_empty(empty)
 {
 }
 
@@ -73,13 +73,13 @@ inline void BrainMuscles::test::source::environment::Trace::Pop()
 }
 
 inline std::string
-BrainMuscles::test::source::environment::Trace::Top(std::string default)
+BrainMuscles::test::source::environment::Trace::Top(std::string empty)
 {
 	if (!m_stack.empty())
 	{
 		return m_stack.top();
 	}
-	return default.empty() ? m_default : default;
+	return empty.empty() ? m_empty : empty;
 }
 
 inline std::stack<std::string>
