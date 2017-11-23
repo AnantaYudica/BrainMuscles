@@ -11,15 +11,15 @@ namespace BrainMuscles
 		{
 			namespace function
 			{
-				typedef unsigned short FlagsType;
-				enum Flags : FlagsType;
+				typedef unsigned short FlagsIntegerType;
+				enum Flags : FlagsIntegerType;
 			}
 		}
 	}
 }
 
 enum BrainMuscles::test::source::function::Flags :
-	BrainMuscles::test::source::function::FlagsType
+	BrainMuscles::test::source::function::FlagsIntegerType
 {
 	unknown = 0,
 	pre_test = 1,
