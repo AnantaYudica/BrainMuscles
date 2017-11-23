@@ -79,6 +79,8 @@ namespace BrainMuscles
 		Test& operator<< (const unsigned int& value);
 		Test& operator<< (const long& value);
 		Test& operator<< (const unsigned long& value);
+		Test& operator<< (const long long& value);
+		Test& operator<< (const unsigned long long& value);
 	};
 
 
@@ -206,6 +208,20 @@ namespace BrainMuscles
 	Test::operator<< (const unsigned long& value)
 	{
 		fprintf(GetInstance().m_outFile, "%lu", value);
+		return *this;
+	}
+
+	Test& 
+	Test::operator<< (const long long& value)
+	{
+		fprintf(GetInstance().m_outFile, "%lld", value);
+		return *this;
+	}
+
+	Test& 
+	Test::operator<< (const unsigned long long& value)
+	{
+		fprintf(GetInstance().m_outFile, "%llu", value);
 		return *this;
 	}
 }
