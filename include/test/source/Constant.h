@@ -5,6 +5,7 @@
 
 #include <string>
 #include <stack>
+#include <typeinfo>
 
 #include "test/source/interface/Flags.h"
 #include "test/source/function/Flags.h"
