@@ -133,7 +133,7 @@ namespace BrainMuscles
 			{
 				if (Info().IsEnable(info_flag))
 				{
-					Info(file, line, format, args);
+					Info(file, line, format, args...);
 				}
 			}
 		}
