@@ -1,7 +1,7 @@
 #ifndef EXPERIMENT_TEST_SIMPLE_JSON_EXCEPTION_UNDEFINEDTYPE_H_
 #define EXPERIMENT_TEST_SIMPLE_JSON_EXCEPTION_UNDEFINEDTYPE_H_
 
-#include "test\Source.h"
+#include "test/Source.h"
 
 namespace experiment
 {
@@ -37,5 +37,23 @@ struct experiment::test::simple::json::exception::UndefinedType::Int
 {
 	int Value;
 };
+
+namespace experiment
+{
+	namespace test
+	{
+		namespace simple
+		{
+			namespace json
+			{
+				namespace exception
+				{
+					std::string 
+					to_string(const typename UndefinedType::Int& obj);
+				}
+			}
+		}
+	}
+}
 
 #endif //!EXPERIMENT_TEST_SIMPLE_JSON_EXCEPTION_UNDEFINEDTYPE_H_
