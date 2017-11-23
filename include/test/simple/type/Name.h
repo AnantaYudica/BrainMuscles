@@ -189,8 +189,9 @@ namespace BrainMuscles
 					&& !std::is_same<std::string, typename std::remove_cv<typename std::remove_reference<VALUE_TYPE>::type>::type>::value>::type
 					Name<TYPE, ALIAS_NAME>::ValueOfTypeInstance(std::string& out, VALUE_TYPE value)
 				{
+					using namespace std;
 					out += " = ";
-					out += std::to_string(value);
+					out += to_string(value);
 				}
 
 				template<typename TYPE, const char* ALIAS_NAME>
