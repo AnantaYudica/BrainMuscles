@@ -187,7 +187,7 @@ BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>
 template<typename ENVIRONMENT_TYPE>
 void BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>::End()
 {
-	if (m_buffer && m_buffer[0] != NULL)
+	if (m_buffer && m_buffer[0] != 0)
 	{
 		ENVIRONMENT_TYPE::Info(m_file, m_line, "%s", m_buffer);
 	}
