@@ -99,7 +99,7 @@ BrainMuscles::test::source::info::Delegate<ENVIRONMENT_TYPE>
 	if (m_info->IsEnable(flag))
 	{
 		m_buffer = new char[m_bufferAllocation + 1];
-		m_buffer[0] = m_buffer[m_bufferAllocation] = NULL;
+		m_buffer[0] = m_buffer[m_bufferAllocation] = 0;
 	}
 }
 
