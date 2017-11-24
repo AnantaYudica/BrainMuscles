@@ -1,20 +1,20 @@
 #define _USING_TEST_
 #define _USING_TEST_SOURCE_
 
-#include "test\simple\json\helper\Tag.h"
-#include "test\simple\json\helper\Value.h"
+#include "test/simple/json/helper/Tag.h"
+#include "test/simple/json/helper/Value.h"
 
-#include "experiment\test\simple\json\Value.h"
-#include "experiment\test\simple\json\value\Array.h"
-#include "experiment\test\simple\json\value\False.h"
-#include "experiment\test\simple\json\value\Null.h"
-#include "experiment\test\simple\json\value\Object.h"
-#include "experiment\test\simple\json\value\String.h"
-#include "experiment\test\simple\json\value\True.h"
-#include "experiment\test\simple\json\value\Number.h"
-#include "experiment\test\simple\json\helper\Value.h"
+#include "experiment/test/simple/json/Value.h"
+#include "experiment/test/simple/json/value/Array.h"
+#include "experiment/test/simple/json/value/False.h"
+#include "experiment/test/simple/json/value/Null.h"
+#include "experiment/test/simple/json/value/Object.h"
+#include "experiment/test/simple/json/value/String.h"
+#include "experiment/test/simple/json/value/True.h"
+#include "experiment/test/simple/json/value/Number.h"
+#include "experiment/test/simple/json/helper/Value.h"
 
-#include "experiment\test\simple\json\helper\Tag.h"
+#include "experiment/test/simple/json/helper/Tag.h"
 
 enum TagCase
 {
@@ -150,6 +150,12 @@ struct TagCaseImpl5
 	static TagCase Case(const TagType& tag);
 	static TagCase Case(const TagNumberSignedType& tag_signed);
 	static TagCase Case(const TagNumberUnsignedType& tag_unsigned);
+};
+
+struct TagCaseImpl6
+{
+	typedef BrainMuscles::test::simple::json::helper::Tag TagType;
+	static TagCase Case(const TagType& tag, int a, int b);
 };
 
 void experiment::test::simple::json::helper::Tag::PreTest()
@@ -3071,12 +3077,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedshort' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Char'
-	JsonHelper::tag::Number& tag_number_char2 
+	JsonHelper::tag::Number&& tag_number_char2 
 		= JsonHelper::tag::number::Char();
 	
 	//	Check value between 
@@ -3089,12 +3095,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_char' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Double'
-	JsonHelper::tag::Number& tag_number_double2
+	JsonHelper::tag::Number&& tag_number_double2
 		= JsonHelper::tag::number::Double();
 
 	//	Check value between 
@@ -3107,12 +3113,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_double' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Float'
-	JsonHelper::tag::Number& tag_number_float2
+	JsonHelper::tag::Number&& tag_number_float2
 		= JsonHelper::tag::number::Float();
 
 	//	Check value between 
@@ -3125,12 +3131,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_float' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Int'
-	JsonHelper::tag::Number& tag_number_int2 = JsonHelper::tag::number::Int();
+	JsonHelper::tag::Number&& tag_number_int2 = JsonHelper::tag::number::Int();
 
 	//	Check value between 
 	//		variable 'tag_number_int2'
@@ -3142,12 +3148,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_int' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Long'
-	JsonHelper::tag::Number& tag_number_long2
+	JsonHelper::tag::Number&& tag_number_long2
 		= JsonHelper::tag::number::Long();
 
 	//	Check value between 
@@ -3160,12 +3166,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_long' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::LongDouble'
-	JsonHelper::tag::Number& tag_number_longdouble2
+	JsonHelper::tag::Number&& tag_number_longdouble2
 		= JsonHelper::tag::number::LongDouble();
 
 	//	Check value between 
@@ -3179,12 +3185,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_longdouble' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::LongLong'
-	JsonHelper::tag::Number& tag_number_longlong2
+	JsonHelper::tag::Number&& tag_number_longlong2
 		= JsonHelper::tag::number::LongLong();
 
 	//	Check value between 
@@ -3198,12 +3204,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_longlong' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Short'
-	JsonHelper::tag::Number& tag_number_short2
+	JsonHelper::tag::Number&& tag_number_short2
 		= JsonHelper::tag::number::Short();
 
 	//	Check value between 
@@ -3216,12 +3222,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_short' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedChar'
-	JsonHelper::tag::Number& tag_number_unsignedchar2
+	JsonHelper::tag::Number&& tag_number_unsignedchar2
 		= JsonHelper::tag::number::UnsignedChar();
 
 	//	Check value between 
@@ -3235,12 +3241,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedchar' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedInt'
-	JsonHelper::tag::Number& tag_number_unsignedint2
+	JsonHelper::tag::Number&& tag_number_unsignedint2
 		= JsonHelper::tag::number::UnsignedInt();
 
 	//	Check value between 
@@ -3254,12 +3260,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedint' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedLong'
-	JsonHelper::tag::Number& tag_number_unsignedlong2 
+	JsonHelper::tag::Number&& tag_number_unsignedlong2 
 		= JsonHelper::tag::number::UnsignedLong();
 
 	//	Check value between 
@@ -3273,12 +3279,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedlong' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedLongLong'
-	JsonHelper::tag::Number& tag_number_unsignedlonglong2
+	JsonHelper::tag::Number&& tag_number_unsignedlonglong2
 		= JsonHelper::tag::number::UnsignedLongLong();
 
 	//	Check value between 
@@ -3292,12 +3298,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedlonglong' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag::Number'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedShort'
-	JsonHelper::tag::Number& tag_number_unsignedshort2
+	JsonHelper::tag::Number&& tag_number_unsignedshort2
 		= JsonHelper::tag::number::UnsignedShort();
 
 	//	Check value between 
@@ -3311,13 +3317,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedshort' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::FloatingPoint'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Double'
-	JsonHelper::tag::number::FloatingPoint&  tag_number_floatingpoint_double1 
+	JsonHelper::tag::number::FloatingPoint&&  tag_number_floatingpoint_double1 
 		= JsonHelper::tag::number::Double();
 
 	//	Check value between 
@@ -3331,13 +3337,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_double' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::FloatingPoint'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Float'
-	JsonHelper::tag::number::FloatingPoint& tag_number_floatingpoint_float1 
+	JsonHelper::tag::number::FloatingPoint&& tag_number_floatingpoint_float1 
 		= JsonHelper::tag::number::Float();
 
 	//	Check value between 
@@ -3351,13 +3357,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_float' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::FloatingPoint'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::LongDouble'
-	JsonHelper::tag::number::FloatingPoint& 
+	JsonHelper::tag::number::FloatingPoint&& 
 		tag_number_floatingpoint_longdouble1 
 			= JsonHelper::tag::number::LongDouble();
 
@@ -3372,13 +3378,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_longdouble' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Char'
-	JsonHelper::tag::number::Integer& tag_number_integer_char1
+	JsonHelper::tag::number::Integer&& tag_number_integer_char1
 		= JsonHelper::tag::number::Char();
 
 	//	Check value between 
@@ -3392,13 +3398,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_char' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Int'
-	JsonHelper::tag::number::Integer& tag_number_integer_int1
+	JsonHelper::tag::number::Integer&& tag_number_integer_int1
 		= JsonHelper::tag::number::Int();
 
 	//	Check value between 
@@ -3411,13 +3417,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_int' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Long'
-	JsonHelper::tag::number::Integer& tag_number_integer_long1
+	JsonHelper::tag::number::Integer&& tag_number_integer_long1
 		= JsonHelper::tag::number::Long();
 
 	//	Check value between 
@@ -3431,13 +3437,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_long' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::LongLong'
-	JsonHelper::tag::number::Integer& tag_number_integer_longlong1
+	JsonHelper::tag::number::Integer&& tag_number_integer_longlong1
 		= JsonHelper::tag::number::LongLong();
 
 	//	Check value between 
@@ -3451,13 +3457,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_longlong' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Short'
-	JsonHelper::tag::number::Integer& tag_number_integer_short1
+	JsonHelper::tag::number::Integer&& tag_number_integer_short1
 		= JsonHelper::tag::number::Short();
 
 	//	Check value between 
@@ -3471,13 +3477,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_short' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedChar'
-	JsonHelper::tag::number::Integer& tag_number_integer_unsignedchar1
+	JsonHelper::tag::number::Integer&& tag_number_integer_unsignedchar1
 		= JsonHelper::tag::number::UnsignedChar();
 
 	//	Check value between 
@@ -3491,13 +3497,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedchar' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedInt'
-	JsonHelper::tag::number::Integer& tag_number_integer_unsignedint1
+	JsonHelper::tag::number::Integer&& tag_number_integer_unsignedint1
 		= JsonHelper::tag::number::UnsignedInt();
 
 	//	Check value between 
@@ -3511,13 +3517,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedint' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedLong'
-	JsonHelper::tag::number::Integer& tag_number_integer_unsignedlong1
+	JsonHelper::tag::number::Integer&& tag_number_integer_unsignedlong1
 		= JsonHelper::tag::number::UnsignedLong();
 
 	//	Check value between 
@@ -3531,13 +3537,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedlong' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedLongLong'
-	JsonHelper::tag::number::Integer& tag_number_integer_unsignedlonglong1
+	JsonHelper::tag::number::Integer&& tag_number_integer_unsignedlonglong1
 		= JsonHelper::tag::number::UnsignedLongLong();
 
 	//	Check value between 
@@ -3551,13 +3557,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedlonglong' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Integer'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedShort'
-	JsonHelper::tag::number::Integer& tag_number_integer_unsignedshort1
+	JsonHelper::tag::number::Integer&& tag_number_integer_unsignedshort1
 		= JsonHelper::tag::number::UnsignedShort();
 
 	//	Check value between 
@@ -3571,13 +3577,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedshort' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Signed'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Char'
-	JsonHelper::tag::number::Signed& tag_number_signed_char1 
+	JsonHelper::tag::number::Signed&& tag_number_signed_char1 
 		= JsonHelper::tag::number::Char();
 
 	//	Check value between 
@@ -3591,13 +3597,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_char' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Signed'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Int'
-	JsonHelper::tag::number::Signed& tag_number_signed_int1 
+	JsonHelper::tag::number::Signed&& tag_number_signed_int1 
 		= JsonHelper::tag::number::Int();
 
 	//	Check value between 
@@ -3610,13 +3616,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_int' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Signed'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Long'
-	JsonHelper::tag::number::Signed& tag_number_signed_long1 
+	JsonHelper::tag::number::Signed&& tag_number_signed_long1 
 		= JsonHelper::tag::number::Long();
 
 	//	Check value between 
@@ -3630,13 +3636,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_long' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Signed'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::LongLong'
-	JsonHelper::tag::number::Signed& tag_number_signed_longlong1
+	JsonHelper::tag::number::Signed&& tag_number_signed_longlong1
 		= JsonHelper::tag::number::LongLong();
 
 	//	Check value between 
@@ -3650,13 +3656,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_longlong' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Signed'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::Short'
-	JsonHelper::tag::number::Signed& tag_number_signed_short1 
+	JsonHelper::tag::number::Signed&& tag_number_signed_short1 
 		= JsonHelper::tag::number::Short();
 
 	//	Check value between 
@@ -3670,13 +3676,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_short' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Unsigned'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedChar'
-	JsonHelper::tag::number::Unsigned& tag_number_unsigned_unsignedchar1
+	JsonHelper::tag::number::Unsigned&& tag_number_unsigned_unsignedchar1
 		= JsonHelper::tag::number::UnsignedChar();
 
 	//	Check value between 
@@ -3690,13 +3696,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedchar' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Unsigned'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedInt'
-	JsonHelper::tag::number::Unsigned& tag_number_unsigned_unsignedint1 
+	JsonHelper::tag::number::Unsigned&& tag_number_unsigned_unsignedint1 
 		= JsonHelper::tag::number::UnsignedInt();
 
 	//	Check value between 
@@ -3710,13 +3716,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedint' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Unsigned'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedLong'
-	JsonHelper::tag::number::Unsigned& tag_number_unsigned_unsignedlong1
+	JsonHelper::tag::number::Unsigned&& tag_number_unsigned_unsignedlong1
 		= JsonHelper::tag::number::UnsignedLong();
 
 	//	Check value between 
@@ -3730,13 +3736,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedlong' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Unsigned'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedLongLong'
-	JsonHelper::tag::number::Unsigned& tag_number_unsigned_unsignedlonglong1
+	JsonHelper::tag::number::Unsigned&& tag_number_unsigned_unsignedlonglong1
 		= JsonHelper::tag::number::UnsignedLongLong();
 
 	//	Check value between 
@@ -3750,13 +3756,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedlonglong' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::helper::tag
 	//			::number::Unsigned'
 	//	from reference initialization from
 	//		value initialization of class 'BrainMuscles::test::simple::json
 	//			::helper::tag::number::UnsignedShort'
-	JsonHelper::tag::number::Unsigned& tag_number_unsigned_unsignedshort1
+	JsonHelper::tag::number::Unsigned&& tag_number_unsigned_unsignedshort1
 		= JsonHelper::tag::number::UnsignedShort();
 
 	//	Check value between 
@@ -6302,6 +6308,11 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where enumerator 'value_number_unsignedshort' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' "
 		"as first argument to function static member 'Case'");
+
+	SourceAssert(JsonHelper::Tag::Case<TagCase,
+		TagCaseImpl6, int, int>
+			(JsonHelper::Enum::value_number_unsignedshort, 1, 1)
+		== TagCase::value);
 }
 
 TagCase TagCaseImpl1::Case(const TagType& tag)
@@ -6453,4 +6464,10 @@ TagCase TagCaseImpl5::Case(const TagNumberSignedType& tag_signed)
 TagCase TagCaseImpl5::Case(const TagNumberUnsignedType& tag_unsigned)
 {
 	return TagCase::value_number_unsigned;
+}
+
+
+TagCase TagCaseImpl6::Case(const TagType& tag, int a, int b)
+{
+	return TagCase::value;
 }
