@@ -1,18 +1,18 @@
 #define _USING_TEST_
 #define _USING_TEST_SOURCE_
 
-#include "test\simple\json\helper\Cast.h"
+#include "test/simple/json/helper/Cast.h"
 
-#include "experiment\test\simple\json\Value.h"
-#include "experiment\test\simple\json\value\Array.h"
-#include "experiment\test\simple\json\value\False.h"
-#include "experiment\test\simple\json\value\Null.h"
-#include "experiment\test\simple\json\value\Object.h"
-#include "experiment\test\simple\json\value\String.h"
-#include "experiment\test\simple\json\value\True.h"
-#include "experiment\test\simple\json\value\Number.h"
+#include "experiment/test/simple/json/Value.h"
+#include "experiment/test/simple/json/value/Array.h"
+#include "experiment/test/simple/json/value/False.h"
+#include "experiment/test/simple/json/value/Null.h"
+#include "experiment/test/simple/json/value/Object.h"
+#include "experiment/test/simple/json/value/String.h"
+#include "experiment/test/simple/json/value/True.h"
+#include "experiment/test/simple/json/value/Number.h"
 
-#include "experiment\test\simple\json\helper\Cast.h"
+#include "experiment/test/simple/json/helper/Cast.h"
 
 void experiment::test::simple::json::helper::Cast::PreTest()
 {
@@ -81,11 +81,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		'JsonValue'
 	namespace JsonValueNumber = JsonValue::number;
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::Array'
-	Json::Value& value_array1 = JsonValue::Array();
+	Json::Value&& value_array1 = JsonValue::Array();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_array1'
+	const Json::Value& const_value_array1 = value_array1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::Array'
@@ -104,10 +109,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::Array>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_array1' as first argument to
+	//	where variable 'const_value_array1' as first argument to
 	//		function static member 'To'
 	const JsonValue::Array& cast_const_value_array1
-		= JsonHelper::Cast::To<JsonValue::Array>(std::as_const(value_array1));
+		= JsonHelper::Cast::To<JsonValue::Array>(const_value_array1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::Array'
@@ -124,10 +129,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToArray' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_array1' as first argument to
+	//	where variable 'const_value_array1' as first argument to
 	//		function static member 'ToArray'
 	const JsonValue::Array& cast_const_value_array2
-		= JsonHelper::Cast::ToArray(std::as_const(value_array1));
+		= JsonHelper::Cast::ToArray(const_value_array1);
 
 	//	Check compare address between 
 	//		variable 'value_array1' 
@@ -547,11 +552,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_array1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 	
-	//	Declaration reference variable
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::False'
-	Json::Value& value_false1 = JsonValue::False();
+	Json::Value&& value_false1 = JsonValue::False();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initalization of variable 'value_false1'
+	const Json::Value& const_value_false1 = value_false1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::False'
@@ -570,10 +580,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::False>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_false1' as first argument to
+	//	where variable 'const_value_false1' as first argument to
 	//		function static member 'To'
 	const JsonValue::False& cast_const_value_false1
-		= JsonHelper::Cast::To<JsonValue::False>(std::as_const(value_false1));
+		= JsonHelper::Cast::To<JsonValue::False>(const_value_false1);
 
 	//	Check compare address between 
 	//		variable 'value_false1' 
@@ -1003,11 +1013,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_false1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 	
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::Null'
-	Json::Value& value_null1 = JsonValue::Null();
+	Json::Value&& value_null1 = JsonValue::Null();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_null1'
+	const Json::Value& const_value_null1 = value_null1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::Null'
@@ -1026,10 +1041,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::Null>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_null1' as first argument to
+	//	where variable 'const_value_null1' as first argument to
 	//		function static member 'To'
 	const JsonValue::Null& cast_const_value_null1 
-		= JsonHelper::Cast::To<JsonValue::Null>(std::as_const(value_null1));
+		= JsonHelper::Cast::To<JsonValue::Null>(const_value_null1);
 	
 	//	Check compare address between 
 	//		variable 'value_null1' 
@@ -1454,11 +1469,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_null1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::Object'
-	Json::Value& value_object1 = JsonValue::Object();
+	Json::Value&& value_object1 = JsonValue::Object();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_object1'
+	const Json::Value& const_value_object1 = value_object1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::Object'
@@ -1477,11 +1497,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::Object>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_object1' as first argument to
+	//	where variable 'const_value_object1' as first argument to
 	//		function static member 'To'
 	const JsonValue::Object& cast_const_value_object1 
-		= JsonHelper::Cast::To<JsonValue::Object>
-			(std::as_const(value_object1));
+		= JsonHelper::Cast::To<JsonValue::Object>(const_value_object1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::Object'
@@ -1498,10 +1517,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToObject' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_object1' as first argument to
+	//	where variable 'const_value_object1' as first argument to
 	//		function static member 'ToObject'
 	const JsonValue::Object& cast_const_value_object2 
-		= JsonHelper::Cast::ToObject(std::as_const(value_object1));
+		= JsonHelper::Cast::ToObject(const_value_object1);
 
 	//	Check compare address between 
 	//		variable 'value_object1' 
@@ -1924,11 +1943,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_object1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::String'
-	Json::Value& value_string1 = JsonValue::String();
+	Json::Value&& value_string1 = JsonValue::String();
+
+	//	Declaretion const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_string1'
+	const Json::Value& const_value_string1 = value_string1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::String'
@@ -1947,11 +1971,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::String>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_string1' as first argument to
+	//	where variable 'const_value_string1' as first argument to
 	//		function static member 'To'
 	const JsonValue::String& cast_const_value_string1
-		= JsonHelper::Cast::To<JsonValue::String>
-			(std::as_const(value_string1));
+		= JsonHelper::Cast::To<JsonValue::String>(const_value_string1);
 	
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::String'
@@ -1968,10 +1991,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToString' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_string1' as first argument to
+	//	where variable 'const_value_string1' as first argument to
 	//		function static member 'ToString'
 	const JsonValue::String& cast_const_value_string2 
-		= JsonHelper::Cast::ToString(std::as_const(value_string1));
+		= JsonHelper::Cast::ToString(const_value_string1);
 
 	//	Check compare address between 
 	//		variable 'value_string1' 
@@ -2394,11 +2417,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_string1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::True'
-	Json::Value& value_true1 = JsonValue::True();
+	Json::Value&& value_true1 = JsonValue::True();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_true1'
+	const Json::Value& const_value_true1 = value_true1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::True'
@@ -2417,10 +2445,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::True>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_true1' as first argument to
+	//	where variable 'const_value_true1' as first argument to
 	//		function static member 'To'
 	const JsonValue::True& cast_const_value_true1 
-		= JsonHelper::Cast::To<JsonValue::True>(std::as_const(value_true1));
+		= JsonHelper::Cast::To<JsonValue::True>(const_value_true1);
 
 	//	Check compare address between 
 	//		variable 'value_true1' 
@@ -2846,11 +2874,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_true1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Char'
-	Json::Value& value_number_char1 = JsonValueNumber::Char();
+	Json::Value&& value_number_char1 = JsonValueNumber::Char();
+
+	//	Declaration const left-value refernce variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_char1'
+	const Json::Value& const_value_number_char1 = value_number_char1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Char'
@@ -2869,11 +2902,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::number::Char>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_char1' as first argument to
+	//	where variable 'const_value_number_char1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::Char& cast_const_value_number_char1 
-		= JsonHelper::Cast::To<JsonValueNumber::Char>
-			(std::as_const(value_number_char1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::Char>(const_value_number_char1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Char'
@@ -2890,10 +2923,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToNumberChar' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_char1' as first argument to
+	//	where variable 'const_value_number_char1' as first argument to
 	//		function static member 'ToNumberChar'
 	const JsonValueNumber::Char& cast_const_value_number_char2 
-		= JsonHelper::Cast::ToNumberChar(std::as_const(value_number_char1));
+		= JsonHelper::Cast::ToNumberChar(const_value_number_char1);
 
 	//	Check compare address between 
 	//		variable 'value_number_char1' 
@@ -3323,11 +3356,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_number_char1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Double'
-	Json::Value& value_number_double1 = JsonValueNumber::Double();
+	Json::Value&& value_number_double1 = JsonValueNumber::Double();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_double1'
+	const Json::Value& const_value_number_double1 = value_number_double1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Double'
@@ -3347,11 +3385,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::number::Double>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_double1' as first argument to
+	//	where variable 'const_value_number_double1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::Double& cast_const_value_number_double1 
-		= JsonHelper::Cast::To<JsonValueNumber::Double>
-			(std::as_const(value_number_double1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::Double>(const_value_number_double1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Double'
@@ -3368,11 +3406,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToNumberDouble' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_double1' as first argument to
+	//	where variable 'const_value_number_double1' as first argument to
 	//		function static member 'ToNumberDouble'
 	const JsonValueNumber::Double& cast_const_value_number_double2 
-		= JsonHelper::Cast
-			::ToNumberDouble(std::as_const(value_number_double1));
+		= JsonHelper::Cast::ToNumberDouble(const_value_number_double1);
 
 	//	Check compare address between 
 	//		variable 'value_number_double1' 
@@ -3808,11 +3845,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_number_double1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Float'
-	Json::Value& value_number_float1 = JsonValueNumber::Float();
+	Json::Value&& value_number_float1 = JsonValueNumber::Float();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_float1'
+	const Json::Value& const_value_number_float1 = value_number_float1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Float'
@@ -3831,11 +3873,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::number::Float>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_float1' as first argument to
+	//	where variable 'const_value_number_float1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::Float& cast_const_value_number_float1 
-		= JsonHelper::Cast::To<JsonValueNumber::Float>
-			(std::as_const(value_number_float1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::Float>(const_value_number_float1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Float'
@@ -3852,10 +3894,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToNumberFloat' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_float1' as first argument to
+	//	where variable 'const_value_number_float1' as first argument to
 	//		function static member 'ToNumberFloat'
 	const JsonValueNumber::Float& cast_const_value_number_float2 
-		= JsonHelper::Cast::ToNumberFloat(std::as_const(value_number_float1));
+		= JsonHelper::Cast::ToNumberFloat(const_value_number_float1);
 
 	//	Check compare address between 
 	//		variable 'value_number_float1' 
@@ -4287,11 +4329,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_number_float1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Int'
-	Json::Value& value_number_int1 = JsonValueNumber::Int();
+	Json::Value&& value_number_int1 = JsonValueNumber::Int();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_int1'
+	const Json::Value& const_value_number_int1 = value_number_int1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Int'
@@ -4310,11 +4357,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::number::Int>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_int1' as first argument to
+	//	where variable 'const_value_number_int1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::Int& cast_const_value_number_int1 
-		= JsonHelper::Cast::To<JsonValueNumber::Int>
-			(std::as_const(value_number_int1));
+		= JsonHelper::Cast::To<JsonValueNumber::Int>(const_value_number_int1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Int'
@@ -4331,10 +4377,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToNumberInt' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_int1' as first argument to
+	//	where variable 'const_value_number_int1' as first argument to
 	//		function static member 'ToNumberInt'
 	const JsonValueNumber::Int& cast_const_value_number_int2 
-		= JsonHelper::Cast::ToNumberInt(std::as_const(value_number_int1));
+		= JsonHelper::Cast::ToNumberInt(const_value_number_int1);
 
 	//	Check compare address between 
 	//		variable 'value_number_int1' 
@@ -4761,11 +4807,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_number_int1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Long'
-	Json::Value& value_number_long1 = JsonValueNumber::Long();
+	Json::Value&& value_number_long1 = JsonValueNumber::Long();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of 'value_number_long1'
+	const Json::Value& const_value_number_long1 = value_number_long1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Long'
@@ -4784,11 +4835,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::number::Long>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_long1' as first argument to
+	//	where variable 'const_value_number_long1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::Long& cast_const_value_number_long1 
-		= JsonHelper::Cast::To<JsonValueNumber::Long>
-			(std::as_const(value_number_long1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::Long>(const_value_number_long1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Long'
@@ -4805,10 +4856,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToNumberLong' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_long1' as first argument to
+	//	where variable 'const_value_number_long1' as first argument to
 	//		function static member 'ToNumberLong'
 	const JsonValueNumber::Long& cast_const_value_number_long2 
-		= JsonHelper::Cast::ToNumberLong(std::as_const(value_number_long1));
+		= JsonHelper::Cast::ToNumberLong(const_value_number_long1);
 
 	//	Check compare address between 
 	//		variable 'value_number_long1' 
@@ -5238,11 +5289,21 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_number_long1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::LongDouble'
-	Json::Value& value_number_longdouble1 = JsonValueNumber::LongDouble();
+	Json::Value&& value_number_longdouble1 = JsonValueNumber::LongDouble();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_longdouble1'
+	const Json::Value& const_value_number_longdouble1
+		= value_number_longdouble1;
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_longdouble1'
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::LongDouble'
@@ -5264,11 +5325,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//			BrainMuscles::test::simple::json::value
 	//				::number::LongDouble>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_longdouble1' as first argument to
+	//	where variable 'const_value_number_longdouble1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::LongDouble& cast_const_value_number_longdouble1 
-		= JsonHelper::Cast::To<JsonValueNumber::LongDouble>
-			(std::as_const(value_number_longdouble1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::LongDouble>(const_value_number_longdouble1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::LongDouble'
@@ -5285,11 +5346,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToNumberLongDouble' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_longdouble1' as first argument to
+	//	where variable 'const_value_number_longdouble1' as first argument to
 	//		function static member 'ToNumberLongDouble'
 	const JsonValueNumber::LongDouble& cast_const_value_number_longdouble2
-		= JsonHelper::Cast::ToNumberLongDouble
-			(std::as_const(value_number_longdouble1));
+		= JsonHelper::Cast::ToNumberLongDouble(const_value_number_longdouble1);
 
 	//	Check compare address between 
 	//		variable 'value_number_longdouble1' 
@@ -5732,11 +5792,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_number_longdouble1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::LongLong'
-	Json::Value& value_number_longlong1 = JsonValueNumber::LongLong();
+	Json::Value&& value_number_longlong1 = JsonValueNumber::LongLong();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initializaiton of variable 'value_number_longlong1'
+	const Json::Value& const_value_number_longlong1 = value_number_longlong1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::LongLong'
@@ -5758,11 +5823,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//			BrainMuscles::test::simple::json::value
 	//				::number::LongLong>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_longlong1' as first argument to
+	//	where variable 'const_value_number_longlong1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::LongLong& cast_const_value_number_longlong1 
-		= JsonHelper::Cast::To<JsonValueNumber::LongLong>
-			(std::as_const(value_number_longlong1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::LongLong>(const_value_number_longlong1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::LongLong'
@@ -5779,11 +5844,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToNumberLongLong' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_longlong1' as first argument to
+	//	where variable 'const_value_number_longlong1' as first argument to
 	//		function static member 'ToNumberLongLong'
 	const JsonValueNumber::LongLong& cast_const_value_number_longlong2 
-		= JsonHelper::Cast::ToNumberLongLong
-			(std::as_const(value_number_longlong1));
+		= JsonHelper::Cast::ToNumberLongLong(const_value_number_longlong1);
 
 	//	Check compare address between 
 	//		variable 'value_number_longlong1' 
@@ -6220,11 +6284,16 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_number_longlong1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value::number::Short'
-	Json::Value& value_number_short1 = JsonValueNumber::Short();
+	Json::Value&& value_number_short1 = JsonValueNumber::Short();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_short1'
+	const Json::Value& const_value_number_short1 = value_number_short1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Short'
@@ -6243,11 +6312,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of function static member 'To<
 	//			BrainMuscles::test::simple::json::value::number::Short>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_short1' as first argument to
+	//	where variable 'const_value_number_short1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::Short& cast_const_value_number_short1
-		= JsonHelper::Cast::To<JsonValueNumber::Short>
-			(std::as_const(value_number_short1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::Short>(const_value_number_short1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value::number::Short'
@@ -6264,10 +6333,10 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//	with reference initialization from
 	//		return variable of function static member 'ToNumberShort' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_short1' as first argument to
+	//	where variable 'const_value_number_short1' as first argument to
 	//		function static member 'ToNumberShort'
 	const JsonValueNumber::Short& cast_const_value_number_short2 
-		= JsonHelper::Cast::ToNumberShort(std::as_const(value_number_short1));
+		= JsonHelper::Cast::ToNumberShort(const_value_number_short1);
 
 	//	Check compare address between 
 	//		variable 'value_number_short1' 
@@ -6699,12 +6768,18 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"not throw exception, where const variable 'value_number_short1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedChar'
-	Json::Value& value_number_unsignedchar1 = JsonValueNumber::UnsignedChar();
+	Json::Value&& value_number_unsignedchar1 = JsonValueNumber::UnsignedChar();
+
+	//	Deckaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_unsignedchar1'
+	const Json::Value& const_value_number_unsignedchar1
+		= value_number_unsignedchar1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -6728,11 +6803,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//			BrainMuscles::test::simple::json::value
 	//				::number::UnsignedChar>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedchar1' as first argument to
+	//	where variable 'const_value_number_unsignedchar1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::UnsignedChar& cast_const_value_number_unsignedchar1 
-		= JsonHelper::Cast::To<JsonValueNumber::UnsignedChar>
-			(std::as_const(value_number_unsignedchar1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::UnsignedChar>(const_value_number_unsignedchar1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -6753,11 +6828,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of 
 	//			function static member 'ToNumberUnsignedChar' from
 	//				class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedchar1' as first argument to
+	//	where variable 'const_value_number_unsignedchar1' as first argument to
 	//		function static member 'ToNumberUnsignedChar'
 	const JsonValueNumber::UnsignedChar& cast_const_value_number_unsignedchar2 
-		= JsonHelper::Cast::ToNumberUnsignedChar
-			(std::as_const(value_number_unsignedchar1));
+		= JsonHelper::Cast
+			::ToNumberUnsignedChar(const_value_number_unsignedchar1);
 
 	//	Check compare address between 
 	//		variable 'value_number_unsignedchar1' 
@@ -7216,12 +7291,18 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"const variable 'value_number_unsignedchar1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedInt'
-	Json::Value& value_number_unsignedint1 = JsonValueNumber::UnsignedInt();
+	Json::Value&& value_number_unsignedint1 = JsonValueNumber::UnsignedInt();
+	
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_unsignedint1'
+	const Json::Value& const_value_number_unsignedint1
+		= value_number_unsignedint1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -7245,11 +7326,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//			BrainMuscles::test::simple::json::value
 	//				::number::UnsignedInt>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedint1' as first argument to
+	//	where variable 'const_value_number_unsignedint1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::UnsignedInt& cast_const_value_number_unsignedint1 
-		= JsonHelper::Cast::To<JsonValueNumber::UnsignedInt>
-				(std::as_const(value_number_unsignedint1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::UnsignedInt>(const_value_number_unsignedint1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -7270,11 +7351,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of 
 	//			function static member 'ToNumberUnsignedInt' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedint1' as first argument to
+	//	where variable 'const_value_number_unsignedint1' as first argument to
 	//		function static member 'ToNumberUnsignedInt'
 	const JsonValueNumber::UnsignedInt& cast_const_value_number_unsignedint2 
-		= JsonHelper::Cast::ToNumberUnsignedInt
-			(std::as_const(value_number_unsignedint1));
+		= JsonHelper::Cast
+			::ToNumberUnsignedInt(const_value_number_unsignedint1);
 	
 	//	Check compare address between 
 	//		variable 'value_number_unsignedint1' 
@@ -7732,12 +7813,18 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"const variable 'value_number_unsignedint1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedLong'
-	Json::Value& value_number_unsignedlong1 = JsonValueNumber::UnsignedLong();
+	Json::Value&& value_number_unsignedlong1 = JsonValueNumber::UnsignedLong();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable value_number_unsignedlong1
+	const Json::Value& const_value_number_unsignedlong1
+		= value_number_unsignedlong1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -7761,11 +7848,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//			BrainMuscles::test::simple::json::value
 	//				::number::UnsignedLong>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedlong1' as first argument to
+	//	where variable 'const_value_number_unsignedlong1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::UnsignedLong& cast_const_value_number_unsignedlong1 
-		= JsonHelper::Cast::To<JsonValueNumber::UnsignedLong>
-			(std::as_const(value_number_unsignedlong1));
+		= JsonHelper::Cast::To<
+			JsonValueNumber::UnsignedLong>(const_value_number_unsignedlong1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -7786,11 +7873,11 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of 
 	//			function static member 'ToNumberUnsignedLong' from
 	//				class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedlong1' as first argument to
+	//	where variable 'const_value_number_unsignedlong1' as first argument to
 	//		function static member 'ToNumberUnsignedLong'
 	const JsonValueNumber::UnsignedLong& cast_const_value_number_unsignedlong2 
-		= JsonHelper::Cast::ToNumberUnsignedLong
-			(std::as_const(value_number_unsignedlong1));
+		= JsonHelper::Cast
+			::ToNumberUnsignedLong(const_value_number_unsignedlong1);
 
 	//	Check compare address between 
 	//		variable 'value_number_unsignedlong1' 
@@ -8250,13 +8337,19 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"const variable 'value_number_unsignedlong1' as first argument to "
 		"function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedLongLong'
-	Json::Value& value_number_unsignedlonglong1 
+	Json::Value&& value_number_unsignedlonglong1 
 		= JsonValueNumber::UnsignedLongLong();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of 'value_number_unsignedlonglong1'
+	const Json::Value& const_value_number_unsignedlonglong1
+		= value_number_unsignedlonglong1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -8280,12 +8373,12 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//			BrainMuscles::test::simple::json::value
 	//				::number::UnsignedLongLong>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedlonglong1' 
+	//	where variable 'const_value_number_unsignedlonglong1' 
 	//		as first argument to function static member 'To'
 	const JsonValueNumber::UnsignedLongLong& 
 		cast_const_value_number_unsignedlonglong1 
 			= JsonHelper::Cast::To<JsonValueNumber::UnsignedLongLong>
-				(std::as_const(value_number_unsignedlonglong1));
+				(const_value_number_unsignedlonglong1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -8307,13 +8400,13 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of 
 	//			function static member 'ToNumberUnsignedLongLong' from
 	//				class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedlonglong1' 
+	//	where variable 'const_value_number_unsignedlonglong1' 
 	//		as first argument to 
 	//			function static member 'ToNumberUnsignedLongLong'
 	const JsonValueNumber::UnsignedLongLong& 
 		cast_const_value_number_unsignedlonglong2 
 			= JsonHelper::Cast::ToNumberUnsignedLongLong
-				(std::as_const(value_number_unsignedlonglong1));
+				(const_value_number_unsignedlonglong1);
 
 	//	Check compare address between 
 	//		variable 'value_number_unsignedlonglong1' 
@@ -8773,13 +8866,19 @@ void experiment::test::simple::json::helper::Cast::Test()
 		"const variable 'value_number_unsignedlonglong1' "
 		"as first argument to function static member 'ToNumberUnsignedShort'");
 
-	//	Declaration variable of
+	//	Declaration right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	with value initialization of 
+	//	with reference initialization of 
 	//		class 'BrainMuscles::test::simple::json::value
 	//			::number::UnsignedShort'
-	Json::Value& value_number_unsignedshort1 
+	Json::Value&& value_number_unsignedshort1 
 		= JsonValueNumber::UnsignedShort();
+
+	//	Declaration const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::Value'
+	//	with reference initialization of variable 'value_number_unsignedshort1'
+	const Json::Value& const_value_number_unsignedshort1 
+		= value_number_unsignedshort1;
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -8803,12 +8902,12 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//			BrainMuscles::test::simple::json::value
 	//				::number::UnsignedShort>' from
 	//			class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedshort1' as first argument to
+	//	where variable 'const_value_number_unsignedshort1' as first argument to
 	//		function static member 'To'
 	const JsonValueNumber::UnsignedShort& 
 		cast_const_value_number_unsignedshort1 
 			= JsonHelper::Cast::To<JsonValueNumber::UnsignedShort>
-				(std::as_const(value_number_unsignedshort1));
+				(const_value_number_unsignedshort1);
 
 	//	Declaration reference variable of
 	//		class 'BrainMuscles::test::simple::json::value
@@ -8829,12 +8928,12 @@ void experiment::test::simple::json::helper::Cast::Test()
 	//		return variable of 
 	//			function static member 'ToNumberUnsignedShort' from
 	//				class 'BrainMuscles::test::simple::json::helper::Cast'
-	//	where const variable 'value_number_unsignedshort1' as first argument to
+	//	where variable 'const_value_number_unsignedshort1' as first argument to
 	//		function static member 'ToNumberUnsignedShort'
 	const JsonValueNumber::UnsignedShort& 
 		cast_const_value_number_unsignedshort2 
 			= JsonHelper::Cast::ToNumberUnsignedShort
-				(std::as_const(value_number_unsignedshort1));
+				(const_value_number_unsignedshort1);
 
 	//	Check compare address between 
 	//		variable 'value_number_unsignedshort1' 
