@@ -1,35 +1,35 @@
 #define _USING_TEST_
 #define _USING_TEST_SOURCE_
 
-#include "test\simple\json\Memory.h"
+#include "test/simple/json/Memory.h"
 
-#include "test\simple\json\Value.h"
-#include "test\simple\json\value\Array.h"
-#include "test\simple\json\value\False.h"
-#include "test\simple\json\value\Null.h"
-#include "test\simple\json\value\Number.h"
-#include "test\simple\json\value\Object.h"
-#include "test\simple\json\value\String.h"
-#include "test\simple\json\value\True.h"
+#include "test/simple/json/Value.h"
+#include "test/simple/json/value/Array.h"
+#include "test/simple/json/value/False.h"
+#include "test/simple/json/value/Null.h"
+#include "test/simple/json/value/Number.h"
+#include "test/simple/json/value/Object.h"
+#include "test/simple/json/value/String.h"
+#include "test/simple/json/value/True.h"
 
-#include "test\simple\json\value\number\Char.h"
-#include "test\simple\json\value\number\Double.h"
-#include "test\simple\json\value\number\Float.h"
-#include "test\simple\json\value\number\Int.h"
-#include "test\simple\json\value\number\Long.h"
-#include "test\simple\json\value\number\LongDouble.h"
-#include "test\simple\json\value\number\LongLong.h"
-#include "test\simple\json\value\number\Short.h"
-#include "test\simple\json\value\number\UnsignedChar.h"
-#include "test\simple\json\value\number\UnsignedInt.h"
-#include "test\simple\json\value\number\UnsignedLong.h"
-#include "test\simple\json\value\number\UnsignedLongLong.h"
-#include "test\simple\json\value\number\UnsignedShort.h"
+#include "test/simple/json/value/number/Char.h"
+#include "test/simple/json/value/number/Double.h"
+#include "test/simple/json/value/number/Float.h"
+#include "test/simple/json/value/number/Int.h"
+#include "test/simple/json/value/number/Long.h"
+#include "test/simple/json/value/number/LongDouble.h"
+#include "test/simple/json/value/number/LongLong.h"
+#include "test/simple/json/value/number/Short.h"
+#include "test/simple/json/value/number/UnsignedChar.h"
+#include "test/simple/json/value/number/UnsignedInt.h"
+#include "test/simple/json/value/number/UnsignedLong.h"
+#include "test/simple/json/value/number/UnsignedLongLong.h"
+#include "test/simple/json/value/number/UnsignedShort.h"
 
-#include "experiment\test\simple\json\Memory.h"
-#include "experiment\test\simple\json\Value.h"
-#include "experiment\test\simple\json\pointer\Value.h"
-#include "experiment\test\simple\json\value\Array.h"
+#include "experiment/test/simple/json/Memory.h"
+#include "experiment/test/simple/json/Value.h"
+#include "experiment/test/simple/json/pointer/Value.h"
+#include "experiment/test/simple/json/value/Array.h"
 
 void experiment::test::simple::json::value::Array::PreTest()
 {
@@ -83,10 +83,24 @@ void experiment::test::simple::json::value::Array::Test()
 	//	with default initialization
 	JsonValue::Array value_array1;
 
+	//	Declare const left-value reference of
+	//		class 'BrainMuscles::test::simple::json::value::Array'
+	//	with reference initialization of variable 'value_array1'
+	const JsonValue::Array& const_value_array1 = value_array1;
+
 	//	Declare variable of 
 	//		class 'BrainMuscles::test::simple::json::value::Array'
 	//	with default initialization
 	JsonValue::Array value_array2;
+
+	//	Declare const left-valur reference of
+	//		class 'BrainMuscles::test::simple::json::value::Array'
+	//	with reference initialization of variable 'value_array2'
+	const JsonValue::Array& const_value_array2 = value_array2;
+
+	//	Declare const left-value reference of
+	//		class 'BrainMuscles::test::simple::json::value::Array'
+	//	with reference initialization of variable 'value_array1'
 
 	//	Call function member 'Insert' from 
 	//		class 'BrainMuscles::test::simple::json::value::Array'
@@ -1366,7 +1380,7 @@ void experiment::test::simple::json::value::Array::Test()
 
 	//	Check range-for is work to
 	//	const variable 'value_array1'
-	for (auto it_const_value : std::as_const(value_array1))
+	for (auto it_const_value : const_value_array1)
 	{
 		//	Check compare variable between 
 		//		variable value of 
@@ -1878,8 +1892,8 @@ void experiment::test::simple::json::value::Array::Test()
 		//	is same
 		//	where variable 'i' as first argument to
 		//		function const member 'At'
-		SourceAssert(std::as_const(value_array2)[i] 
-			== std::as_const(value_array2).At(i),
+		SourceAssert(const_value_array2[i] 
+			== const_value_array2.At(i),
 			"compare variable between element variable at %zu of "
 			"variable 'value_array2' and return variable of "
 			"function const member 'At' from variable 'value_array2' "
