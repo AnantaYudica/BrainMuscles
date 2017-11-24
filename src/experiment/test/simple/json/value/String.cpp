@@ -1,11 +1,12 @@
 #define _USING_TEST_
 #define _USING_TEST_SOURCE_
 
+#include <cstring>
 #include <string>
 
-#include "test\simple\json\value\String.h"
+#include "test/simple/json/value/String.h"
 
-#include "experiment\test\simple\json\value\String.h"
+#include "experiment/test/simple/json/value/String.h"
 
 void experiment::test::simple::json::value::String::Test()
 {
