@@ -2,6 +2,7 @@
 #define _USING_TEST_SOURCE_
 
 #include "test/simple/json/helper/Cast.h"
+#include "test/simple/json/value/Null.h"
 
 #include "experiment/test/simple/json/Value.h"
 #include "experiment/test/simple/json/value/Array.h"
