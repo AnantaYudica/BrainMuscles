@@ -1,36 +1,36 @@
 #define _USING_TEST_
 #define _USING_TEST_SOURCE_
 
-#include "test\simple\json\Memory.h"
+#include "test/simple/json/Memory.h"
 
-#include "test\simple\json\Value.h"
-#include "test\simple\json\value\Array.h"
-#include "test\simple\json\value\False.h"
-#include "test\simple\json\value\Null.h"
-#include "test\simple\json\value\Number.h"
-#include "test\simple\json\value\Object.h"
-#include "test\simple\json\value\String.h"
-#include "test\simple\json\value\True.h"
+#include "test/simple/json/Value.h"
+#include "test/simple/json/value/Array.h"
+#include "test/simple/json/value/False.h"
+#include "test/simple/json/value/Null.h"
+#include "test/simple/json/value/Number.h"
+#include "test/simple/json/value/Object.h"
+#include "test/simple/json/value/String.h"
+#include "test/simple/json/value/True.h"
 
-#include "test\simple\json\value\number\Char.h"
-#include "test\simple\json\value\number\Double.h"
-#include "test\simple\json\value\number\Float.h"
-#include "test\simple\json\value\number\Int.h"
-#include "test\simple\json\value\number\Long.h"
-#include "test\simple\json\value\number\LongDouble.h"
-#include "test\simple\json\value\number\LongLong.h"
-#include "test\simple\json\value\number\Short.h"
-#include "test\simple\json\value\number\UnsignedChar.h"
-#include "test\simple\json\value\number\UnsignedInt.h"
-#include "test\simple\json\value\number\UnsignedLong.h"
-#include "test\simple\json\value\number\UnsignedLongLong.h"
-#include "test\simple\json\value\number\UnsignedShort.h"
+#include "test/simple/json/value/number/Char.h"
+#include "test/simple/json/value/number/Double.h"
+#include "test/simple/json/value/number/Float.h"
+#include "test/simple/json/value/number/Int.h"
+#include "test/simple/json/value/number/Long.h"
+#include "test/simple/json/value/number/LongDouble.h"
+#include "test/simple/json/value/number/LongLong.h"
+#include "test/simple/json/value/number/Short.h"
+#include "test/simple/json/value/number/UnsignedChar.h"
+#include "test/simple/json/value/number/UnsignedInt.h"
+#include "test/simple/json/value/number/UnsignedLong.h"
+#include "test/simple/json/value/number/UnsignedLongLong.h"
+#include "test/simple/json/value/number/UnsignedShort.h"
 
-#include "experiment\test\simple\json\Memory.h"
-#include "experiment\test\simple\json\Value.h"
-#include "experiment\test\simple\json\pointer\Value.h"
+#include "experiment/test/simple/json/Memory.h"
+#include "experiment/test/simple/json/Value.h"
+#include "experiment/test/simple/json/pointer/Value.h"
 
-#include "experiment\test\simple\json\value\Object.h"
+#include "experiment/test/simple/json/value/Object.h"
 
 
 void experiment::test::simple::json::value::Object::PreTest()
@@ -95,10 +95,20 @@ void experiment::test::simple::json::value::Object::Test()
 	//	with default initialization
 	Json::value::Object value_object1;
 
+	//	Declare const left-value reference variable of 
+	//		class 'BrainMuscles::test::simple::json::value::Object'
+	//	with reference initialization of variable 'value_object1'
+	const Json::value::Object& const_value_object1 = value_object1;
+
 	//	Declare variable of 
 	//		class 'BrainMuscles::test::simple::json::value::Object' 
 	//	with default initialization
 	Json::value::Object value_object2;
+
+	//	Declare const left-value reference variable of
+	//		class 'BrainMuscles::test::simple::json::value::Object'
+	//	with reference initialization of variable 'value_object2'
+	const Json::value::Object& const_value_object2 = value_object2;
 
 	//	Assignment to element variable of 
 	//		variable 'value_object1' 
@@ -1626,7 +1636,7 @@ void experiment::test::simple::json::value::Object::Test()
 
 	//	Check range-for is work to
 	//	const variable 'value_object1'
-	for (auto it_const_value : std::as_const(value_object1))
+	for (auto it_const_value : const_value_object1)
 	{
 		//	Check compare variable between 
 		//		variable value of 
@@ -2144,11 +2154,6 @@ void experiment::test::simple::json::value::Object::Test()
 			"where key variable(\"%s\") of 'it_value' as first argument to"
 			"function member 'At'", value_object2.Key(it_value).c_str(),
 			value_object2.Key(it_value).c_str());
-
-		//	declare const variable of
-		//		class 'BrainMuscles::test::simple::json::value::Object' 
-		//	with copy initialization from variable 'value_object2'
-		auto const_value_object2 = std::as_const(value_object2);
 
 		//	check compare variable between 
 		//		element variable of
