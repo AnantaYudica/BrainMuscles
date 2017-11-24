@@ -3776,12 +3776,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"and enumerator 'value_number_unsignedshort' from "
 		"enum 'BrainMuscles::test::simple::json::helper::Enum' is not same");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::Array'
-	Json::Value& value_array1 = JsonValue::Array();
+	Json::Value&& value_array1 = JsonValue::Array();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -3806,12 +3806,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_array1' as first argument to "
 		"function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::False'
-	Json::Value& value_false1 = JsonValue::False();
+	Json::Value&& value_false1 = JsonValue::False();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -3835,12 +3835,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_false1' as first argument to "
 		"function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::Null'
-	Json::Value& value_null1 = JsonValue::Null();
+	Json::Value&& value_null1 = JsonValue::Null();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -3864,12 +3864,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_null1' as first argument to "
 		"function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::Object'
-	Json::Value& value_object1 = JsonValue::Object();
+	Json::Value&& value_object1 = JsonValue::Object();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -3893,12 +3893,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_object1' as first argument to "
 		"function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::String'
-	Json::Value& value_string1 = JsonValue::String();
+	Json::Value&& value_string1 = JsonValue::String();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -3922,12 +3922,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_string1' as first argument to "
 		"function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::True'
-	Json::Value& value_true1 = JsonValue::True();
+	Json::Value&& value_true1 = JsonValue::True();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -3951,12 +3951,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_true1' as first argument to "
 		"function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::number::Char'
-	Json::Value& value_number_char1 = JsonValueNumber::Char();
+	Json::Value&& value_number_char1 = JsonValueNumber::Char();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -3980,12 +3980,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_char1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::number::Double'
-	Json::Value& value_number_double1 = JsonValueNumber::Double();
+	Json::Value&& value_number_double1 = JsonValueNumber::Double();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -4009,12 +4009,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_double1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::number::Float'
-	Json::Value& value_number_float1 = JsonValueNumber::Float();
+	Json::Value&& value_number_float1 = JsonValueNumber::Float();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -4038,12 +4038,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_float1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::number::Int'
-	Json::Value& value_number_int1 = JsonValueNumber::Int();
+	Json::Value&& value_number_int1 = JsonValueNumber::Int();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -4067,12 +4067,12 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_int1' as first argument to "
 		"function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	from copy initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value::number::Long'
-	Json::Value& value_number_long1 = JsonValueNumber::Long();
+	Json::Value&& value_number_long1 = JsonValueNumber::Long();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -4096,13 +4096,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_long1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
 	//	from copy initialization of
-	//		value initialization from
+	//		reference initialization from
 	//			class 'BrainMuscles::test::simple::json::value
 	//				::number::LongDouble'
-	Json::Value& value_number_longdouble1 = JsonValueNumber::LongDouble();
+	Json::Value&& value_number_longdouble1 = JsonValueNumber::LongDouble();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -4126,13 +4126,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_longdouble1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value
 	//				::number::LongLong'
-	Json::Value& value_number_longlong1 = JsonValueNumber::LongLong();
+	Json::Value&& value_number_longlong1 = JsonValueNumber::LongLong();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -4156,13 +4156,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_longlong1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value
 	//				::number::UnsignedChar'
-	Json::Value& value_number_unsignedchar1 = JsonValueNumber::UnsignedChar();
+	Json::Value&& value_number_unsignedchar1 = JsonValueNumber::UnsignedChar();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -4186,13 +4186,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_unsignedchar1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value
 	//				::number::UnsignedInt'
-	Json::Value& value_number_unsignedint1 = JsonValueNumber::UnsignedInt();
+	Json::Value&& value_number_unsignedint1 = JsonValueNumber::UnsignedInt();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -4216,13 +4216,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_unsignedint1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value
 	//				::number::UnsignedLong'
-	Json::Value& value_number_unsignedlong1 = JsonValueNumber::UnsignedLong();
+	Json::Value&& value_number_unsignedlong1 = JsonValueNumber::UnsignedLong();
 
 	//	Check value between
 	//		return variable of function static member 'Identification<
@@ -4246,13 +4246,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_unsignedlong1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json
 	//				::value::number::UnsignedLongLong'
-	Json::Value& value_number_unsignedlonglong1 
+	Json::Value&& value_number_unsignedlonglong1 
 		= JsonValueNumber::UnsignedLongLong();
 
 	//	Check value between
@@ -4278,13 +4278,13 @@ void experiment::test::simple::json::helper::Tag::Test()
 		"is not same, where variable 'value_number_unsignedlonglong1' "
 		"as first argument to function static member 'Identification'");
 
-	//	Declare reference variable of
+	//	Declare right-value reference variable of
 	//		class 'BrainMuscles::test::simple::json::Value'
-	//	from copy initialization of
+	//	from reference initialization of
 	//		value initialization from
 	//			class 'BrainMuscles::test::simple::json::value
 	//				::number::UnsignedShort'
-	Json::Value& value_number_unsignedshort1 
+	Json::Value&& value_number_unsignedshort1 
 		= JsonValueNumber::UnsignedShort();
 
 	//	Check value between
