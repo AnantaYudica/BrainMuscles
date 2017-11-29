@@ -15,14 +15,16 @@ namespace tool
 struct tool::character::definition::Ascii final
 {
 	Ascii() = delete;
-	typedef unsigned char BinaryDigitType;
+	typedef unsigned char SizeBinaryDigitType;
+	typedef unsigned char SizeByteType;
 	typedef unsigned char ValueType;
 	typedef unsigned char RawValueType;
 	static constexpr const char* Name = "ascii";
+	static constexpr SizeByteType LengthRead = 1;
 	static constexpr ValueType MaximumValue = 127;
 	static constexpr ValueType MinimumValue = 0;
-	static constexpr BinaryDigitType MaximumBinaryDigit = 7;
-	static constexpr BinaryDigitType MinimumBinaryDigit = 7;
+	static constexpr SizeBinaryDigitType MaximumBinaryDigit = 7;
+	static constexpr SizeBinaryDigitType MinimumBinaryDigit = 7;
 };
 
 #endif //!TOOL_CHARACTER_DEFINITION_ASCII_H_
