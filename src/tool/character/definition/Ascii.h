@@ -20,11 +20,11 @@ struct tool::character::definition::Ascii final
 	typedef unsigned char ValueType;
 	typedef unsigned char RawValueType;
 	static constexpr const char* Name = "ascii";
-	static constexpr SizeByteType LengthRead = 1;
-	static constexpr ValueType MaximumValue = 127;
-	static constexpr ValueType MinimumValue = 0;
+	static constexpr SizeByteType SizeRead = 1;
 	static constexpr SizeBinaryDigitType MaximumBinaryDigit = 7;
 	static constexpr SizeBinaryDigitType MinimumBinaryDigit = 7;
+	static constexpr ValueType MaximumValue = 127;
+	static constexpr ValueType MinimumValue = 0;
 };
 
 #endif //!TOOL_CHARACTER_DEFINITION_ASCII_H_
