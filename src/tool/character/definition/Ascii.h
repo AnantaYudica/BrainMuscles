@@ -32,16 +32,16 @@ struct tool::character::definition::Ascii final
 	template<typename ITERATOR_TYPE>
 	static inline unsigned int Encode(const ValueType& input,
 		ITERATOR_TYPE begin_output, ITERATOR_TYPE end_output);
-	template<std::size_t N>
-	static inline unsigned int Encode(const ValueType& input, char(&output)[N],
+	template<typename TYPE, std::size_t N>
+	static inline unsigned int Encode(const ValueType& input, TYPE(&output)[N],
 		const std::size_t& index_output = 0);
 
 	static inline unsigned int Decode(const RawValueType& input, ValueType& output);
 	template<typename ITERATOR_TYPE>
 	static inline unsigned int Decode(ITERATOR_TYPE begin_input,
 		ITERATOR_TYPE end_input, ValueType& output);
-	template<std::size_t N>
-	static inline unsigned int Decode(const char(&input)[N], ValueType& output,
+	template<typename TYPE, std::size_t N>
+	static inline unsigned int Decode(const TYPE(&input)[N], ValueType& output,
 		const std::size_t& index_input = 0);
 };
 
@@ -69,10 +69,10 @@ tool::character::definition::Ascii::Encode(const ValueType& input,
 	return Encode(input, *begin_output);
 }
 
-template<std::size_t N>
+template<typename TYPE, std::size_t N>
 inline unsigned int 
 tool::character::definition::Ascii::Encode(const ValueType& input,
-	char(&output)[N], const std::size_t& index_output)
+	TYPE(&output)[N], const std::size_t& index_output)
 {
 	return Encode(input, output + index_output, output + N);
 }
@@ -101,9 +101,9 @@ tool::character::definition::Ascii::Decode(ITERATOR_TYPE begin_input,
 	return Encode(*begin_input, output);
 }
 
-template<std::size_t N>
+template<typename TYPE, std::size_t N>
 inline unsigned int 
-tool::character::definition::Ascii::Decode(const char(&input)[N],
+tool::character::definition::Ascii::Decode(const TYPE(&input)[N],
 	ValueType& output, const std::size_t& index_input)
 {
 	return Decode(input + index_input, input + N, output);
