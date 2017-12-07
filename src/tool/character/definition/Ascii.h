@@ -9,13 +9,14 @@ namespace tool
 	{
 		namespace definition
 		{
-			struct Ascii;
+			class Ascii;
 		}
 	}
 }
 
-struct tool::character::definition::Ascii final
+class tool::character::definition::Ascii final
 {
+public:
 	Ascii() = delete;
 	typedef unsigned char SizeBinaryDigitType;
 	typedef unsigned char SizeByteType;
@@ -27,86 +28,164 @@ struct tool::character::definition::Ascii final
 	static constexpr SizeBinaryDigitType MinimumBinaryDigit = 7;
 	static constexpr ValueType MaximumValue = 127;
 	static constexpr ValueType MinimumValue = 0;
-
-	static inline std::size_t Encode(const ValueType& input, RawValueType& output);
-	template<typename ITERATOR_TYPE>
-	static inline std::size_t Encode(const ValueType& input,
-		ITERATOR_TYPE begin_output, ITERATOR_TYPE end_output);
-	template<typename TYPE, std::size_t N>
-	static inline std::size_t Encode(const ValueType& input, TYPE(&output)[N],
-		const std::size_t& index_output = 0);
-
-	static inline std::size_t Decode(const RawValueType& input, ValueType& output);
-	template<typename ITERATOR_TYPE>
-	static inline std::size_t Decode(ITERATOR_TYPE begin_input,
-		ITERATOR_TYPE end_input, ValueType& output);
-	template<typename TYPE, std::size_t N>
-	static inline std::size_t Decode(const TYPE(&input)[N], ValueType& output,
-		const std::size_t& index_input = 0);
+private:
+	static inline bool ValidationValue(const ValueType& value);
+	static inline bool ValidationPointer(const void* pointer,
+		const std::size_t& pointer_type_size, const std::size_t& pointer_size,
+		const std::size_t& pointer_offset);
+public:
+	static inline std::size_t Encode(const ValueType& input, 
+		RawValueType& output);
+	static inline std::size_t Encode(const void* input,
+		const std::size_t& input_type_size, const std::size_t& input_size,
+		const std::size_t& input_offset, void* output,
+		const std::size_t& output_type_size, const std::size_t& output_size,
+		const std::size_t& output_offset);
+	static inline std::size_t Encode(const ValueType& input, void* output,
+		const std::size_t& output_type_size, const std::size_t& output_size,
+		const std::size_t& output_offset);
+	static inline std::size_t Encode(const void* input, 
+		const std::size_t& input_type_size, const std::size_t& input_size,
+		const std::size_t& input_offset, RawValueType& output);
+	static inline std::size_t Decode(const RawValueType& input, 
+		ValueType& output);
+	static inline std::size_t Decode(const void* input,
+		const std::size_t& input_type_size, const std::size_t& input_size,
+		const std::size_t& input_offset, void* output,
+		const std::size_t& output_type_size, const std::size_t& output_size,
+		const std::size_t& output_offset);
+	static inline std::size_t Decode(const RawValueType& input, void* output,
+		const std::size_t& output_type_size, const std::size_t& output_size,
+		const std::size_t& output_offset);
+	static inline std::size_t Decode(const void* input,
+		const std::size_t& input_type_size, const std::size_t& input_size,
+		const std::size_t& input_offset, ValueType& output);
 };
+
+inline bool 
+tool::character::definition::Ascii::ValidationValue(const ValueType& value)
+{
+	return value <= MaximumValue && value >= MinimumValue;
+}
+
+inline bool 
+tool::character::definition::Ascii::ValidationPointer(const void* pointer,
+	const std::size_t& pointer_type_size, const std::size_t& pointer_size,
+	const std::size_t& pointer_offset)
+{
+	return pointer != NULL && pointer_type_size != 0 && pointer_size != 0
+		&& pointer_offset < pointer_type_size;
+}
 
 inline std::size_t
 tool::character::definition::Ascii::Encode(const ValueType& input, 
 	RawValueType& output)
 {
-	if (input > MaximumValue || input < MinimumValue)
+	if (ValidationValue(input))
 	{
-		return 0;
+		output = input;
+		return 1;
 	}
-	output = input;
-	return 1;
+	return 0;
 }
 
-template<typename ITERATOR_TYPE>
-inline std::size_t
-tool::character::definition::Ascii::Encode(const ValueType& input,
-	ITERATOR_TYPE begin_output, ITERATOR_TYPE end_output)
+inline std::size_t 
+tool::character::definition::Ascii::Encode(const void* input,
+	const std::size_t& input_type_size, const std::size_t& input_size,
+	const std::size_t& input_offset, void* output, 
+	const std::size_t& output_type_size,
+	const std::size_t& output_size, const std::size_t& output_offset)
 {
-	if (begin_output >= end_output)
+	if (ValidationPointer(input, input_type_size, input_size, input_offset)
+		&& ValidationPointer(output, output_type_size, output_size,
+			output_offset))
 	{
-		return 0;
+		ValueType value;
+		RawValueType raw_value;
+		memcpy_s(&value, SizeRead, (const char*)input + input_offset, SizeRead);
+		if (Encode(value, raw_value))
+		{
+			memcpy_s((char*)output + output_offset, SizeRead, &raw_value,
+				SizeRead);
+			return output_type_size;
+		}
 	}
-	return Encode(input, *begin_output);
+	return 0;
 }
 
-template<typename TYPE, std::size_t N>
-inline std::size_t
-tool::character::definition::Ascii::Encode(const ValueType& input,
-	TYPE(&output)[N], const std::size_t& index_output)
+inline std::size_t 
+tool::character::definition::Ascii::Encode(const ValueType& input, void* output,
+	const std::size_t& output_type_size, const std::size_t& output_size,
+	const std::size_t& output_offset)
 {
-	return Encode(input, output + index_output, output + N);
+	return Encode(&input, sizeof(ValueType), 1, 0, output,
+		output_type_size, output_size, output_offset);
+}
+
+inline std::size_t
+tool::character::definition::Ascii::Encode(const void* input,
+	const std::size_t& input_type_size, const std::size_t& input_size,
+	const std::size_t& input_offset, RawValueType& output)
+{
+	return Encode(input, input_type_size, input_size, input_offset, &output,
+		sizeof(RawValueType), 1, 0);
 }
 
 inline std::size_t
 tool::character::definition::Ascii::Decode(const RawValueType& input,
 	ValueType& output)
 {
-	if (input > MaximumValue || input < MinimumValue)
+	if (ValidationValue(input))
 	{
-		return 0;
+		output = input;
+		return 1;
 	}
-	output = input;
-	return 1;
+	return 0;
 }
 
-template<typename ITERATOR_TYPE>
-inline std::size_t
-tool::character::definition::Ascii::Decode(ITERATOR_TYPE begin_input,
-	ITERATOR_TYPE end_input, ValueType& output)
+inline std::size_t 
+tool::character::definition::Ascii::Decode(const void* input,
+	const std::size_t& input_type_size, const std::size_t& input_size,
+	const std::size_t& input_offset, void* output,
+	const std::size_t& output_type_size, const std::size_t& output_size,
+	const std::size_t& output_offset)
 {
-	if (begin_input >= end_input)
+	if (ValidationPointer(input, input_type_size, input_size, input_offset)
+		&& ValidationPointer(output, output_type_size, output_size,
+			output_offset))
 	{
-		return 0;
+		ValueType value;
+		RawValueType raw_value;
+		memcpy_s(&raw_value, SizeRead, (const char*)input + input_offset,
+			SizeRead);
+		if (Encode(raw_value, value))
+		{
+			memcpy_s((char*)output + output_offset, SizeRead,
+				&value, SizeRead);
+			return output_type_size;
+		}
 	}
-	return Encode(*begin_input, output);
+	return 0;
 }
 
-template<typename TYPE, std::size_t N>
 inline std::size_t
-tool::character::definition::Ascii::Decode(const TYPE(&input)[N],
-	ValueType& output, const std::size_t& index_input)
+tool::character::definition::Ascii::Decode(const RawValueType& input, 
+	void* output, const std::size_t& output_type_size, 
+	const std::size_t& output_size, const std::size_t& output_offset)
 {
-	return Decode(input + index_input, input + N, output);
+	return Decode(&input, sizeof(ValueType), 1, 0, output,
+		output_type_size, output_size, output_offset);
 }
+
+inline std::size_t 
+tool::character::definition::Ascii::Decode(const void* input,
+	const std::size_t& input_type_size, const std::size_t& input_size,
+	const std::size_t& input_offset, ValueType& output)
+{
+	return Encode(input, input_type_size, input_size, input_offset, &output,
+		sizeof(ValueType), 1, 0);
+}
+
+
 
 #endif //!TOOL_CHARACTER_DEFINITION_ASCII_H_
