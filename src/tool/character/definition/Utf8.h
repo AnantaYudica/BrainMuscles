@@ -22,9 +22,9 @@ public:
 	typedef std::uint8_t SizeBinaryDigitType;
 	typedef std::uint8_t SizeByteType;
 	typedef std::uint8_t ByteType;
-	static constexpr SizeByteType MaximumSizeRawValueType = 4;
+	static constexpr SizeByteType SizeRawValue = 4;
 	typedef std::uint32_t ValueType;
-	typedef ByteType(RawValueType)[MaximumSizeRawValueType];
+	typedef ByteType(RawValueType)[SizeRawValue];
 	static constexpr const char* Name = "utf-8";
 	static constexpr SizeByteType SizeRead = 1;
 	static constexpr SizeBinaryDigitType MaximumValueBinaryDigit = 21;
@@ -85,7 +85,7 @@ tool::character::definition::Utf8::ValidationValue(const ValueType& value)
 inline bool 
 tool::character::definition::Utf8::ValidationSize(const SizeByteType& size)
 {
-	return size > 0 && size <= MaximumSizeRawValueType;
+	return size > 0 && size <= SizeRawValue;
 }
 
 inline bool
