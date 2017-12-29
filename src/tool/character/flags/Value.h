@@ -1,5 +1,5 @@
-#ifndef TOOL_CHARACTER_FLAGS_VALUE_H___PROTOTYPE__
-#define TOOL_CHARACTER_FLAGS_VALUE_H___PROTOTYPE__
+#ifndef TOOL_CHARACTER_FLAGS_VALUE_H_
+#define TOOL_CHARACTER_FLAGS_VALUE_H_
 
 namespace tool
 {
@@ -13,53 +13,83 @@ namespace tool
 	}
 }
 
-#endif //!TOOL_CHARACTER_FLAGS_VALUE_H___PROTOTYPE__
-
-#ifndef TOOL_CHARACTER_FLAGS_H___PROTOTYPE__
+#ifndef TOOL_CHARACTER_FLAGS_H_
 #include "character/Flags.h"
-#endif //!TOOL_CHARACTER_FLAGS_H___PROTOTYPE__
 
-#ifndef TOOL_CHARACTER_FLAGS_VALUE_H___DEFINITION__
-#define TOOL_CHARACTER_FLAGS_VALUE_H___DEFINITION__
+#endif //!TOOL_CHARACTER_FLAGS_H_
 
+#include <memory>
 #include "Definition.h"
+#include "character/flags/Blocks.h"
 
 template<typename CHARACTER_DEFINITION_TYPE>
 class tool::character::flags::Value
 {
 	friend class tool::character::Flags<CHARACTER_DEFINITION_TYPE>;
 public:
-	typedef typename tool::Definition::ByteType ByteType;
-	typedef typename tool::Definition::SizeBinaryDigitType SizeBinaryDigitType;
-	typedef typename CHARACTER_DEFINITION_TYPE::ValueType ValueIntegerType;
+	typedef tool::Definition DefinitionType;
+	typedef typename DefinitionType::ByteType ByteType;
+	typedef typename DefinitionType::SizeByteType SizeByteType;
+	typedef CHARACTER_DEFINITION_TYPE CharacterDefinitionType;
+	typedef typename CharacterDefinitionType::ValueType ValueIntegerType;
+	typedef tool::character::flags::Blocks BlocksType;
+	typedef typename BlocksType::WeakPointerType BlockPointerType;
 private:
-	ByteType& m_subset;
-	const SizeBinaryDigitType m_offset;
+	static constexpr bool IsFlagSet(ByteType& block, 
+		const SizeByteType& offset);
+	static void PointerExpired(const BlockPointerType& blocks_pointer);
+private:
+	BlockPointerType m_blocksPointer;
 	const ValueIntegerType m_value;
 private:
-	Value(ByteType& subset, const SizeBinaryDigitType& offset,
-		const ValueIntegerType& value);
+	Value(BlockPointerType blocks_pointer, const ValueIntegerType& value);
+	Value(const Value& copy);
 public:
-	Value(const Value&) = delete;
-	Value(Value&&) = delete;
+	~Value();
+private:
+	Value& operator=(const Value&) = delete;
+private:
 public:
 	operator typename CHARACTER_DEFINITION_TYPE::ValueType() const;
 	bool operator*() const;
-	Value& operator=(const bool& set);
+	void operator=(const bool& set);
 };
 
-#endif //!TOOL_CHARACTER_FLAGS_VALUE_H___DEFINITION__
+template<typename CHARACTER_DEFINITION_TYPE>
+constexpr bool tool::character::flags::Value<
+	CHARACTER_DEFINITION_TYPE>::IsFlagSet(ByteType& block,
+		const SizeByteType& offset)
+{
+	return block & ((ByteType)(1 << offset));
+}
 
-#ifndef TOOL_CHARACTER_FLAGS_VALUE_H___IMPLEMENTATION__
-#define TOOL_CHARACTER_FLAGS_VALUE_H___IMPLEMENTATION__
+template<typename CHARACTER_DEFINITION_TYPE>
+void tool::character::flags::Value<CHARACTER_DEFINITION_TYPE>
+	::PointerExpired(const BlockPointerType& blocks_pointer)
+{
+	if (blocks_pointer.expired())
+	{
+		throw std::bad_weak_ptr();
+	}
+}
+
+template<typename CHARACTER_DEFINITION_TYPE>
+tool::character::flags::Value<
+	CHARACTER_DEFINITION_TYPE>::Value(BlockPointerType blocks_pointer,
+		const ValueIntegerType& value) :
+	m_blocksPointer(blocks_pointer),
+	m_value(value)
+{}
 
 template<typename CHARACTER_DEFINITION_TYPE>
 tool::character::flags
-	::Value<CHARACTER_DEFINITION_TYPE>::Value(ByteType& subset,
-		const SizeBinaryDigitType& offset, const ValueIntegerType& value) :
-	m_subset(subset),
-	m_offset(offset),
-	m_value(value)
+	::Value<CHARACTER_DEFINITION_TYPE>::Value(const Value& copy) :
+	m_blocksPointer(copy.m_blocksPointer),
+	m_value(copy.m_value)
+{}
+
+template<typename CHARACTER_DEFINITION_TYPE>
+tool::character::flags::Value<CHARACTER_DEFINITION_TYPE>::~Value()
 {}
 
 template<typename CHARACTER_DEFINITION_TYPE>
@@ -70,29 +100,34 @@ typename CHARACTER_DEFINITION_TYPE::ValueType() const
 }
 
 template<typename CHARACTER_DEFINITION_TYPE>
-bool tool::character::flags
-	::Value<CHARACTER_DEFINITION_TYPE>::operator*() const
+bool tool::character::flags::Value<
+	CHARACTER_DEFINITION_TYPE>::operator*() const
 {
-	return m_subset & (1 << m_offset);
+	PointerExpired(m_blocksPointer);
+	auto pointer = m_blocksPointer.lock();
+	return IsFlagSet(*(pointer.get() + BlocksType::Index(m_value)),
+		BlocksType::Offset(m_value));
 }
 
 template<typename CHARACTER_DEFINITION_TYPE>
-tool::character::flags::Value<CHARACTER_DEFINITION_TYPE>&
-tool::character::flags
+void tool::character::flags
 	::Value<CHARACTER_DEFINITION_TYPE>::operator=(const bool& set)
 {
+	PointerExpired(m_blocksPointer);
+	auto pointer = m_blocksPointer.lock();
+	auto block_pointer = pointer.get() + BlocksType::Index(m_value);
 	if (set)
 	{
-		m_subset |= (1 << m_offset);
+		*block_pointer |= (1 << (ByteType)BlocksType::Offset(m_value));
 	}
 	else
 	{
-		if (operator*())
+		if (IsFlagSet(*block_pointer, BlocksType::Offset(m_value)))
 		{
-			m_subset ^= (1 << m_offset);
+			*block_pointer ^= (1 << (ByteType)BlocksType::Offset(m_value));
 		}
 	}
-	return *this;
 }
 
-#endif //!TOOL_CHARACTER_FLAGS_VALUE_H___IMPLEMENTATION__
+
+#endif //!TOOL_CHARACTER_FLAGS_VALUE_H_
