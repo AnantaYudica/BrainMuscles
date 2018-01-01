@@ -2,6 +2,7 @@
 #define TOOL_CHARACTER_DEFINITION_ASCII_H_
 
 #include <cstddef>
+#include "Definition.h"
 
 namespace tool
 {
@@ -16,10 +17,12 @@ namespace tool
 
 class tool::character::definition::Ascii final
 {
-public:
 	Ascii() = delete;
-	typedef unsigned char SizeBinaryDigitType;
-	typedef unsigned char SizeByteType;
+public:
+	typedef tool::Definition DefinitionType;
+	typedef typename DefinitionType::SizeBinaryDigitType SizeBinaryDigitType;
+	typedef typename DefinitionType::SizeByteType SizeByteType;
+	typedef typename DefinitionType::SizeType SizeType;
 	typedef char ValueType;
 	typedef char RawValueType;
 	static constexpr const char* Name = "ascii";
@@ -28,7 +31,6 @@ public:
 	static constexpr SizeBinaryDigitType MinimumBinaryDigit = 7;
 	static constexpr ValueType MaximumValue = 127;
 	static constexpr ValueType MinimumValue = 0;
-	typedef std::size_t SizeType;
 private:
 	static inline bool ValidationValue(const ValueType& value);
 public:
