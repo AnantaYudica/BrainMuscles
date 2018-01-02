@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include "Definition.h"
 
 namespace tool
 {
@@ -17,12 +18,14 @@ namespace tool
 
 class tool::character::definition::Utf16 final
 {
-public:
 	Utf16() = delete;
-	typedef std::uint8_t SizeBinaryDigitType;
-	typedef std::uint8_t SizeByteType;
-	typedef std::uint8_t ByteType;
-	typedef std::uint16_t DoubleByteType;
+public:
+	typedef tool::Definition DefinitionType;
+	typedef typename DefinitionType::SizeBinaryDigitType SizeBinaryDigitType;
+	typedef typename DefinitionType::SizeByteType SizeByteType;
+	typedef typename DefinitionType::ByteType ByteType;
+	typedef typename DefinitionType::SizeType SizeType;
+	typedef typename DefinitionType::DoubleByteType DoubleByteType;
 	static constexpr SizeByteType SizeRawValue = 2;
 	typedef std::uint32_t ValueType;
 	typedef DoubleByteType(RawValueType)[SizeRawValue];
@@ -32,7 +35,6 @@ public:
 	static constexpr SizeBinaryDigitType MinimumValueBinaryDigit = 16;
 	static constexpr ValueType MaximumValue = 1114111;
 	static constexpr ValueType MinimumValue = 0;
-	typedef std::size_t SizeType;
 private:
 	static constexpr DoubleByteType FlagLowSurrogate = 0xDC00;
 	static constexpr DoubleByteType MaskFlagLowSurrogate = 0xFC00;
