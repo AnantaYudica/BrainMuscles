@@ -16,6 +16,7 @@ public:
 	typedef std::uint8_t SizeBinaryDigitType;
 	typedef std::uint8_t SizeByteType;
 	typedef std::uint8_t ByteType;
+	typedef std::uint16_t DoubleByteType;
 	typedef std::size_t SizeType;
 	static constexpr SizeBinaryDigitType SizeByteBinaryDigit = 8;
 };
