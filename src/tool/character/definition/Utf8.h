@@ -51,7 +51,6 @@ private:
 	static constexpr ValueType MaskTripleByteValue = 0x0000FFFF;
 	static constexpr ValueType MaskQuadrupleByteValue = 0x001FFFFF;
 private:
-	static inline bool ValidationValue(const ValueType& value);
 	static inline bool ValidationSize(const SizeByteType& size);
 	static inline bool IsSingleByte(const ByteType& byte);
 	static inline bool IsDoubleByte(const ByteType& byte);
@@ -72,17 +71,12 @@ private:
 	static inline ValueType GetNextValue(const SizeByteType& index,
 		const SizeByteType& size, const ByteType& byte);
 public:
+	static inline bool ValidationValue(const ValueType& value);
 	static inline SizeType Encode(const ValueType& input,
 		RawValueType& output);
 	static inline SizeType Decode(const RawValueType& input,
 		ValueType& output);
 };
-
-inline bool 
-tool::character::definition::Utf8::ValidationValue(const ValueType& value)
-{
-	return value <= MaximumValue && value >= MinimumValue;
-}
 
 inline bool 
 tool::character::definition::Utf8::ValidationSize(const SizeByteType& size)
@@ -272,6 +266,12 @@ tool::character::definition::Utf8::GetNextValue(const SizeByteType& index,
 	ValueType value = byte & ~FlagNextByte;
 	value <<= (index * SizeNextValueBinaryDigit);
 	return value;
+}
+
+inline bool
+tool::character::definition::Utf8::ValidationValue(const ValueType& value)
+{
+	return value <= MaximumValue && value >= MinimumValue;
 }
 
 inline typename tool::character::definition::Utf8::SizeType

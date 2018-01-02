@@ -31,9 +31,8 @@ public:
 	static constexpr SizeBinaryDigitType MinimumBinaryDigit = 7;
 	static constexpr ValueType MaximumValue = 127;
 	static constexpr ValueType MinimumValue = 0;
-private:
-	static inline bool ValidationValue(const ValueType& value);
 public:
+	static inline bool ValidationValue(const ValueType& value);
 	static inline SizeType Encode(const ValueType& input,
 		RawValueType& output);
 	static inline SizeType Decode(const RawValueType& input,

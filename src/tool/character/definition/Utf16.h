@@ -45,7 +45,6 @@ private:
 	static constexpr DoubleByteType MaskLowSurrogateValue = 0x03FF;
 	static constexpr DoubleByteType MaskHighSurrogateValue = 0x07FF;
 private:
-	static inline bool ValidationValue(const ValueType& value);
 	static inline bool ValidationSize(const SizeByteType& size);
 	static inline bool IsLowSurrogate(const DoubleByteType& double_byte);
 	static inline bool IsHighSurrogate(const DoubleByteType& double_byte);
@@ -59,17 +58,12 @@ private:
 	static inline ValueType
 		GetHighSurrogateValue(const DoubleByteType& double_byte);
 public:
+	static inline bool ValidationValue(const ValueType& value);
 	static inline SizeType Encode(const ValueType& input,
 		RawValueType& output);
 	static inline SizeType Decode(const RawValueType& input,
 		ValueType& output);
 };
-
-inline bool 
-tool::character::definition::Utf16::ValidationValue(const ValueType& value)
-{
-	return value >= MinimumValue && value <= MaximumValue;
-}
 
 inline bool 
 tool::character::definition::Utf16::ValidationSize(const SizeByteType& size)
@@ -154,6 +148,12 @@ tool::character::definition
 	value += (1 << 6);
 	value <<= 10;
 	return value;
+}
+
+inline bool
+tool::character::definition::Utf16::ValidationValue(const ValueType& value)
+{
+	return value >= MinimumValue && value <= MaximumValue;
 }
 
 inline typename tool::character::definition::Utf16::SizeType
